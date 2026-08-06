@@ -1,0 +1,54 @@
+YAPILACAKLAR — güncel: 6 Ağustos 2026
+
+=== SENDE OLANLAR (Claude yapamaz) ===
+
+[ ] UYGULAMA ADI ve bundle identifier kararı
+    Şu an yer tutucu: DieTrying / com.dietrying.app
+    Yayından sonra DEĞİŞTİRİLEMEZ. Faz 1'deki ilk derlemeden önce lazım.
+
+[ ] Apple Developer hesabı ($99/yıl) — Faz 2.5'e kadar
+[ ] Google Play hesabı ($25 tek seferlik) — Faz 2.5'e kadar
+
+[ ] İlahiyatçı / din görevlisi bul — içerik onayı için
+    YAYINDAN ÖNCE ZORUNLU. Erken konuşmaya başla, geç kalma.
+
+[ ] Gerçek ders içeriğini yazmaya başla
+    Claude örnek veriyi üretecek, sen üstüne yazacaksın.
+    Kodun hızını beklemene gerek yok.
+
+[ ] Kur'an meali telif durumu — Faz 5'ten ÖNCE netleşmeli
+
+[ ] Maskot karakter tasarımı — Faz 3'e kadar (o zamana kadar yer tutucu)
+
+
+=== SIRADAKİ OTURUMLAR (Claude ile) ===
+
+[ ] 0.3 Tasarım sistemi — /constants
+        Claude önce 2-3 renk paleti önerecek, sen seçeceksin
+[ ] 0.4 Tip tanımları — /types
+[ ] 0.5 Örnek içerik — /content (ÖRNEK VERİ, yapı gerçek metin yer tutucu)
+
+Sonra Faz 1:
+[ ] 1.1 4 sekmeli navigasyon
+[ ] 1.2 Button / ProgressBar / Card (her biri AYRI oturum)
+[ ] 1.3 EAS dev build — telefonunda çalışan sürüm
+[ ] 1.4 Sentry
+
+
+=== AÇIK SORULAR ===
+
+[ ] Diyanet namaz vakti verisi nereden gelecek?
+    Resmi public API olduğu doğrulanmadı.
+    Faz 4'ün ilk oturumu bu araştırma — BLOKLAYICI.
+    İstersen daha erken de yaptırabilirsin.
+
+
+=== KARARLAŞANLAR (tekrar tartışma) ===
+
+- İlk yayın (v0.1) = sadece öğrenme modülü
+- Seslendirme: altyapı Faz 2'de, ses dosyaları sonra
+- İçerik: pakete gömülü + expo-updates ile OTA güncelleme
+- Backend: Faz 7'de, daha erken değil
+- Arayüz metni: /constants/strings.ts, i18n kütüphanesi yok
+- SQLite tabloları baştan updatedAt + deletedAt taşır
+- Renk paletini Claude önerecek, sen seçeceksin

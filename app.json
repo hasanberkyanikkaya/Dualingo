@@ -1,16 +1,19 @@
 {
   "expo": {
-    "name": "_scaffold",
-    "slug": "_scaffold",
+    "name": "DieTrying",
+    "slug": "dietrying",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "scaffold",
+    "scheme": "dietrying",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dietrying.app"
     },
     "android": {
+      "package": "com.dietrying.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -32,7 +35,17 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Namaz vakitlerini ve kıble yönünü bulunduğun yere göre hesaplamak için konumun kullanılır."
+        }
+      ],
+      "expo-notifications",
+      "expo-sqlite",
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
