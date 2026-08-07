@@ -36,7 +36,12 @@ Sonra Faz 1:
         Öğren / Namaz / Kur'an / Profil — Namaz ve Kur'an "Yakında" durumunda
         Rota adları İngilizce; useTheme kancası ile açık+koyu tema çalışıyor
         Yan ürün: Screen / ScreenHeader / ComingSoon bileşenleri
-[ ] 1.2 Button / ProgressBar / Card (her biri AYRI oturum)
+[~] 1.2 Button / ProgressBar / Card (her biri AYRI oturum)
+    [x] Button — 3 varyant / 3 boyut / pasif+yükleniyor, Reanimated basma animasyonu
+        Ghost jetonsuz bestelendi (kontrast düzeltmesiyle), boyutlar minTouchTarget etrafında
+        Reanimated ilk kez kullanıldı — babel.config.js YOK, olmayacak
+    [ ] ProgressBar
+    [ ] Card
 [ ] 1.3 EAS dev build — telefonunda çalışan sürüm
 [ ] 1.4 Sentry
 

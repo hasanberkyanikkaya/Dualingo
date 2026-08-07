@@ -127,8 +127,8 @@ npx tsc --noEmit        # tip kontrolü
 
 ## Şu Anki Faz
 
-**Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM.**
-Sırada **Faz 1.2 — Button / ProgressBar / Card** (her biri ayrı oturum).
+**Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.**
+Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturumlar).
 
 **Ad ve kimlik kararı:**
 - Görünen ad: **Dualingo** — *geçici*. `app.json` `name`/`slug`/`scheme` ve
@@ -220,6 +220,43 @@ Sırada **Faz 1.2 — Button / ProgressBar / Card** (her biri ayrı oturum).
   sekmelerin boş durumu). Faz 1.2'nin Button/Card/ProgressBar'ından ayrıdır.
 - Sekme ikonları Ionicons: `school` / `moon` / `book` / `person` (+`-outline`).
   Ionicons'ta cami ikonu yok; Namaz için hilal seçildi, Faz 4'te tekrar bakılır.
+
+**Bileşen kararları (Oturum 1.2 — Button):**
+- **Ghost varyantının kendi jetonu yok**, birincil jetonlardan bestelendi:
+  zemin şeffaf, basılınca `primarySoft`, metin `primary` → basılınca
+  `primaryPressed`. Metin de değişiyor çünkü açık temada `primary`/`primarySoft`
+  kontrastı **4.46:1** ile AA'nın (4.5:1) altında kalıyor; `primaryPressed` iki
+  temada da `primarySoft`'tan uzaklaştığı için 6.30:1 / 5.89:1 veriyor.
+  Pasif ghost dolgusuz kalır. **`colors.ts`'e yeni jeton EKLENMEDİ.**
+- **Buton boyutları `layout.minTouchTarget` (48) etrafında aritmetik yazılır:**
+  small 48−8=40 (+`hitSlop` 4/4 → etkin 48), medium 48, large 48+8=56.
+  `small` metni `labelLarge` — tek `textStyles.button` jetonu 40px hapta sığmıyor.
+  `height` değil `minHeight`: OS yazı boyutu büyüyünce buton büyür, metin kırpılmaz.
+- ⚠️ **Reanimated ilk kez kullanıldı. `babel.config.js` YOK ve OLMAYACAK** —
+  `babel-preset-expo` worklets eklentisini paket çözüldüğü için kendisi ekliyor
+  (`configs/expo.js:107-119`). Dosya yaratmak eklentiyi iki kez uygular.
+  `metro.config.js` de gereksiz. Reanimated + worklets Expo Go SDK 57'nin içinde.
+- **Hareket azaltma `useReducedMotion()` ile JS tarafında** kesiliyor,
+  `ReduceMotion` ile değil: `ReduceMotion.System` tween'i kaldırıyor ama değeri
+  anında sıçratıyor — animasyondan daha rahatsız edici.
+- **Dıştaki `Pressable` asla ölçeklenmez**, sadece içindeki `Animated.View`.
+  Hedef küçülseydi basılıyken alan daralır, kenardan basan parmak istemsizce
+  bırakmış sayılırdı. `createAnimatedComponent(Pressable)` kullanılmadı —
+  `Pressable.style`'ın fonksiyon biçimini Reanimated anlamıyor.
+- **Yükleniyorken etiket sökülmez, `opacity: 0` ile durur**, spinner üstüne
+  mutlak konumlanır. Genişlik kıpırdamasın diye. `loading` basılamaz yapar ama
+  grileştirmez — soluk görünüm sadece `disabled`'a bağlı.
+- **`strings.ts`'e ekleme yapılmadı.** Durum bildirimi `accessibilityState`
+  `{disabled, busy}` ile; işletim sistemi kendi yerelleştirilmiş anonsunu
+  üretiyor, ayrıca metin koymak anonsu ikiye katlar.
+- **Animasyon sabitleri şimdilik `Button.tsx` içinde yerel.** İkinci tüketici
+  (ProgressBar) geldiğinde `constants/motion.ts`'e çıkarılacak — ikinci
+  kullanımda soyutla, birincide değil.
+- **Buton API'si bilerek dar:** `icon`, `style`, `testID` yok. `style` kaçış
+  kapağı ham hex'in sisteme sızdığı deliktir. İç yerleşim `flexDirection: 'row'`
+  + `gap` olduğu için ikon eklemek ileride kırıcı olmayan bir değişiklik.
+- ⚠️ `StyleSheet.absoluteFillObject` RN 0.86 tiplerinden kalktı; yerine
+  `absoluteFill` (düz nesne, yayılabilir) kullanılıyor.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
