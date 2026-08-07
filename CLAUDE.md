@@ -127,9 +127,75 @@ npx tsc --noEmit        # tip kontrolü
 
 ## Şu Anki Faz
 
-**Faz 0 — Kurulum ve Şema.**
-İskelet ve bağımlılıklar tamam (Oturum 0.1, 0.2). Sırada: tasarım sistemi (0.3),
-tip tanımları (0.4), örnek içerik (0.5).
+**Faz 0 — TAMAM** (Oturum 0.1–0.5). Sırada **Faz 1.1 — 4 sekmeli navigasyon.**
+
+**Ad ve kimlik kararı:**
+- Görünen ad: **Dualingo** — *geçici*. `app.json` `name`/`slug`/`scheme` ve
+  `strings.app.name` bu adı taşır; değiştirmek serbest.
+- Bundle identifier: **`com.hasanberk.ogrenme`** (iOS + Android aynı).
+  **Yayından sonra değişmez.** Bilinçli olarak uygulama adını taşımaz — ad
+  değişince kimlik tutarsız kalmasın ve mağaza adresinde marka izi olmasın diye.
+- ⚠️ "Dualingo" adı Duolingo'ya çok yakın; mağaza incelemesinde veya marka
+  itirazında sorun çıkabilir. Yayın öncesi (Faz 2.5) yeniden değerlendirilmeli.
+  Bundle identifier bu riskten etkilenmez.
+
+**Tasarım sistemi kararları (Oturum 0.3):**
+- Renk paleti: **"Zümrüt & Bal"** — zümrüt `#17A67A`, bal sarısı `#F5B342`,
+  sıcak (kahveye çalan) nötr gri skalası. Açık + koyu tema tanımlı.
+- Ham renkler (`palette`) bileşende doğrudan kullanılmaz; bileşenler
+  anlamsal jetonları okur (`lightTheme` / `darkTheme`, tip: `ColorTheme`).
+- Metin taşıyan dolgular WCAG AA (4.5:1) sağlar. Bu yüzden buton dolgusu
+  `#0C8059`; parlak `#17A67A` sadece grafik/ilerleme çubuğu/ikon içindir
+  (`primaryBright`), üzerine küçük metin konmaz.
+- Gölge jetonları temaya bağlı: `theme.elevation.card / raised / modal`.
+- Metin stilleri tekil font boyutu yerine hazır jetonlardan gelir:
+  `textStyles.h1…h4 / bodyLarge…bodyStrong / labelLarge…labelSmall / button / caption`.
+- Boşluk ölçeği 4'ün katları (`spacing`), ekran/dokunma ölçüleri `layout` içinde.
+- Köşe yuvarlaklığı: `radius` ölçeği + bileşen varsayılanları `componentRadius`.
+- `strings.ts` düz nesne; değişkenli metinlerde `{ad}` yer tutucusu var,
+  yerine koyma yardımcısı Faz 1'de `/lib` altına yazılacak.
+
+**Tip kararları (Oturum 0.4):**
+- `/types` ikiye ayrıldı: `learning.ts` pakete gömülü salt okunur içeriği,
+  `progress.ts` cihazda yazılan senkronize edilecek veriyi tarif eder.
+  `index.ts` barrel — her yerden `@/types` ile okunur.
+- `Difficulty = 'beginner' | 'basic' | 'advanced'` — seviye tespit sınavındaki
+  Başlangıç/Temeller/İleri ile aynı hazne, Faz 2.6'da düz eşleme olsun diye.
+- `Question` birleşik tipi `type` alanıyla ayrışır. Altı varyant.
+  Cevap tarafı ayrı birleşik tip: `QuestionAnswer` (soru bileşenlerinin
+  `onAnswer` geri çağrımı bunu döndürür).
+- **Ses:** `QuestionBase.audio` opsiyonel. `audio_choice`'ta `audio` zorunlu ama
+  yanında zorunlu `fallbackPrompt` var — dosya cihazda yoksa soru yazılı çalışır,
+  ders akışından çıkarılmaz (ders uzunluğu ve XP sabit kalsın diye).
+- `fill_blank`: `Blank.choices` doluysa kelime havuzu, boşsa klavye.
+  `segments.length === blanks.length + 1` kuralı tipte ifade edilemiyor,
+  doğrulaması Faz 2'nin işi.
+- `LevelStatus = 'locked' | 'available' | 'skipped' | 'completed'`.
+  `skipped` = tespit sınavıyla atlanıp açıldı, çalışılmadı — haritada farklı görünür.
+- İlerleme kayıtları `updatedAt` + `deletedAt` taşır (kural 6).
+  Zaman damgaları epoch ms; seri günü `'YYYY-MM-DD'` yerel tarih (saat dilimi
+  kayması gün sınırını bozmasın diye).
+- Her içerik JSON'u `ContentEnvelope` ile sarılır: `schemaVersion`, `isSampleData`.
+  `isSampleData` Faz 2.5'teki yer tutucu taramasının arayacağı işarettir.
+
+**İçerik kararları (Oturum 0.5):**
+- Dosya düzeni: `/content/lessons/path.json` ünite sırasını ve dosya adlarını tutar
+  (`LearningPathIndex`), her ünite kendi dosyasında (`UnitContent`).
+  Yeni ünite = yeni dosya + `path.json`'a bir satır; var olan dosyalara dokunulmaz.
+- `LearningPathIndex` diskteki şekil, `LearningPath` yükleyici birleştirdikten
+  sonraki bellek içi şekil. İkisi bilinçli ayrı.
+- Her içerik dosyasının ilk satırı: `"note": "ÖRNEK VERİ — GERÇEK DEĞİL"`.
+  Gerçek içerikte bu alan kalkar, `isSampleData` false olur.
+- Yer tutucu düzeni: soru metni `ÖRNEK SORU n`, şıklar `ÖRNEK CEVAP A/B/C/D`,
+  açıklama `ÖRNEK AÇIKLAMA`. Dini metin gereken her yerde bunun yerine
+  `TODO: <ne gerekli> — uzman tarafından yazılacak` durur.
+- Ses dosyaları **kasten yok** (`ornek/placeholder-01.m4a` gibi anahtarlar var,
+  dosya yok) — Oturum 2.5'te "dosya yoksa sessiz çalış" davranışının hazır vakası.
+- ⚠️ **JSON import tipleri genişletir.** `import u from './01-....json'` ile gelen
+  veride `"type": "multiple_choice"` değeri `string`e genişler, `Question` birleşik
+  tipine doğrudan atanamaz. Yükleyici **tek bir noktada** `as UnitContent` dönüşümü
+  yapacak ve doğrulamayı çalışma anında üstlenecek; bu dönüşüm başka yere dağıtılmaz.
+  (Oturum 2.1'in planına girecek.)
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

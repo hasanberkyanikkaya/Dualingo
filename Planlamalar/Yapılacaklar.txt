@@ -23,10 +23,13 @@ YAPILACAKLAR — güncel: 6 Ağustos 2026
 
 === SIRADAKİ OTURUMLAR (Claude ile) ===
 
-[ ] 0.3 Tasarım sistemi — /constants
-        Claude önce 2-3 renk paleti önerecek, sen seçeceksin
-[ ] 0.4 Tip tanımları — /types
-[ ] 0.5 Örnek içerik — /content (ÖRNEK VERİ, yapı gerçek metin yer tutucu)
+[x] 0.3 Tasarım sistemi — /constants
+        Palet seçildi: A "Zümrüt & Bal" (#17A67A / #F5B342, sıcak nötr gri)
+[x] 0.4 Tip tanımları — /types
+        learning.ts (içerik) + progress.ts (ilerleme) + index.ts
+[x] 0.5 Örnek içerik — /content (ÖRNEK VERİ, yapı gerçek metin yer tutucu)
+        2 ünite, 10 seviye, 61 soru — altı soru tipi de kapsandı
+        FAZ 0 TAMAM → sırada Faz 1.1 (4 sekmeli navigasyon)
 
 Sonra Faz 1:
 [ ] 1.1 4 sekmeli navigasyon

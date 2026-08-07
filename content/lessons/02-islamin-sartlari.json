@@ -1,0 +1,428 @@
+{
+  "note": "ÖRNEK VERİ — GERÇEK DEĞİL",
+  "schemaVersion": 1,
+  "isSampleData": true,
+  "data": {
+    "id": "unit-02-islamin-sartlari",
+    "title": "İslam'ın Şartları",
+    "description": "ÖRNEK AÇIKLAMA — ünite tanıtım metni uzman tarafından yazılacak.",
+    "order": 2,
+    "icon": "layers-outline",
+    "levels": [
+      {
+        "id": "level-u2-01",
+        "title": "Beş Şart — Giriş",
+        "order": 1,
+        "difficulty": "beginner",
+        "xpReward": 10,
+        "questions": [
+          {
+            "id": "q-u2-l1-1",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "TODO: İslam'ın şartlarının sayısı ve sıralaması eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q-u2-l1-2",
+            "type": "ordering",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "TODO: doğru sıralamanın gerekçesi eklenecek — uzman tarafından yazılacak",
+            "items": [
+              { "id": "i1", "text": "ÖRNEK ÖĞE 1" },
+              { "id": "i2", "text": "ÖRNEK ÖĞE 2" },
+              { "id": "i3", "text": "ÖRNEK ÖĞE 3" },
+              { "id": "i4", "text": "ÖRNEK ÖĞE 4" },
+              { "id": "i5", "text": "ÖRNEK ÖĞE 5" }
+            ],
+            "correctOrder": ["i1", "i2", "i3", "i4", "i5"]
+          },
+          {
+            "id": "q-u2-l1-3",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-u2-l1-4",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 4",
+            "hint": "ÖRNEK İPUCU",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-u2-l1-5",
+            "type": "image_match",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "pairs": [
+              {
+                "id": "p1",
+                "image": { "key": "ornek/placeholder-07.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 1" },
+                "text": "ÖRNEK METİN 1"
+              },
+              {
+                "id": "p2",
+                "image": { "key": "ornek/placeholder-08.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 2" },
+                "text": "ÖRNEK METİN 2"
+              },
+              {
+                "id": "p3",
+                "image": { "key": "ornek/placeholder-09.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 3" },
+                "text": "ÖRNEK METİN 3"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "level-u2-02",
+        "title": "Şehadet",
+        "order": 2,
+        "difficulty": "beginner",
+        "xpReward": 15,
+        "questions": [
+          {
+            "id": "q-u2-l2-1",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "TODO: şehadetin anlamı ve şartlar içindeki yeri eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q-u2-l2-2",
+            "type": "audio_choice",
+            "prompt": "ÖRNEK SORU 2",
+            "audio": { "key": "ornek/placeholder-04.m4a", "durationMs": 4500 },
+            "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
+            "explanation": "TODO: okunuş açıklaması eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q-u2-l2-3",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "TODO: şehadet metni eklenecek — uzman tarafından yazılacak",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              {
+                "id": "b1",
+                "correctAnswers": ["ÖRNEK CEVAP A"],
+                "choices": ["ÖRNEK CEVAP A", "ÖRNEK CEVAP B", "ÖRNEK CEVAP C"]
+              }
+            ]
+          },
+          {
+            "id": "q-u2-l2-4",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": false
+          },
+          {
+            "id": "q-u2-l2-5",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-u2-l2-6",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 6",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          }
+        ]
+      },
+      {
+        "id": "level-u2-03",
+        "title": "Namaz",
+        "order": 3,
+        "difficulty": "basic",
+        "xpReward": 15,
+        "questions": [
+          {
+            "id": "q-u2-l3-1",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "TODO: namaz vakitlerinin adları ve sayısı eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "d"
+          },
+          {
+            "id": "q-u2-l3-2",
+            "type": "ordering",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "TODO: namazın kılınış sırası eklenecek — uzman tarafından yazılacak",
+            "items": [
+              { "id": "i1", "text": "ÖRNEK ÖĞE 1" },
+              { "id": "i2", "text": "ÖRNEK ÖĞE 2" },
+              { "id": "i3", "text": "ÖRNEK ÖĞE 3" },
+              { "id": "i4", "text": "ÖRNEK ÖĞE 4" }
+            ],
+            "correctOrder": ["i2", "i4", "i1", "i3"]
+          },
+          {
+            "id": "q-u2-l3-3",
+            "type": "image_match",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "pairs": [
+              {
+                "id": "p1",
+                "image": { "key": "ornek/placeholder-10.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 1" },
+                "text": "ÖRNEK METİN 1"
+              },
+              {
+                "id": "p2",
+                "image": { "key": "ornek/placeholder-11.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 2" },
+                "text": "ÖRNEK METİN 2"
+              },
+              {
+                "id": "p3",
+                "image": { "key": "ornek/placeholder-12.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 3" },
+                "text": "ÖRNEK METİN 3"
+              },
+              {
+                "id": "p4",
+                "image": { "key": "ornek/placeholder-13.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 4" },
+                "text": "ÖRNEK METİN 4"
+              }
+            ]
+          },
+          {
+            "id": "q-u2-l3-4",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-u2-l3-5",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN ORTASI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              { "id": "b1", "correctAnswers": ["ÖRNEK CEVAP A"] },
+              { "id": "b2", "correctAnswers": ["ÖRNEK CEVAP B"] }
+            ]
+          },
+          {
+            "id": "q-u2-l3-6",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      },
+      {
+        "id": "level-u2-04",
+        "title": "Oruç",
+        "order": 4,
+        "difficulty": "basic",
+        "xpReward": 15,
+        "questions": [
+          {
+            "id": "q-u2-l4-1",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "TODO: orucun kimlere farz olduğu eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-u2-l4-2",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "TODO: orucu bozan / bozmayan durumlar eklenecek — uzman tarafından yazılacak",
+            "correctAnswer": false
+          },
+          {
+            "id": "q-u2-l4-3",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "TODO: orucu bozan / bozmayan durumlar eklenecek — uzman tarafından yazılacak",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-u2-l4-4",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              {
+                "id": "b1",
+                "correctAnswers": ["ÖRNEK CEVAP A"],
+                "choices": ["ÖRNEK CEVAP A", "ÖRNEK CEVAP B", "ÖRNEK CEVAP C", "ÖRNEK CEVAP D"]
+              }
+            ]
+          },
+          {
+            "id": "q-u2-l4-5",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q-u2-l4-6",
+            "type": "audio_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "audio": { "key": "ornek/placeholder-05.m4a" },
+            "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      },
+      {
+        "id": "level-u2-05",
+        "title": "Zekât ve Hac",
+        "order": 5,
+        "difficulty": "advanced",
+        "xpReward": 20,
+        "questions": [
+          {
+            "id": "q-u2-l5-1",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "TODO: zekâtın kimlere farz olduğu ve nisap ölçüsü eklenecek — uzman tarafından yazılacak",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "d"
+          },
+          {
+            "id": "q-u2-l5-2",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-u2-l5-3",
+            "type": "ordering",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "TODO: hac ibadetinin adımları ve sırası eklenecek — uzman tarafından yazılacak",
+            "items": [
+              { "id": "i1", "text": "ÖRNEK ÖĞE 1" },
+              { "id": "i2", "text": "ÖRNEK ÖĞE 2" },
+              { "id": "i3", "text": "ÖRNEK ÖĞE 3" },
+              { "id": "i4", "text": "ÖRNEK ÖĞE 4" }
+            ],
+            "correctOrder": ["i3", "i1", "i4", "i2"]
+          },
+          {
+            "id": "q-u2-l5-4",
+            "type": "image_match",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "pairs": [
+              {
+                "id": "p1",
+                "image": { "key": "ornek/placeholder-14.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 1" },
+                "text": "ÖRNEK METİN 1"
+              },
+              {
+                "id": "p2",
+                "image": { "key": "ornek/placeholder-15.png", "alt": "ÖRNEK GÖRSEL AÇIKLAMASI 2" },
+                "text": "ÖRNEK METİN 2"
+              }
+            ]
+          },
+          {
+            "id": "q-u2-l5-5",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [{ "id": "b1", "correctAnswers": ["ÖRNEK CEVAP", "ÖRNEK CEVAP A"] }]
+          },
+          {
+            "id": "q-u2-l5-6",
+            "type": "audio_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "audio": { "key": "ornek/placeholder-06.m4a", "durationMs": 6000 },
+            "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-u2-l5-7",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 7",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": false
+          }
+        ]
+      }
+    ]
+  }
+}

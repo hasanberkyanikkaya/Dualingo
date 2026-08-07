@@ -1,19 +1,19 @@
 {
   "expo": {
-    "name": "DieTrying",
-    "slug": "dietrying",
+    "name": "Dualingo",
+    "slug": "dualingo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "dietrying",
+    "scheme": "dualingo",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": true,
-      "bundleIdentifier": "com.dietrying.app"
+      "bundleIdentifier": "com.hasanberk.ogrenme"
     },
     "android": {
-      "package": "com.dietrying.app",
+      "package": "com.hasanberk.ogrenme",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

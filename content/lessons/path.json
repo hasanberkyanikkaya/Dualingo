@@ -1,0 +1,24 @@
+{
+  "note": "ÖRNEK VERİ — GERÇEK DEĞİL",
+  "schemaVersion": 1,
+  "isSampleData": true,
+  "data": {
+    "id": "path-main",
+    "title": "Öğrenme Yolu",
+    "description": "ÖRNEK AÇIKLAMA — yolun tanıtım metni uzman tarafından yazılacak.",
+    "unitRefs": [
+      {
+        "id": "unit-01-temel-inanc",
+        "title": "Temel İnanç",
+        "order": 1,
+        "file": "01-temel-inanc.json"
+      },
+      {
+        "id": "unit-02-islamin-sartlari",
+        "title": "İslam'ın Şartları",
+        "order": 2,
+        "file": "02-islamin-sartlari.json"
+      }
+    ]
+  }
+}
