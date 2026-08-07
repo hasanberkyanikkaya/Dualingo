@@ -149,6 +149,8 @@ export const strings = {
   /** Profil ve ayarlar */
   profile: {
     title: 'Profil',
+    // Faz 1.1 — istatistik ve ayarlar gelene kadarki boş durum metni
+    emptyBody: 'İstatistiklerin ve ayarların ilk dersinden sonra burada görünecek.',
     statistics: 'İstatistikler',
     settings: 'Ayarlar',
     theme: 'Görünüm',

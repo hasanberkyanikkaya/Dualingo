@@ -32,7 +32,10 @@ YAPILACAKLAR — güncel: 6 Ağustos 2026
         FAZ 0 TAMAM → sırada Faz 1.1 (4 sekmeli navigasyon)
 
 Sonra Faz 1:
-[ ] 1.1 4 sekmeli navigasyon
+[x] 1.1 4 sekmeli navigasyon
+        Öğren / Namaz / Kur'an / Profil — Namaz ve Kur'an "Yakında" durumunda
+        Rota adları İngilizce; useTheme kancası ile açık+koyu tema çalışıyor
+        Yan ürün: Screen / ScreenHeader / ComingSoon bileşenleri
 [ ] 1.2 Button / ProgressBar / Card (her biri AYRI oturum)
 [ ] 1.3 EAS dev build — telefonunda çalışan sürüm
 [ ] 1.4 Sentry

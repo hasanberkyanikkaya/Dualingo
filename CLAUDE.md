@@ -127,7 +127,8 @@ npx tsc --noEmit        # tip kontrolü
 
 ## Şu Anki Faz
 
-**Faz 0 — TAMAM** (Oturum 0.1–0.5). Sırada **Faz 1.1 — 4 sekmeli navigasyon.**
+**Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM.**
+Sırada **Faz 1.2 — Button / ProgressBar / Card** (her biri ayrı oturum).
 
 **Ad ve kimlik kararı:**
 - Görünen ad: **Dualingo** — *geçici*. `app.json` `name`/`slug`/`scheme` ve
@@ -196,6 +197,29 @@ npx tsc --noEmit        # tip kontrolü
   tipine doğrudan atanamaz. Yükleyici **tek bir noktada** `as UnitContent` dönüşümü
   yapacak ve doğrulamayı çalışma anında üstlenecek; bu dönüşüm başka yere dağıtılmaz.
   (Oturum 2.1'in planına girecek.)
+
+**Navigasyon kararları (Oturum 1.1):**
+- **Rota dosya adları İngilizce:** `app/(tabs)/index.tsx` (Öğren), `prayer.tsx`,
+  `quran.tsx`, `profile.tsx`. Rota adı koddur ve derin bağlantı yolu olur
+  (`dualingo://profile`). Görünen etiketler `strings.tabs.*`'tan Türkçe gelir.
+- **Tema `lib/useTheme.ts` kancasından okunur, provider yok.** Bileşenler
+  `lightTheme`/`darkTheme`'i doğrudan import **etmez**. Faz 3'te MMKV'ye bağlı
+  Açık/Koyu/Sistem tercihi gelince sadece bu dosyanın içi değişir.
+- `lib/navigationTheme.ts` react-navigation köprüsü: navigatörün kendi çizdiği
+  yüzeyler (sekme çubuğu zemini, sahne arka planı) bizim jetonlarımızı bilmez,
+  kendi `Theme` nesnesinden okur. Köprü olmadan koyu temada çubuk beyaz kalır.
+- ⚠️ **`Tabs` artık `expo-router/js-tabs`'ten gelir.** Kökteki
+  `import { Tabs } from 'expo-router'` SDK 57'de kullanımdan kaldırıldı.
+- ⚠️ **`tabBarStyle.height`'a `insets.bottom` elle eklenir.** Özel yükseklik
+  verildiğinde navigatör güvenli alanı eklemiyor ama alt dolguyu uygulamaya
+  devam ediyor; toplanmazsa çentikli cihazlarda ikon ve etiket kırpılır.
+- **`SafeAreaProvider` kök yerleşime eklenmez** — expo-router (`ExpoRoot`)
+  uygulamayı zaten sarıyor, ikincisi insets ölçümünü bozar.
+- İlk ortak bileşenler yazıldı: `Screen` (güvenli alan + zemin + kenar boşluğu),
+  `ScreenHeader` (başlık + opsiyonel alt satır), `ComingSoon` (yayına girmeyen
+  sekmelerin boş durumu). Faz 1.2'nin Button/Card/ProgressBar'ından ayrıdır.
+- Sekme ikonları Ionicons: `school` / `moon` / `book` / `person` (+`-outline`).
+  Ionicons'ta cami ikonu yok; Namaz için hilal seçildi, Faz 4'te tekrar bakılır.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
