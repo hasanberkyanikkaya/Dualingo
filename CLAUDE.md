@@ -130,6 +130,26 @@ npx tsc --noEmit        # tip kontrolü
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.**
 Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturumlar).
 
+**SDK sürümü kararı — SDK 54, bilinçli olarak sabit:**
+- Proje SDK 57'de başladı, **SDK 54'e indirildi.** Sebep: geliştirme telefonu
+  (iPhone) App Store'dan en fazla **SDK 54 destekleyen Expo Go**'yu alabiliyor.
+  Cihaz daha yeni Expo Go'yu çalıştıramıyor.
+- Alternatifler elendi: dev build iOS'ta **ad hoc provisioning** gerektiriyor,
+  o da **ücretli Apple Developer Program ($99/yıl)** demek. Simulator derlemesi
+  macOS istiyor, geliştirme makinesi Windows.
+- **SDK yükseltmeden önce** telefondaki Expo Go'nun desteklediği sürüme bak.
+  Yükseltmek Expo Go bağlantısını koparır.
+- Sürüm indirmede kırılan üç yer (hepsi düzeltildi):
+  `expo-router/js-tabs` → `expo-router` · `StyleSheet.absoluteFill` →
+  `absoluteFillObject` · `ThemeProvider`/`DarkTheme`/`DefaultTheme`/`Theme`
+  expo-router'dan değil **`@react-navigation/native`**'den (açık bağımlılık
+  olarak eklendi, geçici bağımlılığa dayanmasın diye).
+- ⚠️ **`npx expo install --fix` paketleri İNDİRMEZ**, sadece `package.json`'ı
+  yeniden yazar. Sürüm değiştirdikten sonra `node_modules` + `package-lock.json`
+  silinip `npm install` çalıştırılmalı; yoksa proje kendini 54 sanırken 57
+  paketleriyle çalışır ve hatalar anlamsızlaşır. Bu tuzağa bir kez düşüldü.
+- Doğrulama komutu: `npx expo-doctor` (18/18 geçmeli).
+
 **Ad ve kimlik kararı:**
 - Görünen ad: **Dualingo** — *geçici*. `app.json` `name`/`slug`/`scheme` ve
   `strings.app.name` bu adı taşır; değiştirmek serbest.
@@ -208,8 +228,8 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
 - `lib/navigationTheme.ts` react-navigation köprüsü: navigatörün kendi çizdiği
   yüzeyler (sekme çubuğu zemini, sahne arka planı) bizim jetonlarımızı bilmez,
   kendi `Theme` nesnesinden okur. Köprü olmadan koyu temada çubuk beyaz kalır.
-- ⚠️ **`Tabs` artık `expo-router/js-tabs`'ten gelir.** Kökteki
-  `import { Tabs } from 'expo-router'` SDK 57'de kullanımdan kaldırıldı.
+- **`Tabs` `expo-router` kökünden gelir.** (SDK 57'de bu `expo-router/js-tabs`'e
+  taşınmıştı; SDK 54'e dönülünce geri alındı — bkz. "SDK sürümü" kararı.)
 - ⚠️ **`tabBarStyle.height`'a `insets.bottom` elle eklenir.** Özel yükseklik
   verildiğinde navigatör güvenli alanı eklemiyor ama alt dolguyu uygulamaya
   devam ediyor; toplanmazsa çentikli cihazlarda ikon ve etiket kırpılır.
@@ -235,7 +255,8 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
 - ⚠️ **Reanimated ilk kez kullanıldı. `babel.config.js` YOK ve OLMAYACAK** —
   `babel-preset-expo` worklets eklentisini paket çözüldüğü için kendisi ekliyor
   (`configs/expo.js:107-119`). Dosya yaratmak eklentiyi iki kez uygular.
-  `metro.config.js` de gereksiz. Reanimated + worklets Expo Go SDK 57'nin içinde.
+  `metro.config.js` de gereksiz. (SDK 54'te de aynı — `build/index.js:284-291`.)
+  Reanimated + worklets Expo Go'nun içinde geliyor.
 - **Hareket azaltma `useReducedMotion()` ile JS tarafında** kesiliyor,
   `ReduceMotion` ile değil: `ReduceMotion.System` tween'i kaldırıyor ama değeri
   anında sıçratıyor — animasyondan daha rahatsız edici.
@@ -255,8 +276,10 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
 - **Buton API'si bilerek dar:** `icon`, `style`, `testID` yok. `style` kaçış
   kapağı ham hex'in sisteme sızdığı deliktir. İç yerleşim `flexDirection: 'row'`
   + `gap` olduğu için ikon eklemek ileride kırıcı olmayan bir değişiklik.
-- ⚠️ `StyleSheet.absoluteFillObject` RN 0.86 tiplerinden kalktı; yerine
-  `absoluteFill` (düz nesne, yayılabilir) kullanılıyor.
+- ⚠️ **`StyleSheet.absoluteFillObject` kullanılır, `absoluteFill` DEĞİL.**
+  RN 0.81'de `absoluteFill` kayıtlı stil (çalışma anında bir sayı); spread
+  edilirse sessizce `{}` verir ve gösterge mutlak konumunu kaybeder.
+  (RN 0.86'da tam tersiydi — sürüm değişiminde ilk bakılacak yerlerden biri.)
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

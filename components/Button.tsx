@@ -310,10 +310,11 @@ const styles = StyleSheet.create({
   labelHidden: {
     opacity: 0,
   },
-  // RN 0.86'da `absoluteFill` düz bir nesne, kayıtlı stil kimliği değil —
-  // doğrudan yayılabiliyor. (`absoluteFillObject` bu sürümde tiplerden kalktı.)
+  // Yayılabilen düz nesne olan `absoluteFillObject` kullanılıyor.
+  // `absoluteFill` bu sürümde kayıtlı stil (çalışma anında bir sayı); spread
+  // edilirse sessizce boş nesne verir ve gösterge mutlak konumunu kaybeder.
   spinnerOverlay: {
-    ...StyleSheet.absoluteFill,
+    ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
     justifyContent: 'center',
   },

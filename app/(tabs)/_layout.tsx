@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from 'expo-router/js-tabs';
+import { Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { layout } from '@/constants/spacing';
@@ -10,8 +10,8 @@ import { useTheme } from '@/lib/useTheme';
 /**
  * Alt sekme yerleşimi.
  *
- * `Tabs` expo-router kökünden değil `expo-router/js-tabs` altından geliyor —
- * kökteki dışa aktarım SDK 57'de kullanımdan kaldırıldı.
+ * `Tabs` expo-router kökünden geliyor. SDK 57'de bu dışa aktarım kullanımdan
+ * kaldırılıp `expo-router/js-tabs` altına taşınmıştı; SDK 54'te o yol henüz yok.
  */
 export default function TabsLayout() {
   const { theme } = useTheme();

@@ -9,7 +9,9 @@
  * expo-font ile geldiğinde burası da güncellenecek.
  */
 
-import { DarkTheme, DefaultTheme, type Theme } from 'expo-router';
+// Tema API'si `@react-navigation/native`'den alınıyor. SDK 57'nin expo-router'ı
+// bunları kökünden yeniden dışa aktarıyordu; SDK 54'te etmiyor.
+import { DarkTheme, DefaultTheme, type Theme } from '@react-navigation/native';
 
 import type { ColorTheme } from '@/constants/colors';
 

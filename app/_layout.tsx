@@ -1,4 +1,5 @@
-import { Stack, ThemeProvider } from 'expo-router';
+import { ThemeProvider } from '@react-navigation/native';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 import { buildNavigationTheme } from '@/lib/navigationTheme';
