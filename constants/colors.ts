@@ -14,9 +14,14 @@
  * Kontrast notu: metin taşıyan her dolgu rengi, üzerindeki `on*` rengiyle
  * WCAG AA (4.5:1) sağlar. ⚠️ Pembe açık bir hüe — canlı pembe beyaz metin
  * TAŞIYAMAZ (`rose400` üzerine beyaz 2.11:1). Bu yüzden buton dolgusu koyu
- * gül `rose600`; maskotun canlı pembesi `rose400` yalnızca grafik, ikon,
- * ilerleme çubuğu ve seviye düğümü içindir (`primaryBright`) — üzerine küçük
- * metin konmaz.
+ * gül `rose600`; maskotun canlı pembesi `rose400` yalnızca grafik, ikon ve
+ * seviye düğümü içindir (`primaryBright`) — üzerine küçük metin konmaz.
+ *
+ * ⚠️ `primaryBright` İLERLEME ÇUBUĞUNDA KULLANILMAZ (bu not eskiden tersini
+ * söylüyordu). Çubuğun yolu `border` ile arasında açık temada 1.81:1 var;
+ * WCAG 1.4.11 metin taşımayan parçalar için 3:1 istiyor ve dolu/boş sınırı
+ * ilerlemeyi anlatan tek şey. Çubuk dolguları bu yüzden koyu: `primary`,
+ * `secondaryStrong`, `success`.
  */
 
 // ── Ham palet ────────────────────────────────────────────────────────────────
@@ -109,13 +114,24 @@ export type ColorTheme = {
   /** Açık tonlu zemin — rozet, seçili seçenek arkası */
   primarySoft: string;
   onPrimary: string;
-  /** Maskotun canlı pembesi — ilerleme çubuğu, ikon, illüstrasyon. Metin taşımaz. */
+  /**
+   * Maskotun canlı pembesi — ikon, illüstrasyon, seviye düğümü. Metin taşımaz.
+   * İlerleme çubuğunun dolgusu DEĞİLDİR; bkz. dosya başındaki uyarı.
+   */
   primaryBright: string;
 
   secondary: string;
   secondaryPressed: string;
   secondarySoft: string;
   onSecondary: string;
+  /**
+   * Metin taşımayan güçlü ikincil dolgu — ilerleme çubuğunun altın varyantı.
+   *
+   * `secondary` (sun400) burada kullanılamaz: açık temada ilerleme çubuğunun
+   * yolu olan `border` ile arasında yalnızca 1.35:1 var, dolu kısım boş
+   * kısımdan ayırt edilemiyor. Bu jeton aynı sarının okunabilir basamağı.
+   */
+  secondaryStrong: string;
 
   success: string;
   successSoft: string;
@@ -231,6 +247,9 @@ export const lightTheme: ColorTheme = {
   secondaryPressed: palette.sun500,
   secondarySoft: palette.sun50,
   onSecondary: palette.sun800,
+  // Açık temada altın, yola (#F2DFE7) karşı 3.15:1 — sun400 ve sun500
+  // sınırın altında kalıyor (1.35:1 ve 1.91:1).
+  secondaryStrong: palette.sun600,
 
   success: palette.green600,
   successSoft: palette.green100,
@@ -273,6 +292,9 @@ export const darkTheme: ColorTheme = {
   secondaryPressed: palette.sun500,
   secondarySoft: palette.sun800,
   onSecondary: palette.sun900,
+  // Koyu temada yol koyu (#3A2B33); bal sarısı orada 8.46:1 veriyor,
+  // koyulaştırmaya gerek yok — canlı sarı olduğu gibi kalır.
+  secondaryStrong: palette.sun400,
 
   success: palette.green400,
   successSoft: palette.green800,

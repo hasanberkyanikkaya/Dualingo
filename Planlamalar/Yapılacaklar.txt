@@ -44,7 +44,11 @@ Sonra Faz 1:
     [x] Button — 3 varyant / 3 boyut / pasif+yükleniyor, Reanimated basma animasyonu
         Ghost jetonsuz bestelendi (kontrast düzeltmesiyle), boyutlar minTouchTarget etrafında
         Reanimated ilk kez kullanıldı — babel.config.js YOK, olmayacak
-    [ ] ProgressBar
+    [x] ProgressBar — 3 renk varyantı, değer değişince yumuşak akar, ilk çizimde akmaz
+        Maskotun canlı pembesi çubukta KULLANILMADI: yola karşı 1.81:1, WCAG 1.4.11
+        3:1 istiyor. Dolgular koyulaştı; colors.ts'e secondaryStrong jetonu eklendi
+        Yan ürün: constants/motion.ts (Button'ın süreleri buraya taşındı) +
+        lib/formatString.ts ({ad} yer tutucusu doldurma — Faz 0.3'te söz verilmişti)
     [ ] Card
 [ ] 1.3 EAS dev build — telefonunda çalışan sürüm
 [ ] 1.4 Sentry

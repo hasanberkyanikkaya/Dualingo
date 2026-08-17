@@ -127,8 +127,8 @@ npx tsc --noEmit        # tip kontrolü
 
 ## Şu Anki Faz
 
-**Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.**
-Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturumlar).
+**Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
+Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
 
 **SDK sürümü kararı — SDK 54, bilinçli olarak sabit:**
 - Proje SDK 57'de başladı, **SDK 54'e indirildi.** Sebep: geliştirme telefonu
@@ -171,7 +171,9 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
 - ⚠️ **Pembe beyaz metin taşıyamaz.** `rose400` üzerine beyaz **2.11:1**.
   Beyaz metni taşıyan en açık pembe `rose600 #C9306F` (5.08:1); bir basamak
   açığı `#D63B7B` 4.40 ile kalıyor. Buton dolgusu bu yüzden `rose600`,
-  maskotun canlı pembesi yalnızca grafik/ilerleme/ikon.
+  maskotun canlı pembesi yalnızca grafik/ikon/seviye düğümü.
+  ⚠️ Bu satır eskiden "grafik/ilerleme/ikon" diyordu — **ilerleme çubuğu
+  listeden ÇIKTI**, sebebi "ProgressBar kararları"nda.
 - İkincil renk **güneş sarısı** `sun400 #FFC53D` (ödül, XP, rozet) — üzerine
   koyu metin gelir. Nötr skala erik tonlu; pembeyle soğuk gri kirli duruyor.
 - **Jeton ADLARI hiç değişmedi**, sadece değerleri. Bu yüzden hiçbir bileşen
@@ -305,6 +307,49 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
   RN 0.81'de `absoluteFill` kayıtlı stil (çalışma anında bir sayı); spread
   edilirse sessizce `{}` verir ve gösterge mutlak konumunu kaybeder.
   (RN 0.86'da tam tersiydi — sürüm değişiminde ilk bakılacak yerlerden biri.)
+
+**Bileşen kararları (Oturum 1.2b — ProgressBar):**
+- ⚠️ **Maskotun canlı pembesi (`primaryBright`) çubukta KULLANILMADI**, paletin
+  önceki notu aksini söylemesine rağmen. Ölçüm: açık temada yol rengiyle
+  (`border` #F2DFE7) arasında **1.81:1**. WCAG 1.4.11 metin taşımayan arayüz
+  parçaları için 3:1 istiyor ve dolu/boş sınırı ilerlemeyi anlatan **tek** şey.
+  Açık temada yolu açmak kurtarmıyor (bembeyaz yol bile 2.11:1). İkisinden biri
+  koyulaşmalıydı; **dolgu koyulaştı, yol açık kaldı** (kullanıcı kararı).
+  Ölçülen değerler — açık: 4.34 / 3.15 / 3.95, koyu: 7.03 / 8.46 / 7.31.
+- **Üç varyant:** `primary` (ders ilerlemesi) · `secondary` (XP, günlük hedef) ·
+  `success` (tamamlandı). **Yol her varyantta aynı** (`border`) — boş kısım her
+  yerde aynı görünsün ki doluluk varyanttan bağımsız okunsun.
+- **`colors.ts`'e bir jeton eklendi: `secondaryStrong`** (açık `sun600`, koyu
+  `sun400`). Button hiç jeton eklememişti; burada mecburdu, çünkü `secondary`
+  (sun400) açık temada yola karşı 1.35:1, `secondaryPressed` (sun500) 1.91:1 —
+  ikisi de metin dolgusu için seçilmişti, grafik dolgusu için değil.
+- **İlk çizimde animasyon YOK, değer değişince VAR.** Paylaşılan değer ilk
+  oranla başlatılıyor. Ekrana her girişte sıfırdan dolan çubuk (profildeki
+  günlük hedef) ilerlemeyi anlatmaz, sadece dikkat dağıtır.
+- **Genişlik yüzdeyle animasyonlanıyor, `scaleX` ile değil:** ölçekleme dolgunun
+  hap köşesini yatayda gererek düşük değerlerde ucu yamultuyor.
+  `` width: `${progress.value * 100}%` `` TypeScript'te geçiyor — şablon değişmez
+  (template literal) tipi RN'in `DimensionValue`'suna oturuyor, dönüşüm gerekmedi.
+- **Bozuk girdi sessizce boş çubuk:** `total <= 0`, `NaN`, `Infinity` → 0 oran.
+  Bölme hiç yapılmaz, `NaN` genişliğe sızmaz. `current` taşarsa dolu görünür.
+- Erişilebilirlik: `accessibilityRole="progressbar"` + `accessibilityValue`.
+  Ekran okuyucuya giden sayı **görünen dolulukla aynı kaynaktan** türetiliyor
+  (kırpılmış orandan geri hesaplanıyor), ikisi ayrışmasın diye.
+- **API dar tutuldu** (Button'ın izinde): kalınlık, etiket, yüzde metni, `style`
+  yok. Kalınlık `spacing.md` (12) sabiti.
+
+**Yan ürünler (Oturum 1.2b):**
+- **`constants/motion.ts` yaratıldı** — Button'ın yerel süre/yumuşatma
+  değerleri buraya taşındı (Oturum 1.2'de "ikinci tüketici gelince çıkar"
+  denmişti, ProgressBar o tüketici). `timing.pressIn / pressOut / progress`.
+  Button davranışsal olarak değişmedi, sadece sabitleri dışarıdan okuyor.
+  ⚠️ Hiçbir yapılandırma "hareketi azalt"ı kendi dinlemez; kesme kararı
+  bileşende `useReducedMotion()` ile (Button'daki gerekçe geçerli).
+- **`lib/formatString.ts` yaratıldı** — Faz 0.3'te söz verilen `{ad}` yer
+  tutucusu doldurma yardımcısı. İlk tüketici ProgressBar'ın erişilebilirlik
+  etiketi. **Karşılığı olmayan yer tutucu silinmez, olduğu gibi bırakılır** —
+  ekranda `{total}` görmek sessiz boşluktan daha hızlı fark edilir.
+  `strings.ts`'e hiçbir metin eklenmedi; `a11y.progressBar` zaten vardı.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

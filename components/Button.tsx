@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
-  Easing,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
   withTiming,
-  type WithTimingConfig,
 } from 'react-native-reanimated';
 
 import type { ColorTheme } from '@/constants/colors';
+import { timing } from '@/constants/motion';
 import { componentRadius } from '@/constants/radius';
 import { layout, spacing } from '@/constants/spacing';
 import { textStyles, type TextStyleToken } from '@/constants/typography';
@@ -26,12 +25,6 @@ const TRANSPARENT = 'transparent';
 
 /** Basılınca inilen ölçek. Boyuttan bağımsız — etki bilerek hafif. */
 const PRESS_SCALE = 0.96;
-
-// Basma anı hızlı, bırakma biraz daha yumuşak; parmağa yapışık hissettirir.
-// Yay (withSpring) yerine süre tabanlı: yay basarken hedefin altına sarkıyor
-// ve hızlı çift dokunuşta oturmaya vakit bulamıyor.
-const pressInConfig: WithTimingConfig = { duration: 90, easing: Easing.out(Easing.quad) };
-const pressOutConfig: WithTimingConfig = { duration: 140, easing: Easing.out(Easing.quad) };
 
 /** Bir varyantın tüm durumlarındaki renkleri. */
 type VariantColors = {
@@ -187,7 +180,7 @@ export default function Button({
   // (zamanlayıcı, üst bileşen) durum değişimlerinde çalışır.
   useEffect(() => {
     if (isBlocked) {
-      scale.value = withTiming(1, pressOutConfig);
+      scale.value = withTiming(1, timing.pressOut);
     }
   }, [isBlocked, scale]);
 
@@ -199,7 +192,7 @@ export default function Button({
       return;
     }
 
-    scale.value = withTiming(PRESS_SCALE, pressInConfig);
+    scale.value = withTiming(PRESS_SCALE, timing.pressIn);
   }
 
   function handlePressOut() {
@@ -207,7 +200,7 @@ export default function Button({
       return;
     }
 
-    scale.value = withTiming(1, pressOutConfig);
+    scale.value = withTiming(1, timing.pressOut);
   }
 
   function resolveBackgroundColor(pressed: boolean): string {
