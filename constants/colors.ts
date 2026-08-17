@@ -1,78 +1,88 @@
 /**
- * Renk paleti — "Zümrüt & Bal"
+ * Renk paleti — "Aksolotl"
+ *
+ * Palet maskottan türetildi. Maskotun kendi renkleri ölçülerek alındı:
+ * gövde `#FFE1EC`, karın `#FFF5F8`, solungaç/yanak `#FF8FBF`, kontur `#3A2B33`.
+ * Bu dördü palette aynen duruyor; geri kalan basamaklar bunların etrafına
+ * kuruldu. Metin rengi maskotun çizgi rengiyle aynı — kimliği bir arada tutan
+ * şey bu.
  *
  * İki katman var:
  *   1. palette — ham renk basamakları. Bileşenlerde DOĞRUDAN kullanılmaz.
  *   2. lightTheme / darkTheme — anlamsal (semantic) jetonlar. Bileşenler bunları okur.
  *
  * Kontrast notu: metin taşıyan her dolgu rengi, üzerindeki `on*` rengiyle
- * WCAG AA (4.5:1) sağlar. `emerald500` gibi parlak tonlar sadece grafik,
- * ikon ve ilerleme çubuğu içindir — üzerine küçük metin konmaz.
+ * WCAG AA (4.5:1) sağlar. ⚠️ Pembe açık bir hüe — canlı pembe beyaz metin
+ * TAŞIYAMAZ (`rose400` üzerine beyaz 2.11:1). Bu yüzden buton dolgusu koyu
+ * gül `rose600`; maskotun canlı pembesi `rose400` yalnızca grafik, ikon,
+ * ilerleme çubuğu ve seviye düğümü içindir (`primaryBright`) — üzerine küçük
+ * metin konmaz.
  */
 
 // ── Ham palet ────────────────────────────────────────────────────────────────
 
 export const palette = {
-  // Zümrüt — birincil marka rengi
-  emerald50: '#E6F7F0',
-  emerald100: '#C3EDDD',
-  emerald200: '#94DFC4',
-  emerald300: '#5FCDA6',
-  emerald400: '#2ED396',
-  emerald500: '#17A67A', // marka zümrütü — grafik/ilerleme, metin taşımaz
-  emerald600: '#0C8059', // metin taşıyabilen dolgu tonu
-  emerald700: '#0A6647',
-  emerald800: '#07422F',
-  emerald900: '#06251A',
+  // Gül — birincil marka rengi. 50/100/400 doğrudan maskottan alındı.
+  rose50: '#FFF5F8', // maskotun karnı
+  rose100: '#FFE1EC', // maskotun gövdesi
+  rose200: '#FFC7DE',
+  rose300: '#FFB6D5',
+  rose400: '#FF8FBF', // maskotun solungaçları — grafik/ilerleme, metin taşımaz
+  rose500: '#F2609F',
+  rose600: '#C9306F', // metin taşıyabilen en açık dolgu tonu (beyazla 5.08:1)
+  rose700: '#A82459',
+  rose800: '#5E1638',
+  rose900: '#3A0C21',
 
-  // Bal — ikincil, vurgu ve ödül
-  honey50: '#FEF1DA',
-  honey100: '#FDE9BC',
-  honey200: '#FADB90',
-  honey300: '#F8CA68',
-  honey400: '#F5B342', // bal sarısı — üzerine koyu metin gelir
-  honey500: '#D9911F',
-  honey600: '#A96C14',
-  honey700: '#77490C',
-  honey800: '#3D2A05',
-  honey900: '#2A1C03',
+  // Güneş — ikincil, ödül ve vurgu. Üzerine koyu metin gelir.
+  sun50: '#FFF6DF',
+  sun100: '#FFEDBF',
+  sun200: '#FFE096',
+  sun300: '#FFD26B',
+  sun400: '#FFC53D', // bal sarısı — rozet, XP, yıldız
+  sun500: '#E0A315',
+  sun600: '#AE7C0C',
+  sun700: '#7A5608',
+  sun800: '#4A3208',
+  sun900: '#3A2705',
 
-  // Yeşil — başarı geri bildirimi (zümrütten biraz daha sarıya çalar,
-  // "doğru cevap" ile "marka rengi" karışmasın diye)
-  green100: '#E2F5E8',
-  green400: '#3FD07E',
-  green500: '#2FBF63',
-  green600: '#17864A',
-  green800: '#10331F',
-  green900: '#05230F',
+  // Yeşil — başarı geri bildirimi. Marka renginden uzak durur ki
+  // "doğru cevap" ile "birincil eylem" karışmasın.
+  green100: '#DFF5EC',
+  green400: '#4BD79B',
+  green500: '#22B27B',
+  green600: '#12855C',
+  green800: '#0E3A28',
+  green900: '#052015',
 
-  // Kırmızı — hata
-  red100: '#FBE7E7',
-  red400: '#FF6369',
-  red500: '#E5484D',
-  red600: '#D13438',
-  red800: '#3A1A1B',
-  red900: '#2A0708',
+  // Kırmızı — hata. Pembeye çok yaklaşmaması için turuncuya çalar.
+  red100: '#FDE7EB',
+  red400: '#FF7085',
+  red500: '#EF4560',
+  red600: '#D62F4B',
+  red800: '#3E1620',
+  red900: '#2A0710',
 
-  // Sıcak nötrler — soğuk gri yerine kahveye çalan gri (davetkâr ton)
+  // Erik nötrler — maskotun kontur rengi (#3A2B33) etrafında kurulmuş,
+  // hafif pembeye çalan gri skalası. Soğuk gri pembeyle yan yana kirli durur.
   neutral0: '#FFFFFF',
-  neutral50: '#FFFDF8',
-  neutral100: '#F7F3EA',
-  neutral150: '#F0EBE1',
-  neutral200: '#E8E3D9',
-  neutral300: '#D5CEC1',
-  neutral400: '#B0A899',
-  neutral500: '#8A8375',
-  neutral600: '#6E6A61',
-  neutral700: '#4A463F',
-  neutral750: '#34302A',
-  neutral800: '#2B2823',
-  neutral850: '#1F1C18',
-  neutral900: '#1C1A16',
-  neutral950: '#14120F',
+  neutral50: '#FFF7FA',
+  neutral100: '#FFF0F5',
+  neutral150: '#FAE8EF',
+  neutral200: '#F2DFE7',
+  neutral300: '#E3CBD6',
+  neutral400: '#B7A6AE',
+  neutral500: '#94818B',
+  neutral600: '#7A6670',
+  neutral700: '#5C4952',
+  neutral750: '#4A3841',
+  neutral800: '#30222B',
+  neutral850: '#241A21',
+  neutral900: '#3A2B33', // maskotun kontur rengi — gövde metni
+  neutral950: '#1A1218',
 } as const;
 
-// ── Tip tanımları ────────────────────────────────────────────────────────────
+// ── Jeton tipleri ────────────────────────────────────────────────────────────
 
 /** Gölge jetonu — React Native `ViewStyle` gölge alanlarıyla uyumlu. */
 export type ElevationToken = {
@@ -99,7 +109,7 @@ export type ColorTheme = {
   /** Açık tonlu zemin — rozet, seçili seçenek arkası */
   primarySoft: string;
   onPrimary: string;
-  /** Parlak marka zümrütü — ilerleme çubuğu, ikon, illüstrasyon. Metin taşımaz. */
+  /** Maskotun canlı pembesi — ilerleme çubuğu, ikon, illüstrasyon. Metin taşımaz. */
   primaryBright: string;
 
   secondary: string;
@@ -149,26 +159,28 @@ const noElevation: ElevationToken = {
   elevation: 0,
 };
 
+// Gölge rengi nötr siyah değil koyu erik — pembe yüzeylerin altında gri gölge
+// isli durur, erik gölge rengin içinden çıkmış gibi oturur.
 const lightElevation: ColorTheme['elevation'] = {
   none: noElevation,
   card: {
     shadowColor: palette.neutral900,
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
+    shadowOpacity: 0.08,
     shadowRadius: 8,
     elevation: 2,
   },
   raised: {
     shadowColor: palette.neutral900,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.12,
     shadowRadius: 16,
     elevation: 6,
   },
   modal: {
     shadowColor: palette.neutral900,
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.16,
+    shadowOpacity: 0.18,
     shadowRadius: 24,
     elevation: 12,
   },
@@ -207,18 +219,18 @@ export const lightTheme: ColorTheme = {
   background: palette.neutral50,
   surface: palette.neutral0,
   surfaceAlt: palette.neutral100,
-  overlay: 'rgba(28, 26, 22, 0.45)',
+  overlay: 'rgba(58, 43, 51, 0.45)',
 
-  primary: palette.emerald600,
-  primaryPressed: palette.emerald700,
-  primarySoft: palette.emerald50,
+  primary: palette.rose600,
+  primaryPressed: palette.rose700,
+  primarySoft: palette.rose100,
   onPrimary: palette.neutral0,
-  primaryBright: palette.emerald500,
+  primaryBright: palette.rose400,
 
-  secondary: palette.honey400,
-  secondaryPressed: palette.honey500,
-  secondarySoft: palette.honey50,
-  onSecondary: palette.honey800,
+  secondary: palette.sun400,
+  secondaryPressed: palette.sun500,
+  secondarySoft: palette.sun50,
+  onSecondary: palette.sun800,
 
   success: palette.green600,
   successSoft: palette.green100,
@@ -236,7 +248,7 @@ export const lightTheme: ColorTheme = {
 
   border: palette.neutral200,
   borderStrong: palette.neutral300,
-  focusRing: palette.emerald600,
+  focusRing: palette.rose600,
 
   disabledBackground: palette.neutral150,
   disabledText: palette.neutral400,
@@ -250,17 +262,17 @@ export const darkTheme: ColorTheme = {
   surfaceAlt: palette.neutral800,
   overlay: 'rgba(0, 0, 0, 0.6)',
 
-  // Koyu zeminde parlak yeşil dolgu + koyu metin okunur; tersi değil.
-  primary: palette.emerald400,
-  primaryPressed: palette.emerald300,
-  primarySoft: palette.emerald800,
-  onPrimary: palette.emerald900,
-  primaryBright: palette.emerald400,
+  // Koyu zeminde açık pembe dolgu + koyu metin okunur; tersi değil.
+  primary: '#FF9FC9',
+  primaryPressed: '#FFC1DC',
+  primarySoft: palette.rose800,
+  onPrimary: palette.rose900,
+  primaryBright: palette.rose400,
 
-  secondary: palette.honey400,
-  secondaryPressed: palette.honey500,
-  secondarySoft: palette.honey800,
-  onSecondary: palette.honey900,
+  secondary: palette.sun400,
+  secondaryPressed: palette.sun500,
+  secondarySoft: palette.sun800,
+  onSecondary: palette.sun900,
 
   success: palette.green400,
   successSoft: palette.green800,
@@ -270,18 +282,18 @@ export const darkTheme: ColorTheme = {
   errorSoft: palette.red800,
   onError: palette.red900,
 
-  textPrimary: '#F5F1E8',
-  textSecondary: '#C9C3B6',
-  textMuted: '#948D80',
+  textPrimary: '#F7EDF2',
+  textSecondary: '#D4C3CC',
+  textMuted: '#A08F99',
   textInverse: palette.neutral950,
-  textDisabled: '#5C564C',
+  textDisabled: '#6B5A64',
 
-  border: palette.neutral750,
-  borderStrong: palette.neutral700,
-  focusRing: palette.emerald400,
+  border: palette.neutral900,
+  borderStrong: palette.neutral750,
+  focusRing: '#FF9FC9',
 
-  disabledBackground: '#262320',
-  disabledText: '#5C564C',
+  disabledBackground: '#2A1F26',
+  disabledText: '#6B5A64',
 
   elevation: darkElevation,
 };

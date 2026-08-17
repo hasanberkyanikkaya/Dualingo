@@ -18,13 +18,17 @@ YAPILACAKLAR — güncel: 6 Ağustos 2026
 
 [ ] Kur'an meali telif durumu — Faz 5'ten ÖNCE netleşmeli
 
-[ ] Maskot karakter tasarımı — Faz 3'e kadar (o zamana kadar yer tutucu)
+[x] Maskot karakter tasarımı — aksolotl, assets/images/mascot.png
+        ADI HENÜZ YOK — kullanıcı koyacak
+        Palet bu maskottan türetildi (bkz. CLAUDE.md "Maskot ve palet kararı")
+[ ] Maskotu açılış ekranı + uygulama ikonu yap (şu an Expo şablonu duruyor)
 
 
 === SIRADAKİ OTURUMLAR (Claude ile) ===
 
 [x] 0.3 Tasarım sistemi — /constants
-        Palet seçildi: A "Zümrüt & Bal" (#17A67A / #F5B342, sıcak nötr gri)
+        Palet: "Aksolotl" (#C9306F / #FFC53D, erik nötr) — maskottan türetildi,
+        Oturum 1.2 sonrası "Zümrüt & Bal"ın yerini aldı
 [x] 0.4 Tip tanımları — /types
         learning.ts (içerik) + progress.ts (ilerleme) + index.ts
 [x] 0.5 Örnek içerik — /content (ÖRNEK VERİ, yapı gerçek metin yer tutucu)

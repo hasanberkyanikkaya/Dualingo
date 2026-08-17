@@ -160,13 +160,38 @@ Sırada **Faz 1.2b — ProgressBar**, sonra **Faz 1.2c — Card** (ayrı oturuml
   itirazında sorun çıkabilir. Yayın öncesi (Faz 2.5) yeniden değerlendirilmeli.
   Bundle identifier bu riskten etkilenmez.
 
+**Maskot ve palet kararı — "Aksolotl" (Oturum 1.2 sonrası):**
+- Uygulamanın ana maskotu bir **aksolotl**: `assets/images/mascot.png`.
+  **Adı henüz yok**, kullanıcı sonra koyacak.
+- Palet maskottan **ölçülerek** türetildi, gözle seçilmedi. Maskotun dört
+  rengi palette aynen duruyor: gövde `#FFE1EC` (`rose100` → `primarySoft`),
+  karın `#FFF5F8` (`rose50`), solungaç `#FF8FBF` (`rose400` → `primaryBright`),
+  kontur `#3A2B33` (`neutral900` → `textPrimary`). Metin rengiyle maskotun
+  çizgi renginin aynı olması kimliği bir arada tutan şey.
+- ⚠️ **Pembe beyaz metin taşıyamaz.** `rose400` üzerine beyaz **2.11:1**.
+  Beyaz metni taşıyan en açık pembe `rose600 #C9306F` (5.08:1); bir basamak
+  açığı `#D63B7B` 4.40 ile kalıyor. Buton dolgusu bu yüzden `rose600`,
+  maskotun canlı pembesi yalnızca grafik/ilerleme/ikon.
+- İkincil renk **güneş sarısı** `sun400 #FFC53D` (ödül, XP, rozet) — üzerine
+  koyu metin gelir. Nötr skala erik tonlu; pembeyle soğuk gri kirli duruyor.
+- **Jeton ADLARI hiç değişmedi**, sadece değerleri. Bu yüzden hiçbir bileşen
+  düzenlenmedi — mimari kural 4'ün (renkler merkezi) somut kazancı.
+- Ghost varyantının basılınca metin değiştirme kararı yeni palette **daha da
+  gerekli**: naif hâli 4.17:1 (zümrütte 4.46'ydı), düzeltilmiş hâli 5.63:1.
+- `app.json`'daki açılış ekranı (`#208AEF` maviydi → `#FFF5F8`) ve Android
+  adaptif ikon zemini (`#E6F4FE` → `#FFE1EC`) da palete çekildi.
+- Doğrulama: 30 renk kombinasyonu (açık + koyu) hesaplandı, **hepsi AA geçiyor**.
+  Palet değiştirilirse bu hesap tekrarlanmalı.
+- ⚠️ Maskot henüz **açılış ekranı ve uygulama ikonu olarak kullanılmıyor** —
+  `splash-icon.png` ve `icon.png` hâlâ Expo şablonundan. Yayın öncesi değişmeli.
+
 **Tasarım sistemi kararları (Oturum 0.3):**
-- Renk paleti: **"Zümrüt & Bal"** — zümrüt `#17A67A`, bal sarısı `#F5B342`,
-  sıcak (kahveye çalan) nötr gri skalası. Açık + koyu tema tanımlı.
+- Renk paleti: **"Aksolotl"** — Oturum 1.2 sonrası "Zümrüt & Bal"ın yerini aldı,
+  bkz. "Maskot ve palet kararı".
 - Ham renkler (`palette`) bileşende doğrudan kullanılmaz; bileşenler
   anlamsal jetonları okur (`lightTheme` / `darkTheme`, tip: `ColorTheme`).
 - Metin taşıyan dolgular WCAG AA (4.5:1) sağlar. Bu yüzden buton dolgusu
-  `#0C8059`; parlak `#17A67A` sadece grafik/ilerleme çubuğu/ikon içindir
+  `#C9306F`; parlak `#FF8FBF` sadece grafik/ilerleme çubuğu/ikon içindir
   (`primaryBright`), üzerine küçük metin konmaz.
 - Gölge jetonları temaya bağlı: `theme.elevation.card / raised / modal`.
 - Metin stilleri tekil font boyutu yerine hazır jetonlardan gelir:

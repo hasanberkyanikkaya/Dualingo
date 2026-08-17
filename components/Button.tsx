@@ -47,10 +47,10 @@ type VariantColors = {
  *
  * Ghost'un `colors.ts` içinde kendi jetonu YOK — birincil jetonlardan
  * besteleniyor. Basılınca hem zemin hem metin değişiyor: açık temada
- * `primary` (#0C8059) üzerine `primarySoft` (#E6F7F0) kontrastı 4.46:1'de
+ * `primary` (#C9306F) üzerine `primarySoft` (#FFE1EC) kontrastı 4.17:1'de
  * kalıp AA sınırının (4.5:1) altına düşüyor. `primaryPressed` iki temada da
  * `primarySoft`'tan UZAKLAŞTIĞI için (açıkta koyulaşır, koyuda açılır)
- * basılı hâli 6.30:1 / 5.89:1'e çıkarıyor.
+ * basılı hâli 5.63:1 / 8.44:1'e çıkarıyor.
  */
 function getVariantColors(theme: ColorTheme, variant: ButtonVariant): VariantColors {
   const table: Record<ButtonVariant, VariantColors> = {
