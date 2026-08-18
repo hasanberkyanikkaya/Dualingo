@@ -40,7 +40,7 @@ geliştirme derlemesi (dev build) gerekir.
 /components             ortak UI bileşenleri (buton, kart, ilerleme çubuğu)
 /features
   /learning             ders motoru, soru tipleri
-    /components         harita bileşenleri (/map) + soru tipi bileşenleri
+    /components         harita (/map) + soru tipi (/question) bileşenleri
   /prayer               namaz vakti, çizelge, bildirim
   /quran                Kur'an okuma, hedef takibi
   /games                mini oyunlar
@@ -128,15 +128,18 @@ npx tsc --noEmit        # tip kontrolü
 ## Şu Anki Faz
 
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
-Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.**
-Sırada **Faz 2.2 — soru bileşenleri** (her tip ayrı oturum).
+Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
+Faz 2.2a MultipleChoiceQuestion — TAMAM.**
+Sırada **Faz 2.2b — TrueFalseQuestion.** Sonra sırayla `OrderingQuestion`,
+`FillBlankQuestion`, `ImageMatchQuestion`, `AudioChoiceQuestion` — her biri
+AYRI oturum. Hepsi `QuestionShell`'i kullanır, yeni iskelet yazmaz.
 
-⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Oturum 2.1 haritada Card'a ihtiyaç
-duymadı (ünite başlığı kart değil). Card kendi oturumunda yazılabilir; 1.2c'nin
-ilk kararı hâlâ geçerli: açık temada `background === surface` olduğu için Card
-kenarlık ya da `elevation.card` gölgesi taşımak zorunda. **1.3 (dev build) ve
-1.4 (Sentry) de yapılmadı** — ikisi de öğrenme motorunu bloklamıyor ama
-yayından önce şart.
+⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Ne 2.1 ne 2.2a Card'a ihtiyaç duydu
+(ünite başlığı kart değil; şık kartı seçilebilir bir KONTROL, pasif yüzey değil).
+Card kendi oturumunda yazılabilir ve artık kolay: kenarlık kararı 2.2a'da ölçüldü
+(`borderControl` 2px + `componentRadius.card`), gölge seçeneği elendi.
+**1.3 (dev build) ve 1.4 (Sentry) de yapılmadı** — ikisi de öğrenme motorunu
+bloklamıyor ama yayından önce şart.
 
 **SDK sürümü kararı — SDK 54, bilinçli olarak sabit:**
 - Proje SDK 57'de başladı, **SDK 54'e indirildi.** Sebep: geliştirme telefonu
@@ -339,8 +342,12 @@ yayından önce şart.
 - **`lightTheme.background` `neutral50` → `neutral0` (saf beyaz).** Orta alan
   "beyaz" istendi, `#FFF7FA` beyaz değil. ⚠️ **Sonuç: açık temada `background`
   ile `surface` artık AYNI renk.** Faz 1.2c'deki Card zeminden kendi rengiyle
-  ayrışamaz — **kenarlık veya `elevation.card` gölgesi taşımak zorunda**, ya da
-  `surfaceAlt` (#FFF0F5) kart rengi yapılmalı. Card oturumunun ilk kararı bu.
+  ayrışamaz.
+  ⚠️ **Bu satır eskiden "kenarlık VEYA `elevation.card` gölgesi" diyordu — "veya"
+  YANLIŞTI.** Oturum 2.2a gölgeyi ölçtü: `shadowOpacity: 0.08` ile beyaz üzerinde
+  üretilebilecek en koyu piksel `#EFEEEF`, yani **1.16:1**, üstelik bulanıklık
+  yayılmadan önceki tavan. Gölge sınır çizemez. Sınır `borderControl` kenarlığıyla
+  çizilir; karar verildi, Card oturumu tekrar ölçmesin.
 - **`TopBar` bileşeni** (`components/TopBar.tsx`): tam genişlikte renk şeridi.
   **Durum çubuğunun arkasını da boyar** — güvenli alan payı dolgu olarak
   ekleniyor, zemin tepeye kadar uzanıyor; yoksa çentikli cihazda üstte beyaz
@@ -457,6 +464,57 @@ yayından önce şart.
   dosyası. Ekranın ölü hissetmemesini basma animasyonu, "Şu an buradasın" yazısı
   ve ünite ilerleme çubukları sağlıyor.
 - `strings.ts`'e **iki metin** eklendi: `learn.skippedLevel`, `a11y.levelStars`.
+
+**Soru bileşenleri kararları (Oturum 2.2a — MultipleChoiceQuestion):**
+- **`colors.ts`'e bir jeton eklendi: `borderControl`** (açık `neutral500`,
+  koyu `neutral600`). Dokunulabilir bir öğenin SINIRINI çizer — şık kartı, girdi
+  alanı, Card. Zemine karşı **3.64 / 3.46**, WCAG 1.4.11'in istediği 3:1 sağlanıyor.
+  Elenenler: `borderStrong` **1.52**, `surfaceAlt` dolgu **1.10**, gölge **1.16**.
+  ⚠️ **`borderStrong` koyulaştırılarak çözülemezdi** — o jeton `LevelNode`'un
+  kilitli halkasında ve `PathTrail`'in 32px şeridinde yük taşıyor; şeridin bütün
+  gerekçesi "1.5:1'de 32px'lik bant görünür"dü, 3.6'ya çekmek yolu gri yılana çevirirdi.
+- ⚠️ **Seçili ve seçilmemiş kenarlık arasında yalnızca 1.40:1 var** (`primary` /
+  `borderControl`); fark neredeyse tamamen hüe. Durumu renk taşıyamaz →
+  **radyo göstergesinin BİÇİMİ taşıyor** (`radio-button-off` → `radio-button-on`).
+  2.1'deki `primary`/`success` 1.10:1 dersinin ikinci kez uygulanması.
+- ⚠️ **Gösterge olarak `checkmark-circle` KULLANILMAZ.** Henüz kontrol edilmemiş
+  bir şıkta tik doğruluğu önceden ima eder; ayrıca tik dağarcığı Faz 2.3'ün
+  gerçek doğru/yanlış işaretine ait.
+- Şık etiketi iki durumda da `textPrimary` — seçilince `primary`'ye çevrilmez:
+  `primary` üzerine `primarySoft` **4.17**, ghost butonu düzelten sayının aynısı.
+- Kenarlık kalınlığı her durumda **2px**; 1→2 değişimi etiketi kaydırıp listeyi titretir.
+- `OptionCard` basma ölçeği **0.98**, Button'ın 0.96'sı değil: yer değiştirme
+  genişlikle büyüyor, tam genişlik kartta 0.96 kenar başına 6.9px ediyor.
+- `disabled` basmayı engeller ama **grileştirmez** (`disabledText`/`disabledBackground`
+  1.97) — geri bildirim paneli açıklarken şık okunur kalmalı. Button'ın `loading`'i gibi.
+- **`QuestionShell` altı tipin ortak kabuğu.** "Kontrol et" onun içinde, altı
+  bileşende tekrarlanmıyor. Tek tüketiciyle yazıldı çünkü şekil tahmin değil:
+  playbook altı tip için aynı iskeleti tarif ediyor.
+- **Soru bileşenleri `QuestionOfType<'…'>` / `AnswerOfType<'…'>` alır**, birleşik
+  `Question` değil. Playbook "Question tipinden" diyor ama birleşik tip her
+  bileşeni içeride daraltmaya zorlardı. Daraltma 2.3'te `switch` ile bir kez.
+  Oturum 0.4'te tam bu iş için yazılan yardımcıların ilk tüketicisi.
+- ⚠️ **Soru değişince seçim sıfırlanır** — ders ekranı soruyu sabit yuvada
+  çizecek, React örneği yeniden kullanır ve sıradaki soru şıkkı seçili açılırdı.
+  Bileşen kendi içinde koruyor; ders ekranı ayrıca `key={question.id}` vermeli.
+
+**Faz 2.3'ün uyması gereken sözleşmeler (şimdiden yazıldı):**
+- `<QuestionShell>` **sınırlı yükseklik ister**, asla bir `ScrollView` içine konmaz —
+  `flex: 1` çöker, alt bölüm içerikten ayrılır.
+- Kabuk **güvenli alan payı okumaz**; ders ekranı `SafeAreaView edges={['bottom']}`
+  ile sarmalı, yoksa "Kontrol et" ana ekran çizgisine oturur.
+- Soru bileşenine **`key={question.id}`** verilmeli.
+- Kabuğa `isAnswered?: boolean` eklenip alt bölüm geri bildirim paneline
+  bırakılacak — ~10 satır, tek dosya.
+- ⚠️ Cevaplanmış şıkkı yeşile/kırmızıya boyamak **tek başına görünmez**:
+  `primary`/`success` **1.10**, `primary`/`error` **1.06**. Gösterge ikonu da
+  biçim değiştirmeli. Kenarlıkların kendisi sorunsuz (`success` 4.63, `error` 4.81).
+
+⚠️ **Mimari mayın — Faz 2.2e (ImageMatch) buna çarpacak:** `ImageRef.key` düz
+dizge ve anahtar→varlık eşlemesi hiçbir yerde yok. Metro değişken yollu `require`
+yapamıyor (`contentLoader`'ı statik kayda zorlayan duvarın aynısı). `expo-image`
+zaten bağımlılıkta. Görsel çizimi 2.2a'da bilerek atlandı; ImageMatch oturumu
+İLK İŞ olarak bu eşlemeyi çözmeli, yoksa tıkanarak açılır.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

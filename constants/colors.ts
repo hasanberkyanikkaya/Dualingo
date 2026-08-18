@@ -22,6 +22,14 @@
  * WCAG 1.4.11 metin taşımayan parçalar için 3:1 istiyor ve dolu/boş sınırı
  * ilerlemeyi anlatan tek şey. Çubuk dolguları bu yüzden koyu: `primary`,
  * `secondaryStrong`, `success`.
+ *
+ * ⚠️ GÖLGE SINIR ÇİZEMEZ. Açık temada `background === surface === #FFFFFF`,
+ * yani bir kart zeminden kendi dolgusuyla ayrılamıyor ve akla ilk gelen çözüm
+ * gölge oluyor. Ölçüldü: `elevation.card` (`shadowOpacity: 0.08`,
+ * `shadowColor: neutral900`) beyaz üzerinde üretebileceği EN KOYU piksel
+ * `#EFEEEF`, yani **1.16:1** — üstelik bu, bulanıklık yayılmadan önceki tavan.
+ * Dokunulabilir bir öğenin sınırı bu yüzden `borderControl` ile çizilir.
+ * Gölge yalnızca derinlik hissi içindir, bilgi taşımaz.
  */
 
 // ── Ham palet ────────────────────────────────────────────────────────────────
@@ -164,6 +172,15 @@ export type ColorTheme = {
 
   border: string;
   borderStrong: string;
+  /**
+   * Dokunulabilir bir öğenin SINIRINI çizen kenarlık — seçenek kartı, girdi
+   * alanı, kart. Zemine karşı 3:1 sağlar (WCAG 1.4.11).
+   *
+   * ⚠️ `borderStrong` bu iş için YETMEZ: beyaz zemine karşı 1.52:1. Gölge de
+   * yetmez — bkz. dosya başındaki uyarı. Ayrıntı ve neden `borderStrong`
+   * koyulaştırılamadığı: CLAUDE.md "Soru bileşenleri kararları".
+   */
+  borderControl: string;
   focusRing: string;
 
   disabledBackground: string;
@@ -288,6 +305,9 @@ export const lightTheme: ColorTheme = {
 
   border: palette.neutral200,
   borderStrong: palette.neutral300,
+  // Beyaz zemine karşı 3.64:1. Bir basamak koyusu (neutral600, 5.30:1) kart
+  // değil sert bir form çerçevesi gibi okunuyordu.
+  borderControl: palette.neutral500,
   focusRing: palette.rose600,
 
   disabledBackground: palette.neutral150,
@@ -337,6 +357,9 @@ export const darkTheme: ColorTheme = {
 
   border: palette.neutral900,
   borderStrong: palette.neutral750,
+  // Koyu zemine (#1A1218) karşı 3.46:1. Açık temadakinden bir basamak koyu
+  // seçildi; koyu zeminde neutral500 (5.05:1) fazla parlak kalıyordu.
+  borderControl: palette.neutral600,
   focusRing: '#FF9FC9',
 
   disabledBackground: '#2A1F26',
