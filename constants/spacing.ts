@@ -35,4 +35,11 @@ export const layout = {
   minTouchTarget: 48,
   /** Alt sekme çubuğu yüksekliği (güvenli alan hariç) */
   tabBarHeight: 60,
+  /**
+   * Üst çubuğun (tavan) yüksekliği — durum çubuğu alanı HARİÇ.
+   * Referans görüntüde pembe şerit ekranın ~%12'si; durum çubuğu düşülünce
+   * geriye bu kalıyor. `minTouchTarget`ten (48) büyük, çünkü ileride içine
+   * dokunulabilir ikonlar girecek ve nefes payı gerekiyor.
+   */
+  topBarHeight: 56,
 } as const;

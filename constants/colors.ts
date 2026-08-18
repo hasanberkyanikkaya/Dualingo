@@ -39,6 +39,13 @@ export const palette = {
   rose800: '#5E1638',
   rose900: '#3A0C21',
 
+  // Mercan — uygulamanın üst çubuğu (tavan). ÖrnekResim.jpeg'ten ölçüldü.
+  // ⚠️ Bu, gül skalasından FARKLI bir hüe: gülde mavi yeşilden yüksek
+  // (magentaya çalar), mercanda ikisi eşit (kırmızıya çalar). Yani palette
+  // artık iki ayrı pembe var. Bilinçli — referans görüntü bu rengi istiyor.
+  coral300: '#FEA3A2', // tavan, açık tema
+  coral800: '#4A2321', // tavan, koyu tema
+
   // Güneş — ikincil, ödül ve vurgu. Üzerine koyu metin gelir.
   sun50: '#FFF6DF',
   sun100: '#FFEDBF',
@@ -102,6 +109,13 @@ export type ElevationToken = {
 export type ColorTheme = {
   /** Ekran zemini */
   background: string;
+  /**
+   * Üst çubuk (tavan) zemini — durum çubuğu alanı dahil.
+   * Ekranın kendi zemininden ayrı bir renk; uygulamanın kimliğini taşıyan şerit.
+   */
+  appBar: string;
+  /** Üst çubuğun üzerine gelen içerik rengi (ikon, başlık) */
+  onAppBar: string;
   /** Kart, sayfa üstü yüzey */
   surface: string;
   /** İkincil yüzey — girdi alanı, pasif sekme */
@@ -232,7 +246,14 @@ const darkElevation: ColorTheme['elevation'] = {
 // ── Temalar ──────────────────────────────────────────────────────────────────
 
 export const lightTheme: ColorTheme = {
-  background: palette.neutral50,
+  // Saf beyaz. Eskiden `neutral50` (#FFF7FA) idi; referans görüntüdeki gibi
+  // pembe tavanın altındaki alan tamamen beyaz olsun diye değiştirildi.
+  // ⚠️ Sonuç: `background` ile `surface` açık temada AYNI renk. Kart bileşeni
+  // zeminden kendi rengiyle ayrışamaz, kenarlık veya gölge taşımak zorunda.
+  background: palette.neutral0,
+  // Tavan üzerine koyu erik metin: 7.00:1
+  appBar: palette.coral300,
+  onAppBar: palette.neutral900,
   surface: palette.neutral0,
   surfaceAlt: palette.neutral100,
   overlay: 'rgba(58, 43, 51, 0.45)',
@@ -277,6 +298,10 @@ export const lightTheme: ColorTheme = {
 
 export const darkTheme: ColorTheme = {
   background: palette.neutral950,
+  // Koyu temada somon tavan parlar; aynı hüenin koyu basamağı kullanılıyor.
+  // Üzerine açık metin: 11.81:1
+  appBar: palette.coral800,
+  onAppBar: '#F7EDF2',
   surface: palette.neutral850,
   surfaceAlt: palette.neutral800,
   overlay: 'rgba(0, 0, 0, 0.6)',

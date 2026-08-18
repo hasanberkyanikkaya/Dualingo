@@ -49,9 +49,21 @@ Sonra Faz 1:
         3:1 istiyor. Dolgular koyulaştı; colors.ts'e secondaryStrong jetonu eklendi
         Yan ürün: constants/motion.ts (Button'ın süreleri buraya taşındı) +
         lib/formatString.ts ({ad} yer tutucusu doldurma — Faz 0.3'te söz verilmişti)
-    [ ] Card
+    [ ] Card — ATLANDI, 2.1 buna ihtiyaç duymadı. Kendi oturumunda yazılabilir.
 [ ] 1.3 EAS dev build — telefonunda çalışan sürüm
 [ ] 1.4 Sentry
+
+Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
+[x] 2.1 Seviye haritası ekranı
+        Zikzak patika + kıvrımlı SVG şerit, 4 durum (kilitli/açık/atlanmış/
+        tamamlandı), yıldızlar, ünite başlıkları + ilerleme çubuğu
+        react-native-svg 15.12.1 eklendi (Expo Go'nun içinde geliyor)
+        İçerik yükleyici yazıldı: /content artık gerçekten okunuyor
+        İlerleme sahte (mockProgress) ama KANCA arkasında — 2.4'te tek dosya değişir
+        ⚠️ primary/success 1.10:1 çıktı → durumu daire rengi değil ikon biçimi taşıyor
+[ ] 2.2 Soru bileşenleri — her tip AYRI oturum (6 tip)
+[ ] 2.3 Ders akışı ekranı — app/lesson/[id].tsx (haritadaki dokunuş buraya bağlanacak)
+[ ] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silinecek
 
 
 === AÇIK SORULAR ===

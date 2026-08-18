@@ -77,6 +77,7 @@ export const strings = {
     levelLabel: 'Seviye {number}',
     lockedLevel: 'Bu seviye henüz açılmadı',
     lockedLevelHint: 'Önceki seviyeyi tamamlayınca açılır.',
+    skippedLevel: 'Seviye tespitiyle açıldı',
     completedLevel: 'Tamamlandı',
     currentLevel: 'Şu an buradasın',
     reviewLevel: 'Tekrar et',
@@ -199,6 +200,8 @@ export const strings = {
     playAudioButton: 'Sesi çal',
     lockedLevelButton: 'Kilitli seviye',
     completedLevelButton: 'Tamamlanmış seviye',
+    /** Türkçe sıra: "3 yıldızdan 2" */
+    levelStars: '{total} yıldızdan {earned}',
   },
 } as const;
 

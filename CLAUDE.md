@@ -40,7 +40,7 @@ geliştirme derlemesi (dev build) gerekir.
 /components             ortak UI bileşenleri (buton, kart, ilerleme çubuğu)
 /features
   /learning             ders motoru, soru tipleri
-    /components         soru tipi bileşenleri
+    /components         harita bileşenleri (/map) + soru tipi bileşenleri
   /prayer               namaz vakti, çizelge, bildirim
   /quran                Kur'an okuma, hedef takibi
   /games                mini oyunlar
@@ -128,7 +128,15 @@ npx tsc --noEmit        # tip kontrolü
 ## Şu Anki Faz
 
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
-Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
+Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.**
+Sırada **Faz 2.2 — soru bileşenleri** (her tip ayrı oturum).
+
+⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Oturum 2.1 haritada Card'a ihtiyaç
+duymadı (ünite başlığı kart değil). Card kendi oturumunda yazılabilir; 1.2c'nin
+ilk kararı hâlâ geçerli: açık temada `background === surface` olduğu için Card
+kenarlık ya da `elevation.card` gölgesi taşımak zorunda. **1.3 (dev build) ve
+1.4 (Sentry) de yapılmadı** — ikisi de öğrenme motorunu bloklamıyor ama
+yayından önce şart.
 
 **SDK sürümü kararı — SDK 54, bilinçli olarak sabit:**
 - Proje SDK 57'de başladı, **SDK 54'e indirildi.** Sebep: geliştirme telefonu
@@ -171,9 +179,13 @@ Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
 - ⚠️ **Pembe beyaz metin taşıyamaz.** `rose400` üzerine beyaz **2.11:1**.
   Beyaz metni taşıyan en açık pembe `rose600 #C9306F` (5.08:1); bir basamak
   açığı `#D63B7B` 4.40 ile kalıyor. Buton dolgusu bu yüzden `rose600`,
-  maskotun canlı pembesi yalnızca grafik/ikon/seviye düğümü.
+  maskotun canlı pembesi yalnızca grafik ve ikon.
   ⚠️ Bu satır eskiden "grafik/ilerleme/ikon" diyordu — **ilerleme çubuğu
   listeden ÇIKTI**, sebebi "ProgressBar kararları"nda.
+  ⚠️ **Seviye düğümü de listeden ÇIKTI** (Oturum 2.1): `primaryBright` düğümün
+  DOLGUSU değil, geçerli düğümün **süs halkasıdır**. Dolgu olsaydı üzerindeki
+  ikon iki temanın birinde 3:1'in altına düşerdi. Gerekçe "Seviye haritası
+  kararları"nda.
 - İkincil renk **güneş sarısı** `sun400 #FFC53D` (ödül, XP, rozet) — üzerine
   koyu metin gelir. Nötr skala erik tonlu; pembeyle soğuk gri kirli duruyor.
 - **Jeton ADLARI hiç değişmedi**, sadece değerleri. Bu yüzden hiçbir bileşen
@@ -262,7 +274,8 @@ Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
   devam ediyor; toplanmazsa çentikli cihazlarda ikon ve etiket kırpılır.
 - **`SafeAreaProvider` kök yerleşime eklenmez** — expo-router (`ExpoRoot`)
   uygulamayı zaten sarıyor, ikincisi insets ölçümünü bozar.
-- İlk ortak bileşenler yazıldı: `Screen` (güvenli alan + zemin + kenar boşluğu),
+- İlk ortak bileşenler yazıldı: `Screen` (güvenli alan + zemin + kenar boşluğu;
+  ⚠️ sonradan `TopBar`'ı da çizer oldu, üst güvenli alan payı ona geçti),
   `ScreenHeader` (başlık + opsiyonel alt satır), `ComingSoon` (yayına girmeyen
   sekmelerin boş durumu). Faz 1.2'nin Button/Card/ProgressBar'ından ayrıdır.
 - Sekme ikonları Ionicons: `school` / `moon` / `book` / `person` (+`-outline`).
@@ -308,6 +321,37 @@ Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
   edilirse sessizce `{}` verir ve gösterge mutlak konumunu kaybeder.
   (RN 0.86'da tam tersiydi — sürüm değişiminde ilk bakılacak yerlerden biri.)
 
+**Görsel kabuk kararları (ÖrnekResim.jpeg uyarlaması):**
+- Uygulama üç şeride bölündü: **pembe tavan → beyaz orta → beyaz sekme çubuğu.**
+  Referans `ÖrnekResim.jpeg` (kök dizinde). Renkler gözle değil **pikselden
+  ölçülerek** alındı.
+- **Tavan `#FEA3A2`** (`palette.coral300` → `appBar`). ⚠️ Bu renk gül
+  skalasından **farklı bir hüe**: gülde mavi yeşilden yüksek (magentaya çalar),
+  mercanda ikisi eşit (kırmızıya çalar). Yani palette artık **iki ayrı pembe**
+  var — maskotun magenta pembesi ve tavanın somonu. Bilinçli, çünkü referans
+  görüntü bunu istiyor; ama maskot tavana konursa iki pembe yan yana gelir ve
+  o noktada biri feda edilmeli.
+- **Alt sekme çubuğu BEYAZ, pembe değil.** Kullanıcının ilk tarifi "alt kısım
+  pembe, seçilince beyaz" diyordu; referans görüntüde ölçülen değer `#FFFFFF`
+  ve seçili sekme `#C1446E`. Sorulup **resimdeki hâli** seçildi. Ek gerekçe:
+  somon üzerine beyaz metin **1.91:1** — seçili sekme diğerlerinden daha zor
+  okunurdu. Sekme çubuğu zaten `theme.surface` okuduğu için **kod değişmedi.**
+- **`lightTheme.background` `neutral50` → `neutral0` (saf beyaz).** Orta alan
+  "beyaz" istendi, `#FFF7FA` beyaz değil. ⚠️ **Sonuç: açık temada `background`
+  ile `surface` artık AYNI renk.** Faz 1.2c'deki Card zeminden kendi rengiyle
+  ayrışamaz — **kenarlık veya `elevation.card` gölgesi taşımak zorunda**, ya da
+  `surfaceAlt` (#FFF0F5) kart rengi yapılmalı. Card oturumunun ilk kararı bu.
+- **`TopBar` bileşeni** (`components/TopBar.tsx`): tam genişlikte renk şeridi.
+  **Durum çubuğunun arkasını da boyar** — güvenli alan payı dolgu olarak
+  ekleniyor, zemin tepeye kadar uzanıyor; yoksa çentikli cihazda üstte beyaz
+  bant kalıyor. İçi şimdilik boş, `children` alıyor (logo/ikonlar sonra).
+  Yükseklik `layout.topBarHeight` (56) + inset, `height` değil `minHeight`.
+- **Güvenli alan payları üçe bölündü:** ÜST payı `TopBar`, ALT payı sekme
+  çubuğu, YATAY paylar `Screen` üstleniyor. `Screen` artık `edges={['top',…]}`
+  kullanmıyor — top payı TopBar'a geçti, yoksa pay iki kez uygulanırdı.
+- `StatusBar style="auto"` değişmedi ve doğru: açık temada koyu ikon (somon
+  üzerinde okunur), koyu temada açık ikon (koyu mercan üzerinde okunur).
+
 **Bileşen kararları (Oturum 1.2b — ProgressBar):**
 - ⚠️ **Maskotun canlı pembesi (`primaryBright`) çubukta KULLANILMADI**, paletin
   önceki notu aksini söylemesine rağmen. Ölçüm: açık temada yol rengiyle
@@ -350,6 +394,69 @@ Faz 1.2b ProgressBar — TAMAM.** Sırada **Faz 1.2c — Card**.
   etiketi. **Karşılığı olmayan yer tutucu silinmez, olduğu gibi bırakılır** —
   ekranda `{total}` görmek sessiz boşluktan daha hızlı fark edilir.
   `strings.ts`'e hiçbir metin eklenmedi; `a11y.progressBar` zaten vardı.
+
+**Seviye haritası kararları (Oturum 2.1):**
+- **`react-native-svg@15.12.1` eklendi.** SDK 54'ün *paketli yerel modülü*
+  (`expo/bundledNativeModules.json`), yani **Expo Go içinde geliyor**, dev build
+  gerektirmiyor. ⚠️ Sürümü asla `npm install` ile değiştirme — sadece
+  `npx expo install`. Bu bileşenlerde **Reanimated ile SVG özelliği
+  animasyonlanmıyor** (`createAnimatedComponent(Path)` + `d`/`strokeDashoffset`,
+  RN 0.81 + Reanimated 4 + worklets 0.5 üçlüsünde pürüzlü); şerit durağan.
+- ⚠️ **`primary` ile `success` arasında 1.10:1 var.** Yani "açık" pembe düğüm ile
+  "tamamlandı" yeşil düğüm neredeyse aynı parlaklıkta. **Durum bilgisini daire
+  RENGİ taşıyamaz**; taşıyan şey ikonun BİÇİMİ: dolu tik / dolu üçgen / boş
+  üçgen / asma kilit. Projede yeni bir hata sınıfı — bu WCAG **1.4.1** (bilgiyi
+  yalnız renkle verme), daha önce çarpılan 1.4.3 ve 1.4.11 değil.
+- `skipped` düğümün dolgusu **opak `background`**, şeffaf değil: 32px'lik şerit
+  düğümün altından geçiyor, şeffaf bırakılsa ikonun içinden akardı.
+- Kilit ikonu **`textMuted`**, `disabledText` değil — `disabledText` kendi zemini
+  üzerinde **1.97:1** ve asma kilit görünmüyor. ⚠️ **Aynı oran var olan pasif
+  Button etiketinde de geçerli**; WCAG pasif öğeleri muaf tutuyor ama ileride
+  bakılmalı.
+- Şerit **dekoratif** `borderStrong`, 32px (zemine 1.52 açık / 1.69 koyu).
+  Bilgi taşımadığı için 1.4.11 kapsamına girmiyor: durumu düğüm ikonları,
+  ilerlemeyi ünite başlığındaki `ProgressBar` anlatıyor. `border` (1.27)
+  elendi — 32px'te bile görünmüyor. **Algıda alan önemli**: 1.5:1'de 32px'lik
+  bant görünür, aynı orandaki 1px çizgi hiçbir şey (ünite ayraç çizgileri de
+  bu yüzden elendi).
+  → Şerit ileride ilerleme taşırsa ölçüm hazır: `success`/`borderStrong` =
+  **3.04 açık / 5.94 koyu**, `primary`/`borderStrong` = 3.33 / 5.72.
+- Yıldızlar: dolu `secondaryStrong` (3.69 / 11.63), boş `textDisabled`
+  (2.31 / 2.86). `secondary` elendi (1.58); boş için `textMuted` elendi —
+  kazanılan yıldızdan gür çıkıp hiyerarşiyi ters çeviriyordu.
+- **`colors.ts`'e jeton EKLENMEDİ** (Button'ın izinde; ProgressBar mecbur kalmıştı).
+- **İlerleme ekrana KANCA ile ulaşır**: `features/learning/useLevelProgress.ts`.
+  Bugün `mockProgress.ts`'i döndürüyor, Faz 2.4'te gövdesi store'a bağlanacak ve
+  sahte dosya silinecek. Düz fonksiyon olsaydı 2.4'te her çağrı yeri değişirdi.
+- **`deletedAt !== null` kaydı YOK sayılır → `locked`** (mimari kural 6). Kural
+  tek bir yerde: `levelStatus.ts`. Sahte veride bilerek bir silinmiş kayıt var.
+- **"Geçerli seviye" bir `LevelStatus` DEĞİL**, türetilmiş bayrak: yol sırasında
+  `available` olan İLK seviye. Tespit sınavından sonra birden çok açık olabilir.
+- ⚠️ **Kural 1'e istisna:** Metro değişken yollu `require` yapamıyor, bu yüzden
+  yeni bir *ünite dosyası* `contentLoader.ts`'teki statik kayda bir satır ister.
+  Var olan ünitelere *seviye ve soru* eklemek saf veri olmayı sürdürüyor.
+  Kaçış yolu Faz 2.5'teki uzaktan içerik.
+- ⚠️ **Seviye kimlikleri yolun tamamında benzersiz olmalı** — `UserProgress.levels`
+  ünite başına değil, düz bir sözlük. Yükleyici `__DEV__` altında uyarıyor.
+- ⚠️ **İçe aktarılan JSON `sort()` ile karıştırılmaz**, `[...arr].sort()` kullanılır:
+  Metro modülü önbelleğe alıyor, doğrudan sıralama kalıcı bozulma bırakıyor.
+- Geometri saf ve ölçümsüz (`pathLayout.ts`): genişlik ekrandan hesaplanıyor,
+  `onLayout` yok, ilk karede doğru çiziliyor. Zikzak `[0,+1,0,-1]` döngüsü (düz
+  `±` testere dişi verirdi). Genlik `clamp(w*0.22, 32, min(96, safeMax))` —
+  **mutlak 96 tavanı** tablette şeridi yatay yılana dönmekten kurtaran şey.
+  Eğri **Catmull-Rom → kübik Bézier**; "kontrol noktasını dikey orta noktaya koy"
+  yöntemi denendi ve elendi, her düğümde kırık bırakıyordu.
+- `trailSegments` tek dizge değil **aralık başına bir `d` dizisi** — 2.4'te
+  geçilmiş parçaları renklendirmek geometri işi çıkarmasın diye.
+- ⚠️ `useWindowDimensions()` yatay güvenli alan payını bilmez; `mapWidth`
+  hesabından `insets.left/right` çıkarılıyor, yoksa yatay modda düğümler taşıyor.
+- **`Screen`'e `padded` prop'u EKLENMEDİ** ve bu bilinçli: içerik kutusunun kendi
+  zemini olmadığı için 16/24 dolgu görünmeyen bir boşluk. Kabuğa kalıcı kaçış
+  kapağı açmaya değmedi (Button'da kapatılan `style` deliğinin aynısı).
+- Dokunma **hiçbir yere gitmiyor** — `app/lesson/[id].tsx` yaratılmadı, o 2.3'ün
+  dosyası. Ekranın ölü hissetmemesini basma animasyonu, "Şu an buradasın" yazısı
+  ve ünite ilerleme çubukları sağlıyor.
+- `strings.ts`'e **iki metin** eklendi: `learn.skippedLevel`, `a11y.levelStars`.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
