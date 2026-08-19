@@ -14,6 +14,8 @@ const STAR_SIZE = spacing.lg; // 16
 type LevelStarsProps = {
   /** Kazanılan yıldız. Boş yuvalar da çizilir — "3 üzerinden kaç" okunsun diye. */
   earned: StarCount;
+  /** Yıldız boyutu. Haritada varsayılan 16; ders sonu ekranı büyütüyor. */
+  size?: number;
 };
 
 /**
@@ -31,7 +33,7 @@ type LevelStarsProps = {
  * - Boş yıldız `textDisabled`. `textMuted` (5.30:1) denendi ve elendi: kazanılan
  *   yıldızdan (3.69:1) daha gür çıkıyor, hiyerarşi ters dönüyordu.
  */
-export default function LevelStars({ earned }: LevelStarsProps) {
+export default function LevelStars({ earned, size = STAR_SIZE }: LevelStarsProps) {
   const { theme } = useTheme();
 
   return (
@@ -46,7 +48,7 @@ export default function LevelStars({ earned }: LevelStarsProps) {
           <Ionicons
             key={index}
             name={isEarned ? 'star' : 'star-outline'}
-            size={STAR_SIZE}
+            size={size}
             color={isEarned ? theme.secondaryStrong : theme.textDisabled}
           />
         );

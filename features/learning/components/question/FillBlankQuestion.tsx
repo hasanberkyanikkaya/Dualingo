@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { StyleSheet, Text, View } from 'react-native';
 
 import { spacing } from '@/constants/spacing';
@@ -20,6 +22,9 @@ type BankChip = { id: string; text: string };
 type FillBlankQuestionProps = {
   question: QuestionOfType<'fill_blank'>;
   onAnswer: (answer: AnswerOfType<'fill_blank'>) => void;
+  /** Cevap verildi mi — kontroller kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -37,7 +42,12 @@ type FillBlankQuestionProps = {
  *
  * `question.blanks[].correctAnswers` okunmuyor — yalnızca `choices`.
  */
-export default function FillBlankQuestion({ question, onAnswer }: FillBlankQuestionProps) {
+export default function FillBlankQuestion({
+  question,
+  onAnswer,
+  isAnswered = false,
+  footer,
+}: FillBlankQuestionProps) {
   const { theme } = useTheme();
 
   const context = `"${question.id}"`;
@@ -131,6 +141,8 @@ export default function FillBlankQuestion({ question, onAnswer }: FillBlankQuest
       onSubmit={handleSubmit}
       submitHint={strings.question.fillAllBlanksHint}
       keyboardAware={!wordBank}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       {/*
         Cümle satır düzeninde ve sarıyor. Çocuklar KELİME kelime; segmentin
@@ -154,6 +166,7 @@ export default function FillBlankQuestion({ question, onAnswer }: FillBlankQuest
               value={values[token.blankId] ?? null}
               focused={token.blankId === focusedBlankId}
               editable={!wordBank}
+              disabled={isAnswered}
               onPress={() => handleSlotPress(token.blankId)}
               onChangeText={(text) => handleChangeText(token.blankId, text)}
             />
@@ -174,7 +187,7 @@ export default function FillBlankQuestion({ question, onAnswer }: FillBlankQuest
                 label={chip.text}
                 selected={false}
                 // Bütün yuvalar doluyken havuz basılamaz — önce bir yuva boşaltılmalı.
-                disabled={focusedBlankId === null}
+                disabled={isAnswered || focusedBlankId === null}
                 onPress={() => handleChipPress(chip)}
               />
             ))}

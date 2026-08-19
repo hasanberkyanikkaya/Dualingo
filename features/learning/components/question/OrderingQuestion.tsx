@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 
 import { layout, spacing } from '@/constants/spacing';
@@ -20,6 +22,9 @@ const ANSWER_MIN_HEIGHT = layout.minTouchTarget;
 type OrderingQuestionProps = {
   question: QuestionOfType<'ordering'>;
   onAnswer: (answer: AnswerOfType<'ordering'>) => void;
+  /** Cevap verildi mi — kontroller kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -36,7 +41,12 @@ type OrderingQuestionProps = {
  *
  * `question.correctOrder` okunmuyor.
  */
-export default function OrderingQuestion({ question, onAnswer }: OrderingQuestionProps) {
+export default function OrderingQuestion({
+  question,
+  onAnswer,
+  isAnswered = false,
+  footer,
+}: OrderingQuestionProps) {
   const { theme } = useTheme();
   const [placedIds, setPlacedIds] = useQuestionState<string[]>(question.id, []);
 
@@ -92,6 +102,8 @@ export default function OrderingQuestion({ question, onAnswer }: OrderingQuestio
       canSubmit={items.length > 0 && placedIds.length === items.length}
       onSubmit={handleSubmit}
       submitHint={strings.question.orderAllHint}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       <View style={styles.zone}>
         {/*
@@ -128,6 +140,7 @@ export default function OrderingQuestion({ question, onAnswer }: OrderingQuestio
                   text: item.text,
                 })}
                 accessibilityHint={strings.a11y.orderingRemoveHint}
+                disabled={isAnswered}
                 onPress={() => handleRemove(item.id, item.text)}
               />
             ))
@@ -146,6 +159,7 @@ export default function OrderingQuestion({ question, onAnswer }: OrderingQuestio
               key={item.id}
               label={item.text}
               selected={false}
+              disabled={isAnswered}
               onPress={() => handleAdd(item.id, item.text)}
             />
           ))}

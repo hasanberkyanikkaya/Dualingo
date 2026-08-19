@@ -29,9 +29,18 @@ type BlankSlotProps = {
   focused: boolean;
   /** Kelime havuzu kipi — dolu yuvaya dokunmak boşaltır */
   onPress?: () => void;
-  /** Klavye kipi — yuva yerine yazı alanı çizilir */
+  /**
+   * Klavye kipi — yuva yerine yazı alanı çizilir.
+   * ⚠️ Bu bir KİP bayrağı, "düzenlenebilir mi" değil. Kilitleme `disabled` ile.
+   */
   editable: boolean;
   onChangeText?: (text: string) => void;
+  /**
+   * Cevap kilitlendikten sonra dokunma ve yazma kapanır — RENGİ değişmez,
+   * kullanıcı geri bildirim panelini okurken cevabını görmeye devam etmeli.
+   * (`OptionCard`'ın aynı kararı; `disabledText`/`disabledBackground` 1.97.)
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -56,6 +65,7 @@ export default function BlankSlot({
   onPress,
   editable,
   onChangeText,
+  disabled = false,
 }: BlankSlotProps) {
   const { theme } = useTheme();
 
@@ -70,6 +80,7 @@ export default function BlankSlot({
         accessibilityLabel={formatString(strings.a11y.blankEmpty, { index })}
         value={value ?? ''}
         onChangeText={onChangeText}
+        editable={!disabled}
         // Türkçe içerikte otomatik düzeltme ve büyük harfe çevirme cevabı bozar.
         autoCorrect={false}
         autoCapitalize="none"
@@ -92,7 +103,9 @@ export default function BlankSlot({
       accessibilityHint={value !== null ? strings.a11y.blankClearHint : undefined}
       hitSlop={{ top: HIT_SLOP, bottom: HIT_SLOP }}
       onPress={onPress}
-      disabled={value === null}
+      // Boş yuvaya dokunmanın işlevi yok (boşaltacak bir şey yok); cevap
+      // kilitlendiyse dolu yuva da basılamaz.
+      disabled={disabled || value === null}
     >
       <View
         style={[

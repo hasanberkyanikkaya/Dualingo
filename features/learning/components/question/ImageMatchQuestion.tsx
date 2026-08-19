@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import { spacing } from '@/constants/spacing';
@@ -19,6 +21,9 @@ type Match = { imagePairId: string; textPairId: string };
 type ImageMatchQuestionProps = {
   question: QuestionOfType<'image_match'>;
   onAnswer: (answer: AnswerOfType<'image_match'>) => void;
+  /** Cevap verildi mi — kontroller kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -38,7 +43,12 @@ type ImageMatchQuestionProps = {
  * ayrılamaz: `primary`/`success` 1.10:1 ve dört ayrı hüe zaten WCAG 1.4.1'e
  * takılırdı.
  */
-export default function ImageMatchQuestion({ question, onAnswer }: ImageMatchQuestionProps) {
+export default function ImageMatchQuestion({
+  question,
+  onAnswer,
+  isAnswered = false,
+  footer,
+}: ImageMatchQuestionProps) {
   const pairs = Array.isArray(question.pairs) ? question.pairs : [];
   warnOnDuplicateIds(pairs, `"${question.id}" çiftleri`);
 
@@ -134,6 +144,8 @@ export default function ImageMatchQuestion({ question, onAnswer }: ImageMatchQue
       canSubmit={pairs.length > 0 && matches.length === pairs.length}
       onSubmit={handleSubmit}
       submitHint={strings.question.matchAllHint}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       <View style={styles.grid}>
         {pairs.map((pair) => {
@@ -144,6 +156,7 @@ export default function ImageMatchQuestion({ question, onAnswer }: ImageMatchQue
               image={pair.image}
               selected={pendingImageId === pair.id}
               badge={index === -1 ? undefined : index + 1}
+              disabled={isAnswered}
               onPress={() => handleImagePress(pair.id)}
             />
           );
@@ -165,6 +178,7 @@ export default function ImageMatchQuestion({ question, onAnswer }: ImageMatchQue
                   ? formatString(strings.a11y.matchedPair, { text: pair.text, number: index + 1 })
                   : pair.text
               }
+              disabled={isAnswered}
               onPress={() => handleTextPress(pair.id)}
             />
           );

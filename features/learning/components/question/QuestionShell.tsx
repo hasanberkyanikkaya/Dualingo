@@ -37,6 +37,19 @@ type QuestionShellProps = {
    * yükseliyor. İki tarafta da uygulamak Android'de çift dolgu yapardı.
    */
   keyboardAware?: boolean;
+  /**
+   * Cevap verildi mi. Doluyken kabuğun kendi alt bölümü (ipucu + "Kontrol et")
+   * çizilmez; yerini `footer` alır.
+   */
+  isAnswered?: boolean;
+  /**
+   * Cevap sonrası alt bölüm — ders ekranının geri bildirim paneli.
+   *
+   * Panel kabuğun İÇİNDE, kardeşi olarak altında değil: kardeş olsaydı kabuğun
+   * kendi butonu üstte kalır ve kaydırma alanı önce büyüyüp sonra panelin
+   * itmesiyle küçülürdü, yani gözle görülür bir çift sıçrama olurdu.
+   */
+  footer?: ReactNode;
 };
 
 /**
@@ -72,6 +85,8 @@ export default function QuestionShell({
   onSubmit,
   submitHint,
   keyboardAware = false,
+  isAnswered = false,
+  footer,
 }: QuestionShellProps) {
   const { theme } = useTheme();
 
@@ -111,33 +126,39 @@ export default function QuestionShell({
         Alt bölüm kaydırmanın DIŞINDA. Kaysaydı buton her soruda başka yerde
         olurdu ve Faz 2.3'te geri bildirim paneli onun yerini alırken zıplardı.
       */}
-      <View style={styles.footer}>
-        {/*
-          İpucu metni söküp takılmıyor, saydamlaşıyor: söküldüğünde buton yukarı
-          kayardı. Emsal ve aynı gerekçe: Button'ın yükleniyorken etiketi
-          `opacity: 0` ile tutması.
-        */}
-        <Text
-          accessibilityElementsHidden={canSubmit}
-          importantForAccessibility={canSubmit ? 'no-hide-descendants' : 'auto'}
-          style={[
-            textStyles.bodySmall,
-            styles.hint,
-            canSubmit ? styles.hintHidden : null,
-            { color: theme.textSecondary },
-          ]}
-        >
-          {submitHint ?? strings.question.selectAnswerHint}
-        </Text>
+      {isAnswered ? (
+        // Panel `styles.footer` ALMIYOR: o stil kendi dolgusunu ve boşluğunu
+        // taşıyor, panelin kendi dolgusuyla çift olurdu.
+        footer
+      ) : (
+        <View style={styles.footer}>
+          {/*
+            İpucu metni söküp takılmıyor, saydamlaşıyor: söküldüğünde buton
+            yukarı kayardı. Emsal ve aynı gerekçe: Button'ın yükleniyorken
+            etiketi `opacity: 0` ile tutması.
+          */}
+          <Text
+            accessibilityElementsHidden={canSubmit}
+            importantForAccessibility={canSubmit ? 'no-hide-descendants' : 'auto'}
+            style={[
+              textStyles.bodySmall,
+              styles.hint,
+              canSubmit ? styles.hintHidden : null,
+              { color: theme.textSecondary },
+            ]}
+          >
+            {submitHint ?? strings.question.selectAnswerHint}
+          </Text>
 
-        <Button
-          label={strings.lesson.checkAnswer}
-          onPress={onSubmit}
-          size="large"
-          fullWidth
-          disabled={!canSubmit}
-        />
-      </View>
+          <Button
+            label={strings.lesson.checkAnswer}
+            onPress={onSubmit}
+            size="large"
+            fullWidth
+            disabled={!canSubmit}
+          />
+        </View>
+      )}
     </Root>
   );
 }

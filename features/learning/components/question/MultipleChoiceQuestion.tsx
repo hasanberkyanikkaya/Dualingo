@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import strings from '@/constants/strings';
 
 import ChoiceList from './ChoiceList';
@@ -9,6 +11,9 @@ import type { AnswerOfType, QuestionOfType } from '@/types';
 type MultipleChoiceQuestionProps = {
   question: QuestionOfType<'multiple_choice'>;
   onAnswer: (answer: AnswerOfType<'multiple_choice'>) => void;
+  /** Cevap verildi mi — şıklar kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -27,6 +32,8 @@ type MultipleChoiceQuestionProps = {
 export default function MultipleChoiceQuestion({
   question,
   onAnswer,
+  isAnswered = false,
+  footer,
 }: MultipleChoiceQuestionProps) {
   const [selectedOptionId, setSelectedOptionId] = useQuestionState<string | null>(
     question.id,
@@ -56,12 +63,15 @@ export default function MultipleChoiceQuestion({
       hint={question.hint}
       canSubmit={selectedOptionId !== null}
       onSubmit={handleSubmit}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       <ChoiceList
         options={options}
         selectedId={selectedOptionId}
         onSelect={setSelectedOptionId}
         questionId={question.id}
+        disabled={isAnswered}
       />
     </QuestionShell>
   );

@@ -75,8 +75,18 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
             (kayıt boş, dosya yokken alt metni gösteriliyor)
             Yan ürün: Chip / BlankSlot / ImageTile / ChoiceList / useQuestionState
             / questionValidation / fillBlankLayout / useQuestionAudio
-[ ] 2.3 Ders akışı ekranı — app/lesson/[id].tsx (haritadaki dokunuş buraya bağlanacak)
+[x] 2.3 Ders akışı ekranı — app/lesson/[id].tsx
+        Harita artık derse bağlı; öğrenme motoru ilk kez uçtan uca çalışıyor
+        Saf katman: answerEngine + lessonScoring + lessonSession (test için hazır)
+        ⚠️ Türkçe harf tuzağı gerçek çıktı: 'ISLAM' naif küçültmeyle 'islam'
+        oluyor, 'ıslam' değil — İ/I önce elle eşleniyor
+        Yıldız %60/80/100, XP ilk seferde tam + tekrarda %25
+        Dikiş bırakıldı: useCompleteLevel (2.4 gövdesini dolduracak)
+        CLAUDE.md'de iki yanlış sözleşme düzeltildi (BlankSlot disabled,
+        SafeAreaView dört kenar)
 [ ] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silinecek
+        ⚠️ İşi DAR: iki kanca gövdesi + store + unlock.ts + test koşucusu.
+        /app ve /components'e dokunulmayacak — 2.3 dikişleri bunun için bıraktı
 
 
 === AÇIK SORULAR ===

@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { StyleSheet, View } from 'react-native';
 
 import { layout } from '@/constants/spacing';
@@ -12,6 +14,9 @@ import type { AnswerOfType, QuestionOfType } from '@/types';
 type TrueFalseQuestionProps = {
   question: QuestionOfType<'true_false'>;
   onAnswer: (answer: AnswerOfType<'true_false'>) => void;
+  /** Cevap verildi mi — kontroller kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -22,7 +27,12 @@ type TrueFalseQuestionProps = {
  *
  * `question.correctAnswer` okunmuyor.
  */
-export default function TrueFalseQuestion({ question, onAnswer }: TrueFalseQuestionProps) {
+export default function TrueFalseQuestion({
+  question,
+  onAnswer,
+  isAnswered = false,
+  footer,
+}: TrueFalseQuestionProps) {
   const [value, setValue] = useQuestionState<boolean | null>(question.id, null);
 
   function handleSubmit() {
@@ -40,6 +50,8 @@ export default function TrueFalseQuestion({ question, onAnswer }: TrueFalseQuest
       hint={question.hint}
       canSubmit={value !== null}
       onSubmit={handleSubmit}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       <View accessibilityRole="radiogroup" style={styles.list}>
         {/*
@@ -50,11 +62,13 @@ export default function TrueFalseQuestion({ question, onAnswer }: TrueFalseQuest
         <OptionCard
           label={strings.question.trueLabel}
           selected={value === true}
+          disabled={isAnswered}
           onPress={() => setValue(true)}
         />
         <OptionCard
           label={strings.question.falseLabel}
           selected={value === false}
+          disabled={isAnswered}
           onPress={() => setValue(false)}
         />
       </View>

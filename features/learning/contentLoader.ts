@@ -2,7 +2,7 @@ import pathIndexJson from '@/content/lessons/path.json';
 import unit01Json from '@/content/lessons/01-temel-inanc.json';
 import unit02Json from '@/content/lessons/02-islamin-sartlari.json';
 
-import type { LearningPath, LearningPathIndex, Unit, UnitRef } from '@/types';
+import type { LearningPath, LearningPathIndex, Level, LevelId, Unit, UnitRef } from '@/types';
 
 /**
  * İçerik yükleyici — JSON ile tiplenmiş dünya arasındaki TEK geçiş noktası.
@@ -158,4 +158,27 @@ export function getLearningPath(): LearningPath {
   };
 
   return cachedPath;
+}
+
+/** Seviye kimliğinden seviyeye — ilk çağrıda kurulur. */
+let cachedLevels: Map<LevelId, Level> | null = null;
+
+/**
+ * Bir seviyeyi kimliğiyle bulur. Yoksa `null` — fırlatmaz.
+ *
+ * Kimlikler yolun tamamında benzersiz (CLAUDE.md kuralı, yükleyici `__DEV__`
+ * altında denetliyor), bu yüzden düz bir sözlük yeterli. Ders ekranı ve Faz
+ * 2.6'daki tespit sınavı bunu kullanacak.
+ */
+export function findLevelById(levelId: LevelId): Level | null {
+  if (cachedLevels === null) {
+    cachedLevels = new Map();
+    for (const unit of getLearningPath().units) {
+      for (const level of unit.levels) {
+        cachedLevels.set(level.id, level);
+      }
+    }
+  }
+
+  return cachedLevels.get(levelId) ?? null;
 }

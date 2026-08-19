@@ -129,9 +129,13 @@ npx tsc --noEmit        # tip kontrolü
 
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
 Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
-Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.**
-Sırada **Faz 2.3 — ders akışı ekranı** (`app/lesson/[id].tsx`). O klasör hâlâ boş.
-⚠️ 2.3'e bırakılan sözleşmeler aşağıda ayrı başlıkta; oradan başla.
+Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.
+Faz 2.3 ders akışı ekranı — TAMAM.**
+Sırada **Faz 2.4 — ilerleme kaydı** (Zustand store + kilit açma + birim testleri).
+⚠️ 2.4'ün işi bilerek DAR: iki kanca gövdesi (`useLevelProgress`,
+`useCompleteLevel`) + yeni store + `unlock.ts` + test koşucusu. `/app`,
+`/components` ve soru bileşenleri **el sürülmeyecek** — 2.3 dikişleri bunun için
+bıraktı. Ayrıntı "Ders akışı kararları"nda.
 
 ⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Ne 2.1 ne 2.2a Card'a ihtiyaç duydu
 (ünite başlığı kart değil; şık kartı seçilebilir bir KONTROL, pasif yüzey değil).
@@ -558,8 +562,11 @@ bloklamıyor ama yayından önce şart.
 **Faz 2.3'ün uyması gereken sözleşmeler (şimdiden yazıldı):**
 - `<QuestionShell>` **sınırlı yükseklik ister**, asla bir `ScrollView` içine konmaz —
   `flex: 1` çöker, alt bölüm içerikten ayrılır.
-- Kabuk **güvenli alan payı okumaz**; ders ekranı `SafeAreaView edges={['bottom']}`
-  ile sarmalı, yoksa "Kontrol et" ana ekran çizgisine oturur.
+- Kabuk **güvenli alan payı okumaz**; ders ekranı sarmalı.
+  ⚠️ **DÜZELTME (2.3):** bu satır `edges={['bottom']}` diyordu ve YANLIŞTI —
+  ekranın bir `TopBar` taşıdığı varsayılmıştı. Ders ekranı `Screen`
+  kullanmıyor (odaklanmış bağlam, mercan şerit yok), dolayısıyla üst payı da
+  kimse çizmiyor. Doğrusu **dört kenar**: `['top','bottom','left','right']`.
 - Soru bileşenine **`key={question.id}`** verilmeli.
 - Kabuğa `isAnswered?: boolean` eklenip alt bölüm geri bildirim paneline
   bırakılacak — ~10 satır, tek dosya.
@@ -576,7 +583,12 @@ bloklamıyor ama yayından önce şart.
   çıkış yok. 2.2a'dan beri var. Ders ekranının atlama yolu olmalı ya da yükleyici
   cevaplanamayan soruyu düşürmeli.
 - `isAnswered` geldiğinde `Chip` / `ImageTile` / `BlankSlot`'a `disabled` olarak
-  inecek — üçü de bugün tüketicisiz `disabled?` taşıyor (`OptionCard`'ın emsali).
+  inecek.
+  ⚠️ **DÜZELTME (2.3):** bu satır "dördü de `disabled?` taşıyor" diyordu ve
+  YANLIŞTI — **`BlankSlot` taşımıyordu.** Üstelik orada `editable` adı zaten
+  "klavye kipi" anlamındaydı. 2.3 `BlankSlot`'a `disabled` ekledi ve iki dala da
+  geçirdi (`Pressable.disabled`, `TextInput.editable={!disabled}`); `editable`
+  kip bayrağı olarak kaldı.
 - ⚠️ Klavye açıkken alt bölüm fazla yükselirse çözüm: `KeyboardAvoidingView`'ı
   ders ekranına, `SafeAreaView`'ın **dışına** taşı ve `keyboardAware` prop'unu sil.
 
@@ -585,6 +597,84 @@ dizge ve anahtar→varlık eşlemesi hiçbir yerde yok. Metro değişken yollu `
 yapamıyor (`contentLoader`'ı statik kayda zorlayan duvarın aynısı). `expo-image`
 zaten bağımlılıkta. Görsel çizimi 2.2a'da bilerek atlandı; ImageMatch oturumu
 İLK İŞ olarak bu eşlemeyi çözmeli, yoksa tıkanarak açılır.
+
+**Ders akışı kararları (Oturum 2.3):**
+- **Üç saf dosya**: `answerEngine.ts` (değerlendirme), `lessonScoring.ts`
+  (yıldız/XP), `lessonSession.ts` (indirgeyici). React/RN/tema import etmiyorlar
+  — 2.4 test koşucusunu kurunca sıfır ek maliyetle kapsanacaklar.
+- ⚠️ **`normalizeTr` — Türkçe harf tuzağı ölçüldü ve gerçek.** `'ISLAM'` naif
+  `toLowerCase()` ile `'islam'` oluyor, `'ıslam'` değil; doğru cevap yanlış
+  işaretleniyor. `toLocaleLowerCase('tr')` de yetmiyor: Hermes'in tam ICU
+  içermeyen Android derlemesinde sessizce köke düşebiliyor. Bu yüzden `İ→i` ve
+  `I→ı` **önce elle** eşleniyor, sonra yerel küçültme. Aksan soyulmuyor —
+  varyant kararı `Blank.correctAnswers`'la içerik yazarının.
+- **Puanlama tam sayı aritmetiğiyle**: `correct*100 >= total*80` gibi. Kayan
+  nokta eşiğin tam üstündeki sonucu yanlış yöne yuvarlayabilirdi.
+  Eşikler %60/%80/%100 → 1/2/3; 3 yıldız kusursuzluk istiyor.
+- **XP yordayıcısı `status`, `attemptCount` DEĞİL**: tespit sınavıyla açılmış
+  seviye `attemptCount: 0` ama `status: 'skipped'` taşıyor, ilk gerçek denemesi
+  tam XP almalı. Tekrarda %25. ⚠️ `wasCompletedBefore` oturum BAŞINDA okunup
+  saklanıyor — canlı okunsaydı 2.4 kaydettiği anda XP gözün önünde düşerdi.
+- ⚠️ **Tamamlanma sinyali `advance` işleyicisinden gidiyor, `useEffect`'ten
+  DEĞİL.** `reactCompiler` + StrictMode etkileri iki kez çalıştırıyor; 2.4 dikişi
+  doldurduğu anda XP iki kez verilirdi. Sonuç dizisi `feedback` fazında zaten
+  kesinleştiği için işleyiciden çağırmak yapısal çözüm.
+- **Oturum durumu `useReducer`, Zustand DEĞİL.** 2.4 yazmadığı bir store'u
+  devralmasın; ayrıca store tekil ve 2.6'da tespit sınavı ile ders çakışırdı.
+  Çıkış zaten ilerlemeyi siliyor, saklanacak bir şey yok.
+- **Cevaplanamayan soru tuzağı iki katmanla çözüldü**: `isAnswerable` oturum
+  başında bir kez eliyor (ders uzunluğu sabit kalsın diye), ve X butonu koşulsuz
+  kaçış yolu. **Atla düğmesi EKLENMEDİ** — ürün kuralı "ders soru sayısı kadar
+  sürer" ve atlama yıldız puanlamasını anlamsızlaştırırdı. `contentLoader`'da
+  ayıklamak da elendi: yükleme anında ders uzunluğunu sessizce değiştirirdi.
+- **Geri bildirim paneli kabuğun ALT BÖLÜMÜNÜN YERİNE geçiyor** (`QuestionShell`
+  `+isAnswered` `+footer`), kardeşi olarak altına değil — kardeş olsaydı kaydırma
+  alanı iki kez sıçrardı. 2.4/2.6 için değişecek yer hâlâ tek dosya.
+- **Doğru/yanlış işareti sorunun ÜSTÜNE konmadı**, panelde anlatılıyor: bunu
+  altı tipin yalnızca üçünde yapmak mümkün (tek işaretlenebilir satırı olanlar),
+  yarısı işaretli bir model tekdüze metinden kötü. Gerekirse sonra
+  `ChoiceList`'e `resultById?` eklemek eklemeli bir değişiklik.
+- Renkler ölçüldü: yumuşak dolgu panelin sınırını çizemiyor (`successSoft` 1.14,
+  `errorSoft` 1.18); sınırı 2px `success` (4.63/10.05) ve `error` (4.81/6.92)
+  çiziyor. Durum ikonu biçim değiştiriyor (`checkmark-circle`/`close-circle`) —
+  `success`/`error` arası yalnızca 1.04 açık / 1.45 koyu.
+- ⚠️ **YENİ KURAL — panel içinde `textMuted` kullanılmaz**:
+  `textMuted`/`successSoft` koyu temada **4.16**, AA altı. İkincil satırlar
+  `textSecondary`.
+- ⚠️ **YENİ KURAL — `borderControl` yumuşak dolgu üzerine çizilmez**
+  (3.19 açık / **2.39 koyu**). 2.2e'nin `borderControl`/`surfaceAlt` bulgusuyla
+  aynı sınıf: **renkli yumuşak dolgular kontrol kenarlığı barındıramaz.**
+- **`Screen` kullanılmıyor**, ders kendi kabını kuruyor; `Screen`'e `hideTopBar`
+  prop'u da EKLENMEDİ (2.1'in `padded` reddiyle aynı gerekçe).
+- ⚠️ **iOS'ta kenardan kaydırarak geri, `BackHandler`'ın göremediği bir yol.**
+  Kullanıcı kaydırır, ders sessizce kaybolur, onay çıkmaz. Rota dosyasının
+  içinde `<Stack.Screen options={{ gestureEnabled: false }} />`.
+- ⚠️ RN 0.81'de `BackHandler.addEventListener` **abonelik döndürüyor**
+  (`sub.remove()`); `removeEventListener` kaldırıldı.
+- Çıkış onayı `Alert` (kullanıcı kararı). Sistem görünümü paleti kullanmıyor;
+  `theme.overlay`, `componentRadius.modal`, `elevation.modal` hâlâ tüketicisiz.
+  Özel pencereye geçmek tek çağrı yeri değişikliği.
+- ⚠️ **Kilitli seviye derin bağlantıyla engelleniyor**: `scheme: "dualingo"` +
+  typed routes ile `dualingo://lesson/level-u2-05` erişilebilir ve 2.4'ün kilit
+  mantığını atlatırdı.
+- ⚠️ `typedRoutes` tipleri (`.expo/types`) **yalnızca dev sunucusu çalışırken**
+  üretiliyor; `expo export` üretmiyor. Yeni rota eklendiğinde `npx expo start`
+  bir kez çalıştırılmadan `tsc` hata verir.
+- `strings.ts`'e **iki metin**: `lesson.yourAnswer`, `result.questionIndex`.
+  `colors.ts` değişmedi.
+
+**Faz 2.4'ün yapacağı, tam olarak:**
+- Yeni: `features/progress/store.ts` (Zustand + kalıcı kayıt),
+  `features/progress/unlock.ts` (saf `unlockNext` + birim testi), test koşucusu.
+- **İki kanca gövdesi**: `useLevelProgress` → `useProgressStore(s => s.levels)`,
+  `useCompleteLevel` → `useProgressStore(s => s.completeLevel)`.
+- Silinecek: `features/learning/mockProgress.ts`.
+- `completeLevel(summary)`: `stars: Math.max(prev, summary.stars)`,
+  `bestAccuracy: Math.max(prev, summary.accuracy)` (**aynı birim, 0–1 —
+  dönüştürme yok**), `attemptCount + 1`, `status='completed'`,
+  `xpTotal += summary.xpEarned`, streak, sonra `unlockNext`.
+- **El sürülmeyecek**: `/app`, `/components`, altı soru bileşeni, `QuestionShell`,
+  `levelStatus.ts`, `LessonSummary`.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

@@ -98,6 +98,7 @@ export const strings = {
     correct: 'Doğru',
     incorrect: 'Yanlış',
     correctAnswerIs: 'Doğru cevap: {answer}',
+    yourAnswer: 'Senin cevabın: {answer}',
     explanationTitle: 'Açıklama',
     playAudio: 'Sesi dinle',
     replayAudio: 'Tekrar dinle',
@@ -141,6 +142,9 @@ export const strings = {
     keepGoing: 'Yola devam',
     reviewMistakes: 'Yanlışları gözden geçir',
     backToPath: 'Yola dön',
+    /** Hata özetinde satır başlığı — örnek sorular hep "ÖRNEK SORU n" olduğu
+        için satırları ayırt eden tek şey bu numara. */
+    questionIndex: '{index}. soru',
   },
 
   /** XP, seri, rozetler */

@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -19,6 +21,9 @@ const PLAY_ICON_SIZE = spacing.xxl; // 32
 type AudioChoiceQuestionProps = {
   question: QuestionOfType<'audio_choice'>;
   onAnswer: (answer: AnswerOfType<'audio_choice'>) => void;
+  /** Cevap verildi mi — şıklar kilitlenir, alt bölümü `footer` devralır */
+  isAnswered?: boolean;
+  footer?: ReactNode;
 };
 
 /**
@@ -39,7 +44,12 @@ type AudioChoiceQuestionProps = {
  *
  * `question.correctOptionId` okunmuyor.
  */
-export default function AudioChoiceQuestion({ question, onAnswer }: AudioChoiceQuestionProps) {
+export default function AudioChoiceQuestion({
+  question,
+  onAnswer,
+  isAnswered = false,
+  footer,
+}: AudioChoiceQuestionProps) {
   const { theme } = useTheme();
   const audio = useQuestionAudio(question.audio);
 
@@ -72,6 +82,8 @@ export default function AudioChoiceQuestion({ question, onAnswer }: AudioChoiceQ
       hint={question.hint}
       canSubmit={selectedOptionId !== null}
       onSubmit={handleSubmit}
+      isAnswered={isAnswered}
+      footer={footer}
     >
       {audio.available ? (
         <Pressable
@@ -106,6 +118,7 @@ export default function AudioChoiceQuestion({ question, onAnswer }: AudioChoiceQ
         selectedId={selectedOptionId}
         onSelect={setSelectedOptionId}
         questionId={question.id}
+        disabled={isAnswered}
       />
     </QuestionShell>
   );
