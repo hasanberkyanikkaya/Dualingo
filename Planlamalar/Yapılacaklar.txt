@@ -51,7 +51,16 @@ Sonra Faz 1:
         lib/formatString.ts ({ad} yer tutucusu doldurma — Faz 0.3'te söz verilmişti)
     [ ] Card — ATLANDI, 2.1 buna ihtiyaç duymadı. Kendi oturumunda yazılabilir.
 [ ] 1.3 EAS dev build — telefonunda çalışan sürüm
-[ ] 1.4 Sentry
+        ⚠️ BİLİNÇLİ OLARAK ERTELENDİ (2.4 sonrası karar). Duvar teknik değil:
+        iOS ad hoc provisioning $99/yıl Apple hesabı istiyor, simulator macOS
+        istiyor, makine Windows, telefon iPhone. Android ücretsiz ama cihaz yok.
+        ⚠️ Erteleme yüzünden bekleyen HER ŞEY tek yerde:
+        CLAUDE.md → "Dev Build Borcu — Faz 1.3 gelince YAPILACAKLAR"
+        Kısaca bloke olanlar: MMKV kalıcılık, expo-updates/OTA (2.5),
+        Sentry (1.4), nitro-modules açık bağımlılık, bildirim doğrulaması (4),
+        tema tercihi kalıcılığı (3). Açılan kazanç: SDK 54 çivisi düşer.
+        Altyapı HAZIR — eksik olan tek şey: eas build --profile development
+[ ] 1.4 Sentry — @sentry/react-native kurulu bile değil, 1.3'e bağlı
 
 Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
 [x] 2.1 Seviye haritası ekranı

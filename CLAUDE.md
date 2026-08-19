@@ -143,12 +143,87 @@ bellek içi yedeğe düşüyor ve konsola uyarı basıyor. İlerleme oturum boyu
 çalışıyor, uygulama kapanınca sıfırlanıyor. **Faz 1.3 (dev build) alındığı gün
 kod değişmeden açılır.**
 
+---
+
+## Dev Build Borcu — Faz 1.3 gelince YAPILACAKLAR
+
+**Faz 1.3 (EAS geliştirme derlemesi) bilinçli olarak ERTELENDİ** (Oturum 2.4
+sonrası kullanıcı kararı). Sebep teknik değil, **para ve donanım**: iOS dev build
+ad hoc provisioning istiyor → **ücretli Apple Developer Program ($99/yıl)**;
+simulator derlemesi macOS istiyor, geliştirme makinesi Windows; geliştirme
+telefonu iPhone. Android tarafı ücretsiz ve mümkün ama elde Android cihaz yok.
+
+⚠️ **Bu bölüm bir KONTROL LİSTESİDİR.** Dev build alındığı gün baştan sona
+okunacak. Buradaki maddeler başka yerlerde dağınık halde de duruyor; burası
+onların tek toplandığı yer. Bir madde bitince başındaki kutu işaretlenir.
+
+**Hazır olan (tekrar kurulmasına gerek yok):** `eas.json` `development` profili
+duruyor (`developmentClient: true`, Android `apk`), `expo-dev-client@6.0.21`
+kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'da.
+**Eksik olan tek şey derlemeyi çalıştırmak:** `eas build --profile development`.
+
+### A. Tamamen BLOKE — dev build olmadan hiç çalışmıyor
+
+- [ ] **MMKV / kalıcı ilerleme.** `features/progress/storage.ts` bugün bellek içi
+      yedeğe düşüyor. Dev build'de **kod değişmeden** açılır; yapılacak iş
+      *doğrulama*: dersi bitir → uygulamayı tamamen kapat → aç → ilerleme duruyor
+      mu, konsolda MMKV uyarısı KAYBOLDU mu.
+- [ ] **`react-native-nitro-modules` açık bağımlılığa çevrilecek.** Bugün
+      `node_modules`'da var (`0.36.5`) ama `package.json`'da **yazılı değil** —
+      geçici bağımlılık olarak geliyor. MMKV'nin çalışma anı gereksinimi;
+      geçici bağımlılığa dayanmak `@react-navigation/native`'de bir kez ısırdı.
+      `npx expo install react-native-nitro-modules`.
+- [ ] **OTA güncelleme (`expo-updates`).** ⚠️ **Paket henüz KURULU DEĞİL** ve
+      Expo Go'da OTA hiç çalışmaz. Faz 2.5'in OTA yarısı *yapılandırılabilir* ama
+      **doğrulanamaz**; gerçek "mağazasız güncelleme" testi dev build ister.
+      Mimari kural 7'nin ("içerik gömülü, güncellemesi OTA") ayakta durduğu yer burası.
+- [ ] **Sentry (Faz 1.4).** ⚠️ `@sentry/react-native` **kurulu değil.** Yerel
+      modül; Expo Go'da kurulamaz. Yayından önce şart.
+
+### B. KISITLI — çalışıyor ama güvenilmez, dev build'de yeniden sınanmalı
+
+- [ ] **Bildirimler (Faz 4 — namaz vakti hatırlatıcıları).** `expo-notifications@0.32.17`
+      kurulu ve `app.json` eklentisinde yazılı. ⚠️ Ama SDK 53'ten beri **Expo Go'da
+      Android uzak bildirim kaldırıldı**; yerel zamanlanmış bildirim kısmen çalışıyor,
+      Expo uyarı basıyor. Namaz hatırlatıcısı yerel zamanlanmış bildirim olduğu için
+      Expo Go'da *bir şeyler* görünür — **ama ona bakıp "çalışıyor" denmemeli.**
+      Vakit doğruluğu ve arka planda tetiklenme yalnız dev build'de sınanabilir.
+- [ ] **Tema tercihi kalıcılığı (Faz 3).** `lib/useTheme.ts`'in yorumu "Faz 3'te
+      MMKV'ye bağlı Açık/Koyu/Sistem tercihi" diyor. Aynı MMKV duvarı. Faz 3'e
+      dev build'siz girilirse tercih uygulama kapanınca unutulur.
+
+### C. Dev build gelince AÇILAN kısıt (madde değil, kazanç)
+
+- [ ] **SDK 54 çivisi düşer.** "SDK sürümü kararı"ndaki *tek* gerekçe telefondaki
+      Expo Go'nun en fazla SDK 54 desteklemesiydi. Dev build'de Expo Go devre dışı
+      kalır ve **SDK yükseltmenin önü açılır.** ⚠️ Yükseltmeye geçmeden önce o
+      bölümdeki üç kırılma noktası (`expo-router/js-tabs`, `absoluteFill`,
+      `ThemeProvider` kaynağı) ve `npx expo install --fix` tuzağı tekrar okunmalı.
+
+### D. Etkilenmiyor — yanlışlıkla ertelenmesin
+
+Aşağıdakiler Expo Go'nun İÇİNDE geliyor; dev build beklemeye gerek YOK:
+`expo-sqlite` (namaz çizelgesi, Kur'an ilerlemesi), `expo-audio`, `expo-location`,
+`react-native-svg`, Reanimated + worklets, `expo-sensors` (kıble pusulası —
+⚠️ paket henüz kurulu değil ama Expo Go destekliyor, `npx expo install` yeter).
+
+### Dev build alındığı gün, sırayla
+
+1. `npx expo install react-native-nitro-modules expo-updates` (+ Sentry ayrı oturum)
+2. `eas build --profile development --platform android` (ya da iOS, hesap alındıysa)
+3. Derlemeyi cihaza kur, `npx expo start --dev-client` ile bağlan
+4. Yukarıdaki A ve B kutularını tek tek doğrula ve işaretle
+5. `npx expo-doctor` — 18/18 geçmeli
+6. Bu bölümü güncelle; tamamı bitince **sil** ve yerine tek satır bırak
+
+---
+
 ⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Ne 2.1 ne 2.2a Card'a ihtiyaç duydu
 (ünite başlığı kart değil; şık kartı seçilebilir bir KONTROL, pasif yüzey değil).
 Card kendi oturumunda yazılabilir ve artık kolay: kenarlık kararı 2.2a'da ölçüldü
 (`borderControl` 2px + `componentRadius.card`), gölge seçeneği elendi.
 **1.3 (dev build) ve 1.4 (Sentry) de yapılmadı** — ikisi de öğrenme motorunu
-bloklamıyor ama yayından önce şart.
+bloklamıyor ama yayından önce şart. Neyin beklediği "Dev Build Borcu"nda.
 
 **SDK sürümü kararı — SDK 54, bilinçli olarak sabit:**
 - Proje SDK 57'de başladı, **SDK 54'e indirildi.** Sebep: geliştirme telefonu
