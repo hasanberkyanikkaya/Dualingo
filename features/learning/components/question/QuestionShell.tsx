@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import Button from '@/components/Button';
 import { spacing } from '@/constants/spacing';
@@ -19,6 +19,24 @@ type QuestionShellProps = {
   /** Cevap oluştu mu — "Kontrol et" bunun tersinde pasif */
   canSubmit: boolean;
   onSubmit: () => void;
+  /**
+   * Alt bölümdeki ipucu. Verilmezse `strings.question.selectAnswerHint`.
+   *
+   * Varsayılan cümle ("Devam etmek için bir seçenek seç") yalnızca şık seçilen
+   * tipler için doğru; sıralama, boşluk doldurma ve eşleştirmede yapılan iş
+   * "seçmek" değil.
+   */
+  submitHint?: string;
+  /**
+   * Klavye açılınca alt bölüm yukarı kalksın mı. Yalnızca boşluk doldurmanın
+   * klavye kipi kullanıyor.
+   *
+   * ⚠️ Yalnız **iOS'ta** etkili. Android'de gerek yok: `app.json`
+   * `softwareKeyboardLayoutMode` ayarlamıyor, Expo varsayılanı `resize`,
+   * pencere küçülüyor ve `flex` ile sabitlenmiş alt bölüm kendiliğinden
+   * yükseliyor. İki tarafta da uygulamak Android'de çift dolgu yapardı.
+   */
+  keyboardAware?: boolean;
 };
 
 /**
@@ -52,15 +70,24 @@ export default function QuestionShell({
   children,
   canSubmit,
   onSubmit,
+  submitHint,
+  keyboardAware = false,
 }: QuestionShellProps) {
   const { theme } = useTheme();
 
+  // Klavye kipinde kök, alt bölümü iterek yukarı kaldıran bir sarmalayıcıya
+  // dönüşüyor; diğer beş tipte düz `View` kalıyor.
+  const Root = keyboardAware && Platform.OS === 'ios' ? KeyboardAvoidingView : View;
+
   return (
-    <View style={styles.root}>
+    <Root style={styles.root} behavior="padding">
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        // ⚠️ Olmazsa iki boşluklu klavye sorusunda ikinci yuvaya dokunuş
+        // "klavyeyi kapat" sayılıp yutuluyor ve yuva odaklanmıyor.
+        keyboardShouldPersistTaps="handled"
       >
         {/*
           Soru bloğu tek odak durağı: yönerge, metin ve ipucu birlikte okunuyor.
@@ -100,7 +127,7 @@ export default function QuestionShell({
             { color: theme.textSecondary },
           ]}
         >
-          {strings.question.selectAnswerHint}
+          {submitHint ?? strings.question.selectAnswerHint}
         </Text>
 
         <Button
@@ -111,7 +138,7 @@ export default function QuestionShell({
           disabled={!canSubmit}
         />
       </View>
-    </View>
+    </Root>
   );
 }
 

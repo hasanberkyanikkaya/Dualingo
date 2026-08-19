@@ -115,6 +115,19 @@ export const strings = {
     trueLabel: 'Doğru',
     falseLabel: 'Yanlış',
     selectAnswerHint: 'Devam etmek için bir seçenek seç',
+
+    /* Sıralama sorusu */
+    orderingYourOrder: 'Sıralaman',
+    orderingPool: 'Öğeler',
+    orderingEmpty: 'Aşağıdaki öğelere dokunarak sırala',
+    orderAllHint: 'Tüm öğeleri sıraya diz',
+
+    /* Boşluk doldurma */
+    fillBlankBank: 'Kelimeler',
+    fillAllBlanksHint: 'Tüm boşlukları doldur',
+
+    /* Görsel eşleştirme */
+    matchAllHint: 'Tüm eşleşmeleri kur',
   },
 
   /** Ders bitiş ekranı */
@@ -202,6 +215,25 @@ export const strings = {
     completedLevelButton: 'Tamamlanmış seviye',
     /** Türkçe sıra: "3 yıldızdan 2" */
     levelStars: '{total} yıldızdan {earned}',
+
+    /*
+     * Sıralama sorusu. Ekleme/çıkarma DUYURULMAK zorunda: dokunulan çip
+     * listeden kalkıyor, ekran okuyucu odağı kaybedip rastgele bir öğeyi
+     * okuyor. "Eklemek için iki kez dokun" ipucu bilerek YOK — `role="button"`
+     * o anonsu işletim sisteminin kendi dilinde zaten üretiyor.
+     */
+    orderingPositionLabel: '{position}. {text}',
+    orderingItemAdded: '{text} eklendi, {position}. sıra',
+    orderingItemRemoved: '{text} çıkarıldı',
+    orderingRemoveHint: 'Sıradan çıkarmak için iki kez dokun',
+
+    /* Boşluk doldurma — yuvalar sırayla numaralı okunur */
+    blankEmpty: '{index}. boşluk, boş',
+    blankFilled: '{index}. boşluk: {value}',
+    blankClearHint: 'Boşaltmak için iki kez dokun',
+
+    /* Görsel eşleştirme */
+    matchedPair: '{text} — {number}. eşleşme',
   },
 } as const;
 

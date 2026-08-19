@@ -67,11 +67,14 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
             + OptionCard + colors.ts'e borderControl jetonu
             ⚠️ Seçili/seçilmemiş kenarlık 1.40:1 → durumu radyo işaretinin
             BİÇİMİ taşıyor, rengi değil
-    [ ] 2.2b TrueFalseQuestion
-    [ ] 2.2c OrderingQuestion
-    [ ] 2.2d FillBlankQuestion
-    [ ] 2.2e ImageMatchQuestion  ⚠️ ÖNCE ImageRef.key → varlık eşlemesi çözülmeli
-    [ ] 2.2f AudioChoiceQuestion
+    [x] 2.2b-f TrueFalse / Ordering / FillBlank / ImageMatch / AudioChoice
+            Beşi TEK oturumda yapıldı (kullanıcı isteği; playbook ayrı ayrı diyordu)
+            ⚠️ Örnek sorular konumdan çözülebiliyordu — choices'lı 5 boşluğun
+            5'inde doğru cevap ilk sıradaydı. lib/shuffle.ts (tohumlu) yazıldı
+            ImageRef.key → varlık eşlemesi çözüldü: features/learning/imageRegistry.ts
+            (kayıt boş, dosya yokken alt metni gösteriliyor)
+            Yan ürün: Chip / BlankSlot / ImageTile / ChoiceList / useQuestionState
+            / questionValidation / fillBlankLayout / useQuestionAudio
 [ ] 2.3 Ders akışı ekranı — app/lesson/[id].tsx (haritadaki dokunuş buraya bağlanacak)
 [ ] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silinecek
 

@@ -129,10 +129,9 @@ npx tsc --noEmit        # tip kontrolü
 
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
 Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
-Faz 2.2a MultipleChoiceQuestion — TAMAM.**
-Sırada **Faz 2.2b — TrueFalseQuestion.** Sonra sırayla `OrderingQuestion`,
-`FillBlankQuestion`, `ImageMatchQuestion`, `AudioChoiceQuestion` — her biri
-AYRI oturum. Hepsi `QuestionShell`'i kullanır, yeni iskelet yazmaz.
+Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.**
+Sırada **Faz 2.3 — ders akışı ekranı** (`app/lesson/[id].tsx`). O klasör hâlâ boş.
+⚠️ 2.3'e bırakılan sözleşmeler aşağıda ayrı başlıkta; oradan başla.
 
 ⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Ne 2.1 ne 2.2a Card'a ihtiyaç duydu
 (ünite başlığı kart değil; şık kartı seçilebilir bir KONTROL, pasif yüzey değil).
@@ -498,6 +497,64 @@ bloklamıyor ama yayından önce şart.
   çizecek, React örneği yeniden kullanır ve sıradaki soru şıkkı seçili açılırdı.
   Bileşen kendi içinde koruyor; ders ekranı ayrıca `key={question.id}` vermeli.
 
+**Kalan beş soru tipi kararları (Oturum 2.2b–f, tek oturumda yapıldı):**
+- ⚠️ **Örnek sorular KONUMDAN çözülebiliyordu.** Denetlendi: `choices` taşıyan
+  beş boşluğun **beşinde de** doğru cevap ilk sırada; bir sıralama sorusunun
+  `correctOrder`'ı kimlik permutasyonu (`i1..i5`); `image_match` eşleşmesi tipte
+  yapısal olarak konumsal (`pairs[i].image` ↔ `pairs[i].text`). İçerik hatası
+  değil — doğru cevap gerçekten dizi konumunun fonksiyonu, dolayısıyla **bunu
+  bozmak SUNUMUN işi.** `lib/shuffle.ts` yazıldı.
+- ⚠️ **Karıştırma `question.id`'den TOHUMLU, `Math.random()` değil.**
+  `app.json`'da `reactCompiler: true`; derleyicinin belleklemesi ve StrictMode'un
+  çift çizimi saf çizim varsayıyor. Rastgele karıştırma her çizimde şıkları
+  yerinden oynatırdı. Kimlik permutasyonu çıkarsa bir kaydırılıyor.
+  Doğrulandı: sıralamada 6/6 soru artık sırayla açılmıyor; boşluk doldurmada
+  sistematik desen kırıldı (kalan 1/4 rastlantı ve **düzeltilmemeli** — bileşen
+  cevap anahtarını okumuyor, okusa yeni bir desen üretirdi).
+- **`Chip` üç yerde**: sıralama, kelime havuzu, eşleştirmenin metin listesi.
+  `badge` süs değil — sıralamada 5 öğe büyük yazıda satır sardığında okuma
+  sırasını, eşleştirmede dört eşzamanlı eşleşmeyi taşıyan tek şey
+  (`primary`/`success` 1.10:1, renk ayıramaz).
+- **Sıralama boş bölgesi KUTU DEĞİL**: `surfaceAlt` 1.10, `border` 1.27,
+  `borderStrong` 1.52, `disabledBackground` 1.18 — hiçbiri görünmüyor. Görünen
+  tek jeton `borderControl` ama o "dokunulabilir öğenin sınırı" diye tanımlandı;
+  cevap bölgesi dokunulabilir değil. Bölgeyi başlığı + `textMuted` yer tutucu
+  satırı taşıyor.
+- ⚠️ **`surfaceAlt` bu palette DEKORATİF bir dolgudur, hiçbir zaman bir dokunma
+  göstergesi taşıyamaz.** `borderControl`'ün `surfaceAlt` üzerindeki oranı
+  3.30 açık / **2.85 koyu**. Görsel yer tutucusu bu yüzden **şeffaf dolgulu** —
+  kenarlığın komşusu sayfa zemini olunca 3.64/3.46 ile sorun ortadan kalkıyor.
+- **Boşluk doldurma: segmentler KELİME KELİME parçalanıyor.** Satır içinde
+  `<View>` (yuva) barındırdığı için `flexWrap` gerekiyor, o da çocuk sınırında
+  sarıyor; segmentin tamamı tek çocuk olsaydı uzun Türkçe cümle kırılamaz blok
+  olup taşardı. `<Text>` içine `<View>` gömme yolu elendi (Android'de açık ölçü
+  istiyor, taban hizası güvenilmez). ⚠️ `alignItems: 'center'`, `'baseline'` değil.
+- **Odak saklanmıyor, TÜRETİLİYOR**: soldan ilk boş yuva. Dolu yuvaya dokunmak
+  boşaltıyor, yani odak değiştirmek = boşaltmak. Odaklı yuvada `primary` kenarlık
+  **+ imleç çubuğu** — `primary`/`borderControl` 1.40:1, renk tek başına yine
+  1.4.1'e takılırdı.
+- **Kip soru başına**, boşluk başına değil: bir boşlukta `choices` varsa tüm soru
+  kelime havuzu. Sekiz örnek soruda hiç karışık yok (denetlendi).
+- ⚠️ **Bileşen `value.trim()` verir, BAŞKA HİÇBİR ŞEY.** Türkçe harf katlaması
+  yerele bağlı: `'I'.toLowerCase()` → `'i'`, `'ı'` değil.
+- **`QuestionShell`'e üç eklemeli prop**: `submitHint` (varsayılan cümle
+  "seçenek seç" sıralama/boşluk/eşleştirme için yanlış), `keyboardAware`
+  (yalnız iOS; Android'de Expo varsayılanı `resize` zaten hallediyor),
+  ve `keyboardShouldPersistTaps="handled"` (⚠️ olmazsa iki boşluklu klavye
+  sorusunda ikinci yuvaya dokunuş yutuluyor).
+- **Ses yokken oynat butonu ÇİZİLMİYOR**, pasif de durmuyor — `types/learning.ts`
+  zaten öyle karar vermiş. Pasif buton "ses var ama bozuk" der.
+  ⚠️ **`fallbackPrompt`, `prompt`'un yerine GEÇMEZ** — ses uyaranının yerine
+  geçer; ikisi birbirini tamamlıyor. `answeredWithFallback` sabit yazılmıyor,
+  `useQuestionAudio`'dan `!available` olarak geliyor.
+- **`imageRegistry.ts` mimari mayını çözdü.** Anahtar = `assets/content/` altına
+  göreli yol. ⚠️ Kayıt **boş ve boş olmak zorunda**: var olmayan dosya için
+  `require` yazmak çalışma anı `null`'ı değil **Metro derleme hatası** verir.
+  Uyarı anahtar başına bir kez (çizimden çağrılıyor, `contentLoader` gibi
+  önbellek arkasında değil).
+- `useQuestionState` (5 tüketici), `questionValidation` (5), `ChoiceList` (2)
+  ortaklaştırıldı; MC de bunlara taşındı.
+
 **Faz 2.3'ün uyması gereken sözleşmeler (şimdiden yazıldı):**
 - `<QuestionShell>` **sınırlı yükseklik ister**, asla bir `ScrollView` içine konmaz —
   `flex: 1` çöker, alt bölüm içerikten ayrılır.
@@ -509,6 +566,19 @@ bloklamıyor ama yayından önce şart.
 - ⚠️ Cevaplanmış şıkkı yeşile/kırmızıya boyamak **tek başına görünmez**:
   `primary`/`success` **1.10**, `primary`/`error` **1.06**. Gösterge ikonu da
   biçim değiştirmeli. Kenarlıkların kendisi sorunsuz (`success` 4.63, `error` 4.81).
+- ⚠️ **`image_match` cevabı KÜME olarak karşılaştırılmalı**, dizi olarak değil —
+  `matches` sırası kullanıcının eşleştirme sırası, içerik sırası değil.
+- ⚠️ **`fill_blank` karşılaştırması Türkçe duyarlı olmalı**: `toLocaleLowerCase('tr')`,
+  ve `I`/`ı`/`İ` tuzağına dikkat. Motorda, **tek yerde**. Bileşen ham `trim()`
+  veriyor. `entries` `blankId` ile aranmalı, sıraya güvenilmemeli.
+- ⚠️ **Cevaplanamayan soru kullanıcıyı KİLİTLER.** İçerik yeterince bozuksa hiç
+  şık/boşluk çizilmiyor, `canSubmit` sonsuza dek `false` kalıyor ve dersten
+  çıkış yok. 2.2a'dan beri var. Ders ekranının atlama yolu olmalı ya da yükleyici
+  cevaplanamayan soruyu düşürmeli.
+- `isAnswered` geldiğinde `Chip` / `ImageTile` / `BlankSlot`'a `disabled` olarak
+  inecek — üçü de bugün tüketicisiz `disabled?` taşıyor (`OptionCard`'ın emsali).
+- ⚠️ Klavye açıkken alt bölüm fazla yükselirse çözüm: `KeyboardAvoidingView`'ı
+  ders ekranına, `SafeAreaView`'ın **dışına** taşı ve `keyboardAware` prop'unu sil.
 
 ⚠️ **Mimari mayın — Faz 2.2e (ImageMatch) buna çarpacak:** `ImageRef.key` düz
 dizge ve anahtar→varlık eşlemesi hiçbir yerde yok. Metro değişken yollu `require`
