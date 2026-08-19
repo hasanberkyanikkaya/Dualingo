@@ -1,18 +1,17 @@
-import { mockLevelProgress } from '@/features/learning/mockProgress';
+import { useProgressStore } from '@/features/progress/store';
 
 import type { LevelId, LevelProgress } from '@/types';
 
 /**
  * İlerleme kayıtlarının ekrana ulaştığı tek kapı — "dikiş yeri".
  *
- * Bugün sahte veriyi döndürüyor. Faz 2.4'te gövdesi Zustand store'una bağlanacak
- * (`useProgressStore((s) => s.levels)`) ve `mockProgress.ts` silinecek.
+ * Faz 2.4'te gövdesi store'a bağlandı ve `mockProgress.ts` silindi.
+ * **Harita bileşenlerinin hiçbirine dokunulmadı** — kancanın düz bir fonksiyon
+ * yerine kanca olarak yazılmasının bütün sebebi buydu.
  *
- * ⚠️ Bilerek **fonksiyon değil kanca**. Düz bir `getMockProgress()` yazsaydık
- * Faz 2.4'te fonksiyon çağrısı kanca çağrısına dönüşecek, yani her çağrı yeri
- * değişecekti. Kanca olarak yazıldığı için o gün sadece bu dosyanın gövdesi
- * değişir; harita bileşenlerine hiç dokunulmaz.
+ * ⚠️ Seçici doğrudan `s.levels` veriyor; `unlock.ts` değişiklik olmadığında
+ * AYNI referansı döndürdüğü için gereksiz yeniden çizim olmuyor.
  */
 export function useLevelProgress(): Record<LevelId, LevelProgress> {
-  return mockLevelProgress;
+  return useProgressStore((state) => state.levels);
 }

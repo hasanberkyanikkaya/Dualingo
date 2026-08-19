@@ -130,12 +130,18 @@ npx tsc --noEmit        # tip kontrolü
 **Faz 0 — TAMAM** (Oturum 0.1–0.5). **Faz 1.1 — TAMAM. Faz 1.2 Button — TAMAM.
 Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
 Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.
-Faz 2.3 ders akışı ekranı — TAMAM.**
-Sırada **Faz 2.4 — ilerleme kaydı** (Zustand store + kilit açma + birim testleri).
-⚠️ 2.4'ün işi bilerek DAR: iki kanca gövdesi (`useLevelProgress`,
-`useCompleteLevel`) + yeni store + `unlock.ts` + test koşucusu. `/app`,
-`/components` ve soru bileşenleri **el sürülmeyecek** — 2.3 dikişleri bunun için
-bıraktı. Ayrıntı "Ders akışı kararları"nda.
+Faz 2.3 ders akışı ekranı — TAMAM.
+Faz 2.4 ilerleme kaydı — TAMAM.**
+Sırada **Faz 2.5 — içerik doğrulama + OTA (`expo-updates`)**.
+
+⚠️ **2.4'te `/app`, `/components` ve altı soru bileşenine HİÇ dokunulmadı.**
+2.3'ün bıraktığı iki kanca dikişi tuttu; değişen tek şey gövdeleri oldu.
+Ayrıntı "İlerleme kaydı kararları"nda.
+
+⚠️ **KALICILIK BUGÜN KAPALI.** MMKV Expo Go'da yok; `features/progress/storage.ts`
+bellek içi yedeğe düşüyor ve konsola uyarı basıyor. İlerleme oturum boyunca doğru
+çalışıyor, uygulama kapanınca sıfırlanıyor. **Faz 1.3 (dev build) alındığı gün
+kod değişmeden açılır.**
 
 ⚠️ **Faz 1.2c (Card) ATLANDI, silinmedi.** Ne 2.1 ne 2.2a Card'a ihtiyaç duydu
 (ünite başlığı kart değil; şık kartı seçilebilir bir KONTROL, pasif yüzey değil).
@@ -663,18 +669,71 @@ zaten bağımlılıkta. Görsel çizimi 2.2a'da bilerek atlandı; ImageMatch otu
 - `strings.ts`'e **iki metin**: `lesson.yourAnswer`, `result.questionIndex`.
   `colors.ts` değişmedi.
 
-**Faz 2.4'ün yapacağı, tam olarak:**
-- Yeni: `features/progress/store.ts` (Zustand + kalıcı kayıt),
-  `features/progress/unlock.ts` (saf `unlockNext` + birim testi), test koşucusu.
-- **İki kanca gövdesi**: `useLevelProgress` → `useProgressStore(s => s.levels)`,
-  `useCompleteLevel` → `useProgressStore(s => s.completeLevel)`.
-- Silinecek: `features/learning/mockProgress.ts`.
-- `completeLevel(summary)`: `stars: Math.max(prev, summary.stars)`,
-  `bestAccuracy: Math.max(prev, summary.accuracy)` (**aynı birim, 0–1 —
-  dönüştürme yok**), `attemptCount + 1`, `status='completed'`,
-  `xpTotal += summary.xpEarned`, streak, sonra `unlockNext`.
-- **El sürülmeyecek**: `/app`, `/components`, altı soru bileşeni, `QuestionShell`,
-  `levelStatus.ts`, `LessonSummary`.
+**İlerleme kaydı kararları (Oturum 2.4):**
+- **İki kanca gövdesi doldu, çağrı yerleri değişmedi**: `useLevelProgress` →
+  `useProgressStore((s) => s.levels)`, `useCompleteLevel` →
+  `useProgressStore((s) => s.completeLevel)`. `mockProgress.ts` silindi.
+  2.1 ve 2.3'ün bunları düz fonksiyon yerine kanca yazmasının bütün kazancı bu.
+- **Karar mantığı store'un İÇİNDE DEĞİL.** Üç saf dosya: `unlock.ts` (kilit),
+  `streak.ts` (seri), `levelRecord.ts` (kayıt birleştirme). Store yalnızca onları
+  sırayla uygulayıp sonucu kalıcı hale getiriyor. `levelRecord.ts` bilerek store'dan
+  ÇIKARILDI: "kötü tekrar yıldızı geri almaz" kuralı kilit hatasıyla aynı sınıftan —
+  sessiz, elle görülmez, tek satırlık testle yakalanır.
+- ⚠️ **`ensureEntryPoint` olmadan temiz kurulum TAMAMEN KİLİTLİ açılır.** Hiç kayıt
+  yok → her seviye `locked` → tamamlanacak bir şey yok → `unlockNext` hiç
+  tetiklenmez. Mock veri bunu gizliyordu (elle yazılmış kayıtlar ilk seviyeyi zaten
+  açık gösteriyordu); gerçek boş durum 2.4'te ilk kez ortaya çıktı.
+- **`unlockNext` asla geri düşürmez**: sıradaki seviyenin yaşayan kaydı varsa
+  (`available`/`skipped`/`completed`) sözlük **aynı referansla** döner. Tespit
+  sınavıyla açılmış seviye, önceki seviyenin tekrarı yüzünden `available`'a inmemeli.
+  Aynı referans kuralı ayrıca haritayı gereksiz yeniden çizmekten koruyor.
+- **Yumuşak silinmiş kayıt DİRİLTİLİR**, atlanmaz: `deletedAt !== null` kayıt
+  `levelStatus.ts`'e göre "hiç açılmamış" demek, dolayısıyla üzerine taze
+  `available` yazılır.
+- **Zaman kaynağı `summary.completedAt`, `Date.now()` DEĞİL** — tamamlama
+  ekranındaki özet ile diske yazılan kayıt aynı anı göstermeli.
+- **`completedAt` ilk tamamlamada sabitlenir**, tekrarda korunur; her denemede
+  değişen alan `lastAttemptAt`. `bestAccuracy` ile `summary.accuracy` **aynı
+  birimde** (0–1), dönüştürme yok.
+- ⚠️ **Seri hesabı epoch farkını 86.400.000'e BÖLMEZ.** Yaz saati geçişinin olduğu
+  gün 23 ya da 25 saat sürer ve bölme o gün seriyi kırar. Tarih parçaları
+  `Date.UTC` ile gece yarısına sabitlenip karşılaştırılıyor. `toLocalIsoDate` de
+  `toISOString()` kullanmıyor — akşam 23:30'da bitirilen ders UTC'de ertesi güne
+  düşerdi.
+- **Store API'si dar**: `completeLevel` + `resetProgress`. `placement` alanı
+  durumda duruyor ama **yazıcısı yok** — o 2.6'nın işi.
+- **Depolama senkron olmak ZORUNDA.** MMKV senkron olduğu için `persist` ilk
+  çizimden önce hidre oluyor ve harita tek bir kare bile "her şey kilitli"
+  görünmüyor. Asenkron depolama seçilseydi `/app` altına bir yükleme durumu
+  gerekirdi — 2.4'ün "arayüze dokunma" kuralının ihlali.
+- ⚠️ **MMKV `require` ile TEMBEL yükleniyor, statik `import` ile değil.** Nitro
+  import ANINDA da fırlatabiliyor, yalnızca çağrı anında değil; statik import
+  yeterli olmazdı ve uygulama Expo Go'da hiç açılmazdı.
+- ⚠️ **MMKV v4 API'si `new MMKV()` DEĞİL**: `createMMKV({ id })`, ve silme metodu
+  `delete` değil **`remove`**. v3 örnekleri kopyalanırsa çalışmaz.
+- ⚠️ `react-native-nitro-modules` (MMKV'nin çalışma anı gereksinimi) `package.json`'da
+  **açık bağımlılık değil**, geçici olarak duruyor. Dev build kurulurken açık
+  bağımlılığa çevrilmeli.
+
+**Test altyapısı kararları (Oturum 2.4):**
+- **Sıfır test bağımlılığı.** `npm test` → `node --test` + Node 24'ün yerleşik
+  TypeScript tip soyması. Yeni paket yok, babel yok, ikili dosya yok.
+- ⚠️ **`tsx` denendi ve ELENDİ.** Bağımlılığı `esbuild`, kurulumda kendi `.exe`sini
+  `EBUSY` ile kilitliyor: proje klasörü **OneDrive altında** ve senkronizasyon yeni
+  yazılan ikiliyi tutuyor. Her temiz `npm install`ta tekrarlardı.
+- ⚠️ **`jest-expo` de elendi**: babel dönüşümü için yapılandırma dosyası ister,
+  CLAUDE.md'nin "`babel.config.js` yok ve olmayacak" kuralıyla çatışır.
+- `tests/setup.ts` iki iş yapıyor: `@/` takma adını `module.registerHooks` ile
+  çözüyor (Node `tsconfig` `paths`ı bilmez) ve `__DEV__`i `false` tanımlıyor
+  (Node'da yok, tanımsızsa `ReferenceError`).
+- ⚠️ **Tip soyma `enum`, `namespace` ve kurucu parametre özelliklerini
+  DESTEKLEMEZ.** Proje bunların hiçbirini kullanmıyor; yeni kod da kullanmamalı,
+  yoksa testler çalışmaz. Ayrıca tip importları **`import type`** yazılmalı —
+  soyucu değer importunu silmez ve çalışma anında çözülemeyen ad kalır.
+- **81 test geçiyor.** 2.4'ün kendi dosyaları (`unlock`, `streak`, `levelRecord`)
+  ve bedava kapsam olarak 2.1/2.3'ün saf dosyaları (`levelStatus`,
+  `lessonScoring`, `answerEngine` — özellikle `normalizeTr`'nin Türkçe `I`/`İ`
+  tuzağı uçtan uca sınandı).
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

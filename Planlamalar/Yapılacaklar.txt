@@ -84,9 +84,13 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         Dikiş bırakıldı: useCompleteLevel (2.4 gövdesini dolduracak)
         CLAUDE.md'de iki yanlış sözleşme düzeltildi (BlankSlot disabled,
         SafeAreaView dört kenar)
-[ ] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silinecek
-        ⚠️ İşi DAR: iki kanca gövdesi + store + unlock.ts + test koşucusu.
-        /app ve /components'e dokunulmayacak — 2.3 dikişleri bunun için bıraktı
+[x] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silindi
+        /app ve /components'e HİÇ dokunulmadı — 2.3 dikişleri tuttu
+        Saf + testli: unlock.ts, streak.ts, levelRecord.ts (81 test geçiyor)
+        Test koşucusu SIFIR bağımlılık: node --test + Node 24 tip soyma
+        (tsx denendi, esbuild ikilisi OneDrive'da EBUSY ile kilitlendi)
+        ⚠️ MMKV Expo Go'da yok — storage.ts bellek içi yedeğe düşüyor,
+        kalıcılık dev build (1.3) gelene kadar KAPALI, konsolda uyarı var
 
 
 === AÇIK SORULAR ===
