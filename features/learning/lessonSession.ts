@@ -50,6 +50,15 @@ export type LessonSessionState = {
    * önünde %25'e düşerdi.
    */
   wasCompletedBefore: boolean;
+  /**
+   * Seviyenin bu oturumdan ÖNCEKİ en iyi yıldızı.
+   *
+   * ⚠️ `wasCompletedBefore` ile AYNI tuzak, aynı gerekçe: oturum başında bir kez
+   * okunup saklanıyor. Canlı okunsaydı `completeLevel` sonucu yazdığı anda değer
+   * bu koşunun yıldızına dönerdi ve `isNewRecord` her zaman `false` çıkardı —
+   * yani kutlama hiçbir tekrarda oynamazdı.
+   */
+  previousStars: StarCount;
 };
 
 export type LessonAction =
@@ -65,6 +74,15 @@ export type LessonSummary = {
   accuracy: number;
   xpEarned: number;
   isFirstCompletion: boolean;
+  /**
+   * Bu koşu önceki en iyi dereceyi geçti mi.
+   *
+   * Kutlamanın ikinci tetikleyicisi (`isFirstCompletion || isNewRecord`): sıradan
+   * bir tekrar sessiz geçsin, gerçekten iyileşen bir tekrar kutlansın diye.
+   * İlk tamamlamada `previousStars` 0 olduğu için 0 yıldızla biten ilk koşuda
+   * `false` çıkar — o durumu `isFirstCompletion` zaten karşılıyor.
+   */
+  isNewRecord: boolean;
   /** Yalnız yanlışlar, sorulma sırasıyla. */
   mistakes: QuestionResult[];
   completedAt: Timestamp;
@@ -83,6 +101,9 @@ export type LessonSummary = {
 export function createQuestionSession(
   questions: readonly Question[],
   wasCompletedBefore = false,
+  // ⚠️ Varsayılan 0 ZORUNLU: tespit sınavı (`app/placement`) bu fonksiyonu tek
+  // argümanla çağırıyor ve bir seviyesi — dolayısıyla yıldızı — yok.
+  previousStars: StarCount = 0,
 ): LessonSessionState {
   const all = Array.isArray(questions) ? questions : [];
   const usable = all.filter((question) => {
@@ -99,6 +120,7 @@ export function createQuestionSession(
     phase: usable.length === 0 ? 'complete' : 'answering',
     results: [],
     wasCompletedBefore,
+    previousStars,
   };
 }
 
@@ -106,8 +128,13 @@ export function createQuestionSession(
 export function createLessonSession(
   level: Level,
   previousStatus: LevelStatus,
+  previousStars: StarCount = 0,
 ): LessonSessionState {
-  return createQuestionSession(level.questions, previousStatus === 'completed');
+  return createQuestionSession(
+    level.questions,
+    previousStatus === 'completed',
+    previousStars,
+  );
 }
 
 export function currentQuestion(state: LessonSessionState): Question | null {
@@ -175,15 +202,17 @@ export function buildSummary(
 ): LessonSummary {
   const total = state.questions.length;
   const correct = correctCount(state);
+  const stars = starsForRun(correct, total);
 
   return {
     levelId: level.id,
     total,
     correct,
-    stars: starsForRun(correct, total),
+    stars,
     accuracy: total > 0 ? correct / total : 0,
     xpEarned: xpForRun(level.xpReward, state.wasCompletedBefore ? 'completed' : 'available'),
     isFirstCompletion: !state.wasCompletedBefore,
+    isNewRecord: stars > state.previousStars,
     mistakes: state.results.filter((result) => !result.correct),
     completedAt: now,
   };

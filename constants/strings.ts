@@ -169,6 +169,10 @@ export const strings = {
     keepGoing: 'Yola devam',
     reviewMistakes: 'Yanlışları gözden geçir',
     backToPath: 'Yola dön',
+    /** ⚠️ Yukarıdaki `keepGoing` ('Yola devam') KULLANILMIYOR: `backToPath`
+        ('Yola dön') ile bir harf farkla karışıyor, oysa ikisi farklı yerlere
+        gidiyor — biri sonraki derse, öteki haritaya. */
+    nextLesson: 'Sonraki ders',
     /** Hata özetinde satır başlığı — örnek sorular hep "ÖRNEK SORU n" olduğu
         için satırları ayırt eden tek şey bu numara. */
     questionIndex: '{index}. soru',

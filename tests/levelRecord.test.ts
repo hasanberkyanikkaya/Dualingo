@@ -18,6 +18,7 @@ function summary(stars: StarCount, accuracy: number, completedAt: number): Lesso
     accuracy,
     xpEarned: 40,
     isFirstCompletion: false,
+    isNewRecord: false,
     mistakes: [],
     completedAt,
   };

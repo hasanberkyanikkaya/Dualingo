@@ -57,6 +57,42 @@ export function findCurrentLevelId(units: readonly Unit[], progress: ProgressMap
   return null;
 }
 
+/**
+ * Verilen seviyeden SONRA gelen ilk oynanabilir seviye — ders sonundaki
+ * "Sonraki ders" butonunun hedefi.
+ *
+ * ⚠️ `findCurrentLevelId` bu iş için KULLANILAMAZ. O, yolun tamamındaki ilk
+ * `available` seviyeyi verir; yolun ortasındaki tamamlanmış bir seviyeyi tekrar
+ * eden kullanıcıda o seviye çok ileride kalır ve buton kullanıcıyı ileri
+ * fırlatırdı. Burada sıra `afterLevelId`'den başlıyor.
+ *
+ * `locked` olmayan ilk seviye seçiliyor: `completed` ve `skipped` de geçerli
+ * hedefler — tekrar oynanabilirler, `xpForRun` zaten tekrarı ayrıştırıyor.
+ * `afterLevelId` yolda yoksa ya da sonrası boşsa `null` döner.
+ */
+export function findNextLevelId(
+  units: readonly Unit[],
+  progress: ProgressMap,
+  afterLevelId: LevelId,
+): LevelId | null {
+  let seen = false;
+
+  for (const unit of units) {
+    for (const level of unit.levels) {
+      if (!seen) {
+        // Ünite sınırını aşarak arıyoruz: sonraki ders bir sonraki ünitede olabilir.
+        seen = level.id === afterLevelId;
+        continue;
+      }
+      if (resolveLevelStatus(level.id, progress) !== 'locked') {
+        return level.id;
+      }
+    }
+  }
+
+  return null;
+}
+
 /** Ünite başlığındaki ilerleme çubuğunun payı. */
 export function countCompleted(unit: Unit, progress: ProgressMap): number {
   return unit.levels.filter((level) => resolveLevelStatus(level.id, progress) === 'completed').length;

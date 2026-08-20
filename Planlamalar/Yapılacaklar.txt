@@ -173,6 +173,25 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         ⚠️ Rozet Expo Go'da KALICI (SQLite) ama XP değil — 100 XP rozeti
         pratikte dev build'e kadar kazanılamaz.
 
+[x] 3.3 Maskot ve kutlama — ders sonu ekranı artık bir sahne.
+        CelebrationMascot.tsx — Lottie SLOTU; CELEBRATION_SOURCE bilerek null,
+        yedek assets/images/mascot.png. Dosya gelince değişen tek satır orası.
+        LevelStars +animateIn (varsayılan false → harita değişmedi); her yıldız
+        kendi Star çocuk bileşeninde, sırayla beliriyor
+        lib/countUp.ts (saf, testli) + lib/useCountUp.ts — sayan XP
+        constants/motion.ts +timing.celebrate (Easing.back — bilinçli sapma)
+        +sequence { starStagger, xpStart, xpDuration }
+        levelStatus.ts +findNextLevelId — "Sonraki ders" butonunun hedefi
+        lessonSession.ts +previousStars (oturum başında donar) +isNewRecord
+        İki buton: Sonraki ders (primary) + Yola dön (ghost)
+        242 test geçiyor
+        ⚠️ Kutlama yalnız ilk tamamlamada VEYA yıldız yükseldiğinde oynar.
+        ⚠️ drainPendingBadges HER İKİ çıkışta da çağrılıyor — yoksa aynı rozet
+        sonraki dersin sonunda ikinci kez kutlanır.
+        ⚠️ router.replace + <LessonFlow key={level.id}> — push olsaydı geri
+        tuşu kullanıcıyı bitirdiği derslerin içinde gezdirirdi.
+        ⚠️ LOTTIE DOSYASI HÂLÂ YOK — kullanıcı ekleyecek.
+
 
 === AÇIK SORULAR ===
 

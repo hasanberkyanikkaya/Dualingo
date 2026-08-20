@@ -11,13 +11,17 @@ import LessonCompleteScreen from '@/features/learning/components/lesson/LessonCo
 import LessonErrorState from '@/features/learning/components/lesson/LessonErrorState';
 import LessonHeader from '@/features/learning/components/lesson/LessonHeader';
 import QuestionRenderer from '@/features/learning/components/lesson/QuestionRenderer';
-import { findLevelById } from '@/features/learning/contentLoader';
-import { resolveLevelStatus } from '@/features/learning/levelStatus';
+import { findLevelById, getLearningPath } from '@/features/learning/contentLoader';
+import {
+  findNextLevelId,
+  resolveLevelStatus,
+  resolveStars,
+} from '@/features/learning/levelStatus';
 import { useLessonSession } from '@/features/learning/useLessonSession';
 import { useLevelProgress } from '@/features/learning/useLevelProgress';
 import { useTheme } from '@/lib/useTheme';
 
-import type { Level, LevelStatus } from '@/types';
+import type { Level, LevelId, LevelStatus, StarCount } from '@/types';
 
 /** Haritaya döner. Derin bağlantıyla gelinmişse geri gidilecek yer olmayabilir. */
 function goBackToPath() {
@@ -28,6 +32,21 @@ function goBackToPath() {
   router.replace('/');
 }
 
+/**
+ * Haritaya uğramadan bir sonraki derse geçer.
+ *
+ * ⚠️ **`replace`, `push` DEĞİL.** `push` her derste yığına bir kare eklerdi;
+ * on ders üst üste çalışan kullanıcı geri tuşuna bastığında haritaya değil,
+ * bitirdiği derslerin içine düşerdi. (`app/placement/index.tsx` aynı gerekçeyi
+ * karşılama akışı için taşıyor.)
+ *
+ * ⚠️ **Nesne biçimi, dizge birleştirme değil** — `typedRoutes` açık ve üretilen
+ * `Href` birleşimine dizge birleştirmesi kırılgan oturuyor.
+ */
+function openLesson(levelId: LevelId) {
+  router.replace({ pathname: '/lesson/[id]', params: { id: levelId } });
+}
+
 export default function LessonScreen() {
   const { theme } = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -35,6 +54,7 @@ export default function LessonScreen() {
   const progress = useLevelProgress();
   const level = typeof id === 'string' ? findLevelById(id) : null;
   const status = typeof id === 'string' ? resolveLevelStatus(id, progress) : 'locked';
+  const stars = typeof id === 'string' ? resolveStars(id, progress) : 0;
 
   return (
     <View style={[styles.root, { backgroundColor: theme.background }]}>
@@ -66,7 +86,21 @@ export default function LessonScreen() {
               onBack={goBackToPath}
             />
           ) : (
-            <LessonFlow level={level} previousStatus={status} />
+            /*
+              ⚠️ `key` bir tazelik güvencesi: "Sonraki ders" aynı rotaya
+              `replace` yapıyor. Bugün React Navigation yeni bir rota anahtarı
+              üretip ekranı yeniden monte ediyor, ama oturum durumu tembel bir
+              ilklendiriciye bağlı — o varsayım bir gün değişirse kullanıcı yeni
+              derste ESKİ dersin sorularını görürdü. `key` bunu yapısal olarak
+              imkânsız kılıyor. (Soru bileşenlerine `key={question.id}` verme
+              kararının aynısı.)
+            */
+            <LessonFlow
+              key={level.id}
+              level={level}
+              previousStatus={status}
+              previousStars={stars}
+            />
           )}
         </View>
       </SafeAreaView>
@@ -77,14 +111,27 @@ export default function LessonScreen() {
 type LessonFlowProps = {
   level: Level;
   previousStatus: LevelStatus;
+  previousStars: StarCount;
 };
 
 /**
  * Asıl akış. Ayrı bir bileşen çünkü `useLessonSession` bir seviye gerektiriyor;
  * yukarıdaki koşullar kancaları koşullu çağırmaya zorlardı.
  */
-function LessonFlow({ level, previousStatus }: LessonFlowProps) {
-  const session = useLessonSession(level, previousStatus);
+function LessonFlow({ level, previousStatus, previousStars }: LessonFlowProps) {
+  /*
+    ⚠️ `previousStatus` ve `previousStars` CANLI değerler — ders bitince ikisi de
+    değişir. Sorun olmamasının sebebi kancanın onları yalnızca ilk çizimde
+    okuması; ayrıca `useState`e sarmak ikinci bir donma noktası açar ve
+    yanıltıcı olur. Gerekçenin tamamı `useLessonSession` içinde.
+  */
+  const session = useLessonSession(level, previousStatus, previousStars);
+
+  // Ders bittikten sonraki hedef. `progress` burada CANLI okunmalı: sonraki
+  // seviyeyi `completeLevel` az önce açtı, oturum başındaki fotoğrafta o kayıt
+  // henüz `locked` görünürdü ve buton hiç çıkmazdı.
+  const progress = useLevelProgress();
+  const nextLevelId = findNextLevelId(getLearningPath().units, progress, level.id);
 
   const confirmQuit = useCallback(() => {
     Alert.alert(strings.lesson.quitTitle, strings.lesson.quitMessage, [
@@ -120,6 +167,7 @@ function LessonFlow({ level, previousStatus }: LessonFlowProps) {
         summary={session.summary}
         questions={level.questions}
         onDone={goBackToPath}
+        onNext={nextLevelId === null ? null : () => openLesson(nextLevelId)}
       />
     );
   }

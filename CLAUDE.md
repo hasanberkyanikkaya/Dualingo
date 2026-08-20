@@ -136,9 +136,15 @@ Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.
 Faz 2.6 seviye tespit sınavı — TAMAM.
 Faz 2.5.3 mağaza materyalleri — TAMAM.
 Faz 3.1 seri (streak) sistemi — TAMAM.
-Faz 3.2 rozet sistemi — TAMAM.**
+Faz 3.2 rozet sistemi — TAMAM.
+Faz 3.3 maskot ve kutlama — TAMAM.**
 Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da ertelenmiş
 1.2c / 1.3 / 1.4.
+
+⚠️ **Kutlama sahnesi kurulu ama LOTTIE DOSYASI YOK.** 3.3'ten sonra ders sonu
+ekranı bir kutlama slotu taşıyor; `CelebrationMascot.tsx`'teki
+`CELEBRATION_SOURCE` **bilerek `null`** ve slot `mascot.png`'ye düşüyor. Dosya
+geldiği gün değişecek **tek satır** orada; çağrı yeri değişmez.
 
 ⚠️ **Mağaza metinleri hazır ama YAYIN YAKIN DEĞİL.** `Planlamalar/Magaza/`
 altında dört belge var (politika taslağı, mağaza metinleri, veri güvenliği
@@ -1244,6 +1250,82 @@ ilgili ve **bu oturumun dosyalarından değil.**
   reklam/satın alma. Biri girdiği gün form yeniden doldurulur.
 - `assets/images/icon.png` ve `splash-icon.png`'nin **hâlâ Expo şablonu olduğu
   doğrulandı** (`splash-icon.png`, `expo-logo.png` ile aynı dosya, 3317 bayt).
+
+**Kutlama kararları (Oturum 3.3):**
+- **Kutlama koşulu `isFirstCompletion || isNewRecord`** (kullanıcı kararı): sıradan
+  bir tekrar ekranı son hâlinde, hareketsiz açıyor. Üçüncü kez aynı dersi çalışan
+  kullanıcıyı her seferinde aynı sahneyle bekletmek kutlamayı ödül olmaktan çıkarıp
+  gecikmeye çevirirdi.
+- ⚠️ **`isNewRecord` için `previousStars` oturum BAŞINDA donduruluyor**
+  (`LessonSessionState`), `wasCompletedBefore` ile birebir aynı gerekçe: canlı
+  okunsaydı `completeLevel` sonucu yazdığı anda değer bu koşunun yıldızına döner ve
+  `isNewRecord` **her zaman `false`** çıkardı — kutlama hiçbir tekrarda oynamazdı.
+  Donma noktası `useReducer`'ın tembel ilklendiricisi; bu yüzden çağrı yerinde
+  ayrıca `useState`e sarmak GEREKMEZ ve sarılmamalı (ikinci bir donma noktası
+  yanıltıcı olur). ⚠️ Sıfır yıldızla biten **ilk** koşuda `isNewRecord` false'tur;
+  o durumu `isFirstCompletion` taşıyor, ikisi ayrı sorular.
+- ⚠️ **`createQuestionSession`'ın `previousStars` varsayılanı 0 ZORUNLU** — tespit
+  sınavı onu tek argümanla çağırıyor ve bir seviyesi, dolayısıyla yıldızı yok.
+- ⚠️ **"Sonraki ders" `findCurrentLevelId` KULLANAMAZ**, yeni `findNextLevelId`
+  yazıldı. Fark gerçek: yolun ortasındaki tamamlanmış bir seviyeyi tekrar eden
+  kullanıcıda ilk `available` çok ileride kalır ve buton kullanıcıyı **yol
+  atlatarak** ileri fırlatırdı. Test ikisini yan yana koyup farkı çiviliyor.
+  `locked` olmayan ilk seviye hedef sayılıyor (`completed`/`skipped` de tekrar
+  oynanabilir; `xpForRun` tekrarı zaten ayrıştırıyor).
+  `levelStatus.ts` **yalnızca `@/types` import etmeyi sürdürüyor** — `unlock.ts`'in
+  `flattenLevelIds`'i buraya çekilmedi, iç içe döngü yerinde yazıldı.
+- ⚠️ **`drainPendingBadges()` İKİ çıkışta da çağrılmak ZORUNDA.** 3.3'e kadar tek
+  çıkış vardı; "Sonraki ders" kuyruğu boşaltmasaydı **aynı rozet bir sonraki dersin
+  sonunda ikinci kez kutlanırdı**, üstelik o ders onu kazandırmamışken. Tek bir
+  `leave(go)` yardımcısına bağlandı; üçüncü bir çıkış eklenirse de aynı kapıdan
+  geçer. Kuyruk yine **işleyicide** boşalıyor, `useEffect`te değil.
+- **Gezinme `router.replace`, `push` DEĞİL**: `push` her derste yığına bir kare
+  eklerdi, on ders sonra geri tuşu kullanıcıyı bitirdiği derslerin içinde gezdirirdi.
+  ⚠️ Ayrıca `<LessonFlow key={level.id}>` eklendi: bugün `replace` yeni rota anahtarı
+  üretip ekranı yeniden monte ediyor, ama oturum durumu tembel ilklendiriciye bağlı —
+  o varsayım değişirse kullanıcı yeni derste ESKİ dersin sorularını görürdü. `key`
+  bunu yapısal olarak imkânsız kılıyor.
+- **Lottie slotu: `CELEBRATION_SOURCE` bilerek `null`.** Var olmayan bir yola
+  `require` yazmak çalışma anı `null`'ı değil **Metro derleme hatası** verir
+  (`imageRegistry.ts`'in aynı mayını). Yedek `mascot.png`; dosya geldiğinde değişen
+  tek şey o sabit. ⚠️ Lottie çizildiğinde oynatılmıyorsa **`progress={1}`** ile SON
+  kare gösteriliyor — ilk kare çoğu dosyada boştur ve slot sessizce bomboş kalırdı.
+  `lottie-react-native` Expo Go'nun **paketli** modüllerinden, dev build istemiyor.
+- **`LevelStars` genişletildi, ikinci bir yıldız bileşeni YAZILMADI** (mimari kural
+  3): ölçülmüş renkleri (`secondaryStrong` 3.69/11.63) taşıyan tek yer orası.
+  `animateIn` **varsayılan `false`** → haritadaki `LevelNode` davranışsal olarak hiç
+  değişmedi (kaydırdıkça patlayan yıldızlar liste boyunca gürültü olurdu).
+  ⚠️ Kancalar `.map` içinde çağrılamadığı için her yıldız kendi `Star` çocuk
+  bileşenine taşındı. ⚠️ Boş yıldız hiçbir zaman animasyonlanmıyor — kazanılmayan
+  bir şeyin belirmesi kutlama değil, yanlış vaat olurdu. Düzen kaymıyor: dolu ve boş
+  ikon aynı ölçüde, yuva yerini koruyor.
+- ⚠️ **`motion.ts`'e `Easing.back` girdi ve bu bilinçli bir SAPMA.** Dosyanın
+  doktrini yayı reddediyor ("hızlı tekrarlanan etkileşimde oturmaya vakit
+  bulamıyor") ama o gerekçe **basma geri bildirimine** ait; kutlama ders başına en
+  fazla bir kez oynayan bir sahne ve oynarken ekranda başka hareket yok. Gerekçe
+  jetonun yorumunda duruyor — bir sonraki oturum onu doktrin ihlali sanıp silmesin.
+  Ayrıca yeni `sequence` nesnesi (`starStagger` 160 / `xpStart` 520 /
+  `xpDuration` 700): ⚠️ bunlar `withTiming` yapılandırması **değil** düz
+  milisaniyeler, o yüzden `timing`den ayrı duruyorlar.
+- **XP sayacı `useCountUp` + saf `countUpValue`.** ⚠️ Reanimated paylaşılan değeri
+  KULLANILMADI: metne yansıtmanın tek yolu `useAnimatedProps` +
+  `createAnimatedComponent(TextInput)`, yani gösterilecek sayıyı bir GİRDİ alanına
+  koymak — yanlış erişilebilirlik rolü, tipografi jetonlarını uygulamayan bileşen,
+  klavye riski. Tek satır için ödenecek bedel değil.
+  ⚠️ **Yuvarlama `floor`, `round` DEĞİL**: `round` son karelerden çok önce hedefi
+  yazar ve sayaç bitmeden bitmiş görünürdü. ⚠️ **Bozuk girdi sessizce HEDEFİ verir**
+  (`NaN`/`Infinity`/`duration <= 0`) — `ProgressBar`'ın "bozuk girdi sessizce boş
+  çubuk" disiplininin tersi yönü, çünkü burada güvenli hâl boş değil TAM: kullanıcı
+  kazandığı XP'yi eksik görmemeli.
+- ⚠️ **Sayan rakam ekran okuyucuya OKUNMUYOR**: XP satırı `accessible` bir `View`
+  ile sarılıp etiket **son** değerden kuruluyor. Olmasaydı ekran okuyucu tek bir
+  "+40 XP" yerine onlarca ara değeri arka arkaya anons ederdi. `ProgressBar`'ın
+  "anonsa giden sayı görünenle aynı kaynaktan" kuralının bilinçli tersi.
+- **242 test geçiyor** (215'ten). `tests/countUp.test.ts` ve `tests/lessonSession.test.ts`
+  yeni; `findNextLevelId` `levelStatus` testine eklendi. `colors.ts` **değişmedi**,
+  `strings.ts`'e **bir satır**: `result.nextLesson`. ⚠️ Var olan `result.keepGoing`
+  ('Yola devam') kullanılmadı — `backToPath` ('Yola dön') ile bir harf farkla
+  karışıyor, oysa ikisi farklı yerlere gidiyor.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

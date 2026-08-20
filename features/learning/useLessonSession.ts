@@ -12,7 +12,7 @@ import {
 } from '@/features/learning/lessonSession';
 import { useCompleteLevel } from '@/features/learning/useCompleteLevel';
 
-import type { Level, LevelStatus, Question, QuestionAnswer } from '@/types';
+import type { Level, LevelStatus, Question, QuestionAnswer, StarCount } from '@/types';
 
 export type LessonSession = {
   phase: LessonPhase;
@@ -36,13 +36,24 @@ export type LessonSession = {
  * yaşarsa tekil bir store'da çakışırlardı. Ve dersten çıkmak zaten ilerlemeyi
  * siliyor (`strings.lesson.quitMessage`), yani saklanacak bir şey yok.
  */
-export function useLessonSession(level: Level, previousStatus: LevelStatus): LessonSession {
+export function useLessonSession(
+  level: Level,
+  previousStatus: LevelStatus,
+  previousStars: StarCount = 0,
+): LessonSession {
   const completeLevel = useCompleteLevel();
 
+  /**
+   * ⚠️ `previousStatus` ve `previousStars` CANLI değerlerdir — çağıran onları
+   * store'dan okuyor ve ders bitince ikisi de değişir. Sorun olmamasının sebebi
+   * tembel ilklendiricinin **yalnızca ilk çizimde** çalışması: değerler oturum
+   * başında donuyor. Bu yüzden çağrı yerinde ayrıca `useState`e sarmak gerekmez
+   * (ve sarılmamalı — ikinci bir donma noktası yanıltıcı olur).
+   */
   const [state, dispatch] = useReducer(
     lessonReducer,
-    { level, previousStatus },
-    (init) => createLessonSession(init.level, init.previousStatus),
+    { level, previousStatus, previousStars },
+    (init) => createLessonSession(init.level, init.previousStatus, init.previousStars),
   );
 
   const submitAnswer = useCallback((answer: QuestionAnswer) => {

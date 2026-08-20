@@ -4,6 +4,7 @@ import { describe, it } from 'node:test';
 import {
   countCompleted,
   findCurrentLevelId,
+  findNextLevelId,
   resolveLevelStatus,
   resolveStars,
 } from '@/features/learning/levelStatus';
@@ -90,6 +91,60 @@ describe('findCurrentLevelId', () => {
 
   it('skipped seviyeyi "şu an buradasın" saymaz', () => {
     assert.equal(findCurrentLevelId(makeUnits(), { a1: record('a1', 'skipped') }), null);
+  });
+});
+
+describe('findNextLevelId', () => {
+  it('sırada gelen açık seviyeyi verir', () => {
+    const levels = { a1: record('a1', 'completed'), a2: record('a2', 'available') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'a1'), 'a2');
+  });
+
+  it('ünite sınırını aşar', () => {
+    const levels = { a2: record('a2', 'completed'), b1: record('b1', 'available') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'a2'), 'b1');
+  });
+
+  it('kilitli seviyeyi atlar', () => {
+    // a2 kilitli (kaydı yok), b1 açık → sonraki ders b1.
+    const levels = { a1: record('a1', 'completed'), b1: record('b1', 'available') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'a1'), 'b1');
+  });
+
+  it('tamamlanmış seviyeyi de geçerli hedef sayar', () => {
+    // Yolun ortasını tekrar eden kullanıcı sıradaki derse geçebilmeli;
+    // `xpForRun` tekrarı zaten ayrıştırıyor.
+    const levels = { a1: record('a1', 'completed'), a2: record('a2', 'completed') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'a1'), 'a2');
+  });
+
+  it('YOLUN SONUNDA null verir', () => {
+    // Ders sonu ekranı bunu görünce "Sonraki ders" butonunu hiç çizmiyor.
+    const levels = { b1: record('b1', 'completed') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'b1'), null);
+  });
+
+  it('sonrası tamamen kilitliyse null verir', () => {
+    assert.equal(findNextLevelId(makeUnits(), { a1: record('a1', 'completed') }, 'a1'), null);
+  });
+
+  it('bilinmeyen seviyeden sonrası yoktur', () => {
+    // Yolda olmayan bir kimlik yanlışlıkla ilk seviyeyi döndürmemeli.
+    const levels = { a1: record('a1', 'available'), a2: record('a2', 'available') };
+    assert.equal(findNextLevelId(makeUnits(), levels, 'yok'), null);
+  });
+
+  it('findCurrentLevelId ile AYNI ŞEY DEĞİLDİR', () => {
+    // Yolun ortasındaki tamamlanmış bir seviyeyi tekrar eden kullanıcı:
+    // `findCurrentLevelId` ilerideki cepheyi (b1), `findNextLevelId` gerçekten
+    // sıradakini (a2) verir. Buton cepheye atlarsa kullanıcı yol atlamış olur.
+    const levels = {
+      a1: record('a1', 'completed'),
+      a2: record('a2', 'completed'),
+      b1: record('b1', 'available'),
+    };
+    assert.equal(findCurrentLevelId(makeUnits(), levels), 'b1');
+    assert.equal(findNextLevelId(makeUnits(), levels, 'a1'), 'a2');
   });
 });
 
