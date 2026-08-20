@@ -10,6 +10,7 @@ import {
   selectDistrict as writeSelectedDistrict,
 } from '@/features/prayer/prayerDb';
 import { fetchTimetable } from '@/features/prayer/prayerApi';
+import { readPrayerLog, setPrayerMark } from '@/features/prayer/prayerLogDb';
 import { latestDate, parseTimetable } from '@/features/prayer/prayerParse';
 import { findNextPrayer, nextDay } from '@/features/prayer/prayerSchedule';
 import { toLocalIsoDate } from '@/features/progress/streak';
@@ -19,6 +20,7 @@ import type {
   NextPrayer,
   PrayerCity,
   PrayerDistrict,
+  PrayerName,
   PrayerTimes,
   SelectedDistrict,
   Timestamp,
@@ -47,11 +49,20 @@ type PrayerState = {
   today: PrayerTimes | null;
   tomorrow: PrayerTimes | null;
   next: NextPrayer | null;
+  /**
+   * Bugün işaretli vakitler — `prayer_log` tablosunun yansıması.
+   *
+   * ⚠️ İLÇEDEN bağımsız: kullanıcının namaz kılıp kılmadığı ilçe verisi değil.
+   * İlçe yokken bile okunuyor, çünkü çizelge vakit tablosuna değil GÜNE bağlı.
+   */
+  markedToday: readonly PrayerName[];
   notice: PrayerNotice;
   /** Ağ isteği sürüyor — yalnızca "Yenile" düğmesinin göstergesi için. */
   loading: boolean;
 
   selectDistrict: (city: PrayerCity, district: PrayerDistrict) => void;
+  /** Bir vaktin "kılındı" işaretini kurar ya da kaldırır. */
+  toggleMark: (prayer: PrayerName) => void;
   /** Diskten yeniden okur ve sıradaki vakti hesaplar. Ağa çıkmaz. */
   recompute: () => void;
   refresh: (userInitiated: boolean) => Promise<void>;
@@ -71,11 +82,17 @@ let refreshInFlight: Promise<void> | null = null;
 
 /** Diskten bugün/yarın satırlarını okuyup türetilmiş alanları kurar. */
 function loadFromDisk(district: SelectedDistrict | null, now: Timestamp) {
+  const todayIso = toLocalIsoDate(now);
+
+  // ⚠️ Çizelge ilçeden ÖNCE okunuyor: ilçe seçilmemiş olsa bile bugünün
+  // işaretleri geçerlidir. Bugün ekranda görünmez (tablo çizilmez) ama
+  // durumun ilçeye bağlı sanılması ileride sessiz bir veri kaybı olurdu.
+  const markedToday = readPrayerLog(todayIso);
+
   if (district === null) {
-    return { loadedDate: null, today: null, tomorrow: null, next: null };
+    return { loadedDate: null, today: null, tomorrow: null, next: null, markedToday };
   }
 
-  const todayIso = toLocalIsoDate(now);
   const tomorrowIso = nextDay(todayIso);
 
   const today = readPrayerTimes(district.districtId, todayIso);
@@ -85,6 +102,7 @@ function loadFromDisk(district: SelectedDistrict | null, now: Timestamp) {
     loadedDate: todayIso,
     today,
     tomorrow,
+    markedToday,
     next: findNextPrayer(today, tomorrow, now),
   };
 }
@@ -95,6 +113,7 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
   today: null,
   tomorrow: null,
   next: null,
+  markedToday: [],
   notice: 'none',
   loading: false,
 
@@ -126,6 +145,37 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
     }
 
     set({ district: record, notice: 'none', ...loadFromDisk(record, now) });
+  },
+
+  /**
+   * İşareti tersine çevirir.
+   *
+   * ⚠️ **DB yazması `set` updater'ının DIŞINDA** — Zustand updater'ı saf sayar
+   * ve React 19 + `reactCompiler` altında iki kez çalıştırıyor (2.4, 3.1 ve
+   * 3.2'de aynı tuzağa üç kez düşüldü). Burada iki kez yazmak idempotent
+   * olduğu için zararsız olurdu; kural yine de kuraldır.
+   *
+   * ⚠️ Hangi vaktin işaretlenebileceğine burada KARAR VERİLMİYOR —
+   * `prayerDay.buildPrayerDay` `trackable`/`phase` alanlarını kuruyor ve tablo
+   * kutuyu yalnızca geçmiş bir namaz satırında çiziyor. Store'un işi yazmak.
+   *
+   * ⚠️ Gün, `state.loadedDate` DEĞİL `Date.now()`tan okunuyor: uygulama gece
+   * boyunca açık kaldıysa `loadedDate` dünü gösterir ve işaret yanlış güne
+   * yazılırdı. (`AppState` dinleyicisi tazeliyor ama ona bağımlı olmamalı.)
+   */
+  toggleMark: (prayer) => {
+    const now = Date.now();
+    const todayIso = toLocalIsoDate(now);
+    const marked = get().markedToday.includes(prayer);
+
+    setPrayerMark(todayIso, prayer, !marked, now);
+
+    set({
+      loadedDate: todayIso,
+      markedToday: marked
+        ? get().markedToday.filter((name) => name !== prayer)
+        : [...get().markedToday, prayer],
+    });
   },
 
   recompute: () => {
@@ -219,10 +269,10 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
  * çekim kararı sekme monte olduğunda veriliyor.
  */
 function hydrate(): void {
+  // ⚠️ İlçe `null` olsa bile erken çıkılmıyor: `loadFromDisk` bugünün
+  // çizelgesini ilçeden bağımsız okuyor ve o okuma atlanırsa işaretler ilk
+  // `recompute`a kadar görünmez kalırdı.
   const district = readSelectedDistrict();
-  if (district === null) {
-    return;
-  }
 
   usePrayerStore.setState({ district, ...loadFromDisk(district, Date.now()) });
 }

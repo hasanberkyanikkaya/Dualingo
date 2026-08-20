@@ -29,7 +29,9 @@ function raw(overrides: Record<string, unknown> = {}): Record<string, unknown> {
     GunesBatis: '20:04',
     KibleSaati: '12:13',
     HicriTarihKisa: '2.3.1448',
+    HicriTarihUzun: '2 Rebîulevvel 1448',
     HicriTarihKisaIso8601: null,
+    HicriTarihUzunIso8601: null,
     ...overrides,
   };
 }
@@ -91,23 +93,48 @@ describe('toPrayerTimes', () => {
     assert.equal(row?.yatsi, '21:41');
     assert.equal(row?.kibleSaati, '12:13');
     assert.equal(row?.hicriShort, '2.3.1448');
+    assert.equal(row?.hicriLong, '2 Rebîulevvel 1448');
     assert.equal(row?.updatedAt, AT);
     assert.equal(row?.deletedAt, null);
   });
 
-  it('HicriTarihKisaIso8601 null gelse de satır GEÇERLİ kalır', () => {
-    // Servis bu alanı her zaman null döndürüyor (4.0 ölçümü); satırı
-    // düşürmek bütün pencereyi çöpe atardı.
-    const row = toPrayerTimes(raw({ HicriTarihKisaIso8601: null }), '9541', AT);
+  it('HicriTarih*Iso8601 null gelse de satır GEÇERLİ kalır', () => {
+    // Servis bu iki alanı da her zaman null döndürüyor (4.0 ölçümü, 4.1'de
+    // yeniden doğrulandı); satırı düşürmek bütün pencereyi çöpe atardı.
+    const row = toPrayerTimes(
+      raw({ HicriTarihKisaIso8601: null, HicriTarihUzunIso8601: null }),
+      '9541',
+      AT,
+    );
     assert.notEqual(row, null);
   });
 
+  it('hicri UZUN biçim okunuyor ve olduğu gibi saklanıyor', () => {
+    // ⚠️ Ay adı ayrıştırılmıyor, çevrilmiyor, biçimlendirilmiyor — kaynak ne
+    // yazdıysa o saklanıyor. Hicri ay adları bu projede ÜRETİLMEZ.
+    const row = toPrayerTimes(raw({ HicriTarihUzun: '15 Şaban 1447' }), '9541', AT);
+    assert.equal(row?.hicriLong, '15 Şaban 1447');
+  });
+
+  it('hicri uzun biçim YOKSA satır düşmez, alan null kalır', () => {
+    // 4.2'den önce indirilmiş pencerelerde sütun NULL; ekran kısa biçime düşer.
+    const row = toPrayerTimes(raw({ HicriTarihUzun: undefined }), '9541', AT);
+
+    assert.notEqual(row, null);
+    assert.equal(row?.hicriLong, null);
+  });
+
   it('kıble ve hicri okunamazsa satır yine geçerli, alanlar null', () => {
-    const row = toPrayerTimes(raw({ KibleSaati: '', HicriTarihKisa: null }), '9541', AT);
+    const row = toPrayerTimes(
+      raw({ KibleSaati: '', HicriTarihKisa: null, HicriTarihUzun: null }),
+      '9541',
+      AT,
+    );
 
     assert.notEqual(row, null);
     assert.equal(row?.kibleSaati, null);
     assert.equal(row?.hicriShort, null);
+    assert.equal(row?.hicriLong, null);
   });
 
   it('altı vakitten biri eksikse KISMİ satır yazılmaz', () => {
@@ -195,6 +222,7 @@ describe('latestDate', () => {
       yatsi: '21:41',
       kibleSaati: null,
       hicriShort: null,
+      hicriLong: null,
       updatedAt: AT,
       deletedAt: null,
     };

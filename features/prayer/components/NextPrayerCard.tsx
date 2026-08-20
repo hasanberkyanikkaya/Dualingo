@@ -38,6 +38,11 @@ type NextPrayerCardProps = {
  *
  * ⚠️ Erişilebilirlik etiketi **dakika** hassasiyetinde ve tek parça: saniye
  * anons edilseydi ekran okuyucu her saniye yeniden konuşurdu.
+ *
+ * ⚠️ **Faz 4.2: kart ortalandı ve büyüdü** (saat `h2` → `h1`, geri sayım `h3` →
+ * `h2`) ama ölçülmüş renk kararlarının HİÇBİRİ değişmedi. Kartı büyütmek bir
+ * düzen işi; dolgu, kenarlıksızlık ve `textSecondary` seçimi kontrast
+ * ölçümlerine dayanıyor ve büyümekle geçersizleşmez.
  */
 export default function NextPrayerCard({ next, onElapsed }: NextPrayerCardProps) {
   const { theme } = useTheme();
@@ -62,14 +67,13 @@ export default function NextPrayerCard({ next, onElapsed }: NextPrayerCardProps)
       })}. ${a11yLabel}`}
       style={[styles.card, { backgroundColor: theme.primarySoft }]}
     >
-      <Text style={[textStyles.labelMedium, { color: theme.textSecondary }]}>
+      <Text style={[textStyles.labelMedium, styles.centered, { color: theme.textSecondary }]}>
         {strings.prayer.nextPrayerLabel}
       </Text>
 
-      <View style={styles.headline}>
-        <Text style={[textStyles.h2, { color: theme.textPrimary }]}>{name}</Text>
-        <Text style={[textStyles.h2, { color: theme.textPrimary }]}>{next.time}</Text>
-      </View>
+      <Text style={[textStyles.h3, styles.centered, { color: theme.textPrimary }]}>{name}</Text>
+
+      <Text style={[textStyles.h1, styles.clock, { color: theme.textPrimary }]}>{next.time}</Text>
 
       <CountdownLabel target={next.at} onElapsed={onElapsed} />
     </View>
@@ -78,14 +82,21 @@ export default function NextPrayerCard({ next, onElapsed }: NextPrayerCardProps)
 
 const styles = StyleSheet.create({
   card: {
-    padding: layout.cardPadding,
+    // Dikey nefes yatayın iki katı: kart artık ekranın kahramanı ve
+    // `layout.cardPadding` (16) tek başına onu sıradan bir bloğa benzetiyordu.
+    paddingVertical: spacing.xl,
+    paddingHorizontal: layout.cardPadding,
     borderRadius: componentRadius.card,
+    alignItems: 'center',
     gap: spacing.xs,
   },
-  headline: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'space-between',
-    gap: spacing.md,
+  centered: {
+    textAlign: 'center',
+  },
+  clock: {
+    textAlign: 'center',
+    // Saniyeler değişirken rakam genişliği sabit kalsın; sola sağa oynayan bir
+    // saat okunurluğu bozar (`PrayerTimesTable` ile aynı tercih).
+    fontVariant: ['tabular-nums'],
   },
 });

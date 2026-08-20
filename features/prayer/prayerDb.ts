@@ -36,12 +36,13 @@ type PrayerTimeRow = {
   yatsi: string;
   kible_saati: string | null;
   hicri_kisa: string | null;
+  hicri_uzun: string | null;
   updated_at: number;
   deleted_at: number | null;
 };
 
 const TIME_COLUMNS =
-  'district_id, date, imsak, gunes, ogle, ikindi, aksam, yatsi, kible_saati, hicri_kisa, updated_at, deleted_at';
+  'district_id, date, imsak, gunes, ogle, ikindi, aksam, yatsi, kible_saati, hicri_kisa, hicri_uzun, updated_at, deleted_at';
 
 function toTimes(row: PrayerTimeRow): PrayerTimes {
   return {
@@ -55,6 +56,9 @@ function toTimes(row: PrayerTimeRow): PrayerTimes {
     yatsi: row.yatsi,
     kibleSaati: row.kible_saati,
     hicriShort: row.hicri_kisa,
+    // ⚠️ `MIGRATIONS[3]` ile sonradan eklenen sütun: 4.2'den ÖNCE yazılmış
+    // satırlarda `NULL`. Ekran `hicriShort`a düşüyor, yer tutucu yazmıyor.
+    hicriLong: row.hicri_uzun,
     updatedAt: row.updated_at,
     deletedAt: row.deleted_at,
   };
@@ -80,7 +84,7 @@ export function savePrayerTimes(rows: readonly PrayerTimes[]): void {
       database.runSync(
         `INSERT INTO prayer_time
            (${TIME_COLUMNS})
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
          ON CONFLICT(district_id, date) DO UPDATE SET
            imsak       = excluded.imsak,
            gunes       = excluded.gunes,
@@ -90,6 +94,7 @@ export function savePrayerTimes(rows: readonly PrayerTimes[]): void {
            yatsi       = excluded.yatsi,
            kible_saati = excluded.kible_saati,
            hicri_kisa  = excluded.hicri_kisa,
+           hicri_uzun  = excluded.hicri_uzun,
            updated_at  = excluded.updated_at,
            deleted_at  = NULL;`,
         [
@@ -103,6 +108,7 @@ export function savePrayerTimes(rows: readonly PrayerTimes[]): void {
           row.yatsi,
           row.kibleSaati,
           row.hicriShort,
+          row.hicriLong,
           row.updatedAt,
         ],
       );

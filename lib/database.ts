@@ -131,6 +131,54 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_prayer_district_updated_at
      ON prayer_district (updated_at);`,
+
+  // [3] → sürüm 4: hicri tarihin UZUN biçimi (Faz 4.2).
+  //
+  // `MIGRATIONS[2]`in yorumunda "gerekirse `MIGRATIONS[3]` bir ALTER TABLE
+  // olur" diye yazılmıştı; gereken gün geldi. Ekran hicri tarihi yazacak ve
+  // kısa biçim (`"2.3.1448"`) kullanıcıya bir şey anlatmıyor.
+  //
+  // ⚠️ **Ay adlarını BİZ yazmıyoruz.** Servisin `HicriTarihUzun` alanı zaten
+  // Diyanet'in yayınladığı metni taşıyor; kodda bir hicri ay adı tablosu
+  // tutmak dini takvim adlandırmasını bizim üstlenmemiz olurdu (CLAUDE.md dini
+  // içerik politikası). Kaynak ne diyorsa o gösteriliyor.
+  //
+  // ⚠️ **Eski satırlarda `NULL` kalır** ve bu beklenen geçiş: pencere bir
+  // sonraki başarılı yenilemede tazelenir, o ana kadar ekran `hicri_kisa`ya
+  // düşer. Boş bir sütun için önbelleği zorla temizlemek, çevrimdışı çalışan
+  // bir kullanıcıyı vakitlerinden etmek olurdu.
+  'ALTER TABLE prayer_time ADD COLUMN hicri_uzun TEXT;',
+
+  // [4] → sürüm 5: kılınan namaz çizelgesi (Faz 4.2).
+  //
+  // ⚠️ **İlçeye BAĞLI DEĞİL.** `prayer_time` ilçe başına önbelleklenmiş bir
+  // katalog; bu tablo ise kullanıcının kendi kaydı. İlçe değiştirmek (seyahat,
+  // taşınma) çizelgeyi silmemeli, o yüzden `district_id` sütunu yok.
+  //
+  // ⚠️ Anahtar `(date, prayer)` DOĞAL ve global — `activity_day.date` ile aynı
+  // senkronizasyon kararı (Faz 3.1): iki cihaz aynı günün aynı vaktini yazarsa
+  // bu AYNI satırdır ve `updated_at` ile çözülür. Sentetik bir kimlik
+  // seçilseydi aynı vakit için iki satır oluşur ve bu tabloya özel bir
+  // birleştirme kuralı yazılması gerekirdi.
+  //
+  // ⚠️ Satırın VARLIĞI işaretin kendisidir; ayrı bir `status` sütunu YOK.
+  // İşareti kaldırmak `deleted_at` yazmaktır (mimari kural 6: sert silme yok),
+  // yeniden işaretlemek o satırı diriltmektir. Bir durum sütunu eklenseydi
+  // "silinmiş ama işaretli" gibi anlamsız bir bileşim mümkün olurdu.
+  //
+  // ⚠️ `prayer` sütununa CHECK konmadı: `PrayerName` union'ı TypeScript
+  // tarafında zaten daraltıyor ve yeni bir vakit adı gerekirse (ki gerekmez)
+  // kısıt bir göç daha isterdi. Güneş bu tabloya HİÇ yazılmaz — namaz değil,
+  // kararı `prayerDay.isTrackable` veriyor.
+  `CREATE TABLE IF NOT EXISTS prayer_log (
+     date       TEXT    NOT NULL,
+     prayer     TEXT    NOT NULL,
+     updated_at INTEGER NOT NULL,
+     deleted_at INTEGER,
+     PRIMARY KEY (date, prayer)
+   );
+   CREATE INDEX IF NOT EXISTS idx_prayer_log_updated_at
+     ON prayer_log (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;

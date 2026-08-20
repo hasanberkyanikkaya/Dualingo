@@ -4,12 +4,14 @@ Copy-paste prompts, one session at a time. Nothing else — for planning and rat
 see `PROJE_PLANI_FINAL.md`, for the workflow guide see `CLAUDE_CODE_PLAYBOOK.md`.
 
 **Before every session**
+
 1. Unrelated to the previous task? → `/clear`
 2. Right model selected? → `/model`
 3. Reference the target file with `@`
 4. Big task? → ask for a plan first
 
 **After every session**
+
 1. `npx tsc --noEmit` clean?
 2. App still runs?
 3. Committed?

@@ -44,7 +44,7 @@ export default function CountdownLabel({ target, onElapsed }: CountdownLabelProp
     <Text
       accessibilityElementsHidden
       importantForAccessibility="no"
-      style={[textStyles.h3, styles.label, { color: theme.textPrimary }]}
+      style={[textStyles.h2, styles.label, { color: theme.textPrimary }]}
     >
       {label}
     </Text>

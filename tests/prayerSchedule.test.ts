@@ -41,6 +41,7 @@ function times(date: string, overrides: Partial<PrayerTimes> = {}): PrayerTimes 
     yatsi: '21:41',
     kibleSaati: '12:13',
     hicriShort: null,
+    hicriLong: null,
     updatedAt: AT,
     deletedAt: null,
     ...overrides,

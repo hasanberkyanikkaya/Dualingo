@@ -87,8 +87,9 @@ function readString(source: Record<string, unknown>, key: string): string | null
  * "bugünün verisi var" sayar, eksik vakti atlar ve kullanıcı bir vakti hiç
  * görmez — boş durumdan çok daha kötü bir hata.
  *
- * `kibleSaati` ve `hicriShort` eksikse satır GEÇERLİ kalır; ikisi de bugünkü
- * ekranın çalışması için gerekli değil.
+ * `kibleSaati`, `hicriShort` ve `hicriLong` eksikse satır GEÇERLİ kalır; hiçbiri
+ * vaktin kendisini taşımıyor ve yokluklarında ekran yalnızca bir satır eksik
+ * çizer.
  */
 export function toPrayerTimes(
   raw: unknown,
@@ -135,6 +136,9 @@ export function toPrayerTimes(
     yatsi,
     kibleSaati: parseClockTime(source.KibleSaati),
     hicriShort: readString(source, 'HicriTarihKisa'),
+    // ⚠️ `HicriTarihUzunIso8601` DEĞİL — `HicriTarih*Iso8601` alanlarının ikisi
+    // de servisten `null` geliyor (4.0 ölçümü, 4.1'de yeniden doğrulandı).
+    hicriLong: readString(source, 'HicriTarihUzun'),
     updatedAt,
     deletedAt: null,
   };

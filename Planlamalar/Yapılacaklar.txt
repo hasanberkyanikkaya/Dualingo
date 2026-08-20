@@ -233,6 +233,25 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         sorulacaklara üç madde eklendi (konum, Apple geocoding, FSEK Ek m.8).
         Çizelge ("kıldım") ve bildirimler Faz 4.2'ye kaldı.
 
+[x] 4.2 Namaz ekranı + kılınan namaz çizelgesi.
+        Sıradaki vakit kartı ortalandı ve büyüdü (saat h1, geri sayım h2).
+        Tabloda geçmiş vakitler textMuted'a düşüyor; durum RENKLE değil ikonun
+        BİÇİMİYLE taşınıyor (ok / dolu daire / boş halka) — 1.4.1'in 7. uygulaması.
+        Başlık altına Miladi + Hicri tarih satırı geldi.
+        İki SAF modül (testli): prayerDay, lib/turkishDate. Bir YEREL modül
+        (testsiz): prayerLogDb. 343 test geçiyor (316'dan).
+        MIGRATIONS[3] → sürüm 4: prayer_time.hicri_uzun (ALTER TABLE).
+        MIGRATIONS[4] → sürüm 5: prayer_log (date, prayer) — kılınan namaz.
+        ⚠️ Hicri ay adları KODA YAZILMADI: servisin HicriTarihUzun alanı birebir
+        gösteriliyor. Dini takvim adlandırmasını biz üstlenmiyoruz.
+        ⚠️ prayer_log İLÇEYE BAĞLI DEĞİL — ilçe değişince çizelge silinmemeli.
+        ⚠️ Satırın VARLIĞI işarettir; kaldırmak = deleted_at (sert silme yok).
+        ⚠️ Güneş satırı tabloda KALIR ama işaretlenemez — namaz vakti değil.
+        ⚠️ İşaret yalnızca GEÇMİŞ bir vakte konabilir; kutu sönmez, pasif kalır.
+        ⚠️ opacity KULLANILMADI — kontrast ölçülemez olurdu ve kutuyu da söndürürdü.
+        ⚠️ Eski önbellek satırlarında hicri_uzun NULL; ekran kısa biçime düşüyor.
+        Vakit BİLDİRİMLERİ hâlâ yapılmadı — ayrı oturum, dev build borcu.
+
 
 === AÇIK SORULAR ===
 

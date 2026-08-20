@@ -247,6 +247,9 @@ export const strings = {
     nextPrayerLabel: 'Sıradaki vakit',
     remaining: '{saat} sa {dakika} dk {saniye} sn',
     remainingShort: '{dakika} dk {saniye} sn',
+    // ⚠️ Metin YARGI TAŞIMAZ: "kılmadın", "eksik", "kaçırdın" gibi hiçbir
+    // ifade kullanılmaz. Ekran sayar, hüküm vermez (dini içerik politikası).
+    markedSummary: '{kilinan} / {toplam} vakit işaretli',
     changeDistrict: 'İlçeyi değiştir',
     refresh: 'Yenile',
     attribution: "Diyanet İşleri Başkanlığı'nın yayınladığı vakitler",
@@ -347,6 +350,7 @@ export const strings = {
     prayerRemaining: '{vakit} vaktine {saat} saat {dakika} dakika kaldı',
     prayerRemainingSoon: '{vakit} vaktine {dakika} dakika kaldı',
     prayerNext: 'Sıradaki vakit: {vakit}, {saat}',
+    prayerMarkToggle: '{vakit} — kılındı işareti',
   },
 } as const;
 

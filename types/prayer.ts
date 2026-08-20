@@ -71,6 +71,17 @@ export type PrayerTimes = {
    * ölçüldü), o yüzden kısa biçim saklanıyor.
    */
   hicriShort: string | null;
+  /**
+   * Hicri tarih, uzun biçim — servisin `HicriTarihUzun` alanı, birebir.
+   *
+   * ⚠️ **Ay adı bu projede ÜRETİLMEZ.** Ekranda görünen metin kaynağın
+   * yazdığı metindir; kodda bir hicri ay adı tablosu tutulmaz (dini içerik
+   * politikası). Bu yüzden alan biçimlendirilmez, olduğu gibi gösterilir.
+   *
+   * ⚠️ Faz 4.2'de eklendi; **eski önbellek satırlarında `null`** kalır ve
+   * pencere yenilenene kadar ekran `hicriShort`a düşer.
+   */
+  hicriLong: string | null;
   updatedAt: Timestamp;
   deletedAt: Timestamp | null;
 };

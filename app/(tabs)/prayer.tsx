@@ -10,7 +10,9 @@ import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import NextPrayerCard from '@/features/prayer/components/NextPrayerCard';
 import PrayerTimesTable from '@/features/prayer/components/PrayerTimesTable';
+import { buildPrayerDay } from '@/features/prayer/prayerDay';
 import { usePrayerTimes } from '@/features/prayer/usePrayerTimes';
+import { formatGregorianTr } from '@/lib/turkishDate';
 import { useTheme } from '@/lib/useTheme';
 
 /**
@@ -20,6 +22,14 @@ import { useTheme } from '@/lib/useTheme';
  * altındaki saf modüllerde. Burada yalnızca düzen ve dört durumun ayrımı var:
  * ilçe yok · veri yok · veri var · ağ uyarısı.
  *
+ * Faz 4.2'de üç şey eklendi: kart büyüdü ve ortalandı, tablo geçmiş vakitleri
+ * soluk çiziyor ve kılındı işareti taşıyor, başlık altına Miladi + Hicri tarih
+ * geldi.
+ *
+ * ⚠️ **Tarih satırı YER TUTUCU yazmaz.** Hicri tarih yoksa (4.2'den önce
+ * indirilmiş satırlarda `hicriLong` `NULL`) satır kısalır, "—" ya da "bilinmiyor"
+ * yazılmaz. Miladi tarih de çözülemezse satırın tamamı çizilmez.
+ *
  * ⚠️ **Ağ uyarısı yalnızca ekran BOŞKEN gösteriliyor.** Dolu bir ekranda
  * "sunucuya ulaşılamadı" demek kullanıcıyı boşuna telaşlandırır — vakitler
  * zaten önbellekte ve doğru. 4.0'ın "çevrimdışı + önbellek dolu → hiçbir şey
@@ -27,7 +37,8 @@ import { useTheme } from '@/lib/useTheme';
  */
 export default function PrayerScreen() {
   const { theme } = useTheme();
-  const { district, today, next, notice, loading, refresh, recompute } = usePrayerTimes();
+  const { district, today, next, markedToday, notice, loading, refresh, recompute, toggleMark } =
+    usePrayerTimes();
 
   if (district === null) {
     return (
@@ -52,6 +63,17 @@ export default function PrayerScreen() {
 
   const subtitle = `${district.districtName}, ${district.cityName}`;
 
+  // ⚠️ `useMemo` YOK — `app.json`'da `reactCompiler: true`, belletme
+  // derleyicinin işi. Elle sarmak projede hiçbir yerde yapılmıyor.
+  const rows = buildPrayerDay(today, next, markedToday, Date.now());
+
+  const gregorian = today === null ? null : formatGregorianTr(today.date);
+  // Uzun biçim servisin yazdığı metindir; yoksa kısa biçime düşülür. Hicri ay
+  // adları bu projede ÜRETİLMEZ (dini içerik politikası) — kaynak ne
+  // gönderdiyse o gösterilir.
+  const hijri = today === null ? null : (today.hicriLong ?? today.hicriShort);
+  const dateLine = [gregorian, hijri].filter((part) => part !== null).join('  ·  ');
+
   return (
     <Screen>
       <ScreenHeader title={strings.prayer.title} subtitle={subtitle} />
@@ -61,13 +83,19 @@ export default function PrayerScreen() {
 
         {today !== null ? (
           <View>
-            <Text style={[textStyles.labelLarge, styles.sectionTitle, { color: theme.textSecondary }]}>
+            <Text style={[textStyles.labelLarge, { color: theme.textSecondary }]}>
               {strings.prayer.todayTitle}
             </Text>
-            <PrayerTimesTable
-              times={today}
-              highlighted={next !== null && !next.isTomorrow ? next.name : null}
-            />
+
+            {dateLine !== '' ? (
+              <Text style={[textStyles.bodySmall, styles.dateLine, { color: theme.textSecondary }]}>
+                {dateLine}
+              </Text>
+            ) : null}
+
+            <View style={styles.table}>
+              <PrayerTimesTable rows={rows} onToggle={toggleMark} />
+            </View>
           </View>
         ) : (
           <View style={styles.empty}>
@@ -126,8 +154,11 @@ const styles = StyleSheet.create({
     gap: layout.sectionGap,
     paddingBottom: layout.sectionGap,
   },
-  sectionTitle: {
-    marginBottom: spacing.sm,
+  dateLine: {
+    marginTop: spacing.xs,
+  },
+  table: {
+    marginTop: spacing.sm,
   },
   empty: {
     flex: 1,
