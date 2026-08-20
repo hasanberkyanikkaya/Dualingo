@@ -225,11 +225,65 @@ export const strings = {
     placementAction: 'Tespiti tekrar et',
   },
 
-  /** Namaz sekmesi — ilk yayında boş */
+  /**
+   * Namaz sekmesi (Faz 4.1).
+   *
+   * ⚠️ `attribution` metni birebir böyle kalmalı. Veri Diyanet İşleri
+   * Başkanlığı'nın YAYINLADIĞI tablodur ama uygulama Diyanet'in değildir ve
+   * kurumla anlaşması yoktur. "Resmi", "onaylı", "Diyanet'in uygulaması" gibi
+   * ifadeler hem hukuki hem mağaza incelemesi riskidir; bu bölümde hiçbir
+   * anahtarda geçmez.
+   *
+   * ⚠️ Konum metinleri "bulunduğun ilçe" der, "en yakın ilçe" DEMEZ: servis
+   * ilçe koordinatı vermiyor, mesafe hesabı yok (bkz. `districtMatch.ts`).
+   *
+   * Vakit adları (İmsak/Güneş/…) yapısal etikettir, dini içerik değildir.
+   */
   prayer: {
     title: 'Namaz',
-    comingSoonTitle: 'Namaz takibi yakında',
-    comingSoonBody: 'Namaz vakitleri ve günlük çizelge sonraki güncellemelerde gelecek.',
+
+    // Ana ekran
+    todayTitle: 'Bugünün vakitleri',
+    nextPrayerLabel: 'Sıradaki vakit',
+    remaining: '{saat} sa {dakika} dk {saniye} sn',
+    remainingShort: '{dakika} dk {saniye} sn',
+    changeDistrict: 'İlçeyi değiştir',
+    refresh: 'Yenile',
+    attribution: "Diyanet İşleri Başkanlığı'nın yayınladığı vakitler",
+
+    // Vakit adları
+    imsak: 'İmsak',
+    gunes: 'Güneş',
+    ogle: 'Öğle',
+    ikindi: 'İkindi',
+    aksam: 'Akşam',
+    yatsi: 'Yatsı',
+
+    // Boş ve hata durumları
+    noDistrictTitle: 'Önce ilçeni seç',
+    noDistrictBody: 'Namaz vakitlerini gösterebilmek için bulunduğun ilçeyi bilmem gerekiyor.',
+    emptyTitle: 'Bugünün vakitleri elimde yok',
+    emptyBody: 'İnternete bağlanıp yenilediğinde vakitler indirilecek ve sonrasında çevrimdışı da çalışacak.',
+    upstreamError: 'Vakit sunucusuna şu an ulaşılamıyor. Daha sonra yeniden denenecek.',
+    offlineNotice: 'İnternet bağlantısı yok. Elimdeki vakitler gösteriliyor.',
+    invalidDistrict: 'Seçili ilçe artık tanınmıyor. Lütfen yeniden seç.',
+
+    // İlçe seçimi
+    selectDistrictTitle: 'İlçeni seç',
+    selectDistrictBody: 'Vakitler seçtiğin ilçeye göre gösterilir.',
+    cityStepTitle: 'İl',
+    districtStepTitle: 'İlçe',
+    backToCities: 'İl listesine dön',
+    useLocation: 'Konumumdan bul',
+    locationHint: 'Konum isteğe bağlı — listeden elle de seçebilirsin.',
+    locationDenied: 'Konum izni verilmedi. Listeden elle seçebilirsin.',
+    locationUnavailable: 'Konum alınamadı. Listeden elle seçebilirsin.',
+    locationNoMatch: 'Bulunduğun yer listede eşleşmedi. Listeden elle seçebilirsin.',
+    locationMatched: 'Bulunduğun ilçe: {ilce}',
+    locationUseMatch: 'Bunu kullan',
+    turkeyOnly: 'Bu sürümde yalnızca Türkiye içindeki vakitler destekleniyor.',
+    listUnavailable: 'İl listesi indirilemedi. İnternet bağlantını kontrol edip tekrar dene.',
+    retry: 'Tekrar dene',
   },
 
   /** Kur'an sekmesi — ilk yayında boş */
@@ -283,6 +337,16 @@ export const strings = {
        da sözle söylenmeli. */
     badgeEarned: '{name} — kazanıldı',
     badgeLocked: '{name} — kilitli',
+
+    /*
+     * Namaz geri sayımı. ⚠️ Anons DAKİKA hassasiyetinde ve SANİYE OKUNMAZ:
+     * saniyede bir güncellenen bir metin ekran okuyucuyu kullanılamaz hale
+     * getirir. 3.3'ün `useCountUp` kararının aynısı — orada da sayan rakam
+     * gizlenip etiket son değerden kurulmuştu.
+     */
+    prayerRemaining: '{vakit} vaktine {saat} saat {dakika} dakika kaldı',
+    prayerRemainingSoon: '{vakit} vaktine {dakika} dakika kaldı',
+    prayerNext: 'Sıradaki vakit: {vakit}, {saat}',
   },
 } as const;
 

@@ -44,7 +44,6 @@ durduğunu açıklar.
 - Ad, soyad, kullanıcı adı
 - E-posta adresi, telefon numarası
 - Doğum tarihi, yaş, cinsiyet
-- Konum bilgisi
 - Rehber, fotoğraf, dosya veya takvim erişimi
 - Ses veya görüntü kaydı
 - Reklam kimliği veya benzersiz cihaz tanımlayıcısı
@@ -65,6 +64,8 @@ veya başka bir tarafa **gönderilmez**. Saklanan veriler şunlardır:
 | Günlük seri bilgisi (süregelen gün sayısı, en uzun seri, son etkin gün) | Düzenli çalışmayı takip etmek |
 | Seviye tespit sınavı sonucu (belirlenen kademe, sizin beyanınız, doğruluk oranı) | Size uygun noktadan başlatmak |
 | Günlük hedef tercihi | Hedef takibi |
+| Seçtiğiniz il ve ilçe | Namaz vakitlerini doğru yere göre göstermek |
+| İndirilmiş namaz vakti tablosu (yaklaşık bir aylık) | Vakitleri internet olmadan da gösterebilmek |
 
 Bu veriler cihazın kendi güvenli uygulama alanında tutulur ve yalnızca
 {APP_NAME} tarafından okunabilir.
@@ -72,7 +73,7 @@ Bu veriler cihazın kendi güvenli uygulama alanında tutulur ve yalnızca
 ## 3. İnternet bağlantısı — cihazdan çıkan tek trafik
 
 Uygulama çevrimdışı çalışacak şekilde tasarlanmıştır. Ders içeriği uygulamanın
-içinde gömülü gelir. İnternete yalnızca aşağıdaki iki durumda bağlanılır:
+içinde gömülü gelir. İnternete yalnızca aşağıdaki üç durumda bağlanılır:
 
 **a) Güncelleme kontrolü.** Uygulama açıldığında, ders içeriğinde veya
 uygulamada bir düzeltme yayınlanıp yayınlanmadığını kontrol etmek için Expo
@@ -90,12 +91,42 @@ cihazınızda geçici olarak saklanır. Bu istekte de kişisel veriniz gönderil
 > Sorular yazılı karşılıklarıyla çalışır. Bu madde, özellik açıldığında
 > geçerli olacak durumu tarif eder.
 
+**c) Namaz vakitleri.** Namaz sekmesini kullandığınızda, seçtiğiniz ilçenin
+vakitlerini indirmek için `ezanvakti.emushaf.net` adresine bağlanılır. Bu
+istekte gönderilen tek bilgi **seçtiğiniz ilçenin numarasıdır**; adınız,
+kimliğiniz veya öğrenme ilerlemeniz gönderilmez. İndirilen tablo yaklaşık bir
+aylık olduğu için bu istek seyrek yapılır (kalan gün sayısı azaldığında), ve
+arada uygulama vakitleri **internetsiz** gösterir.
+
+## 3b. Konum izni — isteğe bağlı
+
+Namaz vakitleri **ilçe seçimine** göre gösterilir ve ilçeyi listeden elle
+seçebilirsiniz. Konum izni **zorunlu değildir**; uygulama izin istemeden de tam
+olarak çalışır.
+
+"Konumumdan bul" seçeneğini kullanırsanız:
+
+- Cihazınızın konumu **düşük hassasiyetle** ve **yalnızca o an** okunur.
+- Konum, bulunduğunuz ilçenin adına çevrilmek üzere **cihazınızın işletim
+  sisteminin coğrafi kodlama servisine** verilir. iOS'ta bu işlem Apple'ın
+  sunucusunda, Android'de cihaz üzerinde yapılır.
+- Konumunuz **bizim sunucumuza gönderilmez**, `ezanvakti.emushaf.net`'e
+  gönderilmez ve cihazınızda **saklanmaz**.
+- Saklanan tek şey, bulunan ilçeyi **onaylamanız durumunda** o ilçenin
+  seçiminizdir.
+
 Bunların dışında uygulama **hiçbir sunucuya bağlanmaz.**
 
 ## 4. Üçüncü taraflar
 
 - **Expo (EAS Update)** — yalnızca yukarıda anlatılan güncelleme kontrolü için.
 - **İçerik sunucusu** — yalnızca ders seslerini indirmek için (bu sürümde kapalı).
+- **ezanvakti.emushaf.net** — yalnızca seçtiğiniz ilçenin namaz vakti tablosunu
+  indirmek için. Bu servis, Diyanet İşleri Başkanlığı'nın yayınladığı vakitleri
+  yeniden sunan bağımsız bir üçüncü taraftır; uygulamamız Diyanet İşleri
+  Başkanlığı'na ait değildir ve kurumla bir bağlantısı yoktur.
+- **Apple (iOS'ta konum → adres çevirimi)** — yalnızca "Konumumdan bul"
+  seçeneğini kullanırsanız.
 
 Uygulamada **reklam ağı yoktur, analitik/ölçümleme aracı yoktur, sosyal medya
 takip kodu yoktur, çerez kullanılmaz.** Verileriniz hiç kimseye satılmaz,
@@ -165,3 +196,25 @@ uzman görüşü ister.
    böyle bir çıkarıma açık mı?
 7. **Yayıncı kimliği.** Şahıs olarak mı, şirket olarak mı yayınlanacak? Mağazada
    görünecek yayıncı adı ve iletişim adresi buna göre değişir.
+
+⚠️ **Faz 4.1 ile eklenen üç yeni madde:**
+
+8. **Konumun hukuki durumu.** Konum tek seferlik okunuyor, ilçe adına
+   çevriliyor ve **saklanmıyor**; saklanan tek şey kullanıcının onayladığı ilçe
+   kimliği. KVKK/GDPR açısından bu "konum verisi işleme" sayılır mı, yoksa
+   saklanmayan anlık bir işlem olarak mı değerlendirilir? Açık rıza metni
+   gerekiyor mu, yoksa işletim sisteminin izin diyaloğu yeterli mi?
+9. **iOS'ta konumun Apple'a gitmesi.** `reverseGeocodeAsync` iOS'ta koordinatı
+   Apple'ın sunucusuna gönderiyor (CLGeocoder); bu bizim tercihimiz değil,
+   platformun uygulaması. Politikada bunu açıklamak yeterli mi, yoksa Apple ayrı
+   bir "üçüncü taraf veri işleyen" olarak mı listelenmeli?
+10. **Diyanet'in verisinin yeniden kullanımı.** Vakitler
+    `ezanvakti.emushaf.net` üzerinden alınıyor; bu servis Diyanet İşleri
+    Başkanlığı'nın yayınladığı tabloları yeniden sunan **bağımsız bir üçüncü
+    taraf** ve **yazılı bir kullanım şartı yayınlamıyor**. (a) Bu veriyi bir
+    mobil uygulamada göstermek FSEK Ek m.8 (sui generis veritabanı hakkı)
+    açısından risk taşır mı? (b) Ekranda kullandığımız atıf cümlesi —
+    *"Diyanet İşleri Başkanlığı'nın yayınladığı vakitler"* — yeterli mi, yoksa
+    kurum adını hiç anmamak mı gerekir? ⚠️ "Resmi" ve "onaylı" ifadeleri zaten
+    hiçbir yerde kullanılmıyor. (c) Servis kapanırsa ya da şartlarını
+    değiştirirse sorumluluğumuz ne olur?

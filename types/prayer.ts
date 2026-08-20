@@ -1,0 +1,153 @@
+/**
+ * Namaz modülü tipleri.
+ *
+ * Bu dosya iki ayrı şeyi tarif eder ve ikisini bilerek ayrı tutar:
+ * uzak servisin (`ezanvakti.emushaf.net`) döndürdüğü HAM şekiller ve bizim
+ * cihazda sakladığımız TİPLİ satırlar. Aradaki dönüşüm `features/prayer/
+ * prayerParse.ts`in tek işidir; ham alan adları bu dosyadan başka hiçbir yerde
+ * geçmez.
+ *
+ * Senkronizasyon kuralı (CLAUDE.md kural 6): kalıcı her kayıt `updatedAt`
+ * (epoch ms) ve `deletedAt` (nullable) taşır.
+ *
+ * Sadece tip tanımı — fonksiyon, sabit, doğrulama yok.
+ */
+
+import type { IsoDate, Timestamp } from './progress';
+
+/**
+ * Gün içi duvar saati, `'HH:MM'`, 24 saat, sıfır dolgulu.
+ *
+ * ⚠️ Bu bir zaman damgası DEĞİL. Bir güne bağlanıp epoch'a çevrilmesi
+ * `prayerSchedule.localEpochFor` üzerinden olur; orada saat dilimi kararı var.
+ */
+export type ClockTime = string;
+
+/** Diyanet ilçe kimliği. Servis bunu dizge olarak döndürüyor (`"9541"`). */
+export type DistrictId = string;
+
+/** Diyanet şehir kimliği. */
+export type CityId = string;
+
+/**
+ * Beş vakit + güneş.
+ *
+ * ⚠️ **`enum` DEĞİL, union.** Node'un tip soyucusu `enum` desteklemiyor
+ * (`tests/setup.ts`); `enum` yazılırsa tüm test paketi çalışmaz.
+ *
+ * Sıra bilerek gün içi sırası: `orderedPrayers` bu diziliş üzerine kurulu.
+ */
+export type PrayerName = 'imsak' | 'gunes' | 'ogle' | 'ikindi' | 'aksam' | 'yatsi';
+
+/**
+ * Bir ilçenin bir gününe ait vakitler — SQLite `prayer_time` satırının
+ * TypeScript karşılığı.
+ *
+ * Anahtar `(districtId, date)` bileşik ve doğal; `DailyActivity.date` ile aynı
+ * senkronizasyon kararı: iki cihaz aynı ilçenin aynı gününü yazarsa bu AYNI
+ * satırdır ve `updatedAt` ile çözülür.
+ *
+ * `date` yerel `'YYYY-MM-DD'` (`toLocalIsoDate`). Servis `"15.08.2026"`
+ * gönderiyor; dönüşüm ayrıştırıcının işi.
+ */
+export type PrayerTimes = {
+  districtId: DistrictId;
+  date: IsoDate;
+  imsak: ClockTime;
+  gunes: ClockTime;
+  ogle: ClockTime;
+  ikindi: ClockTime;
+  aksam: ClockTime;
+  yatsi: ClockTime;
+  /**
+   * Kıble saati — güneşin Kâbe yönünü gösterdiği an. Faz 4.3 pusulası bunu
+   * isteyecek; aynı yanıtta bedava geldiği için şimdiden saklanıyor.
+   */
+  kibleSaati: ClockTime | null;
+  /**
+   * Hicri tarih, kısa biçim (`"2.3.1448"`).
+   *
+   * ⚠️ Servisin `HicriTarihKisaIso8601` alanı **`null` geliyor** (4.0'da
+   * ölçüldü), o yüzden kısa biçim saklanıyor.
+   */
+  hicriShort: string | null;
+  updatedAt: Timestamp;
+  deletedAt: Timestamp | null;
+};
+
+/** `GET /sehirler/{ulkeID}` sonucunun tipli hâli. */
+export type PrayerCity = {
+  cityId: CityId;
+  name: string;
+};
+
+/** `GET /ilceler/{sehirID}` sonucunun tipli hâli. */
+export type PrayerDistrict = {
+  districtId: DistrictId;
+  name: string;
+};
+
+/**
+ * Kullanıcının seçtiği ilçe — SQLite `prayer_district` satırı.
+ *
+ * ⚠️ **MMKV'de DEĞİL, SQLite'ta.** MMKV Expo Go'da kapalı ve bellek içi yedeğe
+ * düşüyor; oraya yazılsaydı kullanıcı her soğuk açılışta ilçesini yeniden
+ * seçerdi. Şehir ADI da saklanıyor (kimlik değil) çünkü ekranda "Kadıköy,
+ * İstanbul" yazmak için ağa çıkmak gerekmemeli.
+ */
+export type SelectedDistrict = {
+  districtId: DistrictId;
+  districtName: string;
+  cityId: CityId;
+  cityName: string;
+  selectedAt: Timestamp;
+  /**
+   * Son BAŞARILI çekim anı. `null` = hiç çekilmedi.
+   *
+   * ⚠️ Bu alan pencere ilerlesin ilerlemesin yazılır — mirror'ın önbelleği
+   * bayatsa aynı eski pencere döner ve bu alan olmasa yenileme bir döngüye
+   * girerdi. Gerekçe `prayerCache.decideRefresh`te.
+   */
+  lastSyncAt: Timestamp | null;
+};
+
+/**
+ * Sıradaki vakit — türetilmiş, hiçbir zaman saklanmaz.
+ *
+ * `at` yerel duvar saatinden çözülmüş epoch; geri sayım bunu kullanır.
+ * `isTomorrow` Yatsı'dan sonra `true` olur ve gece yarısını aşar.
+ */
+export type NextPrayer = {
+  name: PrayerName;
+  date: IsoDate;
+  time: ClockTime;
+  at: Timestamp;
+  isTomorrow: boolean;
+};
+
+/**
+ * Ters coğrafi kodlamadan gelen adların Diyanet listesiyle eşleşme sonucu.
+ *
+ * ⚠️ **`'district'` bile otomatik seçim ANLAMINA GELMEZ** — kullanıcıya onay
+ * için gösterilir. Yanlış ilçe = yanlış vakit, bu modülün tek kabul edilemez
+ * hatası. Belirsizlikte `'none'` döner, tahmin edilmez.
+ */
+export type DistrictMatch =
+  | { kind: 'district'; city: PrayerCity; district: PrayerDistrict }
+  | { kind: 'city'; city: PrayerCity }
+  | { kind: 'none' }
+  | { kind: 'outsideTurkey' };
+
+/**
+ * Ağ isteğinin sonucu — `prayerApi` HİÇ fırlatmaz, her yol buraya düşer
+ * (`features/learning/audio.ts` disiplini).
+ *
+ * `upstream` = 502, mirror Diyanet'e ulaşamıyor (belgelenmiş ve beklenen).
+ * `invalid`  = 422, ilçe kimliği geçersiz — tekrar denemek anlamsız.
+ * `offline`  = ağ yok ya da zaman aşımı.
+ */
+export type PrayerFetchOutcome<T> =
+  | { kind: 'ok'; data: T }
+  | { kind: 'upstream' }
+  | { kind: 'invalid' }
+  | { kind: 'offline' };

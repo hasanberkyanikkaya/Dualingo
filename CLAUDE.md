@@ -138,8 +138,9 @@ Faz 2.5.3 mağaza materyalleri — TAMAM.
 Faz 3.1 seri (streak) sistemi — TAMAM.
 Faz 3.2 rozet sistemi — TAMAM.
 Faz 3.3 maskot ve kutlama — TAMAM.
-Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).**
-Sırada **Faz 4.1 namaz modülü** (kaynak kararı verildi, önü açık) ya da
+Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).
+Faz 4.1 namaz veri katmanı + asgari ekran — TAMAM.**
+Sırada **Faz 4.2 namaz çizelgesi + vakit bildirimleri** ya da
 **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da ertelenmiş 1.2c / 1.3 / 1.4.
 
 ⚠️ **Kutlama sahnesi kurulu ama LOTTIE DOSYASI YOK.** 3.3'ten sonra ders sonu
@@ -165,6 +166,10 @@ girildiği gün **kod değişmez.**
 ⚠️ **2.4'te `/app`, `/components` ve altı soru bileşenine HİÇ dokunulmadı.**
 2.3'ün bıraktığı iki kanca dikişi tuttu; değişen tek şey gövdeleri oldu.
 Ayrıntı "İlerleme kaydı kararları"nda.
+
+⚠️ **NAMAZ DA KALICI.** Faz 4.1'den sonra seçili ilçe (`prayer_district`) ve
+indirilmiş vakitler (`prayer_time`) SQLite'ta; kalıcılık duvarını delen
+**ÜÇÜNCÜ** özellik. İlçe soğuk açılışta duruyor, XP hâlâ durmuyor.
 
 ⚠️ **ROZET DE KALICI.** Faz 3.2'den sonra kazanımlar `badge_unlock`
 tablosunda; seriden sonra kalıcılık duvarını delen ikinci özellik. Rozet
@@ -233,6 +238,9 @@ kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'
       Expo uyarı basıyor. Namaz hatırlatıcısı yerel zamanlanmış bildirim olduğu için
       Expo Go'da *bir şeyler* görünür — **ama ona bakıp "çalışıyor" denmemeli.**
       Vakit doğruluğu ve arka planda tetiklenme yalnız dev build'de sınanabilir.
+      ⚠️ **Faz 4.1'den sonra veri tarafı HAZIR:** vakitler `prayer_time`da,
+      bugün+yarın senkron okunabiliyor. Bildirim zamanlaması Faz 4.2'nin işi ve
+      yazılabilir — doğrulanamayan tek şey tetiklenmenin kendisi.
       ⚠️ **Verinin kendisi bloke DEĞİL:** Oturum 4.0'da kaynak seçildi ve seçilen
       servis bir aylık pencere döndürüyor, yani zamanlanacak vakitler dev build
       olmadan da elde ediliyor. Bloke olan tek şey bildirimin **tetiklenmesini
@@ -1237,6 +1245,10 @@ ilgili ve **bu oturumun dosyalarından değil.**
   iki mağazada da doğrudan ret sebebi).
 - Metin uzunlukları **tahmin değil, ölçüldü** ve komut belgede duruyor;
   hepsi sınırın altında (en dar alan: Play kısa açıklaması 73/80).
+- ✅ **Bu engel Oturum 4.1'de KAPANDI** (aşağıdaki madde tarihsel kayıt):
+  `app.json` izin listesi `ACCESS_COARSE_LOCATION` tek maddesine indirildi ve o
+  da artık gerçek bir özelliğe dayanıyor. ⚠️ `ACCESS_FINE_LOCATION`'ın gerçekten
+  düştüğü `npx expo prebuild` birleşik manifestinde **doğrulanmalı**.
 - ⚠️ **YENİ YAYIN ENGELİ BULUNDU — `app.json` kullanılmayan izin bildiriyor.**
   Konum (+iOS izin metni), `RECORD_AUDIO`, `FOREGROUND_SERVICE*`,
   `expo-notifications`, `expo-sqlite`: hiçbirinin kaynakta **tek kullanımı yok**,
@@ -1380,6 +1392,119 @@ ilgili ve **bu oturumun dosyalarından değil.**
 - ⚠️ **Gizlilik politikası ve veri güvenliği formu güncellenecek** — namaz modülü
   **üçüncü bir uzak sunucu** (`emushaf.net`) ekliyor ve **konum** devreye giriyor;
   ikisi de `Planlamalar/Magaza/`'daki "formu geçersiz kılan değişiklikler"de yazılı.
+
+**Namaz modülü kararları (Oturum 4.1):**
+- **Dört SAF modül (testli) + üç YEREL modül (testsiz).** `prayerParse` (ham →
+  satır), `prayerSchedule` (sıradaki vakit), `prayerCache` (yenileme kararı),
+  `districtMatch` (ad eşleme) — hiçbiri `expo-*` import etmiyor. Karşılarında
+  `prayerDb`, `prayerApi`, `location`. `dayLog`/`activityDb` (3.1) ve
+  `audioKey`/`audio` (2.5) ayrımının üçüncü uygulaması.
+- ⚠️ **"YILLIK SAKLAMA" İMKÂNSIZ ÇIKTI.** Prompt yıllık istiyordu ama
+  `/vakitler/{ilceID}` **tarih parametresi almıyor** ve tek çağrıda ~1 aylık
+  pencere döndürüyor. Kayan aylık önbelleğe geçildi (kullanıcı kararı); yıllık
+  veri bu servisten alınamaz, başka bir kaynak ister.
+- ⚠️ **`adhan` yedeği KONMADI**, `package.json` değişmedi (4.0'ın varsayılanı,
+  kullanıcı onayladı). Önbellek boş + ağ yok → dürüst boş durum. Türkiye dışı
+  `strings.prayer.turkeyOnly`. `NAMAZ_VERI_KAYNAGI.md` §10.2 böylece **kapandı**.
+- ⚠️ **"EN YAKIN İLÇE" YAPILAMAZ.** `/ilceler` yalnızca ad + kimlik döndürüyor,
+  koordinat yok, mesafe hesabı yok. Yapılan iş ters coğrafi kodlama + Türkçe
+  duyarlı ad eşleme; etiketler bu yüzden **"bulunduğun ilçe"** der.
+  ⚠️ Eşleşme **otomatik seçilmez**, öneri kartı olarak onaya sunulur;
+  belirsizlikte (birden fazla aday) `none` döner ve `MERKEZ` asla tahmin
+  edilmez. Yanlış ilçe = yanlış vakit, bu modülün tek kabul edilemez hatası.
+- ⚠️ **`normalizeTr` `lib/turkishText.ts`e TAŞINDI.** Namaz tarafının
+  `answerEngine`den import etmesi cevap motorunun tamamını (`strings`,
+  `fillBlankLayout`, `questionValidation`) namaz paketine sokardı. `answerEngine`
+  yeniden dışa aktarıyor; **242 test değişmeden geçti.** Fonksiyon burada
+  dekoratif değil işin tamamı: Diyanet listesi BÜYÜK HARF ("ISPARTA"), cihaz
+  Başlık Biçimi ("Isparta") — naif küçültme eşleşmeyi sessizce kaçırır.
+- **Seçili ilçe SQLite'ta (`prayer_district`), MMKV'de DEĞİL** ve bu, store'un
+  `persist` KULLANMAMASININ sebebi. MMKV Expo Go'da kapalı; oraya yazılsaydı
+  kullanıcı her soğuk açılışta ilçesini yeniden seçerdi. Kalıcılık duvarını
+  delen üçüncü özellik.
+- ⚠️ **Yenileme ölçütü KALAN GÜN, kayıt sayısı DEĞİL** (`isStale`, eşik 7).
+  4.0'da aynı ilçe 15 dk arayla 34 ve 32 kayıt döndürmüştü.
+- ⚠️ **İKİ DÖNGÜ KIRICI** (`decideRefresh`) ve ikisi de zorunlu: mirror'ın
+  önbelleği bayatsa yenileme **AYNI eski pencereyi** döndürür, `isStale` `true`
+  kalır ve koşul yeniden sağlanır. (1) `attemptedThisSession` — otomatik yol
+  oturumda bir kez. (2) `MIN_REFRESH_INTERVAL_MS` 6 saat — uygulamayı üst üste
+  açan kullanıcı birinciyi sıfırlıyor. `markSynced` **pencere ilerlesin
+  ilerlemesin** yazılıyor; yazılmasaydı ikinci kırıcı hiç tetiklenmezdi.
+- ⚠️ **`parseDottedDate` ISO görünümlü girdiyi REDDEDER.** Girdi alanı
+  `MiladiTarihKisaIso8601` ama **içeriği ISO değil** (`"15.08.2026"`). Adına
+  aldanıp değeri doğrudan `IsoDate` saymak sessiz bir hata; test o kapıyı
+  kapatıyor. ⚠️ `HicriTarih*Iso8601` alanları **`null` geliyor** →
+  `HicriTarihKisa` saklanıyor. (İkisi de 20.08.2026'da canlı yeniden doğrulandı.)
+- ⚠️ **Kısmi satır YAZILMAZ**: altı vakitten biri okunamazsa satır düşer. Yarım
+  satır diske girse `findNextPrayer` onu "bugünün verisi var" sayar, eksik vakti
+  atlar ve kullanıcı bir vakti hiç görmez — boş durumdan kötü.
+  ⚠️ **Geçmiş günler DÜŞÜRÜLMEZ** — pencere bugünden başlamıyor ve "ilerledi mi"
+  sorusunu cevaplayan veri o. Süzme okuma tarafında (`WHERE date = ?`).
+- ⚠️ **`localEpochFor` günün epoch'una dakika EKLEMEZ** —
+  `new Date(y, m-1, d, hh, mm)` ile motorun yerel çözümü kullanılıyor.
+  ⚠️ Türkiye 2016'dan beri kalıcı UTC+3, yaz saati YOK; bu satırın koruduğu
+  kullanıcı yurt dışından bakan kullanıcı ve testin koştuğu makine. Testler
+  **mutlak epoch iddia etmez**, saat diliminden bağımsız değişmezler sınar.
+  Elle doğrulandı: `TZ=America/New_York` ve `TZ=Pacific/Kiritimati` → 280/280.
+- **`findNextPrayer` adayları = bugünün altı vakti + YARININ İmsak'ı.**
+  ⚠️ Karşılaştırma **katı `>`**: `>=` olsaydı geri sayım vaktin dakikası boyunca
+  sıfırda takılır ve `useCountdown` sürekli `onElapsed` tetiklerdi. Yarının
+  İmsak'ının listede olması gece yarısını **kendiliğinden** aşan şey; ayrı bir
+  "gece" dalı yok. Adayların hepsi geçmişse `null` — negatif geri sayım yok.
+- ⚠️ **Geri sayım YALNIZCA `CountdownLabel`de tik atıyor.** Kanca karta ya da
+  ekrana konsaydı saniyede bir tüm tablo yeniden çizilirdi (3.3'ün `Star`
+  kararının devamı). Kalan her tikte `Date.now()`dan **yeniden** hesaplanıyor,
+  bir sayaçtan düşülmüyor: `setInterval` arka planda kayar ve düşme yöntemi o
+  kaymayı biriktirir. ⚠️ Sayan metin **ekran okuyucuya OKUNMUYOR**; dakika
+  hassasiyetli tek etiket kartta (3.3'ün `useCountUp` kararının aynısı).
+- **Gece yarısı ve arka plandan dönüş `usePrayerTimes`teki `AppState`
+  dinleyicisiyle**: gün döndüyse `recompute` tabloyu yeni güne çeviriyor ve
+  yenileme kararı yeniden soruluyor. (3.1'de "AppState dinleyicisi sonraki fazın
+  işi" denmişti; burada gerçekten gerekti.)
+- ⚠️ **İl/ilçe LİSTELERİ SQLite'a YAZILMIYOR** — kullanıcı verisi değil, üçüncü
+  tarafın kataloğu; tabloya koymak onlara Faz 7 sync semantiği vermek olurdu.
+  Oturum boyu `Map` önbelleği + uçuştaki istek tekilleştirmesi (`audio.ts`
+  deseni). **Kabul edilen sonuç:** ilk açılışta ağ yoksa ilçe seçilemez.
+- ⚠️ **Ağ uyarısı yalnızca ekran BOŞKEN gösteriliyor.** Dolu ekranda "sunucuya
+  ulaşılamadı" demek boşuna telaş — vakitler önbellekte ve doğru.
+- ⚠️ **Atıf ZORUNLU:** `strings.prayer.attribution` =
+  *"Diyanet İşleri Başkanlığı'nın yayınladığı vakitler"*. **"Resmi", "onaylı",
+  "Diyanet'in uygulaması" hiçbir metinde geçmez** — hukuki + mağaza riski.
+- **`colors.ts` DEĞİŞMEDİ.** Sıradaki vakit kartı `primarySoft` dolgu,
+  **kenarlıksız** (⚠️ `borderControl` yumuşak dolgu üzerine çizilmez, 2.39 koyu),
+  ikincil satır **`textSecondary`** (⚠️ `textMuted` değil). Tabloda "sıradaki"
+  durumu **renkle taşınmıyor**, ikonun BİÇİMİYLE (`arrow-forward-circle` ↔
+  `ellipse-outline`) — 1.4.1'in altıncı uygulaması. İlçe listesi `OptionCard`.
+- ⚠️ **ESLint `use` ön ekli bir `useCallback` değişkenini KANCA sanıyor.**
+  `useMyLocation` → `findFromLocation` olarak yeniden adlandırıldı
+  (`react-hooks/rules-of-hooks` **hatası** veriyordu, uyarı değil).
+- ⚠️ **`app/prayer/district.tsx` kapatma düğmesini ELLE çiziyor** — kök yerleşim
+  `headerShown: false` veriyor, navigatörün geri düğmesi yok.
+- **316 test geçiyor** (242'den). ⚠️ `prayerDb`, `prayerApi`, `location`, `store`
+  ve bileşenler için test **yazılamaz** (yerel modül).
+- ⚠️ **`npx expo-doctor` 17/18** — kalan madde bu oturumla ilgisiz: yukarı akışta
+  `expo` (54.0.36 → ~54.0.37) ve `expo-constants` yama sürümleri ilerlemiş.
+  Düzeltme `npx expo install --check` ister; OneDrive/`EBUSY` riski (2.4'te bir
+  kez ısırmıştı) yüzünden oturum sonunda kasten yapılmadı.
+
+**Namaz — Faz 4.1'in kod DIŞI çıktıları:**
+- `app.json` izin listesi **temizlendi**: `ACCESS_COARSE_LOCATION` dışında hepsi
+  kaldırıldı (`ACCESS_FINE_LOCATION`, `RECORD_AUDIO`, `MODIFY_AUDIO_SETTINGS`,
+  iki `FOREGROUND_SERVICE*`). iOS izin metni yeniden yazıldı — eskisi
+  "hesaplamak" diyordu, biz hesaplamıyoruz.
+  ⚠️ `ACCESS_FINE_LOCATION`'ın gerçekten düştüğü **doğrulanmadı**;
+  `expo-location` eklentisi kendi manifestiyle geri birleştirebilir.
+  `npx expo prebuild` çıktısındaki birleşik manifest kontrol edilmeli.
+- `Magaza/GIZLILIK_POLITIKASI.md`: envanter **ikiden üçe** çıktı, "3b. Konum
+  izni — isteğe bağlı" bölümü eklendi, "toplamadıklarımız" listesinden konum
+  **çıkarıldı**. ⚠️ **Bulunan gerçek:** `reverseGeocodeAsync` iOS'ta koordinatı
+  **Apple'ın sunucusuna** gönderiyor (CLGeocoder); "konum cihazdan çıkmıyor"
+  yazılamaz. Hukukçuya sorulacaklara **üç madde** eklendi (8-10).
+- `Magaza/VERI_GUVENLIGI_FORMU.md`: konum satırı "Hayır"dan çıkıp hukuki
+  incelemeye bırakıldı; Bölüm 3 (izin sorunu) **çözüldü** olarak işaretlendi.
+- `Magaza/MAGAZA_METINLERI.md`: namaz artık yazılabilir ama metinler **henüz
+  genişletilmedi** — kendi oturumunda, uzunluk sınırları yeniden ölçülerek.
+  Yasak ifadeler o dosyanın başında yazılı.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

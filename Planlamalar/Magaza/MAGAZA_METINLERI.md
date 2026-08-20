@@ -45,12 +45,26 @@ yazılmıştır. Her metin kendi kod bloğundadır; blok dışındaki her şey n
 
 ## Ne anlatılıyor, ne anlatılmıyor
 
-⚠️ **Namaz takibi ve Kur'an okuma takibi hiçbir metinde ÖZELLİK olarak
-sunulmuyor.** Uygulamada o sekmeler bugün "yakında" durumundadır. Olmayan bir
-özelliği anlatmak hem kullanıcıyı yanıltır hem de "açıklamayla uyuşmuyor"
-gerekçesiyle ret sebebidir. Aşağıdaki metinlerde yalnızca **v0.1'de gerçekten
-çalışan** şeyler var: öğrenme yolu, seviye tespit sınavı, altı soru tipi,
-yıldız/XP/seri, çevrimdışı çalışma, hesapsızlık, reklamsızlık.
+⚠️ **Kur'an okuma takibi hiçbir metinde ÖZELLİK olarak sunulmuyor.** O sekme
+bugün "yakında" durumundadır. Olmayan bir özelliği anlatmak hem kullanıcıyı
+yanıltır hem de "açıklamayla uyuşmuyor" gerekçesiyle ret sebebidir. Aşağıdaki
+metinlerde yalnızca **gerçekten çalışan** şeyler var: öğrenme yolu, seviye
+tespit sınavı, altı soru tipi, yıldız/XP/seri, çevrimdışı çalışma,
+hesapsızlık, reklamsızlık.
+
+⚠️ **NAMAZ VAKİTLERİ Faz 4.1'de GERÇEKLEŞTİ ve artık yazılabilir** — ama
+aşağıdaki metinler **henüz güncellenmedi**; genişletme kendi oturumunda
+yapılacak (uzunluk sınırları yeniden ölçülmeli). Yazıldığında uyulacak kurallar:
+
+- İzin verilen ifade: *"Diyanet İşleri Başkanlığı'nın yayınladığı namaz
+  vakitleri"*, ekranda atıfla birlikte.
+- ⚠️ **YASAK:** "Diyanet onaylı", "resmi", "Diyanet'in uygulaması" ve benzeri
+  her ifade. Veri Diyanet'in yayınladığı tablodur ama uygulama Diyanet'e ait
+  değildir ve kurumla anlaşması yoktur — hem hukuki hem impersonation riski.
+- Kapsam **yalnızca Türkiye** olarak belirtilmeli; yurt dışında çalışmıyor.
+- Namaz **çizelgesi** ("kıldım" işaretleme) ve **vakit bildirimleri** hâlâ YOK
+  (Faz 4.2). Onlar yazılmamalı.
+- Konumun **isteğe bağlı** olduğu söylenmeli — ilçe elle de seçilebiliyor.
 
 ⚠️ **"Uzmanlar tarafından hazırlandı / onaylandı" iddiası metinlere
 KONMAMIŞTIR.** Bugün uygulamadaki içerik örnek veridir. Gerçek içerik insan

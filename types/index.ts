@@ -6,3 +6,4 @@
 
 export type * from './learning';
 export type * from './progress';
+export type * from './prayer';

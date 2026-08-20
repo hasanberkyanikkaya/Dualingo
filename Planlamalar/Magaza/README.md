@@ -50,9 +50,16 @@ Bu maddeler kapanmadan v0.1 yayınlanamaz. Hiçbiri bu oturumda çözülemezdi.
    19 yerde `TODO` bekliyor. Tam döküm: Faz 2.5.1 yer tutucu tarama raporu.
    Doğrulama komutu: `npm run check:content`.
    ⚠️ **Bu bir içerik işidir, kod işi değil** — dini içeriği insan uzman yazar.
-2. **Kullanılmayan izinler bildiriliyor.** Konum, `RECORD_AUDIO`, ön plan
-   servisi, bildirim, SQLite — hiçbiri v0.1'de kullanılmıyor. Somut ret riski;
-   ayrıntı ve öneri: `VERI_GUVENLIGI_FORMU.md` Bölüm 3.
+2. ✅ **ÇÖZÜLDÜ (Oturum 4.1) — kullanılmayan izinler temizlendi.**
+   `app.json` izin listesi tek maddeye indi (`ACCESS_COARSE_LOCATION`) ve o da
+   artık gerçek bir özelliğe dayanıyor ("Konumumdan bul"). `ACCESS_FINE_LOCATION`,
+   `RECORD_AUDIO`, `MODIFY_AUDIO_SETTINGS` ve iki `FOREGROUND_SERVICE*` izni
+   kaldırıldı; iOS konum izin metni yeniden yazıldı.
+   ⚠️ **Kalan iki iş:** (a) `ACCESS_FINE_LOCATION`'ın gerçekten düştüğü
+   `npx expo prebuild` çıktısındaki birleşik manifestte **doğrulanmalı** —
+   `expo-location` eklentisi onu geri birleştirebilir; (b) `expo-notifications`
+   eklentisi hâlâ kullanılmıyor, Faz 4.2'ye kadar bildirilmiş bir yetenek.
+   Ayrıntı: `VERI_GUVENLIGI_FORMU.md` Bölüm 3.
 3. **Uygulama ikonu ve açılış ekranı hâlâ Expo şablonundan.**
    `assets/images/icon.png` ve `splash-icon.png` şablon dosyaları
    (`splash-icon.png`, `expo-logo.png` ile aynı dosya). Maskot
@@ -129,5 +136,8 @@ alınan görüntüler kullanılamaz. Bu, 1 numaralı yayın engeline bağlı.
 - **İngilizce yerelleştirme.** İlk pazar Türkiye; metinler Türkçe. Gerekirse
   ayrı oturum — mağaza panelinde her dil ayrı alan, kod değişikliği gerekmez.
 - **Tanıtım videosu / mağaza grafikleri.** Zorunlu değil.
-- **`app.json` düzenlemesi.** Bu oturum yalnızca metin üretti; izin temizliği
-  bilinçli olarak rapor düzeyinde bırakıldı (kullanıcı kararı).
+- **`app.json` izin temizliği.** ✅ Oturum 4.1'de yapıldı (yukarıdaki 2. madde).
+- **Mağaza metinlerine namaz modülünün eklenmesi.** Faz 4.1 ile namaz vakitleri
+  gerçek bir özellik oldu; `MAGAZA_METINLERI.md` henüz genişletilmedi ve
+  uzunluk sınırları yeniden ölçülmeli. Kurallar o dosyanın başında yazılı —
+  ⚠️ özellikle "Diyanet onaylı / resmi" ifadelerinin yasak olduğu.

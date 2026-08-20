@@ -23,11 +23,27 @@ Uygulamanın v0.1'de sakladığı ve gönderdiği her şey:
 doğruluk, deneme sayısı, zaman damgaları), `streak`, `placement`, `dailyGoal`,
 `updatedAt`, `deletedAt`. **Hiçbiri cihazdan çıkmıyor.**
 
-**Cihazdan çıkan** — yalnızca iki istek:
+⚠️ **Faz 4.1 ile eklenenler** (`features/prayer/prayerDb.ts`, SQLite
+`prayer_district` + `prayer_time` tabloları): seçilen il/ilçe kimliği ve adı,
+indirilmiş yaklaşık bir aylık namaz vakti tablosu. **Bunlar da cihazdan
+çıkmıyor.**
 
-1. Açılışta güncelleme kontrolü, `u.expo.dev` (`app.json:62-66`)
+**Cihazdan çıkan** — üç istek:
+
+1. Açılışta güncelleme kontrolü, `u.expo.dev` (`app.json`)
 2. Ders sesi indirme (`features/learning/audio.ts`) — ⚠️ **bu sürümde fiilen
-   kapalı**, `app.json:72` → `extra.audioBaseUrl` boş
+   kapalı**, `app.json` → `extra.audioBaseUrl` boş
+3. ⚠️ **Namaz vakti indirme** (`features/prayer/prayerApi.ts`) →
+   `ezanvakti.emushaf.net`. Gönderilen tek şey **ilçe numarası**; kişisel veri,
+   kimlik ya da ilerleme yok. Yaklaşık bir aylık pencere indiği için istek
+   seyrek (kalan gün < 7).
+
+⚠️ **Konum** (`features/prayer/location.ts`): yalnızca kullanıcı "Konumumdan
+bul"a basarsa, düşük hassasiyetle, **tek seferlik**. Konum bizim sunucumuza ya
+da `emushaf.net`'e **gönderilmiyor** ve **saklanmıyor** — saklanan tek şey
+kullanıcının onayladığı ilçe. ⚠️ Ama iOS'ta `reverseGeocodeAsync` koordinatı
+**Apple'ın sunucusuna** gönderiyor (CLGeocoder); Android'de cihaz üstünde
+çözülüyor. "Konum cihazdan hiç çıkmıyor" **denemez.**
 
 **Bulunmayanlar:** hesap/giriş, analitik, çökme raporlama (Sentry `package.json`'da
 **kurulu değil**), reklam ağı, satın alma, kullanıcı içeriği, mesajlaşma.
@@ -41,7 +57,7 @@ doğruluk, deneme sayısı, zaman damgaları), `streak`, `placement`, `dailyGoal
 | Soru | Önerilen cevap | Gerekçe |
 | --- | --- | --- |
 | Uygulamanız kullanıcı verisi topluyor mu ya da paylaşıyor mu? | **Hayır** | Cihazdan çıkan kullanıcı verisi yok. ⚠️ IP çekincesi için 1.4'e bak |
-| Konum | Hayır | Kodda `expo-location` kullanımı yok. ⚠️ İzin bildirimi var — Bölüm 3 |
+| Konum | ⚠️ **Hukukçuya sorulacak** | Faz 4.1'de `expo-location` **gerçekten kullanılıyor** (`features/prayer/location.ts`) ama konum *toplanmıyor*: tek seferlik okunuyor, ilçe adına çevriliyor, saklanmıyor, hiçbir sunucumuza gitmiyor. Play'in "collect" tanımı bunu kapsıyor mu, form doldurulmadan netleşmeli. ⚠️ **Bu satır artık "Hayır" olarak bırakılamaz** |
 | Kişisel bilgi (ad, e-posta, kimlik) | Hayır | Hesap sistemi yok |
 | Finansal bilgi | Hayır | Satın alma yok |
 | Sağlık ve fitness | Hayır | — |
@@ -56,7 +72,7 @@ doğruluk, deneme sayısı, zaman damgaları), `streak`, `placement`, `dailyGoal
 
 | Soru | Önerilen cevap | Gerekçe |
 | --- | --- | --- |
-| Veriler aktarım sırasında şifreleniyor mu? | **Evet** | Giden iki istek de HTTPS |
+| Veriler aktarım sırasında şifreleniyor mu? | **Evet** | Giden üç istek de HTTPS (`ezanvakti.emushaf.net` dahil) |
 | Kullanıcılar verilerinin silinmesini talep edebiliyor mu? | **Evet** | Uygulamayı silmek tüm veriyi siler; ayrıca uygulama içinde ilerleme sıfırlama var (`resetProgress`, `features/progress/store.ts`) |
 | Uygulama bağımsız bir güvenlik denetiminden geçti mi? | Hayır | Geçmedi |
 | Play Families politikasına tabi mi? | ⚠️ **Yaş derecelendirmesine bağlı** | Hedef kitlede çocuklar da var. "Çocuklar" hedef kitle olarak seçilirse **Families politikası devreye girer** ve ek yükümlülük doğar. Karar hukukçuyla verilmeli |
@@ -126,10 +142,26 @@ uyarılar okunmalı. Bu, kod tarafında ek iş çıkarabilecek tek maddedir.
 
 ## Bölüm 3 — ⚠️ İzin sorunu: beyan ile gerçek çelişiyor
 
-**Bu, formdan önce çözülmesi gereken bir sorundur.**
+> ✅ **ÇÖZÜLDÜ — Oturum 4.1.** `app.json`'daki izin listesi
+> `ACCESS_COARSE_LOCATION` tek maddesine indirildi; `ACCESS_FINE_LOCATION`,
+> `RECORD_AUDIO`, `MODIFY_AUDIO_SETTINGS`, `FOREGROUND_SERVICE` ve
+> `FOREGROUND_SERVICE_MEDIA_PLAYBACK` **kaldırıldı.** iOS konum izin metni de
+> yeniden yazıldı: artık "hesaplamak" demiyor (biz hesaplamıyoruz), "bulunduğun
+> ilçeyi bulmak" diyor ve isteğe bağlı olduğunu söylüyor.
+>
+> ⚠️ **`ACCESS_COARSE_LOCATION` artık GERÇEK bir kullanıma dayanıyor** — Faz 4.1
+> "Konumumdan bul" kısayolu. Gerekçesiz izin sorunu bu satır için ortadan kalktı.
+>
+> ⚠️ **`ACCESS_FINE_LOCATION`'ın gerçekten düştüğü DOĞRULANMADI.**
+> `expo-location` eklentisi kendi manifestiyle onu geri birleştirebilir;
+> `npx expo prebuild` çıktısındaki birleşik manifest kontrol edilmeli.
+> Kaldırıldığı **varsayılmamalı.**
+>
+> ⚠️ `expo-notifications` ve `expo-sqlite` eklentileri **duruyor** —
+> `expo-sqlite` artık üç özellik tarafından (seri, rozet, namaz) fiilen
+> kullanılıyor; `expo-notifications` hâlâ kullanılmıyor ve Faz 4.2'yi bekliyor.
 
-`app.json` bugün, **hiçbir kodun kullanmadığı** izinleri ve eklentileri
-bildiriyor:
+Aşağıdaki tablo sorunun **çözülmeden önceki** hâlini kayda geçiriyor:
 
 | Bildirilen | Nerede | v0.1'de kullanılıyor mu |
 | --- | --- | --- |
@@ -155,11 +187,10 @@ kullanmıyor.**
 - Data safety formunda "konum toplamıyoruz" demek ile konum izni bildirmek
   yan yana **tutarsız** görünür.
 
-**Önerilen çözüm (bu oturumun kapsamı dışında, kullanıcı kararı):** v0.1
-derlemesinden bu izinleri ve kullanılmayan eklentileri çıkarmak; Faz 4-5
-geldiğinde geri eklemek.
+**Uygulanan çözüm (Oturum 4.1):** kullanılmayan izinler `app.json`'dan
+çıkarıldı, konum izni gerçek bir özelliğe bağlandı ve metni düzeltildi.
 ⚠️ Bu bir **yerel yapılandırma** değişikliğidir — OTA ile gitmez, **yeni
-derleme** ister. Faz 4 zaten yeni derleme gerektiriyor, yani bedeli yok.
+derleme** ister. Faz 4 zaten yeni derleme gerektirdiği için bedeli yok.
 
 ---
 
@@ -172,7 +203,8 @@ Aşağıdakilerden biri yapıldığı gün formlar **yeniden doldurulmalıdır**
 | **Sentry / çökme raporlama** (Faz 1.4) | Play: "Uygulama içi bilgi ve performans → Çökme kayıtları" **Evet**. Apple: artık "Data Not Collected" değil (Diagnostics) |
 | **Bulut senkronizasyonu** (Faz 7) | Hesap + sunucuya giden ilerleme verisi. İki formun da tamamı değişir |
 | **Bildirimler** (Faz 4) | Push kullanılırsa cihaz jetonu = **kimlik**. Yalnızca yerel zamanlanmış bildirim kullanılırsa değişmez |
-| **Konum** (Faz 4 — namaz vakti / kıble) | Play: konum **Evet**. İzin gerekçesi ve politika metni yazılmalı |
+| ✅ **Konum** (Faz 4.1'de GERÇEKLEŞTİ) | Bölüm 1.1'deki konum satırı "Hayır"dan çıktı ve hukuki incelemeye bırakıldı; politikaya "3b. Konum izni — isteğe bağlı" bölümü eklendi. **Form bu değişiklikle yeniden doldurulmalı.** |
+| ✅ **Üçüncü uzak sunucu** (Faz 4.1'de GERÇEKLEŞTİ) | `ezanvakti.emushaf.net` envantere girdi. Bu servis **bağımsız bir üçüncü taraftır** ve yazılı kullanım şartı yayınlamıyor — mağaza formunda üçüncü taraf olarak anılması gerekip gerekmediği hukukçuya soruldu |
 | **Reklam veya satın alma** | Ek beyanlar, muhtemelen yaş derecelendirmesi |
 | `extra.audioBaseUrl` doldurulması | Beyan değişmez ama politikanın 3-b maddesi **fiilen yürürlüğe girer** |
 

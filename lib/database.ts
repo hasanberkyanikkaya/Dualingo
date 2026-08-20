@@ -74,6 +74,63 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_badge_unlock_updated_at
      ON badge_unlock (updated_at);`,
+
+  // [2] → sürüm 3: namaz vakti önbelleği + seçili ilçe (Faz 4.1).
+  //
+  // `prayer_time` anahtarı `(district_id, date)` BİLEŞİK ve doğal —
+  // `activity_day.date` ile aynı senkronizasyon kararı: iki cihaz aynı ilçenin
+  // aynı gününü yazarsa bu AYNI satırdır ve `updated_at` ile çözülür.
+  //
+  // ⚠️ **Geçmiş günler de yazılır, süzülmez.** Servis (`ezanvakti.emushaf.net`)
+  // ilçe başına önbellekli bir pencere döndürüyor ve pencere BUGÜNDEN
+  // BAŞLAMIYOR (4.0'da ölçüldü: 20.08'de gelen pencere 15.08'de başlıyordu).
+  // Yanıttaki EN SON tarihi görebilmek — yani "pencere ilerledi mi" sorusunu
+  // cevaplayabilmek — için pencerenin tamamı diske yazılıyor. Süzme okuma
+  // tarafında, `WHERE date = ?` ile.
+  //
+  // Alınmayan alanlar (`GunesDogus`, `GunesBatis`, `MiladiTarihUzun`,
+  // `AyinSekliURL`, `GreenwichOrtalamaZamani`) bilerek dışarıda: tüketicisi
+  // yok. Gerekirse `MIGRATIONS[3]` bir `ALTER TABLE ... ADD COLUMN` olur, eski
+  // satırlarda `NULL` kalır ve pencere yenilenince dolar.
+  //
+  // ⚠️ `hicri_kisa` `HicriTarihKisa`dan gelir, `HicriTarihKisaIso8601`den
+  // DEĞİL — o alan servisten `null` geliyor (4.0 ölçümü).
+  //
+  // `prayer_district` neden SQLite'ta ve MMKV'de değil: MMKV Expo Go'da kapalı
+  // ve bellek içi yedeğe düşüyor (`features/progress/storage.ts`). Seçili ilçe
+  // oraya yazılsaydı kullanıcı HER SOĞUK AÇILIŞTA ilçesini yeniden seçerdi.
+  // Şehir ADI da saklanıyor (kimlik değil): ekranda "Kadıköy, İstanbul" yazmak
+  // için ağa çıkmak gerekmesin diye.
+  `CREATE TABLE IF NOT EXISTS prayer_time (
+     district_id TEXT    NOT NULL,
+     date        TEXT    NOT NULL,
+     imsak       TEXT    NOT NULL,
+     gunes       TEXT    NOT NULL,
+     ogle        TEXT    NOT NULL,
+     ikindi      TEXT    NOT NULL,
+     aksam       TEXT    NOT NULL,
+     yatsi       TEXT    NOT NULL,
+     kible_saati TEXT,
+     hicri_kisa  TEXT,
+     updated_at  INTEGER NOT NULL,
+     deleted_at  INTEGER,
+     PRIMARY KEY (district_id, date)
+   );
+   CREATE INDEX IF NOT EXISTS idx_prayer_time_updated_at
+     ON prayer_time (updated_at);
+
+   CREATE TABLE IF NOT EXISTS prayer_district (
+     district_id   TEXT    PRIMARY KEY NOT NULL,
+     district_name TEXT    NOT NULL,
+     city_id       TEXT    NOT NULL,
+     city_name     TEXT    NOT NULL,
+     selected_at   INTEGER NOT NULL,
+     last_sync_at  INTEGER,
+     updated_at    INTEGER NOT NULL,
+     deleted_at    INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_prayer_district_updated_at
+     ON prayer_district (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;
