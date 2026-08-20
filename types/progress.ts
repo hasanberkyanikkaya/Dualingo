@@ -62,12 +62,37 @@ export type StreakState = {
   updatedAt: Timestamp;
 };
 
-/** Seviye tespit sınavının sonucu. */
+/**
+ * Seviye tespit sınavının sonucu.
+ *
+ * `declared` ile `difficulty` ayrı tutuluyor: kullanıcı kademesini önce beyan
+ * ediyor, sınav onu **doğruluyor ya da bir kademe düşürüyor** (asla yükseltmiyor).
+ * İkisini tek alana indirmek sonuç ekranının "bir kademe aşağı alındın" diyebilmesini
+ * imkânsız kılardı ve tekrar sınavında kullanıcının kendi beyanı kaybolurdu.
+ */
 export type PlacementResult = {
   /** Testin belirlediği başlangıç kademesi. */
   difficulty: Difficulty;
+  /** Kullanıcının kendi beyanı — sınav öncesi seçtiği kademe. */
+  declared: Difficulty;
+  /**
+   * Sınav doğruluğu, 0 ile 1 arası. `LevelProgress.bestAccuracy` ile AYNI birim;
+   * gösterirken dönüştürme yapılmaz.
+   *
+   * Sınav atlandıysa (`levelTestSkip`) 0'dır — soru sorulmadı, doğru da yok.
+   */
+  accuracy: number;
   completedAt: Timestamp;
 };
+
+/**
+ * Günlük çalışma hedefi — karşılama akışının son adımında seçilir.
+ *
+ * Dakika değeri BURADA DEĞİL: hedefin kaç dakikaya karşılık geldiği bir arayüz
+ * metni (`strings.onboarding.goal*`) ve zamanla değişebilir; diske yazılan şey
+ * kullanıcının niyeti olmalı, o niyetin bugünkü dakika karşılığı değil.
+ */
+export type DailyGoal = 'casual' | 'regular' | 'serious';
 
 /**
  * Kullanıcının tüm öğrenme ilerlemesi.
@@ -82,6 +107,8 @@ export type UserProgress = {
   levels: Record<LevelId, LevelProgress>;
   streak: StreakState;
   placement: PlacementResult | null;
+  /** Seçilmemişse `null` — karşılama akışı bu adımı atlamış olabilir. */
+  dailyGoal: DailyGoal | null;
   updatedAt: Timestamp;
   deletedAt: Timestamp | null;
 };

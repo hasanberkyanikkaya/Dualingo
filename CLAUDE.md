@@ -132,8 +132,9 @@ Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
 Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.
 Faz 2.3 ders akışı ekranı — TAMAM.
 Faz 2.4 ilerleme kaydı — TAMAM.
-Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.**
-Sırada **Faz 2.6 — seviye tespit sınavı**.
+Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.
+Faz 2.6 seviye tespit sınavı — TAMAM.**
+Sırada **Faz 3 — tema ve profil** (ya da ertelenmiş 1.2c / 1.3 / 1.4).
 
 ⚠️ **Yayın hazırlığının (FAZ 2.5) üçüncü oturumu YAPILMADI:** mağaza
 materyalleri — gizlilik politikası taslağı, mağaza açıklaması, veri güvenliği
@@ -156,6 +157,9 @@ Ayrıntı "İlerleme kaydı kararları"nda.
 bellek içi yedeğe düşüyor ve konsola uyarı basıyor. İlerleme oturum boyunca doğru
 çalışıyor, uygulama kapanınca sıfırlanıyor. **Faz 1.3 (dev build) alındığı gün
 kod değişmeden açılır.**
+⚠️ **2.6'dan sonra bunun görünen bir yüzü var:** `placement` de kalıcı olmadığı
+için **her soğuk açılışta karşılama akışı yeniden çıkıyor.** Bir hata değil, aynı
+MMKV duvarı — ama artık ilk ekranda görülüyor, sessiz değil.
 
 ---
 
@@ -926,6 +930,89 @@ dosyasını üretti ve `eslint` + `eslint-config-expo`'yu `package.json`'a **aç
 devDependency** olarak yazdı (kuruluydular ama yazılı değildiler). `npm run lint`
 artık çalışıyor: **0 hata, 6 uyarı** — altısı da `strings` varsayılan import'uyla
 ilgili ve **bu oturumun dosyalarından değil.**
+
+**Seviye tespiti kararları (Oturum 2.6):**
+- **Sonuç kuralı: doğrula ya da BİR kademe düşür, asla yükseltme.**
+  `correct*100 >= total*70` → kullanıcının beyanı onaylanır, altındaysa bir kademe
+  aşağı (`beginner` taban yapar). Tam sayı aritmetiği (`lessonScoring.ts` kalıbı) —
+  kayan nokta eşiğin tam üstündeki sonucu yanlış yöne yuvarlayabilirdi.
+  Yükseltmemenin gerekçesi ürün: Başlangıç diyen birini altı soruya bakıp İleri'ye
+  atmak, kullanıcının kendi hakkındaki bilgisini yok saymak olurdu.
+- ⚠️ **`total <= 0` beyanı olduğu gibi kabul eder** ve bu tek satır iki işi birden
+  görüyor: "En baştan başlamak istiyorum" yolu ve kademe havuzunun boş olduğu
+  durum. **Ayrı bir store eylemi yazılmadı** — `setPlacement('beginner', 0, 0)`.
+- **Atlama SIRA tabanlı, kademe tabanlı DEĞİL.** Düz sırada hedef kademenin İLK
+  seviyesi giriş noktası; öncesi `skipped`, girişi `available`, **sonrasına hiç
+  dokunulmuyor.** ⚠️ Fark içerikte gerçek: kademeler yol sırasında **monoton
+  değil** (`beginner×4, basic, beginner×2, basic×2, advanced`). Kademe tabanlı
+  kural `basic` sonucunda `u2-01`/`u2-02`'yi de atlar, `u2-03` kilitli kalır ve
+  haritada **delik** açılırdı.
+- **`applyPlacement` asla geri düşürmez** (`unlock.ts` felsefesi; burada gerekçe
+  daha keskin çünkü sınav profilden TEKRAR edilebiliyor): `completed` kayda hiçbir
+  koşulda dokunulmuyor, daha düşük bir kademe seçilse bile. `available` → `skipped`
+  ileri hareket ("sıran değil, atlandı"); giriş noktasındaki `skipped` → `available`.
+  Yumuşak silinmiş kaydın **üzerine** taze kayıt yazılıyor (`levelStatus.ts`'e göre
+  o kayıt "hiç açılmamış" demek). Değişiklik yoksa **aynı referans**.
+- ⚠️ **Giriş noktası her zaman yaşayan bir kayıt taşır.** Bu garanti olmadan
+  `findCurrentLevelId` `null` döner, "Şu an buradasın" kaybolur ve kullanıcının
+  gidecek yeri kalmaz. Testte üç kademe için de sınanıyor.
+- `skipped` kayıt `stars`/`bestAccuracy`/`attemptCount` sıfır, `completedAt` **yok** —
+  `xpForRun`'ın tam XP kuralı (2.3'te tam bu oturum için yazılmıştı) buna dayanıyor.
+- **Sınav seri BAŞLATMAZ ve XP VERMEZ.** `advanceStreak` çağrılmıyor: gün serisini
+  bir sınavla başlatmak, hiç ders yapmadan seri sahibi olmak demekti.
+- ⚠️ **`placement` ile `levels` AYNI `set` çağrısında** yazılıyor. Ayrılsalardı
+  arada bir çizim "tespit yapıldı ama harita eski" gösterirdi.
+- **Sorular ayrı dosyada: `content/placement.json`**, ders içeriğinden türetilmiyor.
+  İki sebep: kullanıcı sınavda gördüğü soruyu birkaç dakika sonra derste tekrar
+  görmemeli, ve bir kademenin sınavı o kademede kaç seviye bulunduğuna bağlı
+  olmamalı (bugün `advanced` tek seviye taşıyor). Kimlik ön eki `q-plc-<kademe>-nn`.
+  ⚠️ Havuz **tekil bir dosya**, `path.json` gibi bir gezinti noktası yok — bölünürse
+  hem `contentLoader` hem `scripts/checkContent.ts` öğrenmeli.
+- **`validatePlacementContent`**: soru başına denetim ders sorularıyla **birebir
+  aynı** (`validateQuestion` yeniden kullanıldı) + kademe başına en az bir soru
+  (uyarı) + **ders kimlikleriyle çakışma** (hata). Kimlik listesi doğrulayıcıya
+  argüman olarak veriliyor; o dosya saf kalmalı (`contentLoader`u içeri almak
+  döngüsel bağımlılık olurdu).
+- **`lessonSession.ts` ikiye ayrıldı, DAVRANIŞ DEĞİŞMEDİ**: `createQuestionSession`
+  (düz soru listesi) + `createLessonSession` (onun üstünde ince sarmalayıcı).
+  2.3'ün "indirgeyici seviyeyi/XP'yi bilmez" kararının karşılığını verdiği yer;
+  `buildSummary` sınav tarafında **kullanılmıyor**.
+- **Oturum durumu yine `useReducer`**, Zustand değil — store tekil ve sınav ile ders
+  aynı anda yaşarsa çakışırlardı (2.4'te yazılmış gerekçe).
+- ⚠️ **Sonuç `advance` işleyicisinden yazılıyor, `useEffect`'ten DEĞİL** —
+  `reactCompiler` + StrictMode etkileri iki kez çalıştırıyor. `applyPlacement`
+  idempotent olduğu için sonuç aynı olurdu ama `placement.completedAt` iki farklı
+  an gösterirdi.
+- **Kapı `(tabs)/_layout.tsx`'te bildirimsel `<Redirect>`**, `useEffect` +
+  `router.replace` değil. ⚠️ Depolama **senkron** olduğu için `placement` daha ilk
+  çizimde doğru ve sekme çubuğu tek bir kare bile parlamıyor — 2.4'teki depolama
+  kararının ikinci kez karşılığını verdiği yer. Kapı sekmelerin ÖNÜNDE, kök
+  yerleşimde değil: `/lesson/[id]` derin bağlantısı buradan geçmiyor ve geçmemeli,
+  ders ekranının kendi kilit denetimi zaten yerinde.
+- **`OptionCard` `features/learning/components/question/` → `components/` taşındı**
+  ve `body?` prop'u aldı (mimari kural 3). Kademe seçimi tam olarak o kontrolü
+  istiyordu; yeni bir kart yazmak 2.2a'da ölçülmüş bütün renk kararlarını ikinci
+  kez vermek olurdu. ⚠️ `body` satırı `textSecondary`, `textMuted` **değil** —
+  seçili kartın dolgusu `primarySoft` ve 2.3'ün "renkli yumuşak dolgu üzerine
+  `textMuted` gelmez" kuralı burada da geçerli.
+- ⚠️ **`strings.onboarding.alreadyHaveProgress` bilerek ÇİZİLMEDİ.** Bir hesap
+  kurtarma akışını ima ediyor; bugün hesap yok, ilerleme yalnızca cihazda (bulut
+  Faz 7). Hiçbir yere gitmeyen bir bağlantı, olmayan bir özelliği vaat ederdi.
+- **Günlük hedef ATLANABİLİR** ve `dailyGoal` `null` kalabilir: henüz hiçbir yerde
+  kullanılmayan bir tercihi (hedef takibi Faz 3) uygulamaya girişin önünde engel
+  yapmak yanlıştı. ⚠️ Dakika değerleri **etiketin içinde**, `DailyGoal` değerinin
+  yanında değil — diske yazılan şey niyet, o niyetin bugünkü dakika karşılığı değil.
+- **`persist` `version: 1 → 2`** (`dailyGoal` için `migrate`). `placement` migrate
+  istemedi: yazıcısı 2.6'ya kadar hiç olmadığı için diskteki her kayıtta zaten `null`.
+- `contentLoader`'a **`findUnitByLevelId`** eklendi (sonuç ekranı ünite ADI
+  gösteriyor; seviye → ünite yönünde eşleme hiçbir yerde yoktu). `findLevelById`
+  ile aynı geçişte kuruluyor.
+- **148 test geçiyor.** `tests/placement.test.ts` sınama yolunu bilerek **monoton
+  olmayan** kademelerle kuruyor; o desen olmadan sıra tabanlı ile kademe tabanlı
+  kural aynı sonucu verir ve test kuralı gerçekten sınamaz.
+- `strings.ts`: `onboarding` genişletildi (kademe etiketleri, sınava özel çıkış
+  onayı — ⚠️ `lesson.quitMessage` "bu dersteki ilerlemen" diyor, sınav için yanlış
+  cümle —, sonuç satırları), `profile`'a üç satır. **`colors.ts` değişmedi.**
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

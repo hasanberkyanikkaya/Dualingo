@@ -67,6 +67,33 @@ export const strings = {
     goalCasual: 'Rahat — günde 5 dakika',
     goalRegular: 'Düzenli — günde 10 dakika',
     goalSerious: 'Kararlı — günde 20 dakika',
+
+    // Kademe etiketleri. `Difficulty` değerlerinin Türkçe karşılığı; eşleme
+    // `types/learning.ts`in söz verdiği gibi düz.
+    difficultyBeginner: 'Başlangıç',
+    difficultyBeginnerBody: 'Yeni başlıyorum, temelden anlatılsın.',
+    difficultyBasic: 'Temeller',
+    difficultyBasicBody: 'Temel konuları biliyorum, üstüne koyayım.',
+    difficultyAdvanced: 'İleri',
+    difficultyAdvancedBody: 'Çoğunu biliyorum, ileri konulara geçeyim.',
+
+    // Sınavdan çıkış onayı. ⚠️ `lesson.quit*` metinleri "bu dersteki ilerlemen"
+    // diyor; sınavda kaybedilen şey ders ilerlemesi değil, sınavın kendisi.
+    quitTitle: 'Seviye tespitinden çıkılsın mı?',
+    quitMessage: 'Cevapların kaybolur ve sınava baştan başlarsın.',
+    quitConfirm: 'Çık',
+    quitCancel: 'Sınava dön',
+
+    levelTestScore: '{correct} / {total} doğru',
+    levelTestTierLabel: 'Kademen: {tier}',
+    // Beyan edilen kademe sınavla doğrulanamadığında görünür.
+    levelTestLowered:
+      'Bu kademede biraz daha çalışman iyi olur — seni bir basamak öncesinden başlatıyoruz.',
+    levelTestConfirmed: 'Seçtiğin kademeden başlıyorsun.',
+    levelTestResultStart: 'Buradan başla',
+    // Sınav atlandığında sonuç ekranı gösterilmez; bu satır haritaya gidişte
+    // değil, profildeki tekrar akışının özetinde kullanılır.
+    levelTestSkipped: 'Sınav yapılmadı, en baştan başlıyorsun.',
   },
 
   /** Öğrenme yolu ekranı */
@@ -183,6 +210,11 @@ export const strings = {
     version: 'Sürüm {version}',
     resetProgress: 'İlerlemeyi sıfırla',
     resetProgressWarning: 'Tüm ilerlemen silinir. Bu işlem geri alınamaz.',
+    placementTitle: 'Seviye tespiti',
+    // ⚠️ Cümle "tamamladıkların korunur" diyor ve bu bir SÖZ: `applyPlacement`
+    // `completed` kayıtlara hiçbir koşulda dokunmuyor.
+    placementBody: 'Kademeni yeniden ölçebilirsin. Tamamladığın dersler korunur.',
+    placementAction: 'Tespiti tekrar et',
   },
 
   /** Namaz sekmesi — ilk yayında boş */

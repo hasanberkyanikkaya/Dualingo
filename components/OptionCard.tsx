@@ -33,6 +33,11 @@ const BORDER_WIDTH = 2;
 type OptionCardProps = {
   /** Şık metni — içerikten gelir; kırpılmaz, satıra sarar */
   label: string;
+  /**
+   * Etiketin altındaki açıklama satırı. Soru şıklarında YOK (şıkkın açıklaması
+   * cevabı ele verirdi); tespit sınavının kademe seçiminde var.
+   */
+  body?: string;
   selected: boolean;
   onPress: () => void;
   /** Cevap kilitlendikten sonra basılamaz — RENGİ değişmez, metin okunur kalır */
@@ -40,8 +45,14 @@ type OptionCardProps = {
 };
 
 /**
- * Seçilebilir şık satırı. Çoktan seçmeli soruların yapı taşı; ses sorusu da
- * aynısını kullanacak.
+ * Seçilebilir şık satırı.
+ *
+ * ⚠️ **`/features/learning` altındaydı, Faz 2.6'da `/components`a taşındı.**
+ * Sebep mimari kural 3: tespit sınavının kademe seçimi tam olarak bu kontrolü
+ * istiyordu (2px `borderControl`, radyo göstergesi, 0.98 basma ölçeği) ve
+ * onboarding'in soru katmanından import etmesi bağımlılığı ters yöne çevirirdi.
+ * Yeni bir kart bileşeni yazmak, ölçülmüş bütün renk kararlarını ikinci kez
+ * vermek demekti.
  *
  * **Sınırı kenarlık taşır, dolgu DEĞİL.** Açık temada `surface` ile `background`
  * aynı renk (saf beyaz), yani kart zeminden dolgusuyla ayrılamıyor. Dolgu
@@ -59,7 +70,13 @@ type OptionCardProps = {
  * şıkta tik, doğruluğu önceden ima eder — bu bileşenin açıkça yapmaması gereken
  * tek şey. Tik dağarcığı Faz 2.3'ün gerçek doğru/yanlış işaretine ait.
  */
-export default function OptionCard({ label, selected, onPress, disabled = false }: OptionCardProps) {
+export default function OptionCard({
+  label,
+  body,
+  selected,
+  onPress,
+  disabled = false,
+}: OptionCardProps) {
   const { theme } = useTheme();
   const reduceMotion = useReducedMotion();
 
@@ -96,7 +113,8 @@ export default function OptionCard({ label, selected, onPress, disabled = false 
   return (
     <Pressable
       accessibilityRole="radio"
-      accessibilityLabel={label}
+      // Açıklama satırı ayrı bir odak durağı olmamalı; tek anonsta birleşiyor.
+      accessibilityLabel={body === undefined ? label : `${label}. ${body}`}
       // `checked` ve `disabled` işletim sisteminin kendi yerelleştirilmiş
       // anonsuna çevriliyor; ayrıca "seçili" yazmak anonsu ikiye katlar.
       // ⚠️ Yanına `selected` EKLENMEZ: Android'de `setSelected`'a düşüyor ve
@@ -139,9 +157,16 @@ export default function OptionCard({ label, selected, onPress, disabled = false 
               çevirmek cazip ama `primary` üzerine `primarySoft` 4.17:1 —
               Oturum 1.2'de ghost butonu düzelten sayının aynısı, AA'nın altı.
             */}
-            <Text style={[textStyles.bodyMedium, styles.label, { color: theme.textPrimary }]}>
-              {label}
-            </Text>
+            <View style={styles.text}>
+              <Text style={[textStyles.bodyMedium, { color: theme.textPrimary }]}>{label}</Text>
+
+              {body === undefined ? null : (
+                // ⚠️ `textMuted` DEĞİL: seçili kartın dolgusu `primarySoft` ve
+                // `textMuted` renkli yumuşak dolgu üzerinde AA'nın altına
+                // düşüyor (Oturum 2.3'te geri bildirim panelinde ölçüldü).
+                <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>{body}</Text>
+              )}
+            </View>
           </Animated.View>
         );
       }}
@@ -163,8 +188,9 @@ const styles = StyleSheet.create({
     // etiket 1px kayar ve liste titrerdi.
     borderWidth: BORDER_WIDTH,
   },
-  label: {
+  text: {
     // Kalan genişliği alsın ki uzun metin sarsın, göstergeyi itmesin.
     flex: 1,
+    gap: spacing.xs,
   },
 });

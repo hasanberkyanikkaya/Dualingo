@@ -320,3 +320,27 @@ export type LearningPathIndex = {
 
 /** Yol listesi içeren içerik dosyası. */
 export type LearningPathIndexContent = ContentEnvelope<LearningPathIndex>;
+
+// ── Seviye tespit sınavı ─────────────────────────────────────────────────────
+
+/**
+ * Bir kademenin tespit sınavı soruları.
+ *
+ * ⚠️ Sınav soruları **derslerin sorularından ayrı** duruyor, seviye içeriğinden
+ * türetilmiyor. İki sebep: kullanıcı sınavda gördüğü soruyu birkaç dakika sonra
+ * derste tekrar görmemeli, ve bir kademenin sınavı o kademede kaç seviye
+ * bulunduğuna bağlı olmamalı (bugün `advanced` tek seviye taşıyor).
+ */
+export type PlacementSet = {
+  difficulty: Difficulty;
+  questions: Question[];
+};
+
+/** Üç kademenin sınav havuzu — tek dosyada. */
+export type PlacementContent = {
+  id: string;
+  sets: PlacementSet[];
+};
+
+/** Tespit sınavı havuzunu içeren içerik dosyası. */
+export type PlacementContentFile = ContentEnvelope<PlacementContent>;

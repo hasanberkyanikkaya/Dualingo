@@ -6,9 +6,16 @@ import {
   countBySeverity,
   formatIssue,
   validateLearningPath,
+  validatePlacementContent,
 } from '@/features/learning/contentValidation';
 
-import type { ContentEnvelope, LearningPath, LearningPathIndex, Unit } from '@/types';
+import type {
+  ContentEnvelope,
+  LearningPath,
+  LearningPathIndex,
+  PlacementContent,
+  Unit,
+} from '@/types';
 
 /**
  * İçerik denetimi — yayın öncesi tek komut: `npm run check:content`.
@@ -38,7 +45,8 @@ import type { ContentEnvelope, LearningPath, LearningPathIndex, Unit } from '@/t
  */
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const lessonsDir = join(projectRoot, 'content', 'lessons');
+const contentDir = join(projectRoot, 'content');
+const lessonsDir = join(contentDir, 'lessons');
 
 // ── A. Yapısal doğrulama ─────────────────────────────────────────────────────
 
@@ -90,6 +98,24 @@ function loadPathFromDisk(): { path: LearningPath; fatal: string[] } {
     },
     fatal,
   };
+}
+
+/**
+ * Tespit sınavı havuzu.
+ *
+ * ⚠️ `path.json`ın `unitRefs`i gibi bir gezinti noktası YOK — sınav havuzu tekil
+ * bir dosya ve adı burada sabit. Havuz bir gün bölünürse burası da öğrenmeli;
+ * `contentLoader`daki statik `import`la aynı bağ.
+ */
+function loadPlacementFromDisk(): { content: PlacementContent | null; fatal: string[] } {
+  const file = join(contentDir, 'placement.json');
+
+  try {
+    const envelope = readJson(file) as ContentEnvelope<PlacementContent>;
+    return { content: envelope.data, fatal: [] };
+  } catch (error) {
+    return { content: null, fatal: [`placement.json: okunamadı — ${String(error)}`] };
+  }
 }
 
 // ── B. Yer tutucu taraması ───────────────────────────────────────────────────
@@ -220,8 +246,30 @@ function main(): number {
     console.log(`HATA  ${message}`);
   }
 
-  const issues = validateLearningPath(path);
+  const placement = loadPlacementFromDisk();
+
+  for (const message of placement.fatal) {
+    console.log(`HATA  ${message}`);
+  }
+
+  /**
+   * Sınav soruları ders sorularıyla AYNI denetimden geçiyor; ek olarak
+   * kimliklerin ders içeriğiyle çakışmadığı sınanıyor. Kimlik listesi
+   * doğrulayıcıya argüman olarak veriliyor — o dosya saf kalmalı.
+   */
+  const pathQuestionIds = path.units.flatMap((unit) =>
+    unit.levels.flatMap((level) => level.questions.map((question) => question.id)),
+  );
+
+  const issues = [
+    ...validateLearningPath(path),
+    ...(placement.content === null
+      ? []
+      : validatePlacementContent(placement.content, pathQuestionIds)),
+  ];
+
   const { errors, warnings } = countBySeverity(issues);
+  const allFatal = [...fatal, ...placement.fatal];
 
   console.log(`\nA. Yapısal doğrulama — ${errors} hata, ${warnings} uyarı`);
 
@@ -229,11 +277,13 @@ function main(): number {
     console.log(`  ${formatIssue(issue)}`);
   }
 
-  if (issues.length === 0 && fatal.length === 0) {
+  if (issues.length === 0 && allFatal.length === 0) {
     console.log('  Bulgu yok.');
   }
 
-  const contentFiles = walk(join(projectRoot, 'content'), ['.json']);
+  // ⚠️ Klasörü tarıyor: `placement.json` gibi `lessons/` dışındaki içerik
+  // dosyaları da yer tutucu taramasına kendiliğinden giriyor.
+  const contentFiles = walk(contentDir, ['.json']);
   printHits('B1. İçerik yer tutucuları (/content)', scan(contentFiles, CONTENT_MARKERS), detailed);
 
   const sourceFiles = SOURCE_DIRS.flatMap((dir) =>
@@ -254,7 +304,7 @@ function main(): number {
 
   console.log('\n' + '='.repeat(60));
 
-  return errors > 0 || fatal.length > 0 ? 1 : 0;
+  return errors > 0 || allFatal.length > 0 ? 1 : 0;
 }
 
 process.exitCode = main();

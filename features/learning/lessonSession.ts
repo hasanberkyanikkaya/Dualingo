@@ -71,31 +71,43 @@ export type LessonSummary = {
 };
 
 /**
- * Oturumu kurar. `useReducer`'ın tembel ilklendiricisi.
+ * Düz bir soru listesinden oturum kurar. `useReducer`'ın tembel ilklendiricisi.
  *
- * Cevaplanamayan sorular **burada, bir kez** eleniyor; böylece ders uzunluğu
+ * Cevaplanamayan sorular **burada, bir kez** eleniyor; böylece oturum uzunluğu
  * bütün koşu boyunca sabit kalıyor ve yıldız/XP hesabı onunla tutarlı oluyor.
+ *
+ * Seviyeden ayrı bir giriş noktası olmasının sebebi Faz 2.6: tespit sınavının
+ * bir seviyesi yok, elinde yalnızca kademesine göre derlenmiş bir soru listesi
+ * var. `createLessonSession` bunun üzerine ince bir sarmalayıcı.
  */
-export function createLessonSession(
-  level: Level,
-  previousStatus: LevelStatus,
+export function createQuestionSession(
+  questions: readonly Question[],
+  wasCompletedBefore = false,
 ): LessonSessionState {
-  const all = Array.isArray(level.questions) ? level.questions : [];
-  const questions = all.filter((question) => {
+  const all = Array.isArray(questions) ? questions : [];
+  const usable = all.filter((question) => {
     const ok = isAnswerable(question);
     if (!ok) {
-      warnContent(`"${question.id}"`, 'cevaplanamaz içerik — ders akışından çıkarıldı.');
+      warnContent(`"${question.id}"`, 'cevaplanamaz içerik — akıştan çıkarıldı.');
     }
     return ok;
   });
 
   return {
-    questions,
+    questions: usable,
     index: 0,
-    phase: questions.length === 0 ? 'complete' : 'answering',
+    phase: usable.length === 0 ? 'complete' : 'answering',
     results: [],
-    wasCompletedBefore: previousStatus === 'completed',
+    wasCompletedBefore,
   };
+}
+
+/** Bir seviyeden ders oturumu kurar. */
+export function createLessonSession(
+  level: Level,
+  previousStatus: LevelStatus,
+): LessonSessionState {
+  return createQuestionSession(level.questions, previousStatus === 'completed');
 }
 
 export function currentQuestion(state: LessonSessionState): Question | null {

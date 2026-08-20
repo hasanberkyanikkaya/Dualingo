@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
+import OptionCard from '@/components/OptionCard';
 import { layout } from '@/constants/spacing';
 import strings from '@/constants/strings';
 
-import OptionCard from './OptionCard';
 import QuestionShell from './QuestionShell';
 import { useQuestionState } from './useQuestionState';
 

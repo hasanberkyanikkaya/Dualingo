@@ -1,4 +1,4 @@
-import type { LevelId, LevelProgress, Unit } from '@/types';
+import type { Level, LevelId, LevelProgress, LevelStatus, Unit } from '@/types';
 
 /**
  * Seviye kilidi açma mantığı — saf. React yok, store yok, tema yok.
@@ -25,17 +25,32 @@ function isLive(record: LevelProgress | undefined): record is LevelProgress {
   return record !== undefined && record.deletedAt === null;
 }
 
-/** Yeni açılan seviyenin sıfırdan kaydı. */
-function freshAvailable(levelId: LevelId, now: number): LevelProgress {
+/**
+ * Hiç çalışılmamış bir seviyenin sıfırdan kaydı.
+ *
+ * ⚠️ `completedAt` ve `lastAttemptAt` **yok**, sayaçlar sıfır. `xpForRun` tam
+ * XP kuralını (`lessonScoring.ts`) ve `resolveStars`ın "tamamlanmamışın yıldızı
+ * yok" kuralını bu boşluk taşıyor: tespit sınavıyla açılmış (`skipped`) bir
+ * seviye ilk gerçek denemesinde tam XP almalı.
+ *
+ * Faz 2.6 aynı kaydı `skipped` durumuyla üretmek zorunda kaldığı için durum
+ * parametre oldu; kayıt üretimi hâlâ **tek yerde**.
+ */
+export function freshRecord(levelId: LevelId, status: LevelStatus, now: number): LevelProgress {
   return {
     levelId,
-    status: 'available',
+    status,
     stars: 0,
     bestAccuracy: 0,
     attemptCount: 0,
     updatedAt: now,
     deletedAt: null,
   };
+}
+
+/** Yeni açılan seviyenin kaydı. */
+function freshAvailable(levelId: LevelId, now: number): LevelProgress {
+  return freshRecord(levelId, 'available', now);
 }
 
 /**
@@ -45,17 +60,28 @@ function freshAvailable(levelId: LevelId, now: number): LevelProgress {
  * alanına göre sıralanmış veriyor. İkinci kez sıralamak, sıralamanın iki yerde
  * yaşaması demek olurdu.
  */
-export function flattenLevelIds(units: readonly Unit[]): LevelId[] {
-  const ids: LevelId[] = [];
+export function flattenLevels(units: readonly Unit[]): Level[] {
+  const levels: Level[] = [];
   for (const unit of units) {
     if (!Array.isArray(unit?.levels)) {
       continue;
     }
     for (const level of unit.levels) {
-      ids.push(level.id);
+      levels.push(level);
     }
   }
-  return ids;
+  return levels;
+}
+
+/**
+ * Aynı sıra, yalnız kimlikler.
+ *
+ * `flattenLevels` üzerine ince bir eşleme: Faz 2.6'nın tespit sınavı sıraya
+ * **ve** `difficulty`ye birlikte ihtiyaç duyuyor; sıralama kuralının ikinci bir
+ * kopyasını üretmemek için gezinti aşağıya alındı.
+ */
+export function flattenLevelIds(units: readonly Unit[]): LevelId[] {
+  return flattenLevels(units).map((level) => level.id);
 }
 
 /**

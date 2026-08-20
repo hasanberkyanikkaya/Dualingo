@@ -1,3 +1,4 @@
+import placementJson from '@/content/placement.json';
 import pathIndexJson from '@/content/lessons/path.json';
 import unit01Json from '@/content/lessons/01-temel-inanc.json';
 import unit02Json from '@/content/lessons/02-islamin-sartlari.json';
@@ -5,9 +6,24 @@ import {
   countBySeverity,
   formatIssue,
   validateLearningPath,
+  validatePlacementContent,
 } from '@/features/learning/contentValidation';
 
-import type { LearningPath, LearningPathIndex, Level, LevelId, Unit, UnitRef } from '@/types';
+import type {
+  ContentIssue,
+} from '@/features/learning/contentValidation';
+import type {
+  Difficulty,
+  LearningPath,
+  LearningPathIndex,
+  Level,
+  LevelId,
+  PlacementContent,
+  Question,
+  Unit,
+  UnitId,
+  UnitRef,
+} from '@/types';
 
 /**
  * İçerik yükleyici — JSON ile tiplenmiş dünya arasındaki TEK geçiş noktası.
@@ -116,19 +132,13 @@ function resolveUnit(ref: UnitRef): Unit | null {
  * Yinelenen seviye kimliği denetimi de artık burada: kural tek yerde durmalı
  * ve o yer sınanabilir olan (`contentValidation`), sınanamayan yükleyici değil.
  */
-function reportContentIssues(path: LearningPath): void {
-  if (!__DEV__) {
-    return;
-  }
-
-  const issues = validateLearningPath(path);
-
-  if (issues.length === 0) {
+function reportContentIssues(label: string, issues: readonly ContentIssue[]): void {
+  if (!__DEV__ || issues.length === 0) {
     return;
   }
 
   const { errors, warnings } = countBySeverity(issues);
-  warn(`içerik denetimi: ${errors} hata, ${warnings} uyarı.`);
+  warn(`${label}: ${errors} hata, ${warnings} uyarı.`);
 
   for (const issue of issues) {
     warn(formatIssue(issue));
@@ -169,30 +179,106 @@ export function getLearningPath(): LearningPath {
     units,
   };
 
-  reportContentIssues(cachedPath);
+  reportContentIssues('içerik denetimi', validateLearningPath(cachedPath));
 
   return cachedPath;
 }
 
 /** Seviye kimliğinden seviyeye — ilk çağrıda kurulur. */
 let cachedLevels: Map<LevelId, Level> | null = null;
+/** Seviye kimliğinden onu barındıran ünitenin kimliğine. Aynı geçişte kurulur. */
+let cachedLevelUnits: Map<LevelId, UnitId> | null = null;
+
+/**
+ * İki eşlemeyi tek geçişte kurar. Ayrı ayrı kurmak yolu iki kez gezmek olurdu
+ * ve ikisinin farklı bir yol anlık görüntüsünden doldurulması mümkün hâle gelirdi.
+ */
+function buildLevelIndex(): void {
+  if (cachedLevels !== null && cachedLevelUnits !== null) {
+    return;
+  }
+
+  cachedLevels = new Map();
+  cachedLevelUnits = new Map();
+
+  for (const unit of getLearningPath().units) {
+    for (const level of unit.levels) {
+      cachedLevels.set(level.id, level);
+      cachedLevelUnits.set(level.id, unit.id);
+    }
+  }
+}
 
 /**
  * Bir seviyeyi kimliğiyle bulur. Yoksa `null` — fırlatmaz.
  *
  * Kimlikler yolun tamamında benzersiz (CLAUDE.md kuralı, yükleyici `__DEV__`
  * altında denetliyor), bu yüzden düz bir sözlük yeterli. Ders ekranı ve Faz
- * 2.6'daki tespit sınavı bunu kullanacak.
+ * 2.6'daki tespit sınavı bunu kullanıyor.
  */
 export function findLevelById(levelId: LevelId): Level | null {
-  if (cachedLevels === null) {
-    cachedLevels = new Map();
-    for (const unit of getLearningPath().units) {
-      for (const level of unit.levels) {
-        cachedLevels.set(level.id, level);
-      }
-    }
+  buildLevelIndex();
+  return cachedLevels?.get(levelId) ?? null;
+}
+
+/**
+ * Bir seviyeyi barındıran üniteyi bulur. Yoksa `null`.
+ *
+ * Tespit sınavının sonuç ekranı için var: kullanıcıya seviye kimliği değil
+ * ünite ADI gösteriliyor (`strings.onboarding.levelTestResultSubtitle`) ve
+ * seviye → ünite yönünde bir eşleme başka hiçbir yerde yoktu.
+ */
+export function findUnitByLevelId(levelId: LevelId): Unit | null {
+  buildLevelIndex();
+
+  const unitId = cachedLevelUnits?.get(levelId);
+  if (unitId === undefined) {
+    return null;
   }
 
-  return cachedLevels.get(levelId) ?? null;
+  return getLearningPath().units.find((unit) => unit.id === unitId) ?? null;
+}
+
+// ── Seviye tespit sınavı ─────────────────────────────────────────────────────
+
+/** Sınav havuzu — modül başına bir kez çözülür. Çözülemezse boş havuz. */
+let cachedPlacement: PlacementContent | null = null;
+
+function getPlacementContent(): PlacementContent {
+  if (cachedPlacement !== null) {
+    return cachedPlacement;
+  }
+
+  const content = unwrap<PlacementContent>(placementJson, 'placement.json');
+
+  if (content === null || !Array.isArray(content.sets)) {
+    warn('Tespit sınavı havuzu okunamadı — boş havuz döndürülüyor.');
+    cachedPlacement = { id: 'placement-unknown', sets: [] };
+    return cachedPlacement;
+  }
+
+  cachedPlacement = content;
+
+  // Yolun kimlikleriyle çakışma denetimi burada yapılabiliyor çünkü yol zaten
+  // yüklü; doğrulayıcı saf kalsın diye kimlikler ona argüman olarak veriliyor.
+  const pathQuestionIds = getLearningPath().units.flatMap((unit) =>
+    unit.levels.flatMap((level) => level.questions.map((question) => question.id)),
+  );
+
+  reportContentIssues('sınav denetimi', validatePlacementContent(cachedPlacement, pathQuestionIds));
+
+  return cachedPlacement;
+}
+
+/**
+ * Bir kademenin tespit sınavı soruları. Kademe havuzda yoksa **boş dizi**.
+ *
+ * Fırlatmıyor: eksik bir kademe sınavı boş bırakır, akış da boş sınavı
+ * "sonuç: beyan edilen kademe" diye yorumlar (`resolvePlacementDifficulty`
+ * `total <= 0` dalı). Yani en kötü hâlde kullanıcı kendi beyanıyla başlar,
+ * karşılama akışı kilitlenmez.
+ */
+export function getPlacementQuestions(difficulty: Difficulty): Question[] {
+  const set = getPlacementContent().sets.find((entry) => entry.difficulty === difficulty);
+  return Array.isArray(set?.questions) ? set.questions : [];
 }

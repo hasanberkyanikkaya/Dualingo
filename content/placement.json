@@ -1,0 +1,242 @@
+{
+  "note": "ÖRNEK VERİ — GERÇEK DEĞİL",
+  "schemaVersion": 1,
+  "isSampleData": true,
+  "data": {
+    "id": "placement-v1",
+    "sets": [
+      {
+        "difficulty": "beginner",
+        "questions": [
+          {
+            "id": "q-plc-beginner-01",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q-plc-beginner-02",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-plc-beginner-03",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 3",
+            "hint": "ÖRNEK İPUCU",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-plc-beginner-04",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              {
+                "id": "b1",
+                "correctAnswers": ["ÖRNEK CEVAP B"],
+                "choices": ["ÖRNEK CEVAP A", "ÖRNEK CEVAP B", "ÖRNEK CEVAP C"]
+              }
+            ]
+          },
+          {
+            "id": "q-plc-beginner-05",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 5",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": false
+          },
+          {
+            "id": "q-plc-beginner-06",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "d"
+          }
+        ]
+      },
+      {
+        "difficulty": "basic",
+        "questions": [
+          {
+            "id": "q-plc-basic-01",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-plc-basic-02",
+            "type": "ordering",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "items": [
+              { "id": "i1", "text": "ÖRNEK ÖĞE 1" },
+              { "id": "i2", "text": "ÖRNEK ÖĞE 2" },
+              { "id": "i3", "text": "ÖRNEK ÖĞE 3" },
+              { "id": "i4", "text": "ÖRNEK ÖĞE 4" }
+            ],
+            "correctOrder": ["i3", "i1", "i4", "i2"]
+          },
+          {
+            "id": "q-plc-basic-03",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": false
+          },
+          {
+            "id": "q-plc-basic-04",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              {
+                "id": "b1",
+                "correctAnswers": ["ÖRNEK CEVAP C"],
+                "choices": ["ÖRNEK CEVAP A", "ÖRNEK CEVAP B", "ÖRNEK CEVAP C", "ÖRNEK CEVAP D"]
+              }
+            ]
+          },
+          {
+            "id": "q-plc-basic-05",
+            "type": "audio_choice",
+            "prompt": "ÖRNEK SORU 5",
+            "audio": { "key": "ornek/placeholder-01.m4a", "durationMs": 4000 },
+            "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q-plc-basic-06",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "hint": "ÖRNEK İPUCU",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      },
+      {
+        "difficulty": "advanced",
+        "questions": [
+          {
+            "id": "q-plc-advanced-01",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 1",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "d"
+          },
+          {
+            "id": "q-plc-advanced-02",
+            "type": "ordering",
+            "prompt": "ÖRNEK SORU 2",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "items": [
+              { "id": "i1", "text": "ÖRNEK ÖĞE 1" },
+              { "id": "i2", "text": "ÖRNEK ÖĞE 2" },
+              { "id": "i3", "text": "ÖRNEK ÖĞE 3" },
+              { "id": "i4", "text": "ÖRNEK ÖĞE 4" },
+              { "id": "i5", "text": "ÖRNEK ÖĞE 5" }
+            ],
+            "correctOrder": ["i2", "i5", "i1", "i4", "i3"]
+          },
+          {
+            "id": "q-plc-advanced-03",
+            "type": "fill_blank",
+            "prompt": "ÖRNEK SORU 3",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
+            "blanks": [
+              {
+                "id": "b1",
+                "correctAnswers": ["ÖRNEK CEVAP A"]
+              }
+            ]
+          },
+          {
+            "id": "q-plc-advanced-04",
+            "type": "true_false",
+            "prompt": "ÖRNEK SORU 4",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "correctAnswer": true
+          },
+          {
+            "id": "q-plc-advanced-05",
+            "type": "audio_choice",
+            "prompt": "ÖRNEK SORU 5",
+            "audio": { "key": "ornek/placeholder-01.m4a", "durationMs": 4000 },
+            "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q-plc-advanced-06",
+            "type": "multiple_choice",
+            "prompt": "ÖRNEK SORU 6",
+            "explanation": "ÖRNEK AÇIKLAMA",
+            "options": [
+              { "id": "a", "text": "ÖRNEK CEVAP A" },
+              { "id": "b", "text": "ÖRNEK CEVAP B" },
+              { "id": "c", "text": "ÖRNEK CEVAP C" },
+              { "id": "d", "text": "ÖRNEK CEVAP D" }
+            ],
+            "correctOptionId": "c"
+          }
+        ]
+      }
+    ]
+  }
+}

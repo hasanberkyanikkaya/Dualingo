@@ -1,9 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 
+import OptionCard from '@/components/OptionCard';
 import { layout } from '@/constants/spacing';
 import { warnOnDuplicateIds } from '@/features/learning/questionValidation';
-
-import OptionCard from './OptionCard';
 
 import type { Choice, QuestionId } from '@/types';
 

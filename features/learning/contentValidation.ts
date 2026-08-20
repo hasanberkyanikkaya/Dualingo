@@ -1,7 +1,7 @@
 import { isValidAudioKey } from '@/features/learning/audioKey';
 import { isAnswerable, normalizeTr } from '@/features/learning/answerEngine';
 
-import type { LearningPath, Level, Question, Unit } from '@/types';
+import type { Difficulty, LearningPath, Level, PlacementContent, Question, Unit } from '@/types';
 
 /**
  * İçerik doğrulama — yolun tamamını tek geçişte denetler.
@@ -346,6 +346,72 @@ export function validateLearningPath(path: LearningPath): ContentIssue[] {
 
   for (const unit of path.units) {
     found.push(...validateUnit(unit, unit.id));
+  }
+
+  return found;
+}
+
+// ── Seviye tespit sınavı ─────────────────────────────────────────────────────
+
+/** Sınav havuzunda bulunması beklenen kademeler. */
+const PLACEMENT_DIFFICULTIES: readonly Difficulty[] = ['beginner', 'basic', 'advanced'];
+
+/**
+ * Tespit sınavı havuzunu denetler.
+ *
+ * Soru başına denetim `validateQuestion` ile **ders sorularıyla birebir aynı** —
+ * sınav soruları da aynı bileşenlerle çiziliyor ve aynı motorla değerlendiriliyor,
+ * dolayısıyla ikinci bir kural kümesi iki farklı doğruluk tanımı üretirdi.
+ *
+ * `pathQuestionIds` çağırandan geliyor, burada okunmuyor: bu dosya saf kalmalı
+ * (`contentLoader`u içeri almak döngüsel bağımlılık olurdu).
+ *
+ * ⚠️ **Kimlik çakışması `error`**: soru kimliği React `key`i olarak kullanılıyor
+ * (2.2a) ve sınav ile ders aynı oturumda birlikte yaşamasa da aynı kimlikle iki
+ * farklı soru olması, ileride hata raporu ya da içerik aracını yanıltır.
+ */
+export function validatePlacementContent(
+  content: PlacementContent,
+  pathQuestionIds: readonly string[] = [],
+): ContentIssue[] {
+  const found: ContentIssue[] = [];
+  const where = content.id;
+
+  for (const id of duplicates(content.sets.map((set) => set.difficulty))) {
+    found.push(issue('error', where, `"${id}" kademesi havuzda iki kez — ikincisi hiç kullanılmaz.`));
+  }
+
+  for (const difficulty of PLACEMENT_DIFFICULTIES) {
+    const set = content.sets.find((entry) => entry.difficulty === difficulty);
+
+    /**
+     * ⚠️ Eksik kademe sınavı BOŞ bırakır ve boş sınav "beyan edilen kademeyi
+     * onayla" anlamına gelir (`resolvePlacementDifficulty`, `total <= 0`).
+     * Yani kullanıcı hiç soru görmeden İleri kademeden başlayabilir. Akış
+     * kilitlenmediği için `error` değil ama sessiz kalması kabul edilemez.
+     */
+    if (set === undefined || set.questions.length === 0) {
+      found.push(issue('warning', where, `"${difficulty}" kademesinin hiç sınav sorusu yok — sınav atlanmış sayılır.`));
+    }
+  }
+
+  const pathIds = new Set(pathQuestionIds);
+  const allIds = content.sets.flatMap((set) => set.questions.map((question) => question.id));
+
+  for (const id of duplicates(allIds)) {
+    found.push(issue('error', where, `sınav sorusu kimliği "${id}" havuzda yineleniyor.`));
+  }
+
+  for (const set of content.sets) {
+    for (const question of set.questions) {
+      const at = `${where}${SEP}${set.difficulty}${SEP}${question.id}`;
+
+      if (pathIds.has(question.id)) {
+        found.push(issue('error', at, 'soru kimliği ders içeriğinde de kullanılıyor — kimlikler ayrık olmalı.'));
+      }
+
+      found.push(...validateQuestion(question, at));
+    }
   }
 
   return found;

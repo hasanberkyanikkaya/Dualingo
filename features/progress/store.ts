@@ -3,12 +3,13 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { getLearningPath } from '@/features/learning/contentLoader';
 import { livePrevious, mergeCompletion } from '@/features/progress/levelRecord';
+import { applyPlacement, resolvePlacementDifficulty } from '@/features/progress/placement';
 import { progressStorage } from '@/features/progress/storage';
 import { advanceStreak, emptyStreak, toLocalIsoDate } from '@/features/progress/streak';
 import { ensureEntryPoint, unlockNext } from '@/features/progress/unlock';
 
 import type { LessonSummary } from '@/features/learning/lessonSession';
-import type { LevelId, UserProgress } from '@/types';
+import type { DailyGoal, Difficulty, LevelId, UserProgress } from '@/types';
 
 /**
  * İlerleme store'u — cihazda yazılan tek gerçek kaynak.
@@ -17,10 +18,9 @@ import type { LevelId, UserProgress } from '@/types';
  * yıldız/XP `features/learning/lessonScoring.ts`te ve hepsi saf + testli.
  * Bu dosyanın işi onları sırayla uygulayıp sonucu kalıcı hale getirmek.
  *
- * ⚠️ **API bilerek dar**: `completeLevel` ve `resetProgress`. `placement` alanı
- * durumda duruyor ama yazıcısı YOK — o Faz 2.6'nın (seviye tespit sınavı) işi.
- * Bugün kullanılmayan bir eylem yazmak spekülasyon olurdu (Button ve
- * ProgressBar'daki aynı alışkanlık).
+ * ⚠️ **API bilerek dar**: `completeLevel`, `resetProgress`, `setPlacement`,
+ * `setDailyGoal`. Bugün kullanılmayan bir eylem yazmak spekülasyon olurdu
+ * (Button ve ProgressBar'daki aynı alışkanlık).
  */
 
 type ProgressState = UserProgress & {
@@ -28,6 +28,15 @@ type ProgressState = UserProgress & {
   completeLevel: (summary: LessonSummary) => void;
   /** Her şeyi sıfırlar. Geliştirme kaçış kapağı ve elle sınama için. */
   resetProgress: () => void;
+  /**
+   * Seviye tespit sınavı bitti: kademeyi belirle, yolu ona göre aç.
+   *
+   * `declared` kullanıcının beyanı, `correct`/`total` sınav sonucu. Kararı
+   * store vermiyor — `placement.ts` veriyor.
+   */
+  setPlacement: (declared: Difficulty, correct: number, total: number) => void;
+  /** Günlük hedef seçildi. */
+  setDailyGoal: (goal: DailyGoal) => void;
 };
 
 /** Hiç oynanmamış kullanıcı. `levels` boş; ilk seviyeyi `openEntryPoint` açar. */
@@ -37,6 +46,7 @@ function emptyProgress(): UserProgress {
     levels: {},
     streak: emptyStreak(),
     placement: null,
+    dailyGoal: null,
     updatedAt: 0,
     deletedAt: null,
   };
@@ -65,6 +75,31 @@ export const useProgressStore = create<ProgressState>()(
           };
         }),
 
+      setPlacement: (declared, correct, total) =>
+        set((state) => {
+          const now = Date.now();
+          const difficulty = resolvePlacementDifficulty(declared, correct, total);
+
+          // ⚠️ `placement` ile `levels` AYNI `set` çağrısında. Ayrılsalardı arada
+          // bir çizim "tespit yapıldı ama harita eski" gösterirdi.
+          //
+          // ⚠️ Seri (`advanceStreak`) BAŞLATILMIYOR ve XP VERİLMİYOR: sınav ders
+          // değil. Gün serisini bir sınavla başlatmak, hiç ders yapmadan seri
+          // sahibi olmak demekti.
+          return {
+            placement: {
+              difficulty,
+              declared,
+              accuracy: total > 0 ? Math.max(0, Math.min(1, correct / total)) : 0,
+              completedAt: now,
+            },
+            levels: applyPlacement(getLearningPath().units, state.levels, difficulty, now),
+            updatedAt: now,
+          };
+        }),
+
+      setDailyGoal: (goal) => set(() => ({ dailyGoal: goal, updatedAt: Date.now() })),
+
       resetProgress: () =>
         set(() => {
           const now = Date.now();
@@ -79,14 +114,27 @@ export const useProgressStore = create<ProgressState>()(
     }),
     {
       name: 'progress-v1',
-      version: 1,
+      version: 2,
       storage: createJSONStorage(() => progressStorage),
+      /**
+       * Sürüm 1 → 2: `dailyGoal` eklendi (Faz 2.6).
+       *
+       * Alan eksikse `undefined` gelirdi ve `dailyGoal === null` denetimi
+       * yanlış sonuç verirdi; eksikliği burada bir kez `null`a çeviriyoruz.
+       * `placement` migrate istemiyor — yazıcısı 2.6'ya kadar hiç olmadığı için
+       * diskteki her kayıtta zaten `null`.
+       */
+      migrate: (persisted, version) =>
+        version < 2
+          ? { ...(persisted as Partial<UserProgress>), dailyGoal: null }
+          : (persisted as Partial<UserProgress>),
       // Eylemler diske yazılmaz; yalnızca `UserProgress` alanları.
       partialize: (state) => ({
         xpTotal: state.xpTotal,
         levels: state.levels,
         streak: state.streak,
         placement: state.placement,
+        dailyGoal: state.dailyGoal,
         updatedAt: state.updatedAt,
         deletedAt: state.deletedAt,
       }),
