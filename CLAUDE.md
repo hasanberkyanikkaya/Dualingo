@@ -133,12 +133,16 @@ Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.
 Faz 2.3 ders akışı ekranı — TAMAM.
 Faz 2.4 ilerleme kaydı — TAMAM.
 Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.
-Faz 2.6 seviye tespit sınavı — TAMAM.**
-Sırada **Faz 3 — tema ve profil** (ya da ertelenmiş 1.2c / 1.3 / 1.4).
+Faz 2.6 seviye tespit sınavı — TAMAM.
+Faz 2.5.3 mağaza materyalleri — TAMAM.
+Faz 3.1 seri (streak) sistemi — TAMAM.**
+Sırada **Faz 3.2 — seri arayüzü** (ya da ertelenmiş 1.2c / 1.3 / 1.4).
 
-⚠️ **Yayın hazırlığının (FAZ 2.5) üçüncü oturumu YAPILMADI:** mağaza
-materyalleri — gizlilik politikası taslağı, mağaza açıklaması, veri güvenliği
-formu. Kendi oturumunu istiyor; ürün metni, dini metin değil.
+⚠️ **Mağaza metinleri hazır ama YAYIN YAKIN DEĞİL.** `Planlamalar/Magaza/`
+altında dört belge var (politika taslağı, mağaza metinleri, veri güvenliği
+formu, kontrol listesi). **Gizlilik politikası bir TASLAKTIR — hukuki inceleme
+şart.** Metinle çözülemeyen yedi yayın engeli `Magaza/README.md`'de toplandı;
+en büyüğü içeriğin tamamının hâlâ örnek veri olması.
 
 ⚠️ **OTA yapılandırıldı ama DOĞRULANMADI.** `expo-updates` kurulu, `app.json`
 ve kanallar hazır, `Planlamalar/OTA_GUNCELLEME.md` yazılı — ama Expo Go OTA
@@ -152,6 +156,12 @@ girildiği gün **kod değişmez.**
 ⚠️ **2.4'te `/app`, `/components` ve altı soru bileşenine HİÇ dokunulmadı.**
 2.3'ün bıraktığı iki kanca dikişi tuttu; değişen tek şey gövdeleri oldu.
 Ayrıntı "İlerleme kaydı kararları"nda.
+
+⚠️ **SERİ ARTIK KALICI, GERİSİ DEĞİL.** Faz 3.1'den sonra gün kayıtları
+**SQLite**'ta (`activity_day`) ve SQLite **Expo Go'da çalışıyor** — seri,
+kalıcılık duvarını delen ilk özellik. **XP ve seviyeler hâlâ MMKV'de ve kalıcı
+değil.** Soğuk açılışta serinin durup XP'nin sıfırlanması **beklenen
+davranıştır**, hata değil; MMKV duvarının görünür kanıtı.
 
 ⚠️ **KALICILIK BUGÜN KAPALI.** MMKV Expo Go'da yok; `features/progress/storage.ts`
 bellek içi yedeğe düşüyor ve konsola uyarı basıyor. İlerleme oturum boyunca doğru
@@ -1013,6 +1023,147 @@ ilgili ve **bu oturumun dosyalarından değil.**
 - `strings.ts`: `onboarding` genişletildi (kademe etiketleri, sınava özel çıkış
   onayı — ⚠️ `lesson.quitMessage` "bu dersteki ilerlemen" diyor, sınav için yanlış
   cümle —, sonuç satırları), `profile`'a üç satır. **`colors.ts` değişmedi.**
+
+**Seri kararları (Oturum 3.1):**
+- **Üç katman.** `lib/database.ts` (tek `.db`, `PRAGMA user_version` göçleri) ·
+  `features/progress/activityDb.ts` (yerel, testsiz, **karar mantığı yok**) ·
+  `features/progress/dayLog.ts` (**saf**, testli, `expo-sqlite` bilmez).
+  ⚠️ **`dayLog` `activityDb`'yi ASLA import etmez** — ters bağımlılık tüm test
+  paketini okunamaz bir hatayla patlatır. 2.5'teki `audioKey`/`audio` ayrımı.
+- ⚠️ **`lib/database.ts` bilerek `features/` altında DEĞİL.** `PRAGMA user_version`
+  veritabanı başına **tek** sayaç; Faz 4 (namaz) ve Faz 5 (Kur'an) aynı `.db`'yi
+  açacak. Sürümü özellik klasörüne gömmek, ilk çakışmada bir özelliğin tablosunun
+  hiç yaratılmamasıyla biterdi. `MIGRATIONS` dizisinin **sırası asla değişmez**,
+  aradan madde silinmez; yeni tablo listenin SONUNA gelir.
+- ⚠️ **`PRAGMA user_version = ?` parametre BAĞLAMAZ** (SQLite pragma'da yer
+  tutucu kabul etmiyor); sayı dizgeye gömülü. "Düzeltip" parametreli yapmak göçü
+  sessizce kırar — sürüm 0'da kalır ve her açılışta baştan koşar.
+- **Dondurma (freeze) KALICILAŞTIRILMIYOR, gün listesinden yeniden oynatılıyor.**
+  Diskte freeze tablosu/sütunu yok. Gerekçe Faz 7: freeze bir veri değil, veri
+  üzerinde bir **hesap sonucudur**; kalıcılaştırılsaydı çevrimdışı iki cihaz aynı
+  boşluğu farklı görür ve sync sonrası "gün kaydı var ama onu çelişkiye düşüren
+  freeze satırı da var" durumu doğardı — düzeltmesi ya sert silme (kural 6 ihlali)
+  ya da kayan pencerenin kalıcı kirlenmesi. Gün kümesi bir *küme*; birleşimi
+  sıradan bağımsız ve tekrara dayanıklı. **Aynı gün kümesi → aynı sonuç.**
+  ⚠️ İki bedel kabul edildi: (i) kural değişimi geçmişi geriye yazar (kaçış yolu
+  `STREAK_RULES`in parametre olabilmesi), (ii) **yalnız otomatik hak
+  türetilebilir** — ileride satın alınan/rozetle kazanılan freeze kalıcı olmak
+  zorunda, hiçbir gün verisinden çıkarılamaz.
+- **Kayan 7 gün**, takvim haftası değil (kullanıcı kararı): takvim haftasında
+  pazar akşamı + pazartesi ard arda iki dondurma mümkün olurdu. Sınır gün
+  **dahil** (`>= 7`); iki komşu test (`6. gün hak YOK` / `7. gün hak VAR`) bunu
+  çiviliyor.
+- ⚠️ **Dondurulan gün sayaca EKLENMEZ**, onu izleyen etkin gün ekler. 5 günlük
+  seri + kaçırılan gün + bir ders = **6**, 7 değil. `currentDays` "kaç gün ders
+  yaptım"ı anlatır; yan kazanç `currentDays <= totalActiveDays` sınanabilir bir
+  değişmez olması (Faz 3.2'nin rozet eşikleri hak edilmeden tetiklenmesin diye).
+- **`StreakStatus` beş değerli**: `none` · `active` · `atRisk` · `frozen` ·
+  `broken`. ⚠️ `atRisk` ve `frozen`'da **`currentDays` DÜŞMEZ** — "seri 5 gün"
+  yazarken "bugün henüz ders yapmadın" demek doğru, sayıyı düşürmek kazanılan
+  günleri geri almak olurdu. Ayrım sayıda değil `status` alanında; alanın var
+  olma sebebi bu. `none` ile `broken` ayrı çünkü `strings.progress` hem
+  `streakStarted` hem `streakLost` taşıyor.
+  ⚠️ `status: 'frozen'` iken hak **REZERVE**, tüketilmiş değil → `frozenDates`'e
+  girmez: boşluğun ikinci ucu (sonraki etkin gün) henüz yok, kullanıcı bugün de
+  oynamazsa boşluk üçe çıkar ve hak harcanmamış olur.
+  ⚠️ `enum` **değil** union type — Node tip soyucusu `enum` desteklemiyor.
+  ⚠️ `STREAK_RULES`te `as const` **kullanılmaz**: değerler `7`/`2` birebir
+  tiplerine daralır ve `Partial<StreakRules>` ile kural geçersiz kılınamazdı.
+- **`StreakState` artık türetilmiş ÖNBELLEK.** `advanceStreak` **silindi**;
+  `partialize`'dan **`streak` çıkarıldı**, `persist` `version: 2 → 3` (migrate
+  alanı atıyor). Türetilmiş alanları düşüren **tek kapı** `toStreakState` —
+  store içinde elle nesne kurulsaydı er geç biri `status`u da kopyalardı.
+  Testi anahtar sayısı denetimi (`Object.keys().length === 4`).
+  ⚠️ Eski `lastActiveDate`'ten tabloya tohum satırı yazmak **elendi**: `migrate`
+  saf ve senkron olmalı, içine DB yazması koymak katman ihlali. Bugünkü maliyeti
+  sıfır — MMKV kapalı, diskte kayıt yok.
+- **`date` birincil anahtar — bu bir SYNC kararı.** Gün, kullanıcı başına doğal
+  ve global anahtar; iki cihaz aynı günü yazarsa **aynı satırdır** ve `updated_at`
+  ile çözülür. Sentetik kimlik seçilseydi aynı gün için iki satır oluşur ve bu
+  tabloya özel bir birleştirme kuralı yazmak gerekirdi.
+  ⚠️ UPSERT'te **`deleted_at = NULL`** satırı kritik: yumuşak silinmiş gün
+  dirilmeli (`unlock.ts`in aynı kuralı). ⚠️ Silinmiş satırda `lesson_count`
+  toplamak "silinmiş sayacı" devralır; bugün kabul edildi çünkü yumuşak silmenin
+  tek çağıranı `resetProgress` ve o **tüm** satırları siliyor — kısmi silme
+  geldiği gün o satır `CASE`e dönmeli.
+  ⚠️ `ORDER BY date ASC` **metinsel** sıralama ama `YYYY-MM-DD` sabit genişlikte
+  ve sıfır dolgulu olduğu için takvim sırasıyla aynı.
+- ⚠️ **`recordActivity` `set` updater'ının DIŞINDA çağrılıyor.** Zustand updater'ı
+  saf sayar; React 19 + `reactCompiler` altında iki kez çalışması `lesson_count`u
+  sessizce ikiye katlardı. 2.3'ün "tamamlanma sinyali `useEffect`ten değil
+  işleyiciden" kararıyla aynı sınıf.
+- ⚠️ **`resetProgress` `softDeleteAllActivity` çağırmalı.** Yoksa "her şeyi
+  sıfırla" dedikten sonra seri hayalet gibi geri gelir (MMKV boşalır, tablo
+  yerinde durur) ve geliştirme kaçış kapağı elle sınamada yanlış zemin kurar.
+- **`refreshStreak()` modül yüklenirken bir kez çağrılıyor** (`openEntryPoint`in
+  yanında): `streak` diske yazılmadığı için önbelleğin açılışta kurulması şart.
+  İkinci gerekçesi gece yarısı bayatlaması — uygulama açık kalırken gün dönerse
+  `status` yalan söyler. `AppState` dinleyicisi **Faz 3.2'nin işi**.
+- ⚠️ **`longestDays` artık veriden geliyor; "asla düşmez" garantisi YOK.** Bir gün
+  yumuşak silinirse rekor düşebilir. `Math.max(önbellek, hesap)` ile maskeleme
+  **YAPILMADI** — gizli durum olurdu ve "SQLite tek kaynak" kararını ilk günde
+  delerdi. Kabul edilen sonuç.
+- ⚠️ **İKİ DAVRANIŞ BİLİNÇLİ DEĞİŞTİ** (eski `advanceStreak`e göre): biçimi bozuk
+  tarih artık seriyi sıfırlamıyor, **o giriş atılıyor**; ileri tarihli gün artık
+  seriyi sıfırlamıyor, **yok sayılıyor**. Ayrıca uzun boşlukta `currentDays`
+  eskiden `1`di, artık **`0`**.
+- **Tüm geçmiş okunuyor, pencere yok**: `longestDays` zaten hepsini istiyor,
+  süregelen seri de keyfi uzun olabilir. Günde en fazla bir satır → 10 yıl 3650
+  kısa dizge. **10.000 satırın altında optimizasyon yapma** (çözüm hazır:
+  `streak_summary` özet tablosu, bugün yazma).
+- **177 test geçiyor.** ⚠️ `tests/activityDb.test.ts` **yazılamaz** — Node
+  koşucusu yerel modül yükleyemez. ⚠️ `package.json`'a `TZ=... npm test` script'i
+  **EKLENMEDİ**: Windows cmd `VAR=x cmd` önekini anlamaz ve sessizce yerel saat
+  diliminde koşup yanlış güven verir. Elle doğrulama (PowerShell):
+  `$env:TZ='Pacific/Kiritimati'; npm test` ve `$env:TZ='Pacific/Midway'; npm test`
+  — ikisi de 177/177 geçti.
+- **`features/progress/useStreak.ts` bilerek YAZILMADI** — tüketicisi yok,
+  Faz 3.2'de arayüzle birlikte. `strings.ts` ve `colors.ts` **değişmedi**.
+
+**Mağaza materyalleri kararları (Oturum 2.5.3):**
+- **Dört belge, `Planlamalar/Magaza/` altında**, hepsi Türkçe ürün metni:
+  `GIZLILIK_POLITIKASI.md`, `MAGAZA_METINLERI.md`, `VERI_GUVENLIGI_FORMU.md`,
+  `README.md` (giriş kapısı + yayın engelleri + elle yapılacaklar).
+  **Kaynak kodda tek satır değişmedi.**
+- ⚠️ **Politika TASLAK ve öyle kalıyor.** Belgenin ilk satırı hukuki inceleme
+  uyarısı; sonunda "Hukukçuya sorulacaklar" başlığı altında yedi açık madde var
+  (KVKK/VERBİS, IP'nin durumu, Expo'nun veri işleme şartları, COPPA/GDPR-K,
+  dini içeriğin özel nitelikli veri sayılıp sayılmayacağı, yayıncı kimliği).
+  Bunlar bilinçli olarak **cevaplanmadan** bırakıldı.
+- **Politikanın dayanağı tahmin değil, koddan çıkarılmış envanter.** Diske
+  yazılan alanlar `store.ts:132-140` ile birebir eşleşiyor; cihazdan çıkan iki
+  isteğin (Expo güncelleme kontrolü, ses indirme) kaynağı gösterildi. Envanter
+  değişirse politikanın 2. ve 3. maddesi değişmeli.
+- **Yer tutucu düzeni:** `{APP_NAME}` (=**Dualingo**, geçici), `{YAYINCI_ADI}`,
+  `{İLETİŞİM_EPOSTA}`, `{POLİTİKA_URL}`, `{YÜRÜRLÜK_TARİHİ}`. Kullanıcı kararı:
+  ad geçici olarak Dualingo ama **tek geçişte değişebilsin** diye gövdeye
+  gömülmedi. Kişisel e-posta belgeye yazılmadı. Doğrulama komutu `README.md`'de.
+- ⚠️ **Namaz ve Kur'an mağaza metinlerinde ÖZELLİK olarak sunulmadı** — bugün
+  o sekmeler `ComingSoon`. Olmayan özelliği anlatmak ret sebebi.
+- ⚠️ **"Uzman onaylı içerik" iddiası metne KONMADI.** Bugün içerik örnek veri;
+  iddia gerçek içerik geldiğinde doğru olacak ve o gün eklenebilir.
+- ⚠️ **Anahtar kelimelerde rakip marka adı yok** ("Duolingo tarzı" gibi ifadeler
+  iki mağazada da doğrudan ret sebebi).
+- Metin uzunlukları **tahmin değil, ölçüldü** ve komut belgede duruyor;
+  hepsi sınırın altında (en dar alan: Play kısa açıklaması 73/80).
+- ⚠️ **YENİ YAYIN ENGELİ BULUNDU — `app.json` kullanılmayan izin bildiriyor.**
+  Konum (+iOS izin metni), `RECORD_AUDIO`, `FOREGROUND_SERVICE*`,
+  `expo-notifications`, `expo-sqlite`: hiçbirinin kaynakta **tek kullanımı yok**,
+  hepsi Faz 4-5 altyapısı. Play izinlerin açıklanan işlevle eşleşmesini şart
+  koşuyor; `RECORD_AUDIO` ve ön plan servisi ayrı gerekçe formu tetikliyor.
+  **Kullanıcı kararı: bu oturumda sadece raporlandı, `app.json`'a dokunulmadı.**
+  Temizlik yerel yapılandırma değişikliğidir — OTA ile gitmez, yeni derleme
+  ister; Faz 4 zaten yeni derleme gerektirdiği için bedeli yok.
+- ⚠️ **Veri güvenliği formunun tek gri alanı: güncelleme sunucusuna giden IP.**
+  Formu ilk kez dolduranın düşünmeden "hayır" diyeceği yer. Belirleyici olan
+  Expo'nun bu isteği loglayıp saklamadığı — **bizim kodumuzdan görülemez**,
+  Expo'nun belgesiyle netleşmeli. Kaçış yolu var (`updates.enabled: false`) ama
+  bedeli OTA'dan vazgeçmek.
+- **Formu geçersiz kılacak değişiklikler listelendi**: Sentry (çökme kaydı =
+  toplanan veri), bulut senkronizasyonu (Faz 7), push bildirimi, konum (Faz 4),
+  reklam/satın alma. Biri girdiği gün form yeniden doldurulur.
+- `assets/images/icon.png` ve `splash-icon.png`'nin **hâlâ Expo şablonu olduğu
+  doğrulandı** (`splash-icon.png`, `expo-logo.png` ile aynı dosya, 3317 bayt).
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

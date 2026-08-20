@@ -1,7 +1,12 @@
 import type { IsoDate, StreakState, Timestamp } from '@/types';
 
 /**
- * Günlük seri (streak) mantığı — saf. React yok, `Date.now()` yok.
+ * Yerel gün aritmetiği — saf. React yok, `Date.now()` yok.
+ *
+ * ⚠️ Seri KARARLARI burada DEĞİL, `features/progress/dayLog.ts`te. Bu dosya
+ * yalnızca "epoch → yerel gün" ve "iki gün arası kaç gün" sorularını yanıtlar.
+ * (Faz 3.1'e kadar burada bir `advanceStreak` vardı; seri artık SQLite'taki gün
+ * kayıtlarından türetildiği için silindi.)
  *
  * Testleri `tests/streak.test.ts`.
  */
@@ -32,19 +37,11 @@ export function toLocalIsoDate(timestamp: Timestamp): IsoDate {
  * Bu yüzden tarih parçaları `Date.UTC` ile gece yarısına sabitlenip
  * karşılaştırılıyor — ikisi de UTC olduğu için aradan yaz saati çıkıyor.
  *
- * Biçimi bozuk tarih için `null` döner; çağıran onu "boşluk" sayar.
+ * Biçimi bozuk tarih için `null` döner; çağıran onu geçersiz sayar.
  */
-function dayDifference(from: IsoDate, to: IsoDate): number | null {
-  const parse = (value: IsoDate): number | null => {
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value ?? '');
-    if (match === null) {
-      return null;
-    }
-    return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
-  };
-
-  const start = parse(from);
-  const end = parse(to);
+export function dayDifference(from: IsoDate, to: IsoDate): number | null {
+  const start = parseIsoDate(from);
+  const end = parseIsoDate(to);
 
   if (start === null || end === null) {
     return null;
@@ -54,33 +51,43 @@ function dayDifference(from: IsoDate, to: IsoDate): number | null {
 }
 
 /**
- * Seriyi bugüne taşır.
+ * `'YYYY-MM-DD'` → UTC gece yarısı epoch'u. Biçim tutmuyorsa `null`.
  *
- * Aynı gün → seri değişmez (günde beş ders bitirmek seriyi beşe çıkarmaz).
- * Bir önceki gün → `+1`. Daha eski, ileri tarihli ya da bozuk → `1`'e sıfırlanır.
- *
- * `longestDays` asla düşmez.
+ * ⚠️ Yalnızca biçim denetleniyor, takvim geçerliliği DEĞİL: `'2026-02-31'`
+ * kabul edilir ve `Date.UTC` onu 3 Mart'a taşır. Bu bilinçli — girdi her zaman
+ * `toLocalIsoDate`ten ya da diskteki bir satırdan gelir, ikisi de var olmayan
+ * gün üretemez. Elle yazılmış bozuk veriyi eleyen şey biçim denetimidir.
  */
-export function advanceStreak(
-  streak: StreakState,
-  todayIso: IsoDate,
-  now: Timestamp,
-): StreakState {
-  const difference = dayDifference(streak.lastActiveDate, todayIso);
-
-  if (difference === 0) {
-    // Aynı gün: sayaç değişmiyor ama gün yine de "etkin" sayılıyor.
-    return { ...streak, lastActiveDate: todayIso, updatedAt: now };
+function parseIsoDate(value: IsoDate): number | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value ?? '');
+  if (match === null) {
+    return null;
   }
+  return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+}
 
-  const currentDays = difference === 1 ? streak.currentDays + 1 : 1;
+/** Biçimi geçerli bir yerel tarih mi? `dayDifference`ın tekil hâli. */
+export function isValidIsoDate(value: IsoDate): boolean {
+  return parseIsoDate(value) !== null;
+}
 
-  return {
-    currentDays,
-    longestDays: Math.max(streak.longestDays, currentDays),
-    lastActiveDate: todayIso,
-    updatedAt: now,
-  };
+/**
+ * Bir yerel tarihe gün ekler (negatif değer çıkarır).
+ *
+ * ⚠️ Toplama UTC gece yarısında yapılıyor, `Date` üzerinde yerel saatle değil:
+ * yaz saati geçişinin olduğu gün yerel toplama saat kaydırır ve sonuç aynı güne
+ * ya da iki gün ötesine düşebilir. `dayDifference`ın tersidir ve onunla aynı
+ * zeminde çalışmak zorunda.
+ *
+ * Biçimi bozuk tarih için `null` döner.
+ */
+export function addDays(value: IsoDate, days: number): IsoDate | null {
+  const base = parseIsoDate(value);
+  if (base === null) {
+    return null;
+  }
+  const shifted = new Date(base + days * 86_400_000);
+  return `${shifted.getUTCFullYear()}-${pad(shifted.getUTCMonth() + 1)}-${pad(shifted.getUTCDate())}`;
 }
 
 /** Hiç ders yapılmamış başlangıç serisi. */

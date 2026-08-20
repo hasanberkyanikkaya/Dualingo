@@ -112,3 +112,33 @@ export type UserProgress = {
   updatedAt: Timestamp;
   deletedAt: Timestamp | null;
 };
+
+/**
+ * Bir günün etkinlik kaydı — SQLite `activity_day` satırının TypeScript karşılığı.
+ *
+ * Seri hesabının TEK doğruluk kaynağı bu satırlardır (Faz 3.1). `StreakState`
+ * bunlardan türetilen bir önbellektir; diske yazılan şey burasıdır.
+ *
+ * ⚠️ `date` **yerel** gündür, UTC değil — `IsoDate`in kendi tanımı bunu şart
+ * koşuyor. Birincil anahtar olması bir senkronizasyon kararıdır: gün, kullanıcı
+ * başına doğal ve global bir anahtar; iki cihaz aynı günü yazarsa bu AYNI
+ * satırdır ve `updatedAt` ile çözülür. Sentetik bir kimlik seçilseydi aynı gün
+ * için iki satır oluşur ve bu tabloya özel bir birleştirme kuralı gerekirdi.
+ *
+ * `firstAt`/`lastAt` epoch olarak duruyor: `date` yerel olduğu için saat dilimi
+ * değişiminde gün yeniden hesaplanmak istenirse ham an gerekli olacak. İki
+ * sütunun asıl varlık sebebi bu.
+ */
+export type DailyActivity = {
+  date: IsoDate;
+  /** O günün ilk dersi. */
+  firstAt: Timestamp;
+  /** O günün son dersi. */
+  lastAt: Timestamp;
+  /** O gün tamamlanan ders sayısı. */
+  lessonCount: number;
+  /** O gün kazanılan toplam XP. */
+  xpEarned: number;
+  updatedAt: Timestamp;
+  deletedAt: Timestamp | null;
+};

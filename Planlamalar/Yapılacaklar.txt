@@ -126,8 +126,32 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         ⚠️ Expo Go'da placement KALICI DEĞİL (MMKV yok) — her soğuk
         açılışta karşılama tekrar çıkar. Dev build (1.3) borcu.
 
-[ ] 2.5.3 Mağaza materyalleri — gizlilik politikası, mağaza açıklaması,
-        veri güvenliği formu. YAPILMADI, kendi oturumunu istiyor.
+[x] 2.5.3 Mağaza materyalleri — gizlilik politikası, mağaza açıklaması,
+        veri güvenliği formu. Planlamalar/Magaza/ altında dört belge.
+        Metinler hazır; kod değişmedi.
+        ⚠️ Gizlilik politikası TASLAK — hukuki inceleme şart.
+        ⚠️ Yayın engelleri Magaza/README.md'de toplandı: örnek içerik,
+        kullanılmayan izinler (app.json), şablon ikon, Sentry yok,
+        dev build yok, mağaza hesapları açılmadı, ad riski.
+
+
+[x] 3.1 Seri (streak) sistemi — günlük aktivite kayıtları SQLite'ta,
+        seri hesabı SAF ve testli, otomatik haftalık seri dondurma.
+        Mantık + test; ARAYÜZ YOK (Faz 3.2).
+        lib/database.ts — tek .db, PRAGMA user_version göçleri (Faz 4-5 de
+        aynı dosyayı kullanacak)
+        features/progress/activityDb.ts — activity_day tablosu, date birincil
+        anahtar, updatedAt + deletedAt (kural 6)
+        features/progress/dayLog.ts — computeStreak, SAF, expo-sqlite bilmez
+        Dondurma KALICILAŞTIRILMIYOR, gün listesinden yeniden oynatılıyor
+        Kayan 7 gün penceresi; dondurulan gün sayaca EKLENMEZ
+        StreakState artık türetilmiş ÖNBELLEK — partialize'dan çıkarıldı,
+        persist version 2 → 3, advanceStreak silindi
+        177 test geçiyor (UTC+14 ve UTC-11'de de doğrulandı)
+        ⚠️ Seri Expo Go'da bile KALICI (SQLite) ama XP/seviyeler DEĞİL (MMKV).
+        Soğuk açılışta seri durup XP sıfırlanıyorsa BEKLENEN davranış.
+        ⚠️ İki davranış değişti: bozuk tarih artık seriyi sıfırlamıyor
+        (o giriş atılıyor), ileri tarihli gün yok sayılıyor.
 
 
 === AÇIK SORULAR ===
