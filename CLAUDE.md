@@ -137,9 +137,10 @@ Faz 2.6 seviye tespit sınavı — TAMAM.
 Faz 2.5.3 mağaza materyalleri — TAMAM.
 Faz 3.1 seri (streak) sistemi — TAMAM.
 Faz 3.2 rozet sistemi — TAMAM.
-Faz 3.3 maskot ve kutlama — TAMAM.**
-Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da ertelenmiş
-1.2c / 1.3 / 1.4.
+Faz 3.3 maskot ve kutlama — TAMAM.
+Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).**
+Sırada **Faz 4.1 namaz modülü** (kaynak kararı verildi, önü açık) ya da
+**seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da ertelenmiş 1.2c / 1.3 / 1.4.
 
 ⚠️ **Kutlama sahnesi kurulu ama LOTTIE DOSYASI YOK.** 3.3'ten sonra ders sonu
 ekranı bir kutlama slotu taşıyor; `CelebrationMascot.tsx`'teki
@@ -232,6 +233,10 @@ kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'
       Expo uyarı basıyor. Namaz hatırlatıcısı yerel zamanlanmış bildirim olduğu için
       Expo Go'da *bir şeyler* görünür — **ama ona bakıp "çalışıyor" denmemeli.**
       Vakit doğruluğu ve arka planda tetiklenme yalnız dev build'de sınanabilir.
+      ⚠️ **Verinin kendisi bloke DEĞİL:** Oturum 4.0'da kaynak seçildi ve seçilen
+      servis bir aylık pencere döndürüyor, yani zamanlanacak vakitler dev build
+      olmadan da elde ediliyor. Bloke olan tek şey bildirimin **tetiklenmesini
+      doğrulamak**. Bkz. "Namaz veri kaynağı kararı".
 - [ ] **Tema tercihi kalıcılığı (Faz 3).** `lib/useTheme.ts`'in yorumu "Faz 3'te
       MMKV'ye bağlı Açık/Koyu/Sistem tercihi" diyor. Aynı MMKV duvarı. Faz 3'e
       dev build'siz girilirse tercih uygulama kapanınca unutulur.
@@ -1326,6 +1331,55 @@ ilgili ve **bu oturumun dosyalarından değil.**
   `strings.ts`'e **bir satır**: `result.nextLesson`. ⚠️ Var olan `result.keepGoing`
   ('Yola devam') kullanılmadı — `backToPath` ('Yola dön') ile bir harf farkla
   karışıyor, oysa ikisi farklı yerlere gidiyor.
+
+**Namaz veri kaynağı kararı (Oturum 4.0 — araştırma, kod yazılmadı):**
+- **Kaynak: `https://ezanvakti.emushaf.net`** — Diyanet'in yayınladığı tabloların
+  üçüncü taraf mirror'ı. Anahtar yok. **Kapsam yalnızca Türkiye** (v0.3).
+  Tam araştırma ve elenen seçenekler: **`Planlamalar/NAMAZ_VERI_KAYNAGI.md`**.
+- ⚠️ **Araştırmanın önerisi bu DEĞİLDİ.** Öneri `adhan` ile cihazda hesaplamaktı
+  (saf JS, MIT, çevrimdışı, hukuken temiz). **Kullanıcı mirror'ı seçti**, gerekçe:
+  hesaplanmış değil Diyanet'in fiilen yayınladığı rakamlar olması. Karar bilinçli,
+  **iki risk açıkça üstlenildi**: (i) servis tek kişilik gönüllü bir projedir ve
+  **yazılı kullanım şartı yoktur**, kapanabilir; (ii) Diyanet'i proxy'lediği için
+  `502` dönebilir. Bu yüzden sağlayıcı **tek arayüzün arkasına** kapatılacak —
+  değişimi tek dosyalık iş olmalı.
+- ⚠️ **Diyanet'in resmi API'si var ama istemciden KULLANILAMAZ**
+  (`awqatsalah.diyanet.gov.tr`): **servis başına 5 istek**, yıllık endpoint
+  **aylık 10**. Kullanmak önbellekli proxy sunucu ister, yani Faz 7'yi öne çekmek.
+  Kayıt da self-servis değil, form doldurup göndermek gerekiyor.
+- ⚠️ **Siteden toplu kazıma YAPILMAYACAK** — FSEK **Ek m.8** (sui generis
+  veritabanı hakkı) içeriğin "tamamının başka ortama aktarılmasını" yapımcının
+  iznine bağlıyor; eser niteliği aranmıyor, "büyük emek ve yatırım" yeterli.
+- **Çevrimdışını çözen şey önbellek:** `GET /vakitler/{ilceID}` tek gün değil
+  **bir aylık pencere** döndürüyor (ölçülen 32 kayıt). Bir istek bir aylık veri
+  getiriyor, SQLite'a yazılıyor, uygulama arada **internetsiz** çalışıyor ve
+  bildirimler önden kurulabiliyor. Yeni tablo `lib/database.ts`'teki **aynı
+  `.db`'ye**, `MIGRATIONS` listesinin **SONUNA** (Faz 3.1 kuralı). Tarih anahtarı
+  `'YYYY-MM-DD'`, `toLocalIsoDate` ile — `toISOString()` **kullanılmaz**.
+- ⚠️ **PENCERE BUGÜNDEN BAŞLAMIYOR — servis ilçe başına ÖNBELLEKLİ.** 20.08.2026'da
+  ölçüldü: ilçe 9541 → 15.08–15.09, 9206 → 16.08–16.09, 9335 → 17.08–17.09.
+  Başlangıç ilçeye göre değişiyor ve hiçbiri bugün değil. Sonuçları:
+  (i) **`data[0]` bugün DEĞİLDİR**, bugünün kaydı tarihle aranmalı;
+  (ii) yanıt **geçmiş günler içerir**, süzülmeli;
+  (iii) yenileme eşiği **kayıt sayısından değil, yanıttaki EN SON TARİHTEN**
+  hesaplanmalı (aynı ilçe 15 dk arayla 34 ve 32 kayıt döndürdü);
+  (iv) önbellek yeterince bayatsa **bugünün kaydı hiç gelmeyebilir** — bu hata
+  değil, boş durumdur, ısrarla yeniden denenmemeli.
+- ⚠️ **İki alan tuzağı:** `HicriTarih*Iso8601` alanları **`null` geliyor**,
+  güvenilmemeli. `MiladiTarihKisaIso8601`'in **adı yanıltıcı, içeriği ISO değil**
+  (`"15.08.2026"`); projenin tarih kuralına çevrilmesi gerekiyor.
+- ⚠️ **Mağaza metni "Diyanet onaylı / resmi" DEMEZ.** Veri Diyanet'in yayınladığı
+  tablodur ama uygulama Diyanet'in değildir ve kurumla anlaşması yoktur. Doğru
+  ifade: *"Diyanet İşleri Başkanlığı'nın yayınladığı vakitler"*, ekranda atıfla.
+- **Konum izni ZORUNLU DEĞİL:** kullanıcı ilçe seçebilir, `expo-location` yalnızca
+  "konumumu bul" kısayolu. İzin istemeden çalışan bir yol kalmalı.
+- **Kıble için ek kaynak gerekmiyor:** yanıt zaten `KibleSaati` taşıyor.
+- ⚠️ **Faz 4.1'e devreden açık soru:** önbellek boş + ağ yokken `adhan` yedeği
+  konacak mı? **Varsayılan tutum HAYIR** — iki kaynağın rakamları farklı olur ve
+  aralarında sessizce gidip gelmek güven kaybettirir. Boş durum dürüstçe gösterilir.
+- ⚠️ **Gizlilik politikası ve veri güvenliği formu güncellenecek** — namaz modülü
+  **üçüncü bir uzak sunucu** (`emushaf.net`) ekliyor ve **konum** devreye giriyor;
+  ikisi de `Planlamalar/Magaza/`'daki "formu geçersiz kılan değişiklikler"de yazılı.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
