@@ -135,8 +135,10 @@ Faz 2.4 ilerleme kaydı — TAMAM.
 Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.
 Faz 2.6 seviye tespit sınavı — TAMAM.
 Faz 2.5.3 mağaza materyalleri — TAMAM.
-Faz 3.1 seri (streak) sistemi — TAMAM.**
-Sırada **Faz 3.2 — seri arayüzü** (ya da ertelenmiş 1.2c / 1.3 / 1.4).
+Faz 3.1 seri (streak) sistemi — TAMAM.
+Faz 3.2 rozet sistemi — TAMAM.**
+Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da ertelenmiş
+1.2c / 1.3 / 1.4.
 
 ⚠️ **Mağaza metinleri hazır ama YAYIN YAKIN DEĞİL.** `Planlamalar/Magaza/`
 altında dört belge var (politika taslağı, mağaza metinleri, veri güvenliği
@@ -156,6 +158,11 @@ girildiği gün **kod değişmez.**
 ⚠️ **2.4'te `/app`, `/components` ve altı soru bileşenine HİÇ dokunulmadı.**
 2.3'ün bıraktığı iki kanca dikişi tuttu; değişen tek şey gövdeleri oldu.
 Ayrıntı "İlerleme kaydı kararları"nda.
+
+⚠️ **ROZET DE KALICI.** Faz 3.2'den sonra kazanımlar `badge_unlock`
+tablosunda; seriden sonra kalıcılık duvarını delen ikinci özellik. Rozet
+**arayüzü var** (profilde koleksiyon, ders sonunda kutlama) ama **seri
+arayüzü hâlâ yok** — 3.1'in görünen yüzü yazılmadı.
 
 ⚠️ **SERİ ARTIK KALICI, GERİSİ DEĞİL.** Faz 3.1'den sonra gün kayıtları
 **SQLite**'ta (`activity_day`) ve SQLite **Expo Go'da çalışıyor** — seri,
@@ -1119,6 +1126,79 @@ ilgili ve **bu oturumun dosyalarından değil.**
   — ikisi de 177/177 geçti.
 - **`features/progress/useStreak.ts` bilerek YAZILMADI** — tüketicisi yok,
   Faz 3.2'de arayüzle birlikte. `strings.ts` ve `colors.ts` **değişmedi**.
+
+**Rozet kararları (Oturum 3.2):**
+- **Kazanımlar SQLite'ta** (`badge_unlock`, `MIGRATIONS[1]`), MMKV'de DEĞİL.
+  Gerekçe seriden farklı: seri her açılışta `activity_day`den yeniden
+  **hesaplanabiliyor** çünkü girdisi kalıcı; rozetin girdisi (`xpTotal`,
+  `levels`) MMKV'de ve Expo Go'da yok. Yani yeniden hesaplama yolu KAPALI,
+  kalıcı olması gereken şey **sonucun kendisi**. MMKV'ye yazılsaydı her soğuk
+  açılışta rozetler silinir ve yeniden kazanılırdı — ders sonu kutlaması her
+  açılışta patlardı. Yan kazanç: `partialize` beyaz liste olduğu için persist
+  **`version` 3'te kaldı**, `migrate`a satır eklenmedi.
+- ⚠️ **`badge_id` içerikten gelen bir VERİTABANI ANAHTARIDIR.** Yayınlanmış bir
+  kimliği `badges.json`da değiştirmek eski kazanımı öksüz bırakır ve rozeti
+  yeni kimlikle yeniden kazandırır (kutlama da tekrar çıkar). Doğrulayıcı bunu
+  **yakalayamaz** — tek dosyaya bakıyor; koruma dosyadaki `note` ve bu satır.
+- ⚠️ **GERİ ALMA YOK ve bu imza düzeyinde bir garanti**: `evaluateBadges`
+  yalnızca yeni kazanılanları döndürüyor, "kaybedildi" diye bir dönüş değeri
+  **yok**. Expo Go'da soğuk açılışta `xpTotal` sıfırlandığı için geri alma
+  mümkün olsaydı kullanıcı uygulamayı kapattığı için rozetini kaybederdi.
+  Amnezi en kötü ihtimalle "bugün yeni rozet yok" der.
+- **"Olay" = store'da boşaltılabilir kuyruk** (`pendingBadges` +
+  `drainPendingBadges`), emitter DEĞİL. Projede zaten bir abonelik mekanizması
+  var (Zustand); ikincisi dinleyici yaşam döngüsü getirirdi. Belirleyici olan:
+  `completeLevel` cevap işleyicisinde çalışıyor, kutlamayı gösterecek yüzey
+  SONRA monte oluyor — emitter'ın mesajı boşluğa giderdi, **kuyruk bekler.**
+  Diske yazılmıyor: bu bir arayüz sinyali, veri değil.
+- **Açılışta geriye dönük tarama VAR ama SESSİZ** (`syncBadges(now, true)`).
+  Gerekçe OTA: yarın katalog beş rozet kazanırsa bugünün kullanıcısı onları
+  hiç kazanamazdı, eşiği çoktan geçmiş ve o "geçme anı" bir daha yaşanmayacak.
+  Sessiz çünkü tarama modül gövdesinde, React monte olmadan çalışıyor ve bir
+  katalog güncellemesi on iki rozeti aynı anda kazandırabilir.
+- **Koşul `condition.type` üzerinde ayırt edici birleşik tip.** `unitCompleted`
+  düz şekle zorlanmadı — doğrulanacak hiçbir şeyi olmayan anlamsız bir
+  `threshold: 1` üretirdi. ⚠️ `enum` değil union: Node tip soyucusu `enum`
+  desteklemiyor.
+- ⚠️ **`skipped` SAYILMAZ** (ne `levelsCompleted` ne `unitCompleted`): tespit
+  sınavı rozet dağıtırdı, kullanıcı hiç görmediği içerik için rozet alırdı.
+  3.1'in `currentDays <= totalActiveDays` değişmezinin bu oturumdaki karşılığı.
+- **`streakDays` ölçütü `longestDays`**, `currentDays` değil: monoton olduğu
+  için serisi kırılmış kullanıcı geriye dönük taramada hakkını alıyor.
+  ⚠️ Bu bir gün `currentDays`e çevrilirse **`refreshStreak` tetikleyici olmak
+  ZORUNDA** (gece yarısı geçişi bugünkü değeri değiştiriyor).
+- ⚠️ **`recordBadgeUnlock` `set` updater'ının DIŞINDA ve `setState` nesne
+  biçiminde**, updater biçiminde değil: React 19 + `reactCompiler` updater'ı
+  iki kez çalıştırıyor ve kuyruk `[...eski, ...yeni]` ile büyütülseydi
+  kullanıcı her rozeti iki kez görürdü. İkinci savunma `queueBadges` /
+  `mergeAwards` / `ON CONFLICT` üçlüsünün idempotensliği.
+- **Boş ünite rozet VERMEZ**: `every` boş dizide `true` döner; koruma olmadan
+  seviyesiz bir ünite bedava rozete dönerdi. `threshold <= 0` da elenmiş —
+  "herkese hemen ver" demek olurdu.
+- **Doğrulama sınırları argüman olarak geliyor** (`BadgeContentLimits`),
+  `validatePlacementContent`ın `pathQuestionIds` çözümünün aynısı;
+  `contentValidation.ts` saf ve sessiz kaldı. ⚠️ `xpTotal` eşiğinin yolun ilk
+  geçiş XP toplamını aşması **`warning`, `error` değil**: XP'nin tavanı yok,
+  tekrar çalışma `xpForRun` ile azaltılmış XP veriyor.
+- **Arayüz: iki yüzey, kayan toast YOK.** Profilde koleksiyon
+  (`BadgeSection`), ders sonunda kutlama (`BadgeEarnedSection`). Portal/overlay
+  altyapısı kurulmadı; `theme.overlay` hâlâ tüketicisiz. ⚠️ Kuyruk **`onDone`
+  işleyicisinde** boşaltılıyor, `useEffect`te değil.
+- **`BadgeCard` `LevelNode`un ölçümlerini devraldı, yeniden ölçmedi**: durumu
+  renk değil **ikonun biçimi** taşıyor (WCAG 1.4.1'in dördüncü uygulaması);
+  kazanılmış `primarySoft` dolgu + `primary` ikon (**4.17**), kilitli
+  `borderStrong` halka + **`textMuted`** kilit (`disabledText` 1.97 ile
+  görünmüyor). ⚠️ `borderControl` **kullanılmadı** — jetonun tanımı
+  "dokunulabilir öğenin sınırı", rozet kartı dokunulabilir değil.
+- ⚠️ **XP rozetleri Expo Go'da pratikte kazanılamaz**: `xpTotal` her soğuk
+  açılışta sıfırlanıyor, 100 XP tek oturumda toplanmalı. *Elenen çözüm:*
+  `SUM(xp_earned)`i `activity_day`den okumak — o zaman rozet "ömür boyu XP"ye,
+  `strings.progress.totalXp` oturumluk XP'ye bakar ve ekranda **"Toplam XP 40"
+  ile "100 XP rozeti kazanıldı" yan yana** görünürdü. Dev build geldiği gün
+  sorun **kod değişmeden** kaybolur.
+- **215 test geçiyor.** `tests/badgeDb.test.ts` **yazılamaz** (yerel modül).
+  `strings.ts`e beş satır eklendi (`badgeEarned`, `badgeEarnedPlural`,
+  `badgeLocked` + iki a11y), **`colors.ts` değişmedi.**
 
 **Mağaza materyalleri kararları (Oturum 2.5.3):**
 - **Dört belge, `Planlamalar/Magaza/` altında**, hepsi Türkçe ürün metni:

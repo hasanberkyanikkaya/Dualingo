@@ -1,0 +1,50 @@
+{
+  "note": "ÖRNEK VERİ — GERÇEK DEĞİL. Rozet adları ve açıklamaları UZMAN tarafından yazılacak. ⚠️ Kimlikler (id) yayınlandıktan sonra DEĞİŞTİRİLEMEZ — badge_unlock tablosunun birincil anahtarıdır; değiştirilirse kazanım öksüz kalır ve rozet yeniden kazandırılır.",
+  "schemaVersion": 1,
+  "isSampleData": true,
+  "data": {
+    "id": "badges-v1",
+    "badges": [
+      {
+        "id": "badge-first-level",
+        "name": "ÖRNEK ROZET 1",
+        "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
+        "order": 1,
+        "icon": "ribbon",
+        "condition": { "type": "levelsCompleted", "threshold": 1 }
+      },
+      {
+        "id": "badge-xp-100",
+        "name": "ÖRNEK ROZET 2",
+        "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
+        "order": 2,
+        "icon": "flash",
+        "condition": { "type": "xpTotal", "threshold": 100 }
+      },
+      {
+        "id": "badge-five-levels",
+        "name": "ÖRNEK ROZET 3",
+        "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
+        "order": 3,
+        "icon": "trophy",
+        "condition": { "type": "levelsCompleted", "threshold": 5 }
+      },
+      {
+        "id": "badge-streak-7",
+        "name": "ÖRNEK ROZET 4",
+        "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
+        "order": 4,
+        "icon": "flame",
+        "condition": { "type": "streakDays", "threshold": 7 }
+      },
+      {
+        "id": "badge-unit-01",
+        "name": "ÖRNEK ROZET 5",
+        "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
+        "order": 5,
+        "icon": "medal",
+        "condition": { "type": "unitCompleted", "unitId": "unit-01-temel-inanc" }
+      }
+    ]
+  }
+}

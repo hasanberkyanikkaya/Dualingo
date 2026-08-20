@@ -5,11 +5,13 @@ import { fileURLToPath } from 'node:url';
 import {
   countBySeverity,
   formatIssue,
+  validateBadgeContent,
   validateLearningPath,
   validatePlacementContent,
 } from '@/features/learning/contentValidation';
 
 import type {
+  BadgeCatalog,
   ContentEnvelope,
   LearningPath,
   LearningPathIndex,
@@ -115,6 +117,23 @@ function loadPlacementFromDisk(): { content: PlacementContent | null; fatal: str
     return { content: envelope.data, fatal: [] };
   } catch (error) {
     return { content: null, fatal: [`placement.json: okunamadı — ${String(error)}`] };
+  }
+}
+
+/**
+ * Rozet kataloğu.
+ *
+ * ⚠️ `loadPlacementFromDisk` ile aynı bağ: dosya adı burada SABİT. Katalog bir
+ * gün bölünürse hem burası hem `contentLoader`daki statik `import` öğrenmeli.
+ */
+function loadBadgesFromDisk(): { content: BadgeCatalog | null; fatal: string[] } {
+  const file = join(contentDir, 'badges.json');
+
+  try {
+    const envelope = readJson(file) as ContentEnvelope<BadgeCatalog>;
+    return { content: envelope.data, fatal: [] };
+  } catch (error) {
+    return { content: null, fatal: [`badges.json: okunamadı — ${String(error)}`] };
   }
 }
 
@@ -261,15 +280,32 @@ function main(): number {
     unit.levels.flatMap((level) => level.questions.map((question) => question.id)),
   );
 
+  const badges = loadBadgesFromDisk();
+
+  for (const message of badges.fatal) {
+    console.log(`HATA  ${message}`);
+  }
+
+  // Rozet eşiklerinin erişilebilirliği yola bağlı; sınırlar doğrulayıcıya
+  // argüman olarak veriliyor (aynı saflık gerekçesi).
+  const allLevels = path.units.flatMap((unit) => unit.levels);
+
   const issues = [
     ...validateLearningPath(path),
     ...(placement.content === null
       ? []
       : validatePlacementContent(placement.content, pathQuestionIds)),
+    ...(badges.content === null
+      ? []
+      : validateBadgeContent(badges.content, {
+          totalLevelCount: allLevels.length,
+          totalFirstPassXp: allLevels.reduce((total, level) => total + (level.xpReward ?? 0), 0),
+          knownUnitIds: path.units.map((unit) => unit.id),
+        })),
   ];
 
   const { errors, warnings } = countBySeverity(issues);
-  const allFatal = [...fatal, ...placement.fatal];
+  const allFatal = [...fatal, ...placement.fatal, ...badges.fatal];
 
   console.log(`\nA. Yapısal doğrulama — ${errors} hata, ${warnings} uyarı`);
 

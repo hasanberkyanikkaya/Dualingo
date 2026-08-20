@@ -4,13 +4,22 @@ import { describe, it } from 'node:test';
 import {
   countBySeverity,
   formatIssue,
+  validateBadgeContent,
   validateLearningPath,
   validateLevel,
   validateQuestion,
 } from '@/features/learning/contentValidation';
 
 import type { ContentIssue } from '@/features/learning/contentValidation';
-import type { LearningPath, Level, MultipleChoiceQuestion, Question, Unit } from '@/types';
+import type {
+  BadgeCatalog,
+  BadgeDefinition,
+  LearningPath,
+  Level,
+  MultipleChoiceQuestion,
+  Question,
+  Unit,
+} from '@/types';
 
 /**
  * İçerik doğrulama testleri.
@@ -429,5 +438,111 @@ describe('rapor biçimi', () => {
       formatIssue({ severity: 'error', where: 'unit-1 › level-1', message: 'boş.' }),
       'HATA  unit-1 › level-1: boş.',
     );
+  });
+});
+
+// ── Rozetler ─────────────────────────────────────────────────────────────────
+
+/** Denetlenecek en küçük geçerli rozet. */
+function badge(overrides: Partial<BadgeDefinition> = {}): BadgeDefinition {
+  return {
+    id: 'badge-1',
+    name: 'ÖRNEK ROZET',
+    description: 'ÖRNEK AÇIKLAMA',
+    order: 1,
+    condition: { type: 'xpTotal', threshold: 100 },
+    ...overrides,
+  };
+}
+
+function catalog(badges: BadgeDefinition[]): BadgeCatalog {
+  return { id: 'badges-test', badges };
+}
+
+const LIMITS = { totalLevelCount: 10, totalFirstPassXp: 150, knownUnitIds: ['unit-1'] };
+
+describe('validateBadgeContent', () => {
+  it('sağlam katalogda susar', () => {
+    const found = validateBadgeContent(
+      catalog([
+        badge(),
+        badge({ id: 'badge-2', order: 2, condition: { type: 'unitCompleted', unitId: 'unit-1' } }),
+      ]),
+      LIMITS,
+    );
+
+    assert.deepEqual(found, []);
+  });
+
+  it('yinelenen rozet kimliğini hata sayar (veritabanı anahtarı)', () => {
+    const found = validateBadgeContent(catalog([badge(), badge({ order: 2 })]), LIMITS);
+
+    assert.equal(found.filter((issue) => issue.severity === 'error').length, 1);
+    assert.match(found[0].message, /yineleniyor/);
+  });
+
+  it('sıfır ve ondalık eşiği hata sayar', () => {
+    const zero = validateBadgeContent(
+      catalog([badge({ condition: { type: 'xpTotal', threshold: 0 } })]),
+      LIMITS,
+    );
+    const fraction = validateBadgeContent(
+      catalog([badge({ condition: { type: 'streakDays', threshold: 2.5 } })]),
+      LIMITS,
+    );
+
+    assert.equal(zero[0].severity, 'error');
+    assert.equal(fraction[0].severity, 'error');
+  });
+
+  it('bilinmeyen üniteyi hata sayar', () => {
+    const found = validateBadgeContent(
+      catalog([badge({ condition: { type: 'unitCompleted', unitId: 'unit-yok' } })]),
+      LIMITS,
+    );
+
+    assert.equal(found[0].severity, 'error');
+    assert.match(found[0].message, /yolda yok/);
+  });
+
+  it('yoldaki seviye sayısını aşan eşiği hata sayar (ölü içerik)', () => {
+    const found = validateBadgeContent(
+      catalog([badge({ condition: { type: 'levelsCompleted', threshold: 11 } })]),
+      LIMITS,
+    );
+
+    assert.equal(found[0].severity, 'error');
+  });
+
+  it('ilk geçiş XP toplamını aşan eşiği UYARI sayar — tekrar çalışmayla ulaşılabilir', () => {
+    const found = validateBadgeContent(
+      catalog([badge({ condition: { type: 'xpTotal', threshold: 500 } })]),
+      LIMITS,
+    );
+
+    assert.equal(found[0].severity, 'warning');
+  });
+
+  it('limits verilmezse erişilebilirlik denetimini ATLAR (saflık sözleşmesi)', () => {
+    const found = validateBadgeContent(
+      catalog([badge({ condition: { type: 'levelsCompleted', threshold: 9999 } })]),
+    );
+
+    assert.deepEqual(found, []);
+  });
+
+  it('boş ad ve açıklamayı uyarır, boş kataloğu uyarır', () => {
+    const blank = validateBadgeContent(catalog([badge({ name: ' ', description: '' })]), LIMITS);
+    const empty = validateBadgeContent(catalog([]), LIMITS);
+
+    assert.equal(blank.length, 2);
+    assert.equal(blank.every((issue) => issue.severity === 'warning'), true);
+    assert.equal(empty[0].severity, 'warning');
+  });
+
+  it('aynı koşulu taşıyan iki rozeti uyarır', () => {
+    const found = validateBadgeContent(catalog([badge(), badge({ id: 'badge-2', order: 2 })]), LIMITS);
+
+    assert.equal(found.some((issue) => /aynı koşulu/.test(issue.message)), true);
   });
 });

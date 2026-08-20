@@ -10,7 +10,7 @@
  * Sadece tip tanımı — fonksiyon, sabit, doğrulama yok.
  */
 
-import type { Difficulty, LevelId } from './learning';
+import type { BadgeId, Difficulty, LevelId } from './learning';
 
 /** 'YYYY-MM-DD' biçiminde yerel tarih. Seri hesabı gün birimiyle çalışır. */
 export type IsoDate = string;
@@ -139,6 +139,27 @@ export type DailyActivity = {
   lessonCount: number;
   /** O gün kazanılan toplam XP. */
   xpEarned: number;
+  updatedAt: Timestamp;
+  deletedAt: Timestamp | null;
+};
+
+/**
+ * Kazanılmış bir rozet — SQLite `badge_unlock` satırının TypeScript karşılığı.
+ *
+ * ⚠️ **`UserProgress`a alan olarak EKLENMEDİ** ve bu bilinçli: `UserProgress`
+ * MMKV'ye yazılan şekli tarif ediyor, rozet oraya ait değil. Rozetin girdisi
+ * (`xpTotal`, `levels`) MMKV'de ve Expo Go'da kalıcı değil; yani "yeniden
+ * hesapla" yolu seride olduğu gibi açık DEĞİL. Kalıcı olması gereken şey
+ * sonucun kendisi, o yüzden doğruluk kaynağı SQLite.
+ *
+ * `badgeId` birincil anahtar — `DailyActivity.date` ile aynı senkronizasyon
+ * kararı: kullanıcı başına doğal ve global bir anahtar, iki cihaz aynı rozeti
+ * kazanırsa bu AYNI satırdır.
+ */
+export type BadgeUnlock = {
+  badgeId: BadgeId;
+  /** İlk kazanım anı. Tekrar yazmada korunur (`MIN`). */
+  earnedAt: Timestamp;
   updatedAt: Timestamp;
   deletedAt: Timestamp | null;
 };

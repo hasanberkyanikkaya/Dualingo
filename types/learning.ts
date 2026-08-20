@@ -344,3 +344,71 @@ export type PlacementContent = {
 
 /** Tespit sınavı havuzunu içeren içerik dosyası. */
 export type PlacementContentFile = ContentEnvelope<PlacementContent>;
+
+// ── Rozetler ─────────────────────────────────────────────────────────────────
+
+/**
+ * Rozet kimliği.
+ *
+ * ⚠️ **Bu aynı zamanda bir VERİTABANI ANAHTARIDIR** (`badge_unlock.badge_id`).
+ * Yayınlanmış bir kimliği değiştirmek eski kazanımı öksüz bırakır ve rozeti
+ * yeni kimlikle yeniden kazandırır — kutlama da tekrar çıkar. Seviye
+ * kimlikleriyle aynı sınıf: bir kez yayınlandıysa DEĞİŞMEZ.
+ */
+export type BadgeId = string;
+
+/**
+ * Rozetin kazanılma koşulu — `type` üzerinde ayrışan birleşik tip.
+ *
+ * ⚠️ Dördü tek düz şekle (`{ type, threshold }`) zorlanmadı: `unitCompleted`ın
+ * eşiği yok, ünitesi var. Zorlansaydı doğrulanacak hiçbir şeyi olmayan ama
+ * doğrulanmadığı için ileride yanlış yazılacak bir `threshold: 1` alanı
+ * doğardı. Üç sayısal tip `threshold` adını paylaştığı için değerlendirme ve
+ * doğrulama yine tek dalda toplanıyor.
+ *
+ * ⚠️ `enum` DEĞİL birleşik tip — Node'un tip soyucusu `enum` desteklemiyor
+ * (`tests/setup.ts`).
+ */
+export type BadgeCondition =
+  /** Toplam XP eşiği. Eşik DAHİL (`>=`). */
+  | { type: 'xpTotal'; threshold: number }
+  /**
+   * Tamamlanmış seviye sayısı.
+   * ⚠️ `skipped` SAYILMAZ: tespit sınavıyla açılan seviye "hiç çalışılmadı"
+   * demek, sınavın rozet dağıtması olurdu.
+   */
+  | { type: 'levelsCompleted'; threshold: number }
+  /**
+   * Gün serisi.
+   * ⚠️ Ölçüt `StreakState.longestDays`, `currentDays` DEĞİL — monoton olduğu
+   * için serisi kırılmış kullanıcı da geriye dönük taramada hakkını alır.
+   */
+  | { type: 'streakDays'; threshold: number }
+  /** Bir ünitenin TÜM seviyeleri tamamlandı. Boş ünite rozet vermez. */
+  | { type: 'unitCompleted'; unitId: UnitId };
+
+/** Tek bir rozetin tanımı — pakete gömülü, salt okunur içerik. */
+export type BadgeDefinition = {
+  id: BadgeId;
+  /**
+   * ⚠️ **YER TUTUCU.** Rozet adı dini içerik taşıyabilir; uzman yazar
+   * (CLAUDE.md dini içerik politikası).
+   */
+  name: string;
+  /** ⚠️ Aynı kural: yer tutucu. */
+  description: string;
+  /** Listeleme sırası. */
+  order: number;
+  /** Ionicons adı. Bugün doğrulanmıyor; bilinmeyen ad varsayılana düşer. */
+  icon?: string;
+  condition: BadgeCondition;
+};
+
+/** Rozet kataloğu — tek dosyada. */
+export type BadgeCatalog = {
+  id: string;
+  badges: BadgeDefinition[];
+};
+
+/** Rozet kataloğunu içeren içerik dosyası. */
+export type BadgeCatalogContent = ContentEnvelope<BadgeCatalog>;

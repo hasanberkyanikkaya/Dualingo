@@ -1,3 +1,4 @@
+import badgesJson from '@/content/badges.json';
 import placementJson from '@/content/placement.json';
 import pathIndexJson from '@/content/lessons/path.json';
 import unit01Json from '@/content/lessons/01-temel-inanc.json';
@@ -5,6 +6,7 @@ import unit02Json from '@/content/lessons/02-islamin-sartlari.json';
 import {
   countBySeverity,
   formatIssue,
+  validateBadgeContent,
   validateLearningPath,
   validatePlacementContent,
 } from '@/features/learning/contentValidation';
@@ -13,6 +15,8 @@ import type {
   ContentIssue,
 } from '@/features/learning/contentValidation';
 import type {
+  BadgeCatalog,
+  BadgeDefinition,
   Difficulty,
   LearningPath,
   LearningPathIndex,
@@ -281,4 +285,50 @@ function getPlacementContent(): PlacementContent {
 export function getPlacementQuestions(difficulty: Difficulty): Question[] {
   const set = getPlacementContent().sets.find((entry) => entry.difficulty === difficulty);
   return Array.isArray(set?.questions) ? set.questions : [];
+}
+
+// ── Rozetler ─────────────────────────────────────────────────────────────────
+
+/** Rozet kataloğu — modül başına bir kez çözülür. Çözülemezse boş katalog. */
+let cachedBadges: BadgeCatalog | null = null;
+
+function getBadgeCatalog(): BadgeCatalog {
+  if (cachedBadges !== null) {
+    return cachedBadges;
+  }
+
+  const content = unwrap<BadgeCatalog>(badgesJson, 'badges.json');
+
+  if (content === null || !Array.isArray(content.badges)) {
+    warn('Rozet kataloğu okunamadı — boş katalog döndürülüyor.');
+    cachedBadges = { id: 'badges-unknown', badges: [] };
+    return cachedBadges;
+  }
+
+  cachedBadges = { ...content, badges: sortByOrder(content.badges) };
+
+  // Eşiklerin erişilebilirliği yola bağlı; doğrulayıcı saf kalsın diye sınırlar
+  // ona argüman olarak veriliyor (sınav tarafındaki `pathQuestionIds` ile aynı).
+  const units = getLearningPath().units;
+  const levels = units.flatMap((unit) => unit.levels);
+
+  reportContentIssues(
+    'rozet denetimi',
+    validateBadgeContent(cachedBadges, {
+      totalLevelCount: levels.length,
+      totalFirstPassXp: levels.reduce((total, level) => total + (level.xpReward ?? 0), 0),
+      knownUnitIds: units.map((unit) => unit.id),
+    }),
+  );
+
+  return cachedBadges;
+}
+
+/**
+ * Rozet tanımları, `order`a göre. Katalog okunamazsa **boş dizi**.
+ *
+ * ⚠️ Önbellekteki diziyi döndürüyor; çağıran yerinde sıralamamalı/değiştirmemeli.
+ */
+export function getBadgeDefinitions(): readonly BadgeDefinition[] {
+  return getBadgeCatalog().badges;
 }

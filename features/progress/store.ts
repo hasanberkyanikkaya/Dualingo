@@ -1,12 +1,24 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { getLearningPath } from '@/features/learning/contentLoader';
+import { getBadgeDefinitions, getLearningPath } from '@/features/learning/contentLoader';
 import {
   readActiveDates,
   recordActivity,
   softDeleteAllActivity,
 } from '@/features/progress/activityDb';
+import {
+  readEarnedBadges,
+  recordBadgeUnlock,
+  softDeleteAllBadges,
+} from '@/features/progress/badgeDb';
+import {
+  buildBadgeSnapshot,
+  evaluateBadges,
+  hasSameUnlocks,
+  mergeAwards,
+  queueBadges,
+} from '@/features/progress/badges';
 import { computeStreak, toStreakState } from '@/features/progress/dayLog';
 import { livePrevious, mergeCompletion } from '@/features/progress/levelRecord';
 import { applyPlacement, resolvePlacementDifficulty } from '@/features/progress/placement';
@@ -15,7 +27,7 @@ import { emptyStreak, toLocalIsoDate } from '@/features/progress/streak';
 import { ensureEntryPoint, unlockNext } from '@/features/progress/unlock';
 
 import type { LessonSummary } from '@/features/learning/lessonSession';
-import type { DailyGoal, Difficulty, LevelId, UserProgress } from '@/types';
+import type { BadgeId, BadgeUnlock, DailyGoal, Difficulty, LevelId, Timestamp, UserProgress } from '@/types';
 
 /**
  * İlerleme store'u — cihazda yazılan tek gerçek kaynak.
@@ -28,12 +40,37 @@ import type { DailyGoal, Difficulty, LevelId, UserProgress } from '@/types';
  * alanı `activity_day` satırlarından her açılışta yeniden türetilen bir
  * ÖNBELLEKTİR; `partialize` onu bilerek diske yazmıyor.
  *
+ * ⚠️ **Serinin ve rozetlerin doğruluk kaynağı da SQLite** — `streak` ve
+ * `badges` alanları önbellektir, `partialize` ikisini de diske yazmaz. Aradaki
+ * fark: seri her açılışta yeniden HESAPLANIYOR, rozet yalnızca yeniden
+ * OKUNUYOR (girdisi MMKV'de ve kalıcı değil, bkz. `badgeDb.ts`).
+ *
  * ⚠️ **API bilerek dar**: `completeLevel`, `resetProgress`, `setPlacement`,
- * `setDailyGoal`. Bugün kullanılmayan bir eylem yazmak spekülasyon olurdu
+ * `setDailyGoal`, `drainPendingBadges`. Bugün kullanılmayan bir eylem yazmak spekülasyon olurdu
  * (Button ve ProgressBar'daki aynı alışkanlık).
  */
 
 type ProgressState = UserProgress & {
+  /**
+   * Kazanılmış rozetler.
+   *
+   * ⚠️ **SQLite ÖNBELLEĞİ** — doğruluk kaynağı `badge_unlock` tablosu
+   * (`badgeDb.ts`). `streak` gibi `partialize` dışında; ama ondan farklı olarak
+   * yeniden HESAPLANAMAZ, yalnızca yeniden OKUNUR: girdisi (`xpTotal`,
+   * `levels`) MMKV'de ve Expo Go'da kalıcı değil.
+   */
+  badges: readonly BadgeUnlock[];
+  /**
+   * Henüz kullanıcıya gösterilmemiş rozetler — **"olay" budur.**
+   *
+   * Ayrı bir emitter yazılmadı: `completeLevel` ders ekranında çalışıyor,
+   * kutlamayı gösterecek yüzey sonra monte olabiliyor. Bir emitter'ın mesajı
+   * boşluğa giderdi; kuyruk bekler. Diske YAZILMAZ — bu bir arayüz sinyali,
+   * veri değil.
+   */
+  pendingBadges: readonly BadgeId[];
+  /** Kutlama gösterildi: kuyruğu boşaltır. */
+  drainPendingBadges: () => void;
   /** Ders bitti: kaydet, XP ve seriyi işle, sıradaki seviyeyi aç. */
   completeLevel: (summary: LessonSummary) => void;
   /** Her şeyi sıfırlar. Geliştirme kaçış kapağı ve elle sınama için. */
@@ -57,6 +94,10 @@ type ProgressState = UserProgress & {
   setDailyGoal: (goal: DailyGoal) => void;
 };
 
+/** Paylaşılan boş diziler — gereksiz yeniden çizim olmasın diye sabit referans. */
+const EMPTY_BADGES: readonly BadgeUnlock[] = [];
+const EMPTY_QUEUE: readonly BadgeId[] = [];
+
 /** Hiç oynanmamış kullanıcı. `levels` boş; ilk seviyeyi `openEntryPoint` açar. */
 function emptyProgress(): UserProgress {
   return {
@@ -74,6 +115,8 @@ export const useProgressStore = create<ProgressState>()(
   persist(
     (set) => ({
       ...emptyProgress(),
+      badges: EMPTY_BADGES,
+      pendingBadges: EMPTY_QUEUE,
 
       completeLevel: (summary) => {
         // ⚠️ Zaman kaynağı `Date.now()` DEĞİL, `summary.completedAt`. Tamamlama
@@ -101,7 +144,16 @@ export const useProgressStore = create<ProgressState>()(
             updatedAt: now,
           };
         });
+
+        // ⚠️ `set`ten SONRA: değerlendirme yeni XP'yi, yeni seviye kaydını ve
+        // tazelenmiş seriyi görmeli. `set`in İÇİNDE olamazdı — updater saf
+        // sayılıyor ve veritabanına yazıyor (`recordActivity` ile aynı gerekçe).
+        syncBadges(now, false);
       },
+
+      drainPendingBadges: () =>
+        // Sabit referans: çift çağrı yeni bir dizi üretip gereksiz çizim yapmasın.
+        set((state) => (state.pendingBadges.length === 0 ? {} : { pendingBadges: EMPTY_QUEUE })),
 
       refreshStreak: () => {
         const now = Date.now();
@@ -140,10 +192,15 @@ export const useProgressStore = create<ProgressState>()(
         // ⚠️ Gün kayıtları da silinmeli, yoksa seri sıfırlamadan sonra hayalet
         // gibi geri gelir: MMKV tarafı boşalır ama `activity_day` yerinde durur.
         softDeleteAllActivity(now);
+        softDeleteAllBadges(now);
 
         set(() => {
           return {
             ...emptyProgress(),
+            // ⚠️ `emptyProgress()` bunları TAŞIMAZ (`UserProgress`ta yoklar);
+            // yazılmazsa "her şeyi sıfırla" rozetleri ekranda bırakır.
+            badges: EMPTY_BADGES,
+            pendingBadges: EMPTY_QUEUE,
             // Sıfırlama yolu da giriş noktasını açık bırakmalı, yoksa kullanıcı
             // tamamen kilitli bir haritaya düşer.
             levels: ensureEntryPoint(getLearningPath().units, {}, now),
@@ -191,6 +248,11 @@ export const useProgressStore = create<ProgressState>()(
        * alanlardan besleniyor; diske yolculuk ederse yarın yalan söyler. Her
        * açılışta `refreshStreak()` onu SQLite'tan yeniden kuruyor. Yan kazanç:
        * seri, MMKV kapalıyken bile kalıcı olan ilk özellik.
+       *
+       * ⚠️ **`badges` de YOK** ama başka sebeple: doğruluk kaynağı
+       * `badge_unlock` tablosu ve buraya yazmak ikinci bir kaynak yaratırdı.
+       * `pendingBadges` ise veri bile değil, gösterilmemiş kutlama kuyruğu.
+       * Beyaz liste olduğu için `version` 3'te kaldı, `migrate` değişmedi.
        */
       partialize: (state) => ({
         xpTotal: state.xpTotal,
@@ -227,8 +289,72 @@ function openEntryPoint(): void {
   }
 }
 
+/**
+ * Rozetleri değerlendirir, kazanılanları KALICI hale getirir ve önbelleği tazeler.
+ *
+ * `silent` → kazanımlar kuyruğa yazılmaz. Açılıştaki geriye dönük tarama bunu
+ * kullanıyor.
+ *
+ * ⚠️ **Neden geriye dönük tarama var:** içerik OTA ile güncelleniyor (mimari
+ * kural 7). Yarın `badges.json`a beş rozet eklenirse bugünün kullanıcısı
+ * onları HİÇ kazanamazdı — eşiği çoktan geçmiş durumda ve o "geçme anı" bir
+ * daha yaşanmayacak.
+ *
+ * ⚠️ **Neden SESSİZ:** tarama React monte olmadan, modül gövdesinde çalışıyor;
+ * gösterilecek bir yüzey yok. Ayrıca bir katalog güncellemesi on iki rozeti
+ * aynı anda kazandırabilir ve açılışta on iki kutlama gürültüdür. Olay "ŞU AN
+ * bir şey başardın" demek, "geçmişte başarmıştın" değil.
+ */
+function syncBadges(now: Timestamp, silent: boolean): void {
+  // Doğruluk kaynağı tablo, önbellek değil: aradaki bir sıfırlama ya da başka
+  // bir yazma önbelleği bayatlatmış olabilir.
+  const earned = readEarnedBadges();
+  const state = useProgressStore.getState();
+
+  const snapshot = buildBadgeSnapshot(
+    getLearningPath().units,
+    state.levels,
+    state.xpTotal,
+    state.streak,
+  );
+
+  const awards = evaluateBadges(
+    getBadgeDefinitions(),
+    snapshot,
+    earned.map((unlock) => unlock.badgeId),
+    now,
+  );
+
+  for (const award of awards) {
+    recordBadgeUnlock(award.badgeId, award.earnedAt, now);
+  }
+
+  const badges = mergeAwards(earned, awards);
+  const pendingBadges = silent
+    ? state.pendingBadges
+    : queueBadges(
+        state.pendingBadges,
+        awards.map((award) => award.badgeId),
+      );
+
+  // ⚠️ `readEarnedBadges()` her çağrıda YENİ bir dizi döndürüyor; bu kapı
+  // olmadan her ders sonunda tüm rozet aboneleri yeniden çizilirdi
+  // (`openEntryPoint`teki `levels !== state.levels` denetiminin ikizi).
+  if (hasSameUnlocks(badges, state.badges) && pendingBadges === state.pendingBadges) {
+    return;
+  }
+
+  // ⚠️ Güncelleyici biçimi DEĞİL, nesne biçimi: React 19 + `reactCompiler`
+  // altında updater iki kez çalışabiliyor. (`queueBadges` ve `mergeAwards`
+  // zaten idempotent — bu ikinci savunma hattı.)
+  useProgressStore.setState({ badges, pendingBadges });
+}
+
 openEntryPoint();
 
 // Seri önbelleğini diskteki gün kayıtlarından kur. `partialize` `streak`i
 // yazmadığı için bu çağrı olmadan uygulama her açılışta "0 gün" gösterirdi.
 useProgressStore.getState().refreshStreak();
+
+// ⚠️ Seriden SONRA: `streakDays` koşulu `streak.longestDays`i okuyor.
+syncBadges(Date.now(), true);

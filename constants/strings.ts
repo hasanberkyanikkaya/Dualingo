@@ -188,6 +188,10 @@ export const strings = {
     dailyGoalReached: 'Bugünün hedefini tamamladın',
     badges: 'Rozetler',
     noBadgesYet: 'Henüz rozet yok — ilk dersini tamamla.',
+    /** Ders sonunda kazanılan rozetlerin başlığı. Tekil/çoğul ayrı satır. */
+    badgeEarned: 'Yeni rozet',
+    badgeEarnedPlural: 'Yeni rozetler',
+    badgeLocked: 'Kilitli',
     level: 'Seviye',
   },
 
@@ -270,6 +274,11 @@ export const strings = {
 
     /* Görsel eşleştirme */
     matchedPair: '{text} — {number}. eşleşme',
+
+    /* Rozetler — durum RENKLE değil ikon biçimiyle veriliyor, ekran okuyucuya
+       da sözle söylenmeli. */
+    badgeEarned: '{name} — kazanıldı',
+    badgeLocked: '{name} — kilitli',
   },
 } as const;
 

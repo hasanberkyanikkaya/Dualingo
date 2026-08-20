@@ -54,6 +54,26 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_activity_day_updated_at
      ON activity_day (updated_at);`,
+
+  // [1] → sürüm 2: kazanılmış rozetler (Faz 3.2).
+  //
+  // ⚠️ `badge_id` İÇERİKTEN gelir (`content/badges.json`) ve burada VERİTABANI
+  // ANAHTARI olur. Yayınlanmış bir rozet kimliğini içerikte değiştirmek eski
+  // kazanımı öksüz bırakır ve rozeti yeni kimlikle YENİDEN kazandırır —
+  // kutlama da tekrar çıkar. Seviye kimlikleriyle aynı sınıf: yayınlandıysa
+  // değişmez. Doğrulayıcı bunu yakalayamaz (tek dosyaya bakıyor).
+  //
+  // Anahtar seçimi `activity_day.date` ile aynı senkronizasyon kararı: rozet
+  // kimliği kullanıcı başına doğal ve global; iki cihaz aynı rozeti kazanırsa
+  // bu AYNI satırdır ve `updated_at` ile çözülür.
+  `CREATE TABLE IF NOT EXISTS badge_unlock (
+     badge_id   TEXT    PRIMARY KEY NOT NULL,
+     earned_at  INTEGER NOT NULL,
+     updated_at INTEGER NOT NULL,
+     deleted_at INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_badge_unlock_updated_at
+     ON badge_unlock (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;
@@ -85,7 +105,7 @@ function openDatabase(): SQLiteDatabase | null {
   } catch (error) {
     if (__DEV__) {
       console.warn(
-        '[lib/database] SQLite açılamadı — seri geçmişi bu oturumda kaydedilmeyecek.',
+        '[lib/database] SQLite açılamadı — seri ve rozet geçmişi bu oturumda kaydedilmeyecek.',
         error,
       );
     }

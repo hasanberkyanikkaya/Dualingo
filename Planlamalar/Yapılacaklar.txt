@@ -154,6 +154,26 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         (o giriş atılıyor), ileri tarihli gün yok sayılıyor.
 
 
+[x] 3.2 Rozet (badge) sistemi — tanımlar /content/badges.json'da, koşul
+        değerlendirmesi SAF ve testli, kazanımlar SQLite'ta, minimal arayüz.
+        lib/database.ts MIGRATIONS[1] — badge_unlock tablosu (badge_id
+        birincil anahtar, updated_at + deleted_at)
+        features/progress/badges.ts — SAF değerlendirici, yalnız @/types
+        features/progress/badgeDb.ts — ince I/O katmanı, testsiz
+        Dört koşul tipi: xpTotal, levelsCompleted, streakDays, unitCompleted
+        "Olay" = store'da pendingBadges kuyruğu + drainPendingBadges (emitter
+        yok — kutlamayı gösterecek yüzey sonra monte oluyor, kuyruk bekler)
+        Açılışta geriye dönük tarama VAR ama SESSİZ (OTA ile eklenen rozetler
+        mevcut kullanıcıya da verilsin diye)
+        Arayüz: profilde koleksiyon + ders sonunda kutlama. Kayan toast YOK.
+        215 test geçiyor
+        ⚠️ Rozet adları/açıklamaları YER TUTUCU — uzman yazacak.
+        ⚠️ Rozet kimliği yayınlandıktan sonra DEĞİŞMEZ (veritabanı anahtarı).
+        ⚠️ Geri alma YOK: kazanılmış rozet hiçbir koşulda iptal edilmiyor.
+        ⚠️ Rozet Expo Go'da KALICI (SQLite) ama XP değil — 100 XP rozeti
+        pratikte dev build'e kadar kazanılamaz.
+
+
 === AÇIK SORULAR ===
 
 [ ] Diyanet namaz vakti verisi nereden gelecek?

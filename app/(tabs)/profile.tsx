@@ -7,6 +7,7 @@ import ScreenHeader from '@/components/ScreenHeader';
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
+import BadgeSection from '@/features/progress/components/BadgeSection';
 import { useTheme } from '@/lib/useTheme';
 
 /** Seviye tespitini yeniden çalıştırır. Karşılama adımı atlanır (`retake`). */
@@ -46,6 +47,10 @@ export default function ProfileScreen() {
             variant="secondary"
           />
         </View>
+
+        {/* Ekran dosyası ince kalıyor (mimari kural 2): rozetlerin tamamı
+            kendi bölüm bileşeninde. */}
+        <BadgeSection />
       </View>
     </Screen>
   );

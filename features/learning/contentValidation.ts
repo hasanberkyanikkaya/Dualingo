@@ -1,7 +1,16 @@
 import { isValidAudioKey } from '@/features/learning/audioKey';
 import { isAnswerable, normalizeTr } from '@/features/learning/answerEngine';
 
-import type { Difficulty, LearningPath, Level, PlacementContent, Question, Unit } from '@/types';
+import type {
+  BadgeCatalog,
+  BadgeCondition,
+  Difficulty,
+  LearningPath,
+  Level,
+  PlacementContent,
+  Question,
+  Unit,
+} from '@/types';
 
 /**
  * İçerik doğrulama — yolun tamamını tek geçişte denetler.
@@ -411,6 +420,136 @@ export function validatePlacementContent(
       }
 
       found.push(...validateQuestion(question, at));
+    }
+  }
+
+  return found;
+}
+
+// ── Rozetler ─────────────────────────────────────────────────────────────────
+
+/**
+ * Yolun bugünkü sınırları — rozet eşiklerinin erişilebilirliğini ölçmek için.
+ *
+ * `validatePlacementContent`ın `pathQuestionIds` çözümüyle aynı: bu dosya saf
+ * kalmalı, yol verisini kendisi okuyamaz.
+ */
+export type BadgeContentLimits = {
+  totalLevelCount: number;
+  /** Yolun tamamı İLK geçişte kaç XP veriyor (`sum(level.xpReward)`). */
+  totalFirstPassXp: number;
+  knownUnitIds: readonly string[];
+};
+
+/** Koşulu karşılaştırılabilir tek bir dizgeye indirger. */
+function conditionKey(condition: BadgeCondition): string {
+  return condition.type === 'unitCompleted'
+    ? `unitCompleted:${condition.unitId}`
+    : `${condition.type}:${condition.threshold}`;
+}
+
+/**
+ * Rozet kataloğunu denetler.
+ *
+ * ⚠️ **Rozet kimliği bir VERİTABANI ANAHTARIDIR** (`badge_unlock.badge_id`);
+ * yinelenmesi bu yüzden `error`: ikinci tanım hiç kazanılamaz, kazanım ilkinin
+ * adını gösterir.
+ *
+ * `limits` verilmezse erişilebilirlik denetimleri atlanır — dosyanın saflığı
+ * bozulmasın diye sınırlar dışarıdan geliyor.
+ */
+export function validateBadgeContent(
+  catalog: BadgeCatalog,
+  limits: BadgeContentLimits = { totalLevelCount: 0, totalFirstPassXp: 0, knownUnitIds: [] },
+): ContentIssue[] {
+  const found: ContentIssue[] = [];
+  const where = catalog.id;
+
+  if (catalog.badges.length === 0) {
+    found.push(issue('warning', where, 'katalogda hiç rozet yok — rozet bölümü kalıcı olarak boş görünür.'));
+  }
+
+  for (const id of duplicates(catalog.badges.map((badge) => badge.id))) {
+    found.push(issue('error', where, `rozet kimliği "${id}" yineleniyor — kimlik veritabanı anahtarı, ikinci tanım hiç kazanılamaz.`));
+  }
+
+  for (const order of duplicates(catalog.badges.map((badge) => String(badge.order)))) {
+    found.push(issue('warning', where, `sıra numarası ${order} birden fazla rozette — listedeki sıra kararsız.`));
+  }
+
+  for (const key of duplicates(catalog.badges.map((badge) => conditionKey(badge.condition)))) {
+    found.push(issue('warning', where, `birden fazla rozet aynı koşulu taşıyor (${key}) — hepsi aynı anda kazanılır.`));
+  }
+
+  const knownUnits = new Set(limits.knownUnitIds);
+
+  for (const badge of catalog.badges) {
+    const at = isBlank(badge.id) ? where : `${where}${SEP}${badge.id}`;
+
+    if (isBlank(badge.id)) {
+      found.push(issue('error', where, 'rozet kimliği boş — anahtar olamaz.'));
+    }
+    if (isBlank(badge.name)) {
+      found.push(issue('warning', at, 'rozet adı boş.'));
+    }
+    if (isBlank(badge.description)) {
+      found.push(issue('warning', at, 'rozet açıklaması boş.'));
+    }
+
+    const condition = badge.condition;
+
+    if (condition === undefined || condition === null) {
+      found.push(issue('error', at, 'rozetin koşulu yok — hiç kazanılamaz.'));
+      continue;
+    }
+
+    if (condition.type === 'unitCompleted') {
+      if (isBlank(condition.unitId)) {
+        found.push(issue('error', at, 'koşulun ünite kimliği boş.'));
+      } else if (knownUnits.size > 0 && !knownUnits.has(condition.unitId)) {
+        found.push(issue('error', at, `"${condition.unitId}" ünitesi yolda yok — koşul hiç sağlanamaz.`));
+      }
+      continue;
+    }
+
+    if (
+      condition.type !== 'xpTotal' &&
+      condition.type !== 'levelsCompleted' &&
+      condition.type !== 'streakDays'
+    ) {
+      found.push(issue('error', at, `bilinmeyen koşul tipi "${String((condition as { type: string }).type)}".`));
+      continue;
+    }
+
+    /**
+     * ⚠️ Eşik pozitif tam sayı değilse `isConditionMet` `false` döndürür ve
+     * rozet ASLA kazanılamaz. `threshold: 0` ise tersi olurdu — herkese hemen
+     * verilirdi; değerlendirici onu da eliyor ama sebebi burada söyleniyor.
+     */
+    if (!Number.isInteger(condition.threshold) || condition.threshold <= 0) {
+      found.push(issue('error', at, `eşik pozitif bir tam sayı olmalı (şu an: ${String(condition.threshold)}) — rozet hiç kazanılamaz.`));
+      continue;
+    }
+
+    if (
+      condition.type === 'levelsCompleted' &&
+      limits.totalLevelCount > 0 &&
+      condition.threshold > limits.totalLevelCount
+    ) {
+      found.push(issue('error', at, `eşik ${condition.threshold}, yolda toplam ${limits.totalLevelCount} seviye var — koşul hiçbir zaman sağlanamaz.`));
+    }
+
+    /**
+     * ⚠️ Bu `warning`, `error` DEĞİL: XP'nin tavanı yok. Tamamlanmış bir
+     * seviye tekrar çalışılınca `xpForRun` azaltılmış XP veriyor, dolayısıyla
+     * eşik ulaşılabilir — sadece yolu bir kez bitirmek yetmiyor.
+     */
+    if (
+      condition.type === 'xpTotal' &&
+      limits.totalFirstPassXp > 0 &&
+      condition.threshold > limits.totalFirstPassXp
+    ) {
+      found.push(issue('warning', at, `eşik ${condition.threshold}, yolun tamamı ilk geçişte ${limits.totalFirstPassXp} XP veriyor — yalnızca tekrar çalışarak ulaşılabilir.`));
     }
   }
 

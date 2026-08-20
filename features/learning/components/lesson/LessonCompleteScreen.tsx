@@ -7,9 +7,11 @@ import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import LevelStars from '@/features/learning/components/map/LevelStars';
 import type { LessonSummary } from '@/features/learning/lessonSession';
+import { useProgressStore } from '@/features/progress/store';
 import { formatString } from '@/lib/formatString';
 import { useTheme } from '@/lib/useTheme';
 
+import BadgeEarnedSection from './BadgeEarnedSection';
 import MistakeList from './MistakeList';
 
 import type { Question } from '@/types';
@@ -40,6 +42,17 @@ export default function LessonCompleteScreen({
   onDone,
 }: LessonCompleteScreenProps) {
   const { theme } = useTheme();
+  const drainPendingBadges = useProgressStore((state) => state.drainPendingBadges);
+
+  /**
+   * ⚠️ Kuyruk İŞLEYİCİDE boşaltılıyor, `useEffect`te DEĞİL: `reactCompiler` +
+   * StrictMode etkileri iki kez çalıştırıyor ve kutlama daha okunmadan
+   * kaybolurdu. (2.3'ün "tamamlanma sinyali işleyiciden gider" kararının aynısı.)
+   */
+  function handleDone() {
+    drainPendingBadges();
+    onDone();
+  }
 
   const accuracyPercent =
     summary.total > 0 ? Math.round((summary.correct * 100) / summary.total) : 0;
@@ -78,6 +91,10 @@ export default function LessonCompleteScreen({
           </Text>
         </View>
 
+        {/* Rozet bölümü özet ile hata listesi arasında: kutlama önce, ders
+            değerlendirmesi sonra. */}
+        <BadgeEarnedSection />
+
         {hasMistakes ? (
           <MistakeList mistakes={summary.mistakes} questions={questions} />
         ) : (
@@ -93,7 +110,7 @@ export default function LessonCompleteScreen({
       </ScrollView>
 
       <View style={styles.footer}>
-        <Button label={strings.result.backToPath} onPress={onDone} size="large" fullWidth />
+        <Button label={strings.result.backToPath} onPress={handleDone} size="large" fullWidth />
       </View>
     </View>
   );
