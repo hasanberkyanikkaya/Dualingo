@@ -1,6 +1,11 @@
 import pathIndexJson from '@/content/lessons/path.json';
 import unit01Json from '@/content/lessons/01-temel-inanc.json';
 import unit02Json from '@/content/lessons/02-islamin-sartlari.json';
+import {
+  countBySeverity,
+  formatIssue,
+  validateLearningPath,
+} from '@/features/learning/contentValidation';
 
 import type { LearningPath, LearningPathIndex, Level, LevelId, Unit, UnitRef } from '@/types';
 
@@ -101,23 +106,32 @@ function resolveUnit(ref: UnitRef): Unit | null {
 }
 
 /**
- * Aynı seviye kimliğini iki ünitede kullanmak sessiz bir ilerleme hatası doğurur:
- * `UserProgress.levels` yolun tamamı için DÜZ bir sözlüktür, ünite başına değil.
- * Çakışan kimlik iki seviyenin ilerlemesini birbirine bağlar.
+ * Yolun tamamını `contentValidation`'a verir ve bulguları basar — yalnızca
+ * `__DEV__`, yalnızca bir kez (önbelleğin arkasında).
+ *
+ * ⚠️ **Bulgular içeriği DÜŞÜRMEZ.** Bozuk bir soruyu burada ayıklamak ders
+ * uzunluğunu sessizce değiştirirdi; o kararı ders oturumu `isAnswerable` ile
+ * ekranda veriyor (Oturum 2.3). Yükleyicinin işi görünür kılmak.
+ *
+ * Yinelenen seviye kimliği denetimi de artık burada: kural tek yerde durmalı
+ * ve o yer sınanabilir olan (`contentValidation`), sınanamayan yükleyici değil.
  */
-function warnOnDuplicateLevelIds(units: readonly Unit[]): void {
+function reportContentIssues(path: LearningPath): void {
   if (!__DEV__) {
     return;
   }
 
-  const seen = new Set<string>();
-  for (const unit of units) {
-    for (const level of unit.levels) {
-      if (seen.has(level.id)) {
-        warn(`Seviye kimliği "${level.id}" birden fazla yerde. Kimlikler yol genelinde benzersiz olmalı.`);
-      }
-      seen.add(level.id);
-    }
+  const issues = validateLearningPath(path);
+
+  if (issues.length === 0) {
+    return;
+  }
+
+  const { errors, warnings } = countBySeverity(issues);
+  warn(`içerik denetimi: ${errors} hata, ${warnings} uyarı.`);
+
+  for (const issue of issues) {
+    warn(formatIssue(issue));
   }
 }
 
@@ -148,14 +162,14 @@ export function getLearningPath(): LearningPath {
     .map(resolveUnit)
     .filter((unit): unit is Unit => unit !== null);
 
-  warnOnDuplicateLevelIds(units);
-
   cachedPath = {
     id: index.id,
     title: index.title,
     description: index.description,
     units,
   };
+
+  reportContentIssues(cachedPath);
 
   return cachedPath;
 }

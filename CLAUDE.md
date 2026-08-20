@@ -131,8 +131,22 @@ npx tsc --noEmit        # tip kontrolü
 Faz 1.2b ProgressBar — TAMAM. Faz 2.1 Seviye haritası — TAMAM.
 Faz 2.2 soru bileşenleri (altı tipin altısı) — TAMAM.
 Faz 2.3 ders akışı ekranı — TAMAM.
-Faz 2.4 ilerleme kaydı — TAMAM.**
-Sırada **Faz 2.5 — içerik doğrulama + OTA (`expo-updates`)**.
+Faz 2.4 ilerleme kaydı — TAMAM.
+Faz 2.5 ses altyapısı + içerik doğrulama + OTA yapılandırma — TAMAM.**
+Sırada **Faz 2.6 — seviye tespit sınavı**.
+
+⚠️ **Yayın hazırlığının (FAZ 2.5) üçüncü oturumu YAPILMADI:** mağaza
+materyalleri — gizlilik politikası taslağı, mağaza açıklaması, veri güvenliği
+formu. Kendi oturumunu istiyor; ürün metni, dini metin değil.
+
+⚠️ **OTA yapılandırıldı ama DOĞRULANMADI.** `expo-updates` kurulu, `app.json`
+ve kanallar hazır, `Planlamalar/OTA_GUNCELLEME.md` yazılı — ama Expo Go OTA
+çalıştırmıyor. Gerçek "mağazasız güncelleme" testi dev build ister.
+
+⚠️ **Ses sistemi uçtan uca kurulu ama tek bir ağ isteği YAPMIYOR.**
+`app.json` → `extra.audioBaseUrl` boş, `/content` altı ses anahtarı taşıyor ama
+karşılığında dosya yok. Sorular yazılı yedekleriyle çalışıyor. Gerçek adres
+girildiği gün **kod değişmez.**
 
 ⚠️ **2.4'te `/app`, `/components` ve altı soru bileşenine HİÇ dokunulmadı.**
 2.3'ün bıraktığı iki kanca dikişi tuttu; değişen tek şey gövdeleri oldu.
@@ -173,10 +187,13 @@ kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'
       geçici bağımlılık olarak geliyor. MMKV'nin çalışma anı gereksinimi;
       geçici bağımlılığa dayanmak `@react-navigation/native`'de bir kez ısırdı.
       `npx expo install react-native-nitro-modules`.
-- [ ] **OTA güncelleme (`expo-updates`).** ⚠️ **Paket henüz KURULU DEĞİL** ve
-      Expo Go'da OTA hiç çalışmaz. Faz 2.5'in OTA yarısı *yapılandırılabilir* ama
-      **doğrulanamaz**; gerçek "mağazasız güncelleme" testi dev build ister.
-      Mimari kural 7'nin ("içerik gömülü, güncellemesi OTA") ayakta durduğu yer burası.
+- [ ] **OTA güncelleme (`expo-updates`).** ✅ Paket **kuruldu** (`~29.0.20`),
+      `app.json`'da `updates` + `runtimeVersion` (`fingerprint`) yazılı, kanallar
+      `eas.json`'da hazır, belgesi `Planlamalar/OTA_GUNCELLEME.md`. **Kalan iş
+      yalnızca DOĞRULAMA** — Expo Go OTA çalıştırmıyor. Adım adım doğrulama
+      yordamı belgenin 5. bölümünde. ⚠️ Orada yazan "iki kez kapat aç" politika
+      gereğidir, hata değil: `fallbackToCacheTimeout: 0` güncellemeyi bir sonraki
+      açılışa bırakır. Tek kapanışta görünmemesine bakıp "çalışmıyor" denmemeli.
 - [ ] **Sentry (Faz 1.4).** ⚠️ `@sentry/react-native` **kurulu değil.** Yerel
       modül; Expo Go'da kurulamaz. Yayından önce şart.
 
@@ -209,7 +226,8 @@ Aşağıdakiler Expo Go'nun İÇİNDE geliyor; dev build beklemeye gerek YOK:
 
 ### Dev build alındığı gün, sırayla
 
-1. `npx expo install react-native-nitro-modules expo-updates` (+ Sentry ayrı oturum)
+1. `npx expo install react-native-nitro-modules` (+ Sentry ayrı oturum;
+   `expo-updates` ve `expo-file-system` **Oturum 2.5'te kuruldu**)
 2. `eas build --profile development --platform android` (ya da iOS, hesap alındıysa)
 3. Derlemeyi cihaza kur, `npx expo start --dev-client` ile bağlan
 4. Yukarıdaki A ve B kutularını tek tek doğrula ve işaretle
@@ -809,6 +827,105 @@ zaten bağımlılıkta. Görsel çizimi 2.2a'da bilerek atlandı; ImageMatch otu
   ve bedava kapsam olarak 2.1/2.3'ün saf dosyaları (`levelStatus`,
   `lessonScoring`, `answerEngine` — özellikle `normalizeTr`'nin Türkçe `I`/`İ`
   tuzağı uçtan uca sınandı).
+
+**Ses altyapısı kararları (Oturum 2.5):**
+- **Üç dosya, tek karar noktası.** `audioKey.ts` **saf** (adlandırma, uzak adres,
+  önbellek dosya adı) — bütün karar mantığı bilerek buraya itildi, çünkü
+  `expo-audio` ve `expo-file-system` yerel modül ve Node test koşucusunda
+  yüklenemez. `audio.ts` indirme/önbellek/iOS ses oturumu. `useQuestionAudio`
+  yalnızca ikisini React'e bağlıyor.
+- **Adlandırma düzeni: `<ünite-slug>/<konu>-<nn>.m4a`.** Tam iki parça, alfabe
+  `a-z0-9-`. ⚠️ **Türkçe harf ve büyük harf YASAK** ve sebep kozmetik değil:
+  iOS dosya sistemi Unicode'u ayrıştırılmış (NFD), sunucu birleşik (NFC) yazar —
+  `ş` taşıyan anahtar iki farklı dosyaya çözülür ve hata "bazen çalışıyor" diye
+  görünür. Büyük harfte de CDN duyarlı, geliştirme makinesi değil.
+- ⚠️ **Yayınlanan anahtar bir daha DEĞİŞMEZ** — anahtar aynı zamanda önbellek
+  anahtarı. Kayıt yenilenirse numara artar (`-01` → `-02`), ad korunur.
+- ⚠️ **İndirme `.part` dosyasına yapılır, sonra taşınır.** `expo-file-system`
+  **Android'de** yanıt gövdesini doğrudan hedefe akıtıyor; indirme ortasında
+  koparsa kısmi dosya yerinde kalıyor, `exists` denetimini geçiyor, `expo-audio`
+  onu çalamıyor ve durum **kalıcı** oluyor — önbellek zehirlenir. iOS geçici
+  konumda tamamlayıp taşıdığı için etkilenmez.
+- **Zaman aşımı (3 sn) kancada, `audio.ts`'te DEĞİL**: bırakma kararı arayüze
+  ait. İndirme arka planda sürer, tamamlanırsa önbelleğe düşer, soru ikinci kez
+  açıldığında ilk karede hazır olur.
+- **Önbellek `Paths.cache`, `Paths.document` DEĞİL**: işletim sistemi sıkışınca
+  temizleyebilir, biz yeniden indiririz. `document` kullanıcı kotasına yazılır ve
+  iCloud'a yedeklenir — yeniden üretilebilir ders sesi için yanlış yer.
+- **İlk değer senkron okunuyor** (`File.exists` bir özellik, söz değil): ikinci
+  kez görülen soru ilk karede oynat butonuyla açılır, yedek metin parlamaz.
+- ⚠️ **`ensureAudioMode` `playsInSilentMode: true` istiyor.** Olmazsa yan
+  anahtarı sessizde olan iPhone'da hiçbir şey duyulmaz; uygulama bozuk görünür,
+  oysa her şey çalışmaktadır.
+- **Bileşenlere DOKUNULMADI.** `AudioChoiceQuestion` 2.2'de yazıldığı gibi
+  duruyor: ses yoksa oynat butonu çizilmiyor, `answeredWithFallback` kancadan
+  okunuyor. `strings.lesson.audioUnavailable` hâlâ tüketicisiz — "ses var ama
+  indirilemiyor" ayrı bir durum ve bugün ayrı bir arayüzü yok.
+- `expo-file-system` **açık bağımlılığa çevrildi** (`~19.0.24`): `audio.ts`
+  import ediyordu, `package.json`'da yoktu. `react-native-nitro-modules`'ün
+  aynı tuzağı — geçici bağımlılığa dayanmak bir kez ısırdı.
+
+**İçerik doğrulama kararları (Oturum 2.5):**
+- **`contentValidation.ts` saf ve SESSİZ**: `console` yok, `__DEV__` yok,
+  fırlatma yok — yalnızca `ContentIssue[]`. Uyarmak çağıranın kararı. Sessiz
+  olduğu için Node test koşucusunda olduğu gibi çalışıyor.
+- ⚠️ **Var olan üç denetim de çizim anında konuşuyordu** (`isAnswerable`,
+  `buildSentence`, `resolveImage`) — hepsi kullanıcı o soruya VARDIĞINDA.
+  Yeni katman bunun tersi: tek seferde, tüm içerik hakkında, kimse ekrana
+  bakmadan.
+- **Denetimlerin çoğu `isAnswerable`'ın GÖREMEDİĞİ sınıftan.** Somut örnek:
+  `correctOrder: ['i1','i1','i2']` üç öğeli bir soruda `isAnswerable`'ı **geçer**
+  (uzunluk eşit, her kimlik listede var) ama `i3` doğru sırada hiç geçmez ve soru
+  asla doğru cevaplanamaz. İkincisi: kelime havuzu kipinde doğru cevabı
+  `choices` içinde olmayan boşluk — kullanıcı yalnızca havuzdan seçebiliyor.
+- **Kelime havuzu karşılaştırması `normalizeTr` ile**, motorun kuralıyla aynı.
+  Başka bir kural kullanmak doğrulamadan geçen içeriğin derste yanlış
+  işaretlenmesine yol açardı.
+- **Bulgular içeriği DÜŞÜRMEZ.** Yükleyicide ayıklamak ders uzunluğunu sessizce
+  değiştirirdi; o kararı ders oturumu `isAnswerable` ile veriyor (2.3).
+  Yükleyicinin işi görünür kılmak.
+- **`contentLoader.warnOnDuplicateLevelIds` SİLİNDİ**, kural doğrulayıcıya
+  taşındı: tek yerde dursun ve o yer sınanabilir olsun.
+- **`npm run check:content`** terminalden aynı denetimi + yer tutucu taramasını
+  yapıyor. ⚠️ Yükleyici yeniden kullanılamadı çünkü **kullanılamazdı**:
+  `contentLoader` JSON'u `import` ile alıyor, Metro çözüyor, Node çözmüyor.
+  Araç dosyaları `readFileSync` ile okuyor ama `path.json`'daki `unitRefs`
+  üzerinden gezdiği için **yeni ünite kendiliğinden kapsama giriyor** — statik
+  kayıt tutmuyor.
+- ⚠️ **Kaynak taramasında "ÖRNEK" BİLEREK aranmıyor**, yalnızca `/content`
+  içinde. Kaynakta o kelime yer tutucu değil açıklama; aransaydı rapor kendi
+  belgelerini suçlar ve kimse okumazdı. Kaynakta aranan: `TODO`, `FIXME`, `lorem`.
+- **Çıkış kodu yalnızca YAPISAL hatada 1.** `isSampleData` ve yer tutucu sayısı
+  çıkış kodunu değiştirmiyor: bugün içeriğin tamamı örnek veri ve komutun her
+  seferinde kırmızı dönmesi onu bakılmaz hâle getirirdi.
+- **Rapor varsayılan olarak dosya başına ÖZET**, satır satır değil (`--tam` ile
+  tam liste). Bugünkü tam liste 304 satır; o uzunlukta çıktı okunmaz.
+- **Bugünkü durum: örnek içerik 0 hata, 0 uyarı.** Yani doğrulayıcı gerçek
+  içerikte sessiz; ilk konuştuğunda söylediği şey gerçek bir hatadır.
+
+**OTA kararları (Oturum 2.5):**
+- **`runtimeVersion` politikası `fingerprint`**, `appVersion` DEĞİL. Parmak izi
+  yerel bağımlılıklardan hesaplanıyor: içerik/JS değişince aynı kalır, yeni yerel
+  modül girince kendiliğinden değişir. `appVersion`'da `version` alanını elle
+  yükseltmek unutulabilir ve **uyumsuz bir OTA eski bir ikiliye düşüp uygulamayı
+  açılmaz hâle getirebilirdi.**
+- **`fallbackToCacheTimeout: 0`** — açılış hiçbir zaman beklemez, güncelleme
+  arka planda iner ve **bir sonraki açılışta** uygulanır. Güncellenen şey ders
+  metni; bir oturum gecikmesi kimseyi yaralamaz, açılıştaki her saniye kayıptır.
+- ⚠️ **Kodda `expo-updates` çağrısı YOK ve bu bilinçli.** "Yeniden başlat"
+  düğmesi (`Updates.reloadAsync()`) eklenmedi: ders durumu `useReducer`'da ve
+  kalıcı değil (2.3), yeniden başlatmak cevaplanmış soruları siler. Eklenecekse
+  yeri ders **dışındaki** bir ekran.
+- `eas.json`'daki üç kanal (`development`/`preview`/`production`) zaten vardı;
+  OTA onları ilk kez gerçekten kullanıyor.
+- **Ses dosyaları OTA'nın dışında** — pakete hiç girmiyorlar. Yeni ses yayınlamak
+  güncelleme değil, CDN'e dosya koymak.
+
+**Yan ürün (Oturum 2.5):** `npx expo lint` çalıştırıldığında Expo `eslint.config.js`
+dosyasını üretti ve `eslint` + `eslint-config-expo`'yu `package.json`'a **açık
+devDependency** olarak yazdı (kuruluydular ama yazılı değildiler). `npm run lint`
+artık çalışıyor: **0 hata, 6 uyarı** — altısı da `strings` varsayılan import'uyla
+ilgili ve **bu oturumun dosyalarından değil.**
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

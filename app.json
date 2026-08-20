@@ -59,8 +59,17 @@
       "typedRoutes": true,
       "reactCompiler": true
     },
+    "updates": {
+      "url": "https://u.expo.dev/cd757927-032e-41ff-ad6a-8d3269d0d057",
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
     "extra": {
       "router": {},
+      "audioBaseUrl": "",
       "eas": {
         "projectId": "cd757927-032e-41ff-ad6a-8d3269d0d057"
       }

@@ -100,6 +100,19 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         (tsx denendi, esbuild ikilisi OneDrive'da EBUSY ile kilitlendi)
         ⚠️ MMKV Expo Go'da yok — storage.ts bellek içi yedeğe düşüyor,
         kalıcılık dev build (1.3) gelene kadar KAPALI, konsolda uyarı var
+[x] 2.5 Ses altyapısı + içerik doğrulama + OTA yapılandırma
+        Ses: audioKey.ts (saf, sözleşme) + audio.ts (indirme/önbellek) +
+        useQuestionAudio gövdesi doldu — çağrı yerleri değişmedi
+        ⚠️ Bugün tek ağ isteği yapmıyor: extra.audioBaseUrl BOŞ, bilinçli
+        İçerik doğrulama: contentValidation.ts saf ve sessiz, contentLoader
+        __DEV__ altında basıyor; npm run check:content terminalden raporluyor
+        Örnek içerik denetimden temiz geçiyor (0 hata, 0 uyarı)
+        OTA: expo-updates kuruldu, app.json + kanal yapısı hazır,
+        Planlamalar/OTA_GUNCELLEME.md yazıldı
+        ⚠️ OTA DOĞRULANMADI — Expo Go'da çalışmaz, dev build (1.3) bekliyor
+        124 test geçiyor
+[ ] 2.5.3 Mağaza materyalleri — gizlilik politikası, mağaza açıklaması,
+        veri güvenliği formu. YAPILMADI, kendi oturumunu istiyor.
 
 
 === AÇIK SORULAR ===
