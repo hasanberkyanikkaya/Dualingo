@@ -4,7 +4,7 @@ import { componentRadius } from '@/constants/radius';
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
-import { PRAYER_LABELS } from '@/features/prayer/components/NextPrayerCard';
+import { PRAYER_LABELS } from '@/features/prayer/prayerLabels';
 import PrayerStatusControl from '@/features/prayer/components/PrayerStatusControl';
 import { CHART_PRAYERS } from '@/features/prayer/prayerChart';
 import { formatGregorianTr } from '@/lib/turkishDate';

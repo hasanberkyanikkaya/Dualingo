@@ -202,7 +202,7 @@ Aşağıdakilerden biri yapıldığı gün formlar **yeniden doldurulmalıdır**
 | --- | --- |
 | **Sentry / çökme raporlama** (Faz 1.4) | Play: "Uygulama içi bilgi ve performans → Çökme kayıtları" **Evet**. Apple: artık "Data Not Collected" değil (Diagnostics) |
 | **Bulut senkronizasyonu** (Faz 7) | Hesap + sunucuya giden ilerleme verisi. İki formun da tamamı değişir |
-| **Bildirimler** (Faz 4) | Push kullanılırsa cihaz jetonu = **kimlik**. Yalnızca yerel zamanlanmış bildirim kullanılırsa değişmez |
+| **Bildirimler** (Faz 4.4) | ✅ **Yapıldı ve form DEĞİŞMEDİ.** Yalnızca yerel zamanlanmış bildirim kuruldu; `getExpoPushTokenAsync` **hiç çağrılmıyor**, cihazdan hiçbir şey çıkmıyor. ⚠️ Push eklendiği gün cihaz jetonu = **kimlik** olur ve bu form yeniden doldurulur |
 | ✅ **Konum** (Faz 4.1'de GERÇEKLEŞTİ) | Bölüm 1.1'deki konum satırı "Hayır"dan çıktı ve hukuki incelemeye bırakıldı; politikaya "3b. Konum izni — isteğe bağlı" bölümü eklendi. **Form bu değişiklikle yeniden doldurulmalı.** |
 | ✅ **Üçüncü uzak sunucu** (Faz 4.1'de GERÇEKLEŞTİ) | `ezanvakti.emushaf.net` envantere girdi. Bu servis **bağımsız bir üçüncü taraftır** ve yazılı kullanım şartı yayınlamıyor — mağaza formunda üçüncü taraf olarak anılması gerekip gerekmediği hukukçuya soruldu |
 | **Reklam veya satın alma** | Ek beyanlar, muhtemelen yaş derecelendirmesi |

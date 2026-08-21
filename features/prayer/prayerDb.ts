@@ -133,6 +133,39 @@ export function readPrayerTimes(districtId: DistrictId, date: IsoDate): PrayerTi
 }
 
 /**
+ * Bir tarih ARALIĞININ vakitleri — bildirim zamanlayıcısının tek okuması.
+ *
+ * ⚠️ Gün gün `readPrayerTimes` çağırmak da çalışırdı ama zamanlayıcı iki
+ * haftalık pencere istiyor ve o okuma her ön plana gelişte koşuyor; on beş ayrı
+ * senkron sorgu demekti. `prayerLogDb.readPrayerLogRange`in aynı gerekçesi.
+ *
+ * Sınırlar **dahil** (`BETWEEN`). `'YYYY-MM-DD'` sabit genişlikte ve sıfır
+ * dolgulu olduğu için metinsel sıralama takvim sırasıyla aynı.
+ *
+ * Eksik günler dönen dizide HİÇ BULUNMAZ — pencere delikli olabilir ve bu bir
+ * hata değil, önbelleğin doğal hâlidir (4.0 §6).
+ */
+export function readPrayerTimesRange(
+  districtId: DistrictId,
+  from: IsoDate,
+  to: IsoDate,
+): PrayerTimes[] {
+  const database = getDatabase();
+  if (database === null) {
+    return [];
+  }
+
+  const rows = database.getAllSync<PrayerTimeRow>(
+    `SELECT ${TIME_COLUMNS} FROM prayer_time
+     WHERE district_id = ? AND date BETWEEN ? AND ? AND deleted_at IS NULL
+     ORDER BY date ASC;`,
+    [districtId, from, to],
+  );
+
+  return rows.map(toTimes);
+}
+
+/**
  * Bir ilçe için diskteki EN SON tarih — yenileme kararının tek girdisi.
  *
  * ⚠️ Kayıt SAYISI sorulmuyor ve sorulmamalı: 4.0'da aynı ilçe 15 dakika arayla

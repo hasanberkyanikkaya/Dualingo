@@ -62,8 +62,13 @@ yapılacak (uzunluk sınırları yeniden ölçülmeli). Yazıldığında uyulaca
   her ifade. Veri Diyanet'in yayınladığı tablodur ama uygulama Diyanet'e ait
   değildir ve kurumla anlaşması yoktur — hem hukuki hem impersonation riski.
 - Kapsam **yalnızca Türkiye** olarak belirtilmeli; yurt dışında çalışmıyor.
-- Namaz **çizelgesi** ("kıldım" işaretleme) ve **vakit bildirimleri** hâlâ YOK
-  (Faz 4.2). Onlar yazılmamalı.
+- ✅ Namaz **çizelgesi** (Faz 4.3) ve **vakit bildirimleri** (Faz 4.4) artık
+  VAR; ikisi de metinlerde anlatılabilir. ⚠️ Ama metinler bu oturumda
+  **genişletilmedi** — uzunluk sınırları yeniden ölçülerek kendi oturumunda
+  yazılacak.
+- ⚠️ Bildirimden söz edilirken **"ezan sesi", "ezan okur" DENMEZ** — bildirim
+  sessiz bir hatırlatmadır, özel ses dosyası yoktur. "Otomatik", "kesintisiz"
+  gibi vaatler de yazılmamalı: bildirimler cihaz izniyle çalışır.
 - Konumun **isteğe bağlı** olduğu söylenmeli — ilçe elle de seçilebiliyor.
 
 ⚠️ **"Uzmanlar tarafından hazırlandı / onaylandı" iddiası metinlere

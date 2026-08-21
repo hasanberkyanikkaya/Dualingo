@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
-import { PRAYER_LABELS } from '@/features/prayer/components/NextPrayerCard';
+import { PRAYER_LABELS } from '@/features/prayer/prayerLabels';
 import PrayerStatusControl from '@/features/prayer/components/PrayerStatusControl';
 import { countStatus } from '@/features/prayer/prayerDay';
 import { formatString } from '@/lib/formatString';

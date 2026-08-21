@@ -4,7 +4,7 @@ import { spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import PrayerStatusControl from '@/features/prayer/components/PrayerStatusControl';
-import { PRAYER_LABELS } from '@/features/prayer/components/NextPrayerCard';
+import { PRAYER_LABELS } from '@/features/prayer/prayerLabels';
 import { CHART_PRAYERS } from '@/features/prayer/prayerChart';
 import { formatString } from '@/lib/formatString';
 import { shortDateTr, weekdayShortTr } from '@/lib/turkishDate';

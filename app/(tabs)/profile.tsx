@@ -48,6 +48,29 @@ export default function ProfileScreen() {
           />
         </View>
 
+        {/*
+          Namaz vakti bildirimleri (Faz 4.4).
+
+          ⚠️ Ayarlar profilde ama ekran `app/prayer/` altında ve bu bilinçli:
+          bildirim namaz modülünün bir parçası, profilin değil. Profil yalnızca
+          kapıyı açıyor.
+        */}
+        <View style={styles.section}>
+          <Text accessibilityRole="header" style={[textStyles.h3, { color: theme.textPrimary }]}>
+            {strings.profile.prayerNotificationsTitle}
+          </Text>
+
+          <Text style={[textStyles.bodyMedium, { color: theme.textSecondary }]}>
+            {strings.profile.prayerNotificationsBody}
+          </Text>
+
+          <Button
+            label={strings.profile.prayerNotificationsAction}
+            onPress={() => router.push('/prayer/notifications')}
+            variant="secondary"
+          />
+        </View>
+
         {/* Ekran dosyası ince kalıyor (mimari kural 2): rozetlerin tamamı
             kendi bölüm bileşeninde. */}
         <BadgeSection />

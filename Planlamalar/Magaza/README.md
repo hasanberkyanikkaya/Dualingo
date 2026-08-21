@@ -57,8 +57,11 @@ Bu maddeler kapanmadan v0.1 yayınlanamaz. Hiçbiri bu oturumda çözülemezdi.
    kaldırıldı; iOS konum izin metni yeniden yazıldı.
    ⚠️ **Kalan iki iş:** (a) `ACCESS_FINE_LOCATION`'ın gerçekten düştüğü
    `npx expo prebuild` çıktısındaki birleşik manifestte **doğrulanmalı** —
-   `expo-location` eklentisi onu geri birleştirebilir; (b) `expo-notifications`
-   eklentisi hâlâ kullanılmıyor, Faz 4.2'ye kadar bildirilmiş bir yetenek.
+   `expo-location` eklentisi onu geri birleştirebilir.
+   ✅ **(b) ÇÖZÜLDÜ (Oturum 4.4):** `expo-notifications` eklentisi artık
+   gerçekten kullanılıyor — namaz vakti hatırlatmaları. Bildirilmiş ama
+   kullanılmayan yetenek kalmadı. ⚠️ Yalnızca **yerel zamanlanmış** bildirim;
+   push jetonu alınmıyor, yani veri güvenliği formu değişmiyor.
    Ayrıntı: `VERI_GUVENLIGI_FORMU.md` Bölüm 3.
 3. **Uygulama ikonu ve açılış ekranı hâlâ Expo şablonundan.**
    `assets/images/icon.png` ve `splash-icon.png` şablon dosyaları

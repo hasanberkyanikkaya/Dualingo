@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { AppState } from 'react-native';
 
+import { syncPrayerNotifications } from '@/features/prayer/notificationSync';
 import { usePrayerStore } from '@/features/prayer/store';
 import { toLocalIsoDate } from '@/features/progress/streak';
 
@@ -16,6 +17,7 @@ import { toLocalIsoDate } from '@/features/progress/streak';
  */
 export function usePrayerTimes() {
   const district = usePrayerStore((state) => state.district);
+  const loadedDate = usePrayerStore((state) => state.loadedDate);
   const today = usePrayerStore((state) => state.today);
   const tomorrow = usePrayerStore((state) => state.tomorrow);
   const next = usePrayerStore((state) => state.next);
@@ -61,6 +63,16 @@ export function usePrayerTimes() {
       subscription.remove();
     };
   }, [recompute, refresh]);
+
+  // ⚠️ İlçe ya da gün değiştiyse bildirim planı BAYAT: yeni ilçenin vakitleri
+  // farklı, yeni günün penceresi bir gün kaymış. Kök yerleşimdeki eşitleme
+  // uygulama açılışını ve ön plana dönüşü yakalıyor; bu etki de o ikisinin
+  // arasında kalan değişimleri (ilçe seçimi, yenilemeyle inen taze pencere)
+  // yakalıyor. Aynı plan ikinci kez KURULMUYOR — `syncPrayerNotifications`
+  // imzayı denetliyor.
+  useEffect(() => {
+    void syncPrayerNotifications();
+  }, [district?.districtId, loadedDate, today]);
 
   return {
     district,

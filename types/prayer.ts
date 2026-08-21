@@ -188,3 +188,68 @@ export type PrayerFetchOutcome<T> =
   | { kind: 'upstream' }
   | { kind: 'invalid' }
   | { kind: 'offline' };
+
+/**
+ * Bildirimin vaktin girişinden kaç dakika SONRA çıkacağı (Faz 4.4).
+ *
+ * ⚠️ **`enum` DEĞİL, union** — Node'un tip soyucusu `enum` desteklemiyor
+ * (`tests/setup.ts`).
+ *
+ * ⚠️ Değerler yalnızca İLERİ yönde. "Vaktin girişinden X dakika ÖNCE" bilinçli
+ * olarak yok: vakit girmeden hatırlatmak, henüz kılınamayacak bir şeyi
+ * hatırlatmak olurdu. Playbook 4.4 de "vaktin girişinde / X dk sonra" diyor.
+ *
+ * Diskten okunan değer bu kümenin dışına düşerse `prayerNotify.normalizeOffset`
+ * onu `0`a çeker — ekran hiçbir seçeneği seçili gösteremeyen bir hâle düşmesin.
+ */
+export type PrayerNotificationOffset = 0 | 5 | 10 | 15 | 30;
+
+/**
+ * Bir vaktin bildirim tercihi — SQLite `prayer_notification` satırı.
+ *
+ * ⚠️ **MMKV'de DEĞİL, SQLite'ta.** `prayer_district` ile birebir aynı gerekçe:
+ * MMKV Expo Go'da kapalı ve bellek içi yedeğe düşüyor; oraya yazılsaydı ayar
+ * her soğuk açılışta sıfırlanır ve kullanıcı kapattığı bildirimi ertesi gün
+ * yeniden açık bulurdu.
+ *
+ * ⚠️ `enabled: false` **YAŞAYAN bir satırdır**, `deletedAt` değil: "kapattım"
+ * bir kullanıcı kararıdır, kaydın yokluğu değil. `prayer_log`taki durumla
+ * karıştırılmamalı — orada satırın yokluğu işaretin yokluğuydu, burada satırın
+ * yokluğu "kullanıcı hiç dokunmadı" demek.
+ */
+export type PrayerNotificationPref = {
+  prayer: PrayerName;
+  enabled: boolean;
+  offsetMinutes: PrayerNotificationOffset;
+  updatedAt: Timestamp;
+  deletedAt: Timestamp | null;
+};
+
+/**
+ * Vakit → tercih.
+ *
+ * ⚠️ **Eksik anahtar "kapalı" DEĞİL, "dokunulmadı" demek** ve varsayılan
+ * (açık, 0 dk) kodda duruyor (`prayerNotify.resolvePref`). Kullanıcı kararı
+ * "beş vakit açık gelsin"di; tabloyu ilk açılışta beş satırla doldurmak aynı
+ * sonucu verirdi ama varsayılanı diske çivilerdi ve bir gün varsayılan
+ * değişirse eski kurulumlar eski varsayılanla kalırdı.
+ *
+ * Güneş için anahtar HİÇ bulunmaz — namaz değil, bildirimi de yok.
+ */
+export type PrayerNotificationPrefMap = Partial<Record<PrayerName, PrayerNotificationPref>>;
+
+/**
+ * Zamanlanacak tek bir bildirim — türetilmiş, hiçbir zaman saklanmaz.
+ *
+ * `NextPrayer` gibi: diske yazılan şey girdiler (vakitler + tercihler), bu
+ * onların sonucudur. İşletim sistemine kurulan kayıtlar zaten bir kopya tutuyor
+ * ve ikinci bir kopya iki doğru üretirdi.
+ */
+export type PlannedNotification = {
+  /** İçerik verisine gömülen kimlik — aynı planın iki kez kurulmadığını anlatır. */
+  key: string;
+  prayer: PrayerName;
+  date: IsoDate;
+  /** Tetiklenme anı: vaktin yerel epoch'u + gecikme. */
+  at: Timestamp;
+};

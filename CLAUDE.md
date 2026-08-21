@@ -141,14 +141,21 @@ Faz 3.3 maskot ve kutlama — TAMAM.
 Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).
 Faz 4.1 namaz veri katmanı + asgari ekran — TAMAM.
 Faz 4.2 namaz ekranı + kılınan namaz çizelgesi — TAMAM.
-Faz 4.3 namaz çizelgesi (üç durum + hafta/ay görünümü) — TAMAM.**
-Sırada **namaz vakti bildirimleri** (playbook'ta 4.4; 4.2'nin adında vardı,
-kapsam dışı bırakıldı) ya da **seri arayüzü** (3.1'in görünen yüzü hâlâ yok)
-ya da **kıble pusulası** (playbook'ta **4.5**) ya da ertelenmiş 1.2c / 1.3 / 1.4.
+Faz 4.3 namaz çizelgesi (üç durum + hafta/ay görünümü) — TAMAM.
+Faz 4.4 namaz vakti bildirimleri — TAMAM (kod tam, TETİKLENME DOĞRULANMADI).**
+Sırada **kıble pusulası** (playbook'ta **4.5**) ya da **seri arayüzü** (3.1'in
+görünen yüzü hâlâ yok) ya da ertelenmiş 1.2c / 1.3 / 1.4.
 
 ⚠️ **Numara karışıklığı düzeltildi:** bu bölüm eskiden kıble pusulasını "4.3"
 diye anıyordu. Playbook'ta 4.3 **namaz çizelgesi**, 4.4 bildirimler, 4.5 kıble.
 Geçerli numara playbook'unki.
+
+⚠️ **BİLDİRİMLER KURULDU AMA TETİKLENDİĞİ GÖRÜLMEDİ.** 4.4'ten sonra beş
+vakit için yerel zamanlanmış bildirim kuruluyor (`features/prayer/
+notifications.ts`), ayar ekranı profilde. Expo Go'da izin istemi, ayar
+kalıcılığı ve zamanlama çağrıları çalışıyor; **vakit doğruluğu ve uygulama
+kapalıyken tetiklenme yalnız dev build'de sınanabilir.** Buna bakıp "çalışıyor"
+denmemeli — Dev Build Borcu B maddesinin açık kalan tek parçası bu.
 
 ⚠️ **Kutlama sahnesi kurulu ama LOTTIE DOSYASI YOK.** 3.3'ten sonra ders sonu
 ekranı bir kutlama slotu taşıyor; `CelebrationMascot.tsx`'teki
@@ -245,19 +252,23 @@ kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'
 
 ### B. KISITLI — çalışıyor ama güvenilmez, dev build'de yeniden sınanmalı
 
-- [ ] **Bildirimler (Faz 4 — namaz vakti hatırlatıcıları).** `expo-notifications@0.32.17`
-      kurulu ve `app.json` eklentisinde yazılı. ⚠️ Ama SDK 53'ten beri **Expo Go'da
-      Android uzak bildirim kaldırıldı**; yerel zamanlanmış bildirim kısmen çalışıyor,
-      Expo uyarı basıyor. Namaz hatırlatıcısı yerel zamanlanmış bildirim olduğu için
-      Expo Go'da *bir şeyler* görünür — **ama ona bakıp "çalışıyor" denmemeli.**
-      Vakit doğruluğu ve arka planda tetiklenme yalnız dev build'de sınanabilir.
-      ⚠️ **Faz 4.1'den sonra veri tarafı HAZIR:** vakitler `prayer_time`da,
-      bugün+yarın senkron okunabiliyor. Bildirim zamanlaması Faz 4.2'nin işi ve
-      yazılabilir — doğrulanamayan tek şey tetiklenmenin kendisi.
-      ⚠️ **Verinin kendisi bloke DEĞİL:** Oturum 4.0'da kaynak seçildi ve seçilen
-      servis bir aylık pencere döndürüyor, yani zamanlanacak vakitler dev build
-      olmadan da elde ediliyor. Bloke olan tek şey bildirimin **tetiklenmesini
-      doğrulamak**. Bkz. "Namaz veri kaynağı kararı".
+- [ ] **Bildirimlerin TETİKLENMESİ (Faz 4.4 — namaz vakti hatırlatıcıları).**
+      ⚠️ **KOD TAMAM, kalan iş yalnızca DOĞRULAMA.** 4.4'te yazıldı: beş vakit
+      için ayrı açma/kapama, beş gecikme seçeneği, `DATE` tetikleyicili yerel
+      zamanlanmış bildirim, Android kanalı, kayan 60 kayıtlık pencere.
+      ⚠️ Ama SDK 53'ten beri **Expo Go'da Android uzak bildirim kaldırıldı**;
+      yerel zamanlanmış bildirim kısmen çalışıyor ve Expo uyarı basıyor.
+      Expo Go'da *bir şeyler* görünür — **ona bakıp "çalışıyor" denmemeli.**
+      Dev build'de sınanacaklar, sırayla:
+      (1) izin istemi ve reddedildikten sonra ayarlardan açma yolu;
+      (2) bir vaktin TAM dakikasında bildirimin gelmesi (vakit doğruluğu);
+      (3) gecikme seçeneğinin gerçekten uygulanması (5 dk seç, 5 dk sonra gelsin);
+      (4) **uygulama tamamen kapalıyken** tetiklenme — 4.4'ün bütün varlık sebebi;
+      (5) Android kanalının (`prayer-times`) sesli ve yüksek öncelikli çıkması;
+      (6) iOS'ta 60 kaydın hepsinin kurulduğu (`getAllScheduledNotificationsAsync`
+          uzunluğu) — 64 sınırının altında kaldığımızın tek gerçek kanıtı.
+      ⚠️ **Push jetonu HİÇ alınmıyor ve alınmamalı** — `getExpoPushTokenAsync`
+      çağrıldığı gün mağaza veri güvenliği formu yeniden doldurulur.
 - [ ] **Tema tercihi kalıcılığı (Faz 3).** `lib/useTheme.ts`'in yorumu "Faz 3'te
       MMKV'ye bağlı Açık/Koyu/Sistem tercihi" diyor. Aynı MMKV duvarı. Faz 3'e
       dev build'siz girilirse tercih uygulama kapanınca unutulur.
@@ -1707,6 +1718,125 @@ ilgili ve **bu oturumun dosyalarından değil.**
 - ⚠️ **Yasaklı dil taraması yapıldı**: "kaçırdın / başarısız / seri bozuldu /
   eksik / kılmadın / ihmal / borç" hiçbir kullanıcı metninde geçmiyor (yalnızca
   bu kararları anlatan yorumlarda).
+
+**Bildirim kararları (Oturum 4.4):**
+- **Bir SAF modül (testli) + üç YEREL modül (testsiz).** `prayerNotify.ts`
+  (plan üretimi, gecikme daraltması, imza) saf; karşısında
+  `prayerNotificationDb.ts`, `notifications.ts`, `notificationSync.ts`.
+  4.1'in dört saf / üç yerel ayrımının sürdürülmesi; `notifications.ts` içinde
+  **tek bir karar dalı yok**, yalnızca gelen listeyi işletim sistemine yazıyor.
+- ⚠️ **`MAX_SCHEDULED = 60` KOZMETİK DEĞİL, iOS'un sert sınırı.** iOS uygulama
+  başına en fazla **64** bekleyen yerel bildirim tutar ve fazlasını **sessizce
+  atar** — hata yok, günlük yok, sadece hiç gelmeyen bildirimler. Beş vakit ×
+  12 gün = 60, kalan dört kayıt ileriki tüketicilere pay. Sınırın sonucu
+  mimari: zamanlama "bir kez kur ve unut" OLAMAZ, **her ön plana gelişte
+  yeniden kurulan kayan bir pencere** olmak zorunda.
+- ⚠️ **Tetikleyici `DATE`, tekrarlayan DEĞİL.** `CALENDAR`/`DAILY` "her gün
+  12:58" demek olurdu; vakit her gün kayıyor ve bir hafta sonra bildirim yanlış
+  saatte çıkardı. Bu, "veri kaynağı bir aylık pencere döndürüyor" bulgusunun
+  (4.0) neden hayati olduğunun yeri: ileri veri olmadan zamanlanacak bir şey yok.
+- ⚠️ **`cancelAllScheduledNotificationsAsync()` KULLANILMIYOR.** İptal
+  `content.data.kind === 'prayer-time'` süzgecinden geçiyor. Bugün tek tüketici
+  namaz modülü ama Faz 3'ün seri hatırlatıcısı geldiği gün toptan iptal onun
+  kayıtlarını da sessizce silerdi.
+- ⚠️ **Gecikme epoch'a dakika EKLENEREK uygulanıyor ve bu DOĞRU.**
+  `localEpochFor`in yasakladığı şey `günEpoch + dakika` ile **duvar saati**
+  kurmaktı; burada duvar saati zaten çözülmüş ve kalan iş "o andan X dakika
+  sonra" — o da gerçek süredir, yaz saati geçişinden etkilenmez. Test iki mutlak
+  değeri değil **farklarını** ölçüyor (saat diliminden bağımsız kalsın diye).
+- **Süzgeç katı `>`** — `findNextPrayer`in aynı disiplini: tam o dakikada
+  kurulacak bir kayıt ya anında düşer ya da işletim sistemince geçmiş sayılır.
+- ⚠️ **Kesme EN GEÇ olanlardan** (önce `at`e göre sırala, sonra `slice`).
+  Yakındakiler feda edilseydi kullanıcı bugünü kaçırıp gelecek haftayı alırdı.
+- ⚠️ **GÜNEŞ hiç plana girmez** — `TRACKABLE_PRAYERS` üzerinden dönülüyor.
+  Güneş namaz değil, sabah namazının bittiği andır (4.2 kararı).
+- **Tercihler SQLite'ta (`prayer_notification`, `MIGRATIONS[6]`, sürüm 7)**,
+  MMKV'de değil — `prayer_district`in aynı gerekçesi: MMKV Expo Go'da kapalı,
+  oraya yazılsaydı kullanıcı kapattığı bildirimi her soğuk açılışta yeniden
+  açık bulurdu. Kalıcılık duvarını delen **DÖRDÜNCÜ** namaz verisi.
+- ⚠️ **Satırın YOKLUĞU "kapalı" DEĞİL, "dokunulmadı" demek.** Kullanıcı kararı
+  "beş vakit açık gelsin"di ve varsayılan **kodda** (`resolvePref`), tabloda
+  değil: ilk açılışta beş satır yazmak varsayılanı diske çivilerdi ve varsayılan
+  bir gün değişirse eski kurulumlar eskisiyle kalırdı. Tablo, kullanıcı bir şeyi
+  değiştirene kadar **boş** duruyor.
+- ⚠️ **`enabled = 0` YAŞAYAN bir satır**, `deleted_at` değil — 4.2'nin
+  `prayer_log` kararının bilinçli tersi. Orada satırın varlığı işaretin
+  kendisiydi; burada satır bir KARARI taşıyor ve "istemiyorum" da bir karardır.
+  Silinmiş sayılsaydı `resolvePref` onu varsayılana (açık) çevirir ve kullanıcı
+  kapattığı bildirimi geri açık bulurdu.
+- ⚠️ **İZİN DURUMU HİÇBİR YERDE SAKLANMIYOR.** Tek doğruluk kaynağı işletim
+  sistemi (`getPermissionsAsync`); kullanıcı izni sistem ayarlarından
+  kapatabildiği için bir kopya tutmak iki doğru üretirdi. Eşitleme her koşuda
+  izni yeniden soruyor ve verilmemişse **kayıtları temizliyor** (yoksa eski
+  kayıtlar orada yetim kalırdı).
+- **Aynı plan iki kez kurulmuyor:** `planSignature` modül düzeyinde saklanıyor
+  (`notificationSync.lastSignature`), değişmemişse hiçbir yerel çağrı yok.
+  ⚠️ İmza **süreç ömürlü ve öyle kalmalı** — soğuk açılışta plan her zaman
+  yeniden kurulur, çünkü aradan tetiklenmiş bildirimler olabilir ve işletim
+  sistemindeki liste bizim hatırladığımızdan kısadır. Ayar ekranı ayrıca
+  `invalidateNotificationPlan()` ile imzayı düşürebiliyor.
+- **Üç eşitleme noktası:** `app/_layout.tsx` (açılış + `AppState` ön plan),
+  `usePrayerTimes` (ilçe/gün/pencere değişimi), ayar ekranı (tercih değişimi).
+  ⚠️ **Kök yerleşimdeki çağrı ZORUNLU**: kullanıcı namaz sekmesine hiç girmezse
+  `usePrayerTimes` monte olmaz ve pencere kayarken hatırlatmalar tükenirdi.
+  Zamanlanmış bildirimin bütün anlamı uygulamanın açılmadığı günlerde çalışması.
+- ⚠️ **`store.ts`e HİÇ DOKUNULMADI.** Zamanlama bir yaşam döngüsü işi; store'a
+  konsaydı `set` updater'ının iki kez çalışması tuzağı (React 19 +
+  `reactCompiler`; projede beş kez ısırdı) bir kez daha sınanmış olurdu.
+
+- **Arayüz: ayarlar PROFİLDE, ekran `app/prayer/` altında** (kullanıcı kararı).
+  Bildirim namaz modülünün parçası; profil yalnızca kapıyı açıyor. Ekran
+  `Screen` kullanmıyor ve kapatma düğmesini ELLE çiziyor (4.1'in ilçe ve
+  4.3'ün çizelge ekranlarıyla aynı desen).
+- ⚠️ **İzin ekran AÇILIRKEN isteniyor, bir anahtar açılınca değil.** Varsayılan
+  "beş vakit açık" olduğu için izin ilk dokunuşa bırakılsaydı ekran beş anahtarı
+  açık gösterir ama hiçbir şey kurulmazdı — kullanıcının göremeyeceği bir yalan.
+  `useFocusEffect` ile odak dönüşünde izin yeniden soruluyor: kullanıcı
+  "Ayarları aç"a basıp sistem ayarlarından dönebilir.
+- ⚠️ **Anahtar için `Switch` kullanıldı ve durum RENKLE taşınıyor — istisna
+  değil, kapsam dışı.** `PrayerStatusControl`/`OffsetPicker` ikon biçimine
+  başvuruyor çünkü onları biz çiziyoruz; `Switch` platformun kendi kontrolü ve
+  açık/kapalı bilgisini işletim sistemi rolü ile başparmağın konumu veriyor.
+  Bu yüzden a11y etiketine "açık"/"kapalı" **yazılmadı** (anons ikiye katlanırdı;
+  Button'ın `accessibilityState` kararının aynısı).
+- **`OffsetPicker` yeni bir bileşen ama ölçülmüş kararları DEVRALDI**: seçili
+  durum `primarySoft` dolgu + **ikon biçimi** (`ellipse-outline` →
+  `checkmark-circle`) — WCAG **1.4.1**'in bu projedeki **dokuzuncu** uygulaması,
+  çünkü `primary`/`borderControl` yalnızca 1.40:1 (2.2a).
+  ⚠️ Seçili kutuya `borderControl` **çizilmiyor** (renkli yumuşak dolgu üzerinde
+  2.39 koyu, 2.3 kuralı); seçilmemişte aynı jeton sayfa zeminine 3.64/3.46.
+  Kenarlık iki durumda da **2px** (1→2 değişimi satırı titretirdi).
+  ⚠️ Rol `radio` DEĞİL `button` + `selected`: radyo rolü bir `radiogroup` kabı
+  ve konum anonsu bekler, sarmalı bir satırda konum bilgisi yanıltıcı olurdu.
+- **`PRAYER_LABELS` `components/NextPrayerCard.tsx` → `prayerLabels.ts` taşındı.**
+  Bildirim başlığı onu istiyor ve yerel bir modülün React bileşeni import etmesi
+  bütün bileşen ağacını yerel katmana sokardı (4.1'de `normalizeTr`in
+  `lib/turkishText.ts`e taşınmasının aynısı). Dört çağrı yeri güncellendi.
+- ⚠️ **Bildirim metni YARGI TAŞIMIYOR ve dini içerik DEĞİL.** Başlık
+  `'{vakit} vakti'`, gövde "Vakit girdi. Hazır olduğunda çizelgene
+  işaretleyebilirsin." — ayet, hadis, dua, fıkhi ifade yok. 4.3'ün yasaklı dil
+  kuralı burada daha bağlayıcı: bildirim kullanıcının izin vermediği bir anda,
+  elinde olmayan bir yerde belirir; orada "unutma" demek uyarı değil baskıdır.
+  Yasaklı dil taraması yeniden yapıldı — geçen tek yer bu kararları anlatan
+  yorumlar.
+- **404 test geçiyor** (386'dan). `tests/prayerNotify.test.ts` yeni.
+  ⚠️ `prayerNotificationDb`, `notifications`, `notificationSync`,
+  `usePrayerNotifications` ve bileşenler için test **yazılamaz** (yerel modül).
+  Elle doğrulandı: `TZ=America/New_York`, `TZ=Pacific/Kiritimati`,
+  `TZ=Pacific/Midway` → 404/404.
+- `strings.ts`: `prayer`a bildirim metinleri, `profile`a üç satır, `a11y`ye iki
+  satır. **`colors.ts` DEĞİŞMEDİ** — yeni jeton gerekmedi.
+- ⚠️ **`app.json` DEĞİŞMEDİ.** `expo-notifications` eklentisi zaten yazılıydı;
+  Android 13 `POST_NOTIFICATIONS` iznini eklentinin kendi manifesti katıyor.
+  Yeni yerel modül yok, yani 4.4 **OTA ile gidebilir** — 4.1'in izin
+  temizliğinin aksine yeni derleme istemiyor.
+- **Kapsam dışı bırakılanlar (bilinçli):** işaretli vakti atlamak ("kıldım
+  dediysen hatırlatma" — işaret bildirim kurulduktan SONRA konuyor, doğru çözüm
+  her işaretlemede yeniden zamanlamak ve bu pil maliyetini bir kullanıcı
+  hareketine bağlamak demek); bildirime dokununca namaz sekmesine gitmek; ezan
+  sesi (2.5'in "ses dosyaları pakete GİRMEZ" kararına çarpar); seri/ders
+  hatırlatıcısı (Faz 3'ün konusu — altyapı onu da taşıyacak biçimde yazıldı ama
+  tüketicisi yok).
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

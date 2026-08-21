@@ -223,6 +223,17 @@ export const strings = {
     // `completed` kayıtlara hiçbir koşulda dokunmuyor.
     placementBody: 'Kademeni yeniden ölçebilirsin. Tamamladığın dersler korunur.',
     placementAction: 'Tespiti tekrar et',
+    /*
+     * Namaz bildirimi bölümü (Faz 4.4).
+     *
+     * ⚠️ Var olan `notifications: 'Bildirimler'` satırı bir AYAR BAŞLIĞI
+     * yer tutucusu (Faz 1.1'den kalma) ve hâlâ tüketicisiz; bölüm kendi
+     * metinlerini taşıyor ki ileride genel bir "Ayarlar" bölümü gelince ikisi
+     * karışmasın.
+     */
+    prayerNotificationsTitle: 'Namaz vakti bildirimleri',
+    prayerNotificationsBody: 'Hangi vakitlerde haber vereceğimizi seçebilirsin.',
+    prayerNotificationsAction: 'Bildirimleri ayarla',
   },
 
   /**
@@ -325,6 +336,33 @@ export const strings = {
     turkeyOnly: 'Bu sürümde yalnızca Türkiye içindeki vakitler destekleniyor.',
     listUnavailable: 'İl listesi indirilemedi. İnternet bağlantını kontrol edip tekrar dene.',
     retry: 'Tekrar dene',
+
+    /*
+     * Bildirim ayarları (Faz 4.4).
+     *
+     * ⚠️ **Bildirim HABER VERİR; teşvik etmez, ayıplamaz.** 4.3'ün yasaklı dil
+     * kuralı burada daha da bağlayıcı: bildirim kullanıcının izin vermediği bir
+     * anda, elinde olmayan bir yerde belirir. "Unutma", "kaçırdın", "hâlâ
+     * kılmadın" gibi bir cümle o bağlamda uyarı değil, baskıdır.
+     *
+     * ⚠️ Metinler DÜZ ARAYÜZ METNİ — ayet, hadis, dua ya da fıkhi ifade
+     * içermez (dini içerik politikası). Vaktin girdiğini söyler, gerisini
+     * kullanıcıya bırakır.
+     */
+    notificationsTitle: 'Bildirimler',
+    notificationsBody: 'Hangi vakitlerde haber verelim, sen seç.',
+    /** Bildirimin kendi başlığı — `{vakit}` yerine vakit adı gelir. */
+    notificationTitle: '{vakit} vakti',
+    notificationBody: 'Vakit girdi. Hazır olduğunda çizelgene işaretleyebilirsin.',
+    notificationTiming: 'Ne zaman haber verelim',
+    offsetAtStart: 'Vakit başında',
+    offsetLater: '{dakika} dk sonra',
+    permissionDeniedTitle: 'Bildirim izni kapalı',
+    permissionDeniedBody:
+      'Ayarları buradan açtığında hatırlatmalar çalışmaya başlar. Seçimlerin kayıtlı kalır.',
+    openSettings: 'Ayarları aç',
+    notificationsAllOff: 'Şu an hiçbir vakit için haber vermiyoruz.',
+    notificationsHint: 'Vakitler cihazında saklı; hatırlatma için internet gerekmez.',
   },
 
   /** Kur'an sekmesi — ilk yayında boş */
@@ -403,6 +441,15 @@ export const strings = {
      * giden bilgi ondan bağımsız olmalı. "İşaretsiz" sayısı YOK.
      */
     prayerChartDay: '{tarih}, {kilinan} vakit kılındı, {kaza} vakit kaza',
+    /**
+     * Bildirim anahtarı (Faz 4.4).
+     *
+     * ⚠️ Rol `switch` — açık/kapalı bilgisini işletim sistemi kendisi anons
+     * ediyor, etikete "açık"/"kapalı" YAZILMAZ (yazılsaydı anons ikiye
+     * katlanırdı; Button'ın `accessibilityState` kararının aynısı).
+     */
+    prayerNotificationToggle: '{vakit} bildirimi',
+    prayerOffsetOption: '{vakit} — {secenek}',
   },
 } as const;
 

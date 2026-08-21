@@ -5,21 +5,12 @@ import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import CountdownLabel from '@/features/prayer/components/CountdownLabel';
+import { PRAYER_LABELS } from '@/features/prayer/prayerLabels';
 import { splitRemaining } from '@/features/prayer/useCountdown';
 import { formatString } from '@/lib/formatString';
 import { useTheme } from '@/lib/useTheme';
 
-import type { NextPrayer, PrayerName } from '@/types';
-
-/** Vakit adı → görünen etiket. Yapısal etiket, dini içerik değil. */
-export const PRAYER_LABELS: Record<PrayerName, string> = {
-  imsak: strings.prayer.imsak,
-  gunes: strings.prayer.gunes,
-  ogle: strings.prayer.ogle,
-  ikindi: strings.prayer.ikindi,
-  aksam: strings.prayer.aksam,
-  yatsi: strings.prayer.yatsi,
-};
+import type { NextPrayer } from '@/types';
 
 type NextPrayerCardProps = {
   next: NextPrayer;

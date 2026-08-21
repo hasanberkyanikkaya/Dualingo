@@ -204,6 +204,45 @@ const MIGRATIONS: readonly string[] = [
   // `PrayerMarkStatus` union'ı TypeScript tarafında daraltıyor ve tabloya
   // yalnızca `prayerLogDb` yazıyor.
   "ALTER TABLE prayer_log ADD COLUMN status TEXT NOT NULL DEFAULT 'kilindi';",
+
+  // [6] → sürüm 7: namaz vakti bildirim tercihleri (Faz 4.4).
+  //
+  // ⚠️ **MMKV'de DEĞİL, SQLite'ta** — `prayer_district` ile birebir aynı
+  // gerekçe: MMKV Expo Go'da kapalı ve bellek içi yedeğe düşüyor. Ayar oraya
+  // yazılsaydı kullanıcı kapattığı bildirimi HER SOĞUK AÇILIŞTA yeniden açık
+  // bulurdu — sessiz ve tekrarlayan bir hata.
+  //
+  // Anahtar `prayer` DOĞAL ve global — `activity_day.date` ve
+  // `prayer_log.(date, prayer)` ile aynı senkronizasyon kararı: iki cihaz aynı
+  // vaktin ayarını yazarsa bu AYNI satırdır ve `updated_at` ile çözülür.
+  //
+  // ⚠️ **Satırın YOKLUĞU "kapalı" DEĞİL, "kullanıcı dokunmadı" demek.**
+  // Varsayılan (açık, 0 dk) KODDA duruyor (`prayerNotify.resolvePref`), tabloda
+  // değil; ilk açılışta beş satır yazmak varsayılanı diske çivilerdi ve
+  // varsayılan bir gün değişirse eski kurulumlar eskisiyle kalırdı. Sütun
+  // varsayılanları (`DEFAULT 1`, `DEFAULT 0`) yalnızca elle yazılmış bir
+  // `INSERT` için var; uygulama her iki alanı da açıkça yazıyor.
+  //
+  // ⚠️ `enabled = 0` YAŞAYAN bir satırdır, `deleted_at` DEĞİL: "bu vakti
+  // istemiyorum" bir kullanıcı kararıdır, kaydın silinmesi değil. `prayer_log`
+  // ile karıştırılmamalı — orada işaretin kaldırılması gerçekten bir silmeydi.
+  //
+  // ⚠️ **İzin durumu BU TABLODA YOK ve hiçbir yerde saklanmıyor.** Tek doğruluk
+  // kaynağı işletim sistemi (`getPermissionsAsync`); kullanıcı izni sistem
+  // ayarlarından kapatabildiği için bir kopya tutmak iki doğru üretirdi.
+  //
+  // ⚠️ CHECK konmadı — `MIGRATIONS[4]`/`[5]` ile aynı gerekçe: union tipi
+  // TypeScript tarafında daraltıyor, tabloya yalnızca `prayerNotificationDb`
+  // yazıyor ve okuma yolu `normalizeOffset`ten geçiyor.
+  `CREATE TABLE IF NOT EXISTS prayer_notification (
+     prayer         TEXT    PRIMARY KEY NOT NULL,
+     enabled        INTEGER NOT NULL DEFAULT 1,
+     offset_minutes INTEGER NOT NULL DEFAULT 0,
+     updated_at     INTEGER NOT NULL,
+     deleted_at     INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_prayer_notification_updated_at
+     ON prayer_notification (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;

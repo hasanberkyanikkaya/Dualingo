@@ -271,6 +271,25 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         Kıble pusulası playbook'ta 4.5, 4.3 DEĞİL — CLAUDE.md'deki numara
         karışıklığı düzeltildi.
 
+[x] 4.4 Namaz vakti bildirimleri — expo-notifications ilk kez GERÇEKTEN kullanıldı.
+        Vakit başına ayrı açma/kapama + beş gecikme seçeneği (vakit başında /
+        5 / 10 / 15 / 30 dk sonra). Ayar ekranı app/prayer/notifications.tsx,
+        girişi PROFİL sekmesinde. Bir SAF modül (testli): prayerNotify.
+        404 test (386'dan). MIGRATIONS[6] → sürüm 7: prayer_notification.
+        ⚠️ TETİKLENME DOĞRULANMADI — Expo Go'da görünen şey kanıt değil.
+        Dev build kontrol listesi CLAUDE.md → Dev Build Borcu, B maddesi.
+        ⚠️ MAX_SCHEDULED = 60 iOS'un SERT sınırı (64) yüzünden: fazlası
+        SESSİZCE atılır. Bu yüzden plan kayan bir pencere, "kur ve unut" değil.
+        ⚠️ Tetikleyici DATE; tekrarlayan tetikleyici kullanılamaz (vakit kayıyor).
+        ⚠️ İptal data.kind süzgeciyle — cancelAll BAŞKA özelliklerin
+        bildirimlerini de silerdi.
+        ⚠️ Satırın YOKLUĞU "kapalı" değil "dokunulmadı"; varsayılan (beş vakit
+        açık) KODDA, tabloda değil. enabled = 0 yaşayan bir satır.
+        ⚠️ İzin durumu hiçbir yerde saklanmıyor — tek kaynak işletim sistemi.
+        ⚠️ Push jetonu HİÇ alınmıyor → mağaza veri güvenliği formu DEĞİŞMİYOR.
+        ⚠️ app.json değişmedi → 4.4 OTA ile gidebilir, yeni derleme istemez.
+        PRAYER_LABELS NextPrayerCard'dan prayerLabels.ts'e taşındı.
+
 
 === AÇIK SORULAR ===
 
