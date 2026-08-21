@@ -22,6 +22,9 @@ import { useTheme } from '@/lib/useTheme';
  * altındaki saf modüllerde. Burada yalnızca düzen ve dört durumun ayrımı var:
  * ilçe yok · veri yok · veri var · ağ uyarısı.
  *
+ * Faz 4.3'te iki şey değişti: işaret kutusu ÜÇ DURUMLU oldu (kayıt yok →
+ * kılındı → kaza) ve "Çizelgem" düğmesi geldi.
+ *
  * Faz 4.2'de üç şey eklendi: kart büyüdü ve ortalandı, tablo geçmiş vakitleri
  * soluk çiziyor ve kılındı işareti taşıyor, başlık altına Miladi + Hicri tarih
  * geldi.
@@ -37,7 +40,7 @@ import { useTheme } from '@/lib/useTheme';
  */
 export default function PrayerScreen() {
   const { theme } = useTheme();
-  const { district, today, next, markedToday, notice, loading, refresh, recompute, toggleMark } =
+  const { district, today, next, markedToday, notice, loading, refresh, recompute, cycleMark } =
     usePrayerTimes();
 
   if (district === null) {
@@ -94,7 +97,7 @@ export default function PrayerScreen() {
             ) : null}
 
             <View style={styles.table}>
-              <PrayerTimesTable rows={rows} onToggle={toggleMark} />
+              <PrayerTimesTable rows={rows} onCycle={cycleMark} />
             </View>
           </View>
         ) : (
@@ -120,6 +123,15 @@ export default function PrayerScreen() {
         )}
 
         <View style={styles.actions}>
+          {/*
+            ⚠️ Çizelge AYRI bir ekranda (Faz 4.3): sekmenin işi "şimdi ne
+            zaman", çizelgeninki geçmişe bakmak. İkisi aynı ekranda olsaydı
+            sıradaki vakit kartı her gün biraz daha aşağı kayardı.
+          */}
+          <Button
+            label={strings.prayer.chartTitle}
+            onPress={() => router.push('/prayer/chart')}
+          />
           <Button
             label={strings.prayer.refresh}
             variant="secondary"

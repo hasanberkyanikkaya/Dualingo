@@ -17,15 +17,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import {
-  buildPrayerDay,
-  isTrackable,
-  markedCount,
-  trackableCount,
-} from '@/features/prayer/prayerDay';
+import { buildPrayerDay, countStatus, isTrackable } from '@/features/prayer/prayerDay';
 import { findNextPrayer, localEpochFor } from '@/features/prayer/prayerSchedule';
 
-import type { PrayerName, PrayerTimes } from '@/types';
+import type { PrayerMarkMap, PrayerTimes } from '@/types';
 
 const AT = 1_755_000_000_000;
 const TODAY = '2026-08-20';
@@ -60,11 +55,11 @@ function at(clock: string, date: string = TODAY): number {
 /** Tabloyu gerçek akışıyla kurar: `findNextPrayer` ne dediyse `phase` ona uyar. */
 function day(
   now: number,
-  marked: readonly PrayerName[] = [],
+  marks: PrayerMarkMap = {},
   today: PrayerTimes | null = times(TODAY),
 ) {
   const tomorrow = times(TOMORROW);
-  return buildPrayerDay(today, findNextPrayer(today, tomorrow, now), marked, now);
+  return buildPrayerDay(today, findNextPrayer(today, tomorrow, now), marks, now);
 }
 
 function phases(now: number) {
@@ -86,7 +81,7 @@ describe('isTrackable', () => {
 
 describe('buildPrayerDay', () => {
   it('veri yoksa boş tablo — çökmez, yer tutucu satır uydurmaz', () => {
-    assert.deepEqual(buildPrayerDay(null, null, [], at('12:00')), []);
+    assert.deepEqual(buildPrayerDay(null, null, {}, at('12:00')), []);
   });
 
   it('altı vakti gün içi sırasıyla verir', () => {
@@ -156,7 +151,7 @@ describe('buildPrayerDay', () => {
     const rows = buildPrayerDay(
       times(TOMORROW),
       findNextPrayer(times(TOMORROW), times('2026-08-22'), now),
-      [],
+      {},
       now,
     );
 
@@ -180,7 +175,7 @@ describe('buildPrayerDay', () => {
         at: at('04:30', TOMORROW),
         isTomorrow: true,
       },
-      [],
+      {},
       now,
     );
 
@@ -191,11 +186,11 @@ describe('buildPrayerDay', () => {
   });
 
   it('bugünün verisi yoksa tablo boş kalır, yarının vakitleri sızmaz', () => {
-    assert.deepEqual(day(at('12:00'), [], null), []);
+    assert.deepEqual(day(at('12:00'), {}, null), []);
   });
 
   it('okunamayan vakit satırdan DÜŞER — yanlış saat gösterilmez', () => {
-    const rows = day(at('12:00'), [], times(TODAY, { ikindi: 'bozuk' }));
+    const rows = day(at('12:00'), {}, times(TODAY, { ikindi: 'bozuk' }));
 
     assert.deepEqual(
       rows.map((row) => row.name),
@@ -203,36 +198,47 @@ describe('buildPrayerDay', () => {
     );
   });
 
-  it('işaretler satırlara oturur', () => {
-    const rows = day(at('22:30'), ['ogle', 'ikindi']);
+  it('işaretler satırlara oturur ve DURUMU taşır', () => {
+    const rows = day(at('22:30'), { ogle: 'kilindi', ikindi: 'kaza' });
 
     assert.deepEqual(
-      rows.filter((row) => row.marked).map((row) => row.name),
-      ['ogle', 'ikindi'],
+      rows.filter((row) => row.status !== 'kilinmadi').map((row) => `${row.name}:${row.status}`),
+      ['ogle:kilindi', 'ikindi:kaza'],
     );
   });
 
-  it('GÜNEŞ işaretli gelse bile işaretli SAYILMAZ', () => {
-    // Bugün bunu yazan bir yol yok (`store.toggleMark` yalnızca kutusu olan
-    // satırdan çağrılıyor) ama diskteki artık bir kayıt tabloyu bozmamalı.
-    const gunes = day(at('22:30'), ['gunes']).find((row) => row.name === 'gunes');
+  it('işaretsiz vakit kilinmadi — eksik anahtar bir durumdur', () => {
+    const rows = day(at('22:30'), { ogle: 'kilindi' });
 
-    assert.equal(gunes?.marked, false);
+    assert.equal(rows.find((row) => row.name === 'yatsi')?.status, 'kilinmadi');
+  });
+
+  it('GÜNEŞ işaretli gelse bile işaretli SAYILMAZ', () => {
+    // Bugün bunu yazan bir yol yok (`store.cycleMark` yalnızca kontrolü olan
+    // satırdan çağrılıyor) ama diskteki artık bir kayıt tabloyu bozmamalı.
+    const gunes = day(at('22:30'), { gunes: 'kilindi' }).find((row) => row.name === 'gunes');
+
+    assert.equal(gunes?.status, 'kilinmadi');
     assert.equal(gunes?.trackable, false);
   });
 });
 
-describe('markedCount / trackableCount', () => {
-  it('sağlam veride işaretlenebilir vakit sayısı 5', () => {
-    assert.equal(trackableCount(day(at('12:00'))), 5);
+describe('countStatus', () => {
+  it('yalnızca işaretlenebilir satırlar sayılır', () => {
+    const rows = day(at('22:30'), { imsak: 'kilindi', gunes: 'kilindi', yatsi: 'kilindi' });
+
+    assert.equal(countStatus(rows, 'kilindi'), 2);
   });
 
-  it('yalnızca işaretlenebilir satırlar sayılır', () => {
-    assert.equal(markedCount(day(at('22:30'), ['imsak', 'gunes', 'yatsi'])), 2);
+  it('kılındı ve kaza AYRI sayılır — tek sayıda toplanmaz', () => {
+    const rows = day(at('22:30'), { imsak: 'kilindi', ogle: 'kaza', ikindi: 'kaza' });
+
+    assert.equal(countStatus(rows, 'kilindi'), 1);
+    assert.equal(countStatus(rows, 'kaza'), 2);
   });
 
   it('boş tabloda sıfır', () => {
-    assert.equal(markedCount([]), 0);
-    assert.equal(trackableCount([]), 0);
+    assert.equal(countStatus([], 'kilindi'), 0);
+    assert.equal(countStatus([], 'kaza'), 0);
   });
 });

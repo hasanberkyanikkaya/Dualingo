@@ -247,9 +247,47 @@ export const strings = {
     nextPrayerLabel: 'Sıradaki vakit',
     remaining: '{saat} sa {dakika} dk {saniye} sn',
     remainingShort: '{dakika} dk {saniye} sn',
-    // ⚠️ Metin YARGI TAŞIMAZ: "kılmadın", "eksik", "kaçırdın" gibi hiçbir
-    // ifade kullanılmaz. Ekran sayar, hüküm vermez (dini içerik politikası).
-    markedSummary: '{kilinan} / {toplam} vakit işaretli',
+    /*
+     * ⚠️ Metin YARGI TAŞIMAZ: "kılmadın", "eksik", "kaçırdın", "borç" gibi
+     * hiçbir ifade kullanılmaz. Ekran sayar, hüküm vermez.
+     *
+     * ⚠️ **PAYDA YOK** (Faz 4.3). Eskiden burada `'{kilinan} / {toplam} vakit
+     * işaretli'` yazıyordu; "2 / 5" hiçbir suçlayıcı kelime kullanmadan bir
+     * eksiklik bildiriyor. Yalnızca olumlu kayıt sayılır.
+     */
+    summaryDone: '{sayi} vakit kılındı olarak işaretli',
+    summaryKaza: '{sayi} vakit kaza olarak işaretli',
+
+    // Çizelge (Faz 4.3)
+    chartTitle: 'Çizelgem',
+    chartWeek: 'Hafta',
+    chartMonth: 'Ay',
+    chartPrevious: 'Önceki',
+    chartNext: 'Sonraki',
+    chartToday: 'Bugüne dön',
+    chartWeekSummary: 'Bu aralıkta {sayi} vakit işaretledin.',
+    chartKazaSummary: '{sayi} vakit kaza olarak işaretlendi.',
+    chartEmpty: 'Henüz işaret yok. İstediğin zaman başlayabilirsin.',
+    chartHint: 'Bir vakte dokunarak kılındı, tekrar dokunarak kaza olarak işaretleyebilirsin.',
+    chartSelectDay: 'Düzenlemek için bir güne dokun.',
+    chartFutureDay: 'Bu gün henüz gelmedi.',
+
+    /*
+     * Izgara sütun başlıkları. Dar hücrede tam ad sığmıyor.
+     * Güneş çizelgeye HİÇ girmiyor (namaz değil) ama eşleme tam olsun diye
+     * kısaltması burada duruyor — eksik anahtar tipi kırardı.
+     */
+    shortImsak: 'İms',
+    shortGunes: 'Gün',
+    shortOgle: 'Öğl',
+    shortIkindi: 'İki',
+    shortAksam: 'Akş',
+    shortYatsi: 'Yat',
+
+    // Durum adları — teknik değer `kilinmadi` ama ekranda "Kayıt yok" yazar.
+    statusNone: 'Kayıt yok',
+    statusDone: 'Kılındı',
+    statusKaza: 'Kaza',
     changeDistrict: 'İlçeyi değiştir',
     refresh: 'Yenile',
     attribution: "Diyanet İşleri Başkanlığı'nın yayınladığı vakitler",
@@ -350,7 +388,21 @@ export const strings = {
     prayerRemaining: '{vakit} vaktine {saat} saat {dakika} dakika kaldı',
     prayerRemainingSoon: '{vakit} vaktine {dakika} dakika kaldı',
     prayerNext: 'Sıradaki vakit: {vakit}, {saat}',
-    prayerMarkToggle: '{vakit} — kılındı işareti',
+    /*
+     * ⚠️ Durum ADI etikete YAZILIYOR. `accessibilityRole="checkbox"` üç durumu
+     * anons edemez ("işaretli/işaretsiz"); rol `button` olunca durumu söyleyen
+     * tek şey bu metin (Faz 4.3).
+     */
+    prayerStatusControl: '{hedef} — {durum}',
+    prayerStatusHint: 'Durumu değiştirmek için iki kez dokun',
+    /** Izgara hücresi: "18 Ağu, İkindi" gibi bir hedef üretir. */
+    prayerChartCell: '{tarih}, {vakit}',
+    /*
+     * Aylık takvim hücresi. ⚠️ Sayılar SÖZLE yazılıyor: hücredeki 12 dp'lik
+     * özet şeridi bu ölçekte biçim ayrımını zayıf taşıyor, ekran okuyucuya
+     * giden bilgi ondan bağımsız olmalı. "İşaretsiz" sayısı YOK.
+     */
+    prayerChartDay: '{tarih}, {kilinan} vakit kılındı, {kaza} vakit kaza',
   },
 } as const;
 

@@ -31,6 +31,29 @@ const MONTHS: readonly string[] = [
   'Aralık',
 ];
 
+/**
+ * Kısa ay adları — çizelgenin dar hücreleri için (Faz 4.3).
+ *
+ * ⚠️ Kısaltmalar UZUN adlardan TÜRETİLMİYOR (`slice(0, 3)` "Ağu" verirdi ama
+ * "Haz"ı "Haz", "Tem"i "Tem" yaparken "Mayıs"ı "May"a indirir ve tutarsız
+ * görünürdü). Elle yazılmış olması, bir gün biri değiştirmek istediğinde
+ * değiştirilecek tek yerin burası olması demek.
+ */
+const MONTHS_SHORT: readonly string[] = [
+  'Oca',
+  'Şub',
+  'Mar',
+  'Nis',
+  'May',
+  'Haz',
+  'Tem',
+  'Ağu',
+  'Eyl',
+  'Eki',
+  'Kas',
+  'Ara',
+];
+
 /** `Date.getUTCDay()` sırası: 0 = Pazar. */
 const WEEKDAYS: readonly string[] = [
   'Pazar',
@@ -41,6 +64,62 @@ const WEEKDAYS: readonly string[] = [
   'Cuma',
   'Cumartesi',
 ];
+
+/** Kısa gün adları — ızgara başlıkları. `WEEKDAYS` ile aynı sıra. */
+const WEEKDAYS_SHORT: readonly string[] = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+
+/**
+ * Pazartesi başlangıçlı kısa gün adları — aylık ızgaranın sütun başlıkları.
+ *
+ * ⚠️ Sıra `WEEKDAYS_SHORT`ten FARKLI: o `Date.getUTCDay()` sırasında (0 =
+ * Pazar), bu takvim ızgarasının sırasında (`prayerChart.startOfWeek` haftayı
+ * Pazartesi'den başlatıyor). İki sıra karışırsa takvim bir gün kayar ve hata
+ * yalnızca gözle görülür.
+ */
+export const WEEKDAY_HEADERS_TR: readonly string[] = [
+  'Pzt',
+  'Sal',
+  'Çar',
+  'Per',
+  'Cum',
+  'Cmt',
+  'Paz',
+];
+
+/**
+ * `'2026-08-20'` → parçalar, takvim doğrulamasıyla. Bozuk tarihte `null`.
+ *
+ * `formatGregorianTr`ın içinden çıkarıldı (Faz 4.3): aynı taşma denetimini üç
+ * biçimlendiricinin ayrı ayrı yazması, birinde unutulması demekti.
+ */
+function parse(date: IsoDate): { year: number; month: number; day: number; weekday: number } | null {
+  const match = ISO_DATE.exec(date ?? '');
+  if (match === null) {
+    return null;
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+
+  if (month < 1 || month > 12 || day < 1 || day > 31) {
+    return null;
+  }
+
+  const resolved = new Date(Date.UTC(year, month - 1, day));
+
+  // ⚠️ Taşma denetimi: `Date.UTC(2026, 1, 29)` 1 Mart döner ve sessizce yanlış
+  // gün adı yazdırırdı.
+  if (
+    resolved.getUTCFullYear() !== year ||
+    resolved.getUTCMonth() !== month - 1 ||
+    resolved.getUTCDate() !== day
+  ) {
+    return null;
+  }
+
+  return { year, month, day, weekday: resolved.getUTCDay() };
+}
 
 /**
  * `'2026-08-20'` → `'20 Ağustos 2026, Perşembe'`. Bozuk ya da takvimde
@@ -58,30 +137,35 @@ const WEEKDAYS: readonly string[] = [
  * yazmaktansa satırı hiç yazmamak doğru.
  */
 export function formatGregorianTr(date: IsoDate): string | null {
-  const match = ISO_DATE.exec(date);
-  if (match === null) {
+  const parts = parse(date);
+  if (parts === null) {
     return null;
   }
 
-  const year = Number(match[1]);
-  const month = Number(match[2]);
-  const day = Number(match[3]);
+  return `${parts.day} ${MONTHS[parts.month - 1]} ${parts.year}, ${WEEKDAYS[parts.weekday]}`;
+}
 
-  if (month < 1 || month > 12 || day < 1 || day > 31) {
+/**
+ * `(2026, 8)` → `'Ağustos 2026'`. Ay aralık dışındaysa `null`.
+ *
+ * Ay görünümünün başlığı. Yıl her zaman yazılıyor: kullanıcı aylar arasında
+ * ileri geri gezinirken yıl sınırını geçtiğini başka türlü fark edemez.
+ */
+export function monthTitleTr(year: number, month: number): string | null {
+  if (month < 1 || month > 12) {
     return null;
   }
+  return `${MONTHS[month - 1]} ${year}`;
+}
 
-  const resolved = new Date(Date.UTC(year, month - 1, day));
+/** `'2026-08-18'` → `'18 Ağu'`. Bozuk ya da takvimde olmayan tarihte `null`. */
+export function shortDateTr(date: IsoDate): string | null {
+  const parts = parse(date);
+  return parts === null ? null : `${parts.day} ${MONTHS_SHORT[parts.month - 1]}`;
+}
 
-  // Taşma denetimi: `Date.UTC(2026, 1, 29)` 1 Mart döner ve sessizce yanlış
-  // gün adı yazdırırdı.
-  if (
-    resolved.getUTCFullYear() !== year ||
-    resolved.getUTCMonth() !== month - 1 ||
-    resolved.getUTCDate() !== day
-  ) {
-    return null;
-  }
-
-  return `${day} ${MONTHS[month - 1]} ${year}, ${WEEKDAYS[resolved.getUTCDay()]}`;
+/** `'2026-08-18'` → `'Sal'`. Bozuk ya da takvimde olmayan tarihte `null`. */
+export function weekdayShortTr(date: IsoDate): string | null {
+  const parts = parse(date);
+  return parts === null ? null : WEEKDAYS_SHORT[parts.weekday];
 }

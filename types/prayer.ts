@@ -40,6 +40,32 @@ export type CityId = string;
 export type PrayerName = 'imsak' | 'gunes' | 'ogle' | 'ikindi' | 'aksam' | 'yatsi';
 
 /**
+ * Bir vaktin çizelgedeki durumu (Faz 4.3).
+ *
+ * ⚠️ **`enum` DEĞİL, union** — Node'un tip soyucusu `enum` desteklemiyor
+ * (`tests/setup.ts`).
+ *
+ * ⚠️ **`'kilinmadi'` diske YAZILMAZ.** O bir kayıt değil, kaydın yokluğudur:
+ * `prayer_log`ta ya hiç satır yoktur ya da satır `deleted_at` taşır. Canlı bir
+ * satırda yalnızca `'kilindi'` ve `'kaza'` bulunur (`lib/database.ts`
+ * `MIGRATIONS[5]`).
+ *
+ * ⚠️ Ekranda `'kilinmadi'` **"kılmadın" diye YAZILMAZ**, "Kayıt yok" diye
+ * gösterilir. Bu bir üslup tercihi değil, modülün kuralı: ekran sayar, hüküm
+ * vermez. Değer adı teknik, etiketi değil.
+ */
+export type PrayerMarkStatus = 'kilinmadi' | 'kilindi' | 'kaza';
+
+/**
+ * Bir günün işaretleri — vakit → durum.
+ *
+ * Eksik anahtar `'kilinmadi'` demektir; okuyucular `?? 'kilinmadi'` ile
+ * düşüyor. `Record<PrayerName, …>` tam olsaydı Güneş'e de bir durum atamak
+ * gerekirdi, oysa Güneş namaz değil ve çizelgeye hiç girmiyor.
+ */
+export type PrayerMarkMap = Partial<Record<PrayerName, PrayerMarkStatus>>;
+
+/**
  * Bir ilçenin bir gününe ait vakitler — SQLite `prayer_time` satırının
  * TypeScript karşılığı.
  *

@@ -66,7 +66,7 @@ veya başka bir tarafa **gönderilmez**. Saklanan veriler şunlardır:
 | Günlük hedef tercihi | Hedef takibi |
 | Seçtiğiniz il ve ilçe | Namaz vakitlerini doğru yere göre göstermek |
 | İndirilmiş namaz vakti tablosu (yaklaşık bir aylık) | Vakitleri internet olmadan da gösterebilmek |
-| Kıldığınızı işaretlediğiniz namaz vakitleri (tarih + vakit adı) | Günlük namaz çizelgenizi göstermek |
+| İşaretlediğiniz namaz vakitleri (tarih + vakit adı + kılındı/kaza) | Namaz çizelgenizi göstermek |
 
 Bu veriler cihazın kendi güvenli uygulama alanında tutulur ve yalnızca
 {APP_NAME} tarafından okunabilir.

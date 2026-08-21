@@ -10,6 +10,7 @@ import {
   selectDistrict as writeSelectedDistrict,
 } from '@/features/prayer/prayerDb';
 import { fetchTimetable } from '@/features/prayer/prayerApi';
+import { nextStatus } from '@/features/prayer/prayerChart';
 import { readPrayerLog, setPrayerMark } from '@/features/prayer/prayerLogDb';
 import { latestDate, parseTimetable } from '@/features/prayer/prayerParse';
 import { findNextPrayer, nextDay } from '@/features/prayer/prayerSchedule';
@@ -20,6 +21,8 @@ import type {
   NextPrayer,
   PrayerCity,
   PrayerDistrict,
+  PrayerMarkMap,
+  PrayerMarkStatus,
   PrayerName,
   PrayerTimes,
   SelectedDistrict,
@@ -55,14 +58,23 @@ type PrayerState = {
    * ⚠️ İLÇEDEN bağımsız: kullanıcının namaz kılıp kılmadığı ilçe verisi değil.
    * İlçe yokken bile okunuyor, çünkü çizelge vakit tablosuna değil GÜNE bağlı.
    */
-  markedToday: readonly PrayerName[];
+  markedToday: PrayerMarkMap;
   notice: PrayerNotice;
   /** Ağ isteği sürüyor — yalnızca "Yenile" düğmesinin göstergesi için. */
   loading: boolean;
 
   selectDistrict: (city: PrayerCity, district: PrayerDistrict) => void;
-  /** Bir vaktin "kılındı" işaretini kurar ya da kaldırır. */
-  toggleMark: (prayer: PrayerName) => void;
+  /** Bugünkü bir vakti bir sonraki duruma çevirir (kayıt yok → kılındı → kaza). */
+  cycleMark: (prayer: PrayerName) => void;
+  /**
+   * Herhangi bir günün bir vaktine durum yazar — çizelge ekranının kapısı.
+   *
+   * ⚠️ Hangi günün düzenlenebilir olduğuna burada KARAR VERİLMİYOR:
+   * `prayerChart.buildDay` `editable` alanını kuruyor ve ızgara gelecek günde
+   * kontrolü pasif çiziyor. Store'un işi yazmak (4.2'nin `toggleMark`
+   * kararının aynısı).
+   */
+  setMark: (date: IsoDate, prayer: PrayerName, status: PrayerMarkStatus) => void;
   /** Diskten yeniden okur ve sıradaki vakti hesaplar. Ağa çıkmaz. */
   recompute: () => void;
   refresh: (userInitiated: boolean) => Promise<void>;
@@ -113,7 +125,7 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
   today: null,
   tomorrow: null,
   next: null,
-  markedToday: [],
+  markedToday: {},
   notice: 'none',
   loading: false,
 
@@ -148,34 +160,54 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
   },
 
   /**
-   * İşareti tersine çevirir.
+   * Bugünkü bir vakti bir sonraki duruma çevirir.
    *
    * ⚠️ **DB yazması `set` updater'ının DIŞINDA** — Zustand updater'ı saf sayar
-   * ve React 19 + `reactCompiler` altında iki kez çalıştırıyor (2.4, 3.1 ve
-   * 3.2'de aynı tuzağa üç kez düşüldü). Burada iki kez yazmak idempotent
-   * olduğu için zararsız olurdu; kural yine de kuraldır.
-   *
-   * ⚠️ Hangi vaktin işaretlenebileceğine burada KARAR VERİLMİYOR —
-   * `prayerDay.buildPrayerDay` `trackable`/`phase` alanlarını kuruyor ve tablo
-   * kutuyu yalnızca geçmiş bir namaz satırında çiziyor. Store'un işi yazmak.
+   * ve React 19 + `reactCompiler` altında iki kez çalıştırıyor (2.4, 3.1, 3.2
+   * ve 4.2'de aynı tuzağa dört kez düşüldü). Burada iki kez çalışmak
+   * idempotent DEĞİL: döngü iki adım ilerler ve kullanıcı "kılındı" demek
+   * isterken "kaza" görürdü.
    *
    * ⚠️ Gün, `state.loadedDate` DEĞİL `Date.now()`tan okunuyor: uygulama gece
    * boyunca açık kaldıysa `loadedDate` dünü gösterir ve işaret yanlış güne
    * yazılırdı. (`AppState` dinleyicisi tazeliyor ama ona bağımlı olmamalı.)
    */
-  toggleMark: (prayer) => {
+  cycleMark: (prayer) => {
+    const todayIso = toLocalIsoDate(Date.now());
+    const current = get().markedToday[prayer] ?? 'kilinmadi';
+
+    get().setMark(todayIso, prayer, nextStatus(current));
+  },
+
+  /**
+   * Bir günün bir vaktine durum yazar.
+   *
+   * ⚠️ Bugüne yazılan değişiklik `markedToday`i de anında güncelliyor: günlük
+   * tablo ile çizelge aynı veriyi gösteriyor ve biri diğerinden bir yeniden
+   * yükleme geride kalırsa kullanıcı iki farklı doğru görür.
+   *
+   * ⚠️ Bugün DIŞINDAKİ günler için store'da bir yansıma TUTULMUYOR — çizelge
+   * kendi aralığını diskten okuyor. İkinci bir önbellek, ikinci bir bayatlama
+   * kaynağı olurdu.
+   */
+  setMark: (date, prayer, status) => {
     const now = Date.now();
     const todayIso = toLocalIsoDate(now);
-    const marked = get().markedToday.includes(prayer);
 
-    setPrayerMark(todayIso, prayer, !marked, now);
+    setPrayerMark(date, prayer, status, now);
 
-    set({
-      loadedDate: todayIso,
-      markedToday: marked
-        ? get().markedToday.filter((name) => name !== prayer)
-        : [...get().markedToday, prayer],
-    });
+    if (date !== todayIso) {
+      return;
+    }
+
+    const marked: PrayerMarkMap = { ...get().markedToday };
+    if (status === 'kilinmadi') {
+      delete marked[prayer];
+    } else {
+      marked[prayer] = status;
+    }
+
+    set({ loadedDate: todayIso, markedToday: marked });
   },
 
   recompute: () => {

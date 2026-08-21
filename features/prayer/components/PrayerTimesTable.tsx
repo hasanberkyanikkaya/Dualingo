@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import { PRAYER_LABELS } from '@/features/prayer/components/NextPrayerCard';
-import { markedCount, trackableCount } from '@/features/prayer/prayerDay';
+import PrayerStatusControl from '@/features/prayer/components/PrayerStatusControl';
+import { countStatus } from '@/features/prayer/prayerDay';
 import { formatString } from '@/lib/formatString';
 import { useTheme } from '@/lib/useTheme';
 
@@ -14,8 +15,8 @@ import type { PrayerName } from '@/types';
 
 type PrayerTimesTableProps = {
   rows: readonly PrayerRow[];
-  /** Bir vaktin "kılındı" işaretini tersine çevirir. */
-  onToggle: (prayer: PrayerName) => void;
+  /** Bir vakti bir sonraki duruma çevirir (kayıt yok → kılındı → kaza). */
+  onCycle: (prayer: PrayerName) => void;
 };
 
 /**
@@ -34,7 +35,11 @@ type PrayerTimesTableProps = {
  * işaret kutusu da sönerdi. Ölçüldü: `textMuted` açık temada beyaza karşı
  * **5.30:1**, koyu temada `#1A1218`e karşı **5.96:1** — ikisi de AA (4.5:1).
  *
- * ⚠️ **İşaret kutusu SÖNMEZ.** Satır soluk olsa da kutu tam kontrastta kalır:
+ * ⚠️ **İşaret kontrolü ÜÇ DURUMLU** (Faz 4.3): kayıt yok → kılındı → kaza.
+ * Kontrolün kendisi `PrayerStatusControl` ve çizelgeyle ORTAK — renk ve ikon
+ * kararları tek yerde.
+ *
+ * ⚠️ **İşaret kontrolü SÖNMEZ.** Satır soluk olsa da kutu tam kontrastta kalır:
  * o bir kontroldür, geçmiş bir bilgi değil. Sınırı `borderControl` çiziyor
  * (jetonun tanımı birebir bu: dokunulabilir öğenin sınırı; sayfa zeminine
  * karşı 3.64 açık / 3.46 koyu, 1.4.11'in istediği 3:1 sağlanıyor).
@@ -44,11 +49,11 @@ type PrayerTimesTableProps = {
  * odaklanmasını engeller. Bunun yerine bilgi kısmı (ikon + ad + saat) tek odak
  * durağı, işaret kutusu ayrı bir odak durağı.
  */
-export default function PrayerTimesTable({ rows, onToggle }: PrayerTimesTableProps) {
+export default function PrayerTimesTable({ rows, onCycle }: PrayerTimesTableProps) {
   const { theme } = useTheme();
 
-  const marked = markedCount(rows);
-  const trackable = trackableCount(rows);
+  const done = countStatus(rows, 'kilindi');
+  const kaza = countStatus(rows, 'kaza');
 
   return (
     <View>
@@ -103,45 +108,40 @@ export default function PrayerTimesTable({ rows, onToggle }: PrayerTimesTablePro
             </View>
 
             {row.trackable ? (
-              <Pressable
-                accessibilityRole="checkbox"
-                accessibilityState={{ checked: row.marked, disabled: !canMark }}
-                accessibilityLabel={formatString(strings.a11y.prayerMarkToggle, {
-                  vakit: PRAYER_LABELS[row.name],
-                })}
+              <PrayerStatusControl
+                status={row.status}
                 disabled={!canMark}
-                onPress={() => onToggle(row.name)}
-                // Kutu ikonu 24; `hitSlop` ile etkin dokunma hedefi 48'e
-                // çıkıyor (`layout.minTouchTarget`, Button'ın aritmetiği).
-                hitSlop={(layout.minTouchTarget - spacing.xl) / 2}
-              >
-                <Ionicons
-                  name={row.marked ? 'checkbox' : 'square-outline'}
-                  size={spacing.xl}
-                  // ⚠️ Pasif kutu GRİLEŞTİRİLMİYOR: `textDisabled` kendi zemini
-                  // üzerinde 1.97:1 ve pratikte görünmez olurdu (2.1'de kilit
-                  // ikonunda ölçülmüştü). Basılamaz olduğunu `accessibilityState`
-                  // söylüyor; görsel olarak boş kutu zaten "henüz değil" diyor.
-                  color={row.marked ? theme.primary : theme.borderControl}
-                />
-              </Pressable>
+                accessibilityLabel={PRAYER_LABELS[row.name]}
+                onPress={() => onCycle(row.name)}
+              />
             ) : (
               // Güneş satırında kutu yok ama yeri korunuyor — yoksa saat sütunu
               // tek satırda sağa kayar ve tablo hizasını kaybeder.
-              <View style={styles.checkboxSpacer} />
+              <View style={styles.statusSpacer} />
             )}
           </View>
         );
       })}
 
       {/*
-        ⚠️ Özet yalnızca en az bir işaret varken görünüyor. Sıfırdayken
-        "0 / 5" yazmak, hiçbir şey söylemediği hâlde bir eksiklik bildirimi gibi
+        ⚠️ Özet yalnızca en az bir işaret varken görünüyor. Sıfırdayken bir
+        şey yazmak, hiçbir şey söylemediği hâlde bir eksiklik bildirimi gibi
         okunur; ekran sayar, hüküm vermez.
+
+        ⚠️ **Payda YOK** (Faz 4.3): "2 / 5" suçlayıcı bir kelime kullanmadan
+        eksiklik bildiriyordu. Kılınan ve kaza AYRI sayılıyor — ikisi tek
+        sayıda toplansaydı kullanıcının kendi ayırdığı iki şey ekranda
+        birleşirdi.
       */}
-      {marked > 0 ? (
+      {done > 0 ? (
         <Text style={[textStyles.labelMedium, styles.summary, { color: theme.textSecondary }]}>
-          {formatString(strings.prayer.markedSummary, { kilinan: marked, toplam: trackable })}
+          {formatString(strings.prayer.summaryDone, { sayi: done })}
+        </Text>
+      ) : null}
+
+      {kaza > 0 ? (
+        <Text style={[textStyles.labelMedium, styles.summary, { color: theme.textSecondary }]}>
+          {formatString(strings.prayer.summaryKaza, { sayi: kaza })}
         </Text>
       ) : null}
     </View>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   time: {
     fontVariant: ['tabular-nums'],
   },
-  checkboxSpacer: {
+  statusSpacer: {
     width: spacing.xl,
   },
   summary: {

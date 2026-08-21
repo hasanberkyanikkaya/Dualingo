@@ -24,7 +24,7 @@ export function usePrayerTimes() {
   const loading = usePrayerStore((state) => state.loading);
   const refresh = usePrayerStore((state) => state.refresh);
   const recompute = usePrayerStore((state) => state.recompute);
-  const toggleMark = usePrayerStore((state) => state.toggleMark);
+  const cycleMark = usePrayerStore((state) => state.cycleMark);
 
   // Sekme açıldığında yenileme KARARI sorulur — istek atılacağı garanti değil.
   // `decideRefresh` iki döngü kırıcısıyla otomatik yolu oturumda bir kezle
@@ -72,6 +72,6 @@ export function usePrayerTimes() {
     loading,
     refresh,
     recompute,
-    toggleMark,
+    cycleMark,
   };
 }

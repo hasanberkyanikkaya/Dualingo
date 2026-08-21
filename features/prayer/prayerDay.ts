@@ -14,7 +14,15 @@
 
 import { localEpochFor, orderedPrayers } from '@/features/prayer/prayerSchedule';
 
-import type { ClockTime, NextPrayer, PrayerName, PrayerTimes, Timestamp } from '@/types';
+import type {
+  ClockTime,
+  NextPrayer,
+  PrayerMarkMap,
+  PrayerMarkStatus,
+  PrayerName,
+  PrayerTimes,
+  Timestamp,
+} from '@/types';
 
 /**
  * Satırın gün içindeki yeri.
@@ -39,7 +47,12 @@ export type PrayerRow = {
    * atıf metni o tabloya yapılıyor.
    */
   trackable: boolean;
-  marked: boolean;
+  /**
+   * Çizelgedeki durumu (Faz 4.3'te `marked: boolean` yerine geldi).
+   *
+   * Güneş satırında her zaman `'kilinmadi'` — namaz değil, işaretlenemez.
+   */
+  status: PrayerMarkStatus;
 };
 
 /**
@@ -48,11 +61,17 @@ export type PrayerRow = {
  * Yapısal bir liste, fıkhi bir hüküm değil: hangi satırın yanında kutu
  * çizileceğini söylüyor, o kadar.
  */
-const TRACKABLE: readonly PrayerName[] = ['imsak', 'ogle', 'ikindi', 'aksam', 'yatsi'];
+export const TRACKABLE_PRAYERS: readonly PrayerName[] = [
+  'imsak',
+  'ogle',
+  'ikindi',
+  'aksam',
+  'yatsi',
+];
 
 /** Güneş dışındaki her vakit işaretlenebilir. */
 export function isTrackable(name: PrayerName): boolean {
-  return TRACKABLE.includes(name);
+  return TRACKABLE_PRAYERS.includes(name);
 }
 
 /**
@@ -74,7 +93,7 @@ export function isTrackable(name: PrayerName): boolean {
 export function buildPrayerDay(
   times: PrayerTimes | null,
   next: NextPrayer | null,
-  marked: readonly PrayerName[],
+  marks: PrayerMarkMap,
   now: Timestamp,
 ): PrayerRow[] {
   if (times === null) {
@@ -98,7 +117,9 @@ export function buildPrayerDay(
       at,
       phase: name === nextName ? 'next' : at <= now ? 'past' : 'upcoming',
       trackable: isTrackable(name),
-      marked: isTrackable(name) && marked.includes(name),
+      // ⚠️ Eksik anahtar `'kilinmadi'` demek — `PrayerMarkMap` bilerek
+      // `Partial`. Güneş'in diskte bir kaydı bulunsa bile buraya sızmıyor.
+      status: isTrackable(name) ? (marks[name] ?? 'kilinmadi') : 'kilinmadi',
     });
   }
 
@@ -106,17 +127,17 @@ export function buildPrayerDay(
 }
 
 /**
- * İşaretlenmiş vakit sayısı.
+ * Belirli bir durumdaki vakit sayısı.
  *
  * ⚠️ Yalnızca `trackable` satırlar sayılır. Diskte bir şekilde `gunes` kaydı
- * bulunsa bile (bugün yazan yol yok) özet satırı `6 / 5` gibi imkânsız bir
- * sayı göstermemeli.
+ * bulunsa bile (bugün yazan yol yok) özet satırı imkânsız bir sayı
+ * göstermemeli.
+ *
+ * ⚠️ **`'kilinmadi'` sayısı da hesaplanabilir ama HİÇBİR YERDE
+ * GÖSTERİLMİYOR** — "3 vakit işaretsiz" hiçbir suçlayıcı kelime kullanmadan
+ * bir eksiklik bildirir. Payda da aynı sebeple ekrandan kalktı (Faz 4.3);
+ * `trackableCount` bu yüzden SİLİNDİ. Ekran sayar, hüküm vermez.
  */
-export function markedCount(rows: readonly PrayerRow[]): number {
-  return rows.filter((row) => row.trackable && row.marked).length;
-}
-
-/** Tabloda kaç vakit işaretlenebilir — sağlam veride 5. */
-export function trackableCount(rows: readonly PrayerRow[]): number {
-  return rows.filter((row) => row.trackable).length;
+export function countStatus(rows: readonly PrayerRow[], status: PrayerMarkStatus): number {
+  return rows.filter((row) => row.trackable && row.status === status).length;
 }

@@ -252,6 +252,25 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         ⚠️ Eski önbellek satırlarında hicri_uzun NULL; ekran kısa biçime düşüyor.
         Vakit BİLDİRİMLERİ hâlâ yapılmadı — ayrı oturum, dev build borcu.
 
+[x] 4.3 Namaz çizelgesi — üç durum + haftalık ızgara + aylık takvim.
+        İşaret artık ÜÇ DURUMLU: kayıt yok → kılındı → kaza → kayıt yok.
+        Yeni ekran app/prayer/chart.tsx; namaz sekmesine "Çizelgem" düğmesi.
+        Bir SAF modül (testli): prayerChart. lib/turkishDate üç biçimlendirici
+        kazandı (monthTitleTr, shortDateTr, weekdayShortTr). 386 test (343'ten).
+        MIGRATIONS[5] → sürüm 6: prayer_log.status (ALTER TABLE, DEFAULT 'kilindi').
+        ⚠️ 4.2'nin "status sütunu YOK" kararı BİLEREK geri alındı; ama
+        'kilinmadi' diske hiç yazılmıyor — o hâlâ satırın yokluğu.
+        ⚠️ PAYDA KALKTI: "2 / 5" eksiklik bildiriyordu. markedSummary silindi,
+        yerine summaryDone + summaryKaza. trackableCount da silindi.
+        ⚠️ Hafta PAZARTESİ başlar, her zaman 7 gün; ay her zaman 42 hücre.
+        ⚠️ Ay hücresinde vakit düzenlenmiyor — hücreye beş 48 dp hedef sığmıyor;
+        hücre GÜN seçiyor, düzenleme altındaki panelde.
+        ⚠️ Gelecek gün SEÇİLEBİLİR ama düzenlenemez; panel sebebini söylüyor.
+        ⚠️ Rol "checkbox" değil "button" — checkbox üçüncü durumu anons edemez.
+        ⚠️ Yeni rota .expo/types üretimi ister: npx expo start bir kez koşmalı.
+        Kıble pusulası playbook'ta 4.5, 4.3 DEĞİL — CLAUDE.md'deki numara
+        karışıklığı düzeltildi.
+
 
 === AÇIK SORULAR ===
 

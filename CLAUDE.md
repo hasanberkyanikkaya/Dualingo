@@ -140,10 +140,15 @@ Faz 3.2 rozet sistemi — TAMAM.
 Faz 3.3 maskot ve kutlama — TAMAM.
 Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).
 Faz 4.1 namaz veri katmanı + asgari ekran — TAMAM.
-Faz 4.2 namaz ekranı + kılınan namaz çizelgesi — TAMAM.**
-Sırada **namaz vakti bildirimleri** (4.2'nin adında vardı, kapsam dışı bırakıldı)
-ya da **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da **kıble pusulası**
-(4.3) ya da ertelenmiş 1.2c / 1.3 / 1.4.
+Faz 4.2 namaz ekranı + kılınan namaz çizelgesi — TAMAM.
+Faz 4.3 namaz çizelgesi (üç durum + hafta/ay görünümü) — TAMAM.**
+Sırada **namaz vakti bildirimleri** (playbook'ta 4.4; 4.2'nin adında vardı,
+kapsam dışı bırakıldı) ya da **seri arayüzü** (3.1'in görünen yüzü hâlâ yok)
+ya da **kıble pusulası** (playbook'ta **4.5**) ya da ertelenmiş 1.2c / 1.3 / 1.4.
+
+⚠️ **Numara karışıklığı düzeltildi:** bu bölüm eskiden kıble pusulasını "4.3"
+diye anıyordu. Playbook'ta 4.3 **namaz çizelgesi**, 4.4 bildirimler, 4.5 kıble.
+Geçerli numara playbook'unki.
 
 ⚠️ **Kutlama sahnesi kurulu ama LOTTIE DOSYASI YOK.** 3.3'ten sonra ders sonu
 ekranı bir kutlama slotu taşıyor; `CelebrationMascot.tsx`'teki
@@ -175,6 +180,9 @@ indirilmiş vakitler (`prayer_time`) SQLite'ta; kalıcılık duvarını delen
 ⚠️ **4.2'den sonra kılınan namaz işaretleri de (`prayer_log`) kalıcı** — aynı
 `.db`de, ilçeden bağımsız. Namaz sekmesinde soğuk açılıştan sonra duran şey
 artık üç tane: ilçe, vakitler ve çizelge.
+⚠️ **4.3'ten sonra işaret ÜÇ DURUMLU** (kayıt yok / kılındı / kaza) ve geçmiş
+günler `app/prayer/chart.tsx` üzerinden düzenlenebiliyor — aynı tablo, yeni bir
+`status` sütunu (`MIGRATIONS[5]`).
 
 ⚠️ **ROZET DE KALICI.** Faz 3.2'den sonra kazanımlar `badge_unlock`
 tablosunda; seriden sonra kalıcılık duvarını delen ikinci özellik. Rozet
@@ -1605,6 +1613,100 @@ ilgili ve **bu oturumun dosyalarından değil.**
 - ⚠️ **VAKİT BİLDİRİMLERİ HÂLÂ YAPILMADI.** 4.2'nin adında vardı, kapsam dışı
   bırakıldı (kullanıcı kararı). Veri tarafı hazır; bloke olan tek şey
   tetiklenmeyi doğrulamak (Dev Build Borcu, B maddesi).
+
+**Namaz çizelgesi kararları (Oturum 4.3):**
+- **İki SAF modül (testli) + var olanların genişlemesi.** `prayerChart.ts`
+  (durum döngüsü + hafta/ay geometrisi) ve `lib/turkishDate.ts` (üç yeni
+  biçimlendirici) testli; `prayerLogDb.ts` yerel ve testsiz. 4.1'in dört saf /
+  üç yerel ayrımının sürdürülmesi.
+- ⚠️ **`MIGRATIONS[5]` 4.2'nin "ayrı bir `status` sütunu YOK" kararını BİLEREK
+  GERİ ALIR.** O karar iki durumlu bir dünyada doğruydu: satırın varlığı
+  işaretin kendisiydi. Üçüncü durum girince yetmiyor — "kılındı" ile "kaza"
+  ikisi de YAŞAYAN satır. Eski değişmez korunuyor: **`'kilinmadi'` diske HİÇ
+  yazılmaz** (satırın yokluğu ya da `deleted_at`), yani "silinmiş ama işaretli"
+  hâlâ imkânsız. `DEFAULT 'kilindi'` bir kolaylık değil GÖÇÜN KENDİSİ: 4.2'de
+  yazılmış her satır "kılındı" demekti ve öyle kalmalı.
+- **Döngü: kayıt yok → kılındı → kaza → kayıt yok.** Sıralama bilinçli; en sık
+  konacak işaret tek dokunuşta geliyor. Döngü `prayerChart.nextStatus`ta ve
+  **tek yerde** — hem günlük tablo hem çizelge onu çağırıyor.
+- ⚠️ **"Kılmadım" bir KAYIT DEĞİL.** Teknik değer `'kilinmadi'` ama ekranda
+  **"Kayıt yok"** yazar. Değer adı teknik, etiketi değil.
+- ⚠️ **PAYDA KALKTI.** `strings.prayer.markedSummary` (`'{kilinan} / {toplam}
+  vakit işaretli'`) **silindi**, yerine `summaryDone` + `summaryKaza` geldi.
+  "2 / 5" hiçbir suçlayıcı kelime kullanmadan bir eksiklik bildiriyor.
+  `prayerDay.trackableCount` de bu yüzden **silindi**; `markedCount` →
+  `countStatus(rows, status)`. `summarize` bilerek yalnızca iki alan döndürüyor
+  ve testi anahtar sayısını çiviliyor — hesaplanabilir olması bile o satırın bir
+  gün ekrana çıkmasına davetiye olurdu.
+- ⚠️ **Hafta PAZARTESİ başlıyor, çapası `'1970-01-05'`.** `getUTCDay()`
+  kullanılsaydı 0 = Pazar olur, her yerde bir kaydırma taşınırdı.
+  `((diff % 7) + 7) % 7` iki kez modulo alıyor: JS'te `-3 % 7` **-3**'tür.
+- **Hafta HER ZAMAN 7, ay HER ZAMAN 42 hücre.** İkisi de arayüz sözleşmesi:
+  ızgara satır sayısını veriden öğrenmiyor ve ay 4/5/6 satır arasında
+  zıplamıyor. Ay dışı hücreler **`null`** — komşu ayın günlerini çizmek elendi
+  (dokunulabilir olsalar görünmeyen bir aya yazılırdı, olmasalar aynı görünen
+  iki hücreden biri çalışır diğeri çalışmazdı).
+- ⚠️ **`addMonths` AYIN İLKİNE oturur.** Gün korunsaydı 31 Ocak + 1 ay `Date`
+  tarafından 3 Mart'a atılır ve "sonraki ay" düğmesi **Şubat'ı atlardı**.
+- ⚠️ **`prayerChart` takvimi de doğruluyor**, `streak.parseIsoDate` gibi yalnızca
+  biçimi değil: `'2026-02-29'` biçim olarak geçerli ama takvimde yok.
+  (`lib/turkishDate.ts`in aynı gerekçesi; oradaki taşma denetimi artık üç
+  biçimlendiricinin ortak `parse`ında.)
+- **Düzenleme GÜN hassasiyetinde**: bugün ve geçmiş düzenlenebilir, gelecek
+  değil. Günlük tablodaki `phase === 'past'` katılığı çizelgeye taşınmadı —
+  taşınsaydı geçmiş bir günü düzeltmeye gelen kullanıcı bugünün yarısından
+  mahrum kalırdı.
+- ⚠️ **Aylık takvim hücresinde vakitler DOĞRUDAN düzenlenmiyor** — oturumun
+  ikinci bilinçli tasarım sapması. Aritmetik: 360 dp ekranda hücre ~51 dp, içine
+  beş hedef koymak her birini ~10 dp yapardı (`minTouchTarget` 48'in beşte
+  biri). Hücre GÜN seçiyor, düzenleme altındaki `PrayerDayEditor` panelinde tam
+  boy kontrollerle yapılıyor. ⚠️ **Gelecek gün de SEÇİLEBİLİR** ama düzenlenemez:
+  basılamaz hücre sessiz bir duvar olurdu, panel sebebini söylüyor.
+- ⚠️ **Haftalık ızgarada günler SATIR, vakitler SÜTUN** ve bu da ölçülerek
+  seçildi: tarih sütunu (72) çıkınca beş vakte ~57 dp kalıyor. Ters yön (yedi
+  gün sütun) ~41 dp verir, 48'in ALTINA düşer ve yatay kaydırma gerektirirdi.
+- ⚠️ **Durum RENKLE taşınmıyor, ikonun BİÇİMİYLE**: `ellipse-outline` /
+  `checkmark-circle` / `refresh-circle`. WCAG **1.4.1**'in bu projedeki
+  **sekizinci** uygulaması. ⚠️ Aylık hücrenin özet şeridi **8 dp** ve o ölçekte
+  biçim ayrımı zayıf; bilgiyi taşıyan şey hücrenin erişilebilirlik etiketi
+  (sayılar SÖZLE yazılıyor) ve panelin kendisi — şerit bir hatırlatma, kayıt
+  değil.
+- ⚠️ **`accessibilityRole="checkbox"` DEĞİL, `"button"`.** Onay kutusunun iki
+  durumu vardır; ekran okuyucu üçüncü durumu (kaza) hiç söyleyemezdi. Rol
+  `button` + etikete durum ADININ yazılması üç durumu da duyuran tek yol.
+  (4.2'de kutu iki durumluydu ve `checkbox` doğruydu.)
+- **`PrayerStatusControl` günlük tablo, haftalık ızgara ve aylık panelin ORTAK
+  kontrolü** (mimari kural 3). Üç yerde ayrı yazılsaydı ölçülmüş renk/ikon
+  kararları üç kez verilir, biri kayar ve aynı işaret iki ekranda farklı
+  görünürdü. Pasif hâli **grileştirilmiyor** (`textDisabled` 1.97, 2.1 ölçümü).
+- **Yazma yolu TEK KAPI: `store.setMark`.** `cycleMark` bugünün kısayolu ve
+  `setMark`e düşüyor. ⚠️ DB yazması yine `set` updater'ının **DIŞINDA** (React 19
+  + `reactCompiler`; beşinci kez) — burada iki kez çalışmak **idempotent DEĞİL**,
+  döngü iki adım ilerler ve kullanıcı "kılındı" derken "kaza" görürdü.
+- ⚠️ **Aralık okuması store'da DEĞİL `usePrayerChart`te.** Store uygulama ömrü
+  boyunca yaşıyor; gezilen hafta/ay ekranla doğup ölen bir arayüz durumu.
+  Yazdıktan sonra aralık **diskten yeniden okunuyor** (iyimser güncelleme yok):
+  `setPrayerMark` veritabanı açılamamışsa sessizce çıkıyor ve ekran olmayan bir
+  işareti gösterirdi. `useFocusEffect` hem gün dönümünü hem günlük tabloda
+  yapılan değişikliği yakalıyor.
+- **Çizelge AYRI ekranda** (`app/prayer/chart.tsx`), sekmenin altında değil:
+  sekmenin işi "şimdi ne zaman", çizelgeninki geçmişe bakmak. Aynı ekranda
+  olsalardı sıradaki vakit kartı her gün biraz daha aşağı kayardı. Ekran `Screen`
+  kullanmıyor ve kapatma düğmesini ELLE çiziyor (4.1'in ilçe ekranıyla aynı).
+- ⚠️ **Yeni rota eklendiği için `.expo/types` yeniden üretilmeliydi** — `npx expo
+  start` bir kez çalıştırılmadan `router.push('/prayer/chart')` `tsc` hatası
+  veriyor (2.3'te yazılmış tuzak, bu oturumda gerçekleşti).
+- **386 test geçiyor** (343'ten). `tests/prayerChart.test.ts` yeni;
+  `tests/prayerDay.test.ts` ve `tests/turkishDate.test.ts` genişledi.
+  ⚠️ `prayerLogDb`, `usePrayerChart`, `store` ve bileşenler için test
+  **yazılamaz** (yerel modül). Elle doğrulandı: `TZ=America/New_York`,
+  `TZ=Pacific/Kiritimati`, `TZ=Pacific/Midway` → 386/386.
+- `strings.ts`: `prayer`a çizelge metinleri + durum adları + kısa vakit adları,
+  `a11y`ye üç satır. ⚠️ `a11y.prayerMarkToggle` **silindi** (iki durumlu kutunun
+  etiketiydi). **`colors.ts` DEĞİŞMEDİ** — yeni jeton gerekmedi.
+- ⚠️ **Yasaklı dil taraması yapıldı**: "kaçırdın / başarısız / seri bozuldu /
+  eksik / kılmadın / ihmal / borç" hiçbir kullanıcı metninde geçmiyor (yalnızca
+  bu kararları anlatan yorumlarda).
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

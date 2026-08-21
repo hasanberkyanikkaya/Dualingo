@@ -16,7 +16,13 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { formatGregorianTr } from '@/lib/turkishDate';
+import {
+  WEEKDAY_HEADERS_TR,
+  formatGregorianTr,
+  monthTitleTr,
+  shortDateTr,
+  weekdayShortTr,
+} from '@/lib/turkishDate';
 
 describe('formatGregorianTr', () => {
   it('gün, ay adı, yıl ve gün adını Türkçe yazar', () => {
@@ -91,5 +97,68 @@ describe('formatGregorianTr', () => {
     // satır bir gün geriye kayardı; testin asıl konusu bu.
     assert.equal(formatGregorianTr('2027-01-01'), '1 Ocak 2027, Cuma');
     assert.equal(formatGregorianTr('2026-12-31'), '31 Aralık 2026, Perşembe');
+  });
+});
+
+describe('monthTitleTr', () => {
+  it('ay adı ve yıl', () => {
+    assert.equal(monthTitleTr(2026, 8), 'Ağustos 2026');
+    assert.equal(monthTitleTr(2026, 1), 'Ocak 2026');
+    assert.equal(monthTitleTr(2026, 12), 'Aralık 2026');
+  });
+
+  it('aralık dışında null', () => {
+    assert.equal(monthTitleTr(2026, 0), null);
+    assert.equal(monthTitleTr(2026, 13), null);
+  });
+});
+
+describe('shortDateTr', () => {
+  it('gün ve kısa ay', () => {
+    assert.equal(shortDateTr('2026-08-18'), '18 Ağu');
+    assert.equal(shortDateTr('2026-01-01'), '1 Oca');
+    assert.equal(shortDateTr('2026-05-09'), '9 May');
+  });
+
+  it('takvimde olmayan ya da bozuk tarihte null', () => {
+    assert.equal(shortDateTr('2026-02-29'), null);
+    assert.equal(shortDateTr('18.08.2026'), null);
+  });
+});
+
+describe('weekdayShortTr', () => {
+  it('kısa gün adı', () => {
+    // 17.08.2026 Pazartesi, 23.08.2026 Pazar.
+    assert.equal(weekdayShortTr('2026-08-17'), 'Pzt');
+    assert.equal(weekdayShortTr('2026-08-20'), 'Per');
+    assert.equal(weekdayShortTr('2026-08-23'), 'Paz');
+  });
+
+  it('uzun ad ile aynı günü söyler', () => {
+    // İki biçimlendirici aynı `parse` üzerine kurulu; ayrışırlarsa çizelgedeki
+    // gün adı ile başlıktaki gün adı çelişirdi.
+    assert.equal(formatGregorianTr('2026-08-23')?.endsWith('Pazar'), true);
+    assert.equal(weekdayShortTr('2026-08-23'), 'Paz');
+  });
+
+  it('bozuk tarihte null', () => {
+    assert.equal(weekdayShortTr('2026-13-01'), null);
+  });
+});
+
+describe('WEEKDAY_HEADERS_TR', () => {
+  it('PAZARTESİ başlar — ızgaranın sırası', () => {
+    // ⚠️ `Date.getUTCDay()` sırasıyla karışırsa takvim bir gün kayar ve hata
+    // yalnızca gözle görülür.
+    assert.deepEqual(WEEKDAY_HEADERS_TR, ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']);
+  });
+
+  it('başlık sırası gerçek günlerle örtüşüyor', () => {
+    const week = ['2026-08-17', '2026-08-18', '2026-08-19', '2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'];
+
+    assert.deepEqual(
+      week.map((date) => weekdayShortTr(date)),
+      [...WEEKDAY_HEADERS_TR],
+    );
   });
 });

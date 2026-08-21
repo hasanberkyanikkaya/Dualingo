@@ -179,6 +179,31 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_prayer_log_updated_at
      ON prayer_log (updated_at);`,
+
+  // [5] → sürüm 6: çizelgeye ÜÇÜNCÜ durum — kaza (Faz 4.3).
+  //
+  // ⚠️ **Bu göç `MIGRATIONS[4]`teki "ayrı bir `status` sütunu YOK" kararını
+  // bilinçli olarak GERİ ALIR.** O karar iki durumlu bir dünyada doğruydu:
+  // satırın varlığı işaretin kendisiydi ve "silinmiş ama işaretli" gibi
+  // anlamsız bir bileşim imkânsızdı. Üçüncü durum girince o model yetmiyor —
+  // "kılındı" ile "kaza" ikisi de YAŞAYAN bir satır ve aralarındaki farkı
+  // taşıyacak bir yer gerekiyor.
+  //
+  // Eski modelin değişmezi KORUNUYOR: canlı satırda yalnızca `'kilindi'` ve
+  // `'kaza'` bulunur. Üçüncü durum (`'kilinmadi'`) diske HİÇ yazılmaz — o,
+  // satırın yokluğudur (ya da `deleted_at` ile kaldırılmış olmasıdır). Yani
+  // "silinmiş ama işaretli" hâlâ imkânsız; sütun yalnızca canlı satırlar
+  // arasında ayrım yapıyor.
+  //
+  // ⚠️ `DEFAULT 'kilindi'` bir kolaylık değil, GÖÇÜN KENDİSİ: 4.2'de yazılmış
+  // her satır "kılındı" demekti ve öyle kalmalı. `NOT NULL` + varsayılan,
+  // `ALTER TABLE`in eski satırları tek adımda taşımasının tek yolu (SQLite
+  // `ADD COLUMN`da `NOT NULL` için varsayılan zorunlu).
+  //
+  // ⚠️ CHECK konmadı — `MIGRATIONS[4]`teki `prayer` sütunuyla aynı gerekçe:
+  // `PrayerMarkStatus` union'ı TypeScript tarafında daraltıyor ve tabloya
+  // yalnızca `prayerLogDb` yazıyor.
+  "ALTER TABLE prayer_log ADD COLUMN status TEXT NOT NULL DEFAULT 'kilindi';",
 ];
 
 let cached: SQLiteDatabase | null | undefined;
