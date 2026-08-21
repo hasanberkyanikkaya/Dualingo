@@ -24,7 +24,8 @@ Hedef kitle: yaş sınırı yok, seviye tespitiyle herkes kendi noktasından ba�
 - **Ses:** expo-audio (expo-av SDK 54'te kaldırıldı)
 - **Konum:** expo-location
 - **Bildirim:** expo-notifications
-- **Sensör:** expo-sensors (kıble — Faz 4'te kurulacak)
+- **Pusula:** `expo-location` `watchHeadingAsync` (kıble — Faz 4.5'te kuruldu)
+  ⚠️ **`expo-sensors` KURULMADI ve kurulmamalı** — gerekçe "Kıble kararları"nda.
 - **Hata izleme:** Sentry (Faz 1'de kurulacak)
 - **OTA güncelleme:** expo-updates (Faz 2.5'te kurulacak)
 
@@ -142,13 +143,19 @@ Faz 4.0 namaz veri kaynağı araştırması — TAMAM (kod yok, karar belgesi).
 Faz 4.1 namaz veri katmanı + asgari ekran — TAMAM.
 Faz 4.2 namaz ekranı + kılınan namaz çizelgesi — TAMAM.
 Faz 4.3 namaz çizelgesi (üç durum + hafta/ay görünümü) — TAMAM.
-Faz 4.4 namaz vakti bildirimleri — TAMAM (kod tam, TETİKLENME DOĞRULANMADI).**
-Sırada **kıble pusulası** (playbook'ta **4.5**) ya da **seri arayüzü** (3.1'in
-görünen yüzü hâlâ yok) ya da ertelenmiş 1.2c / 1.3 / 1.4.
+Faz 4.4 namaz vakti bildirimleri — TAMAM (kod tam, TETİKLENME DOĞRULANMADI).
+Faz 4.5 kıble pusulası — TAMAM.**
+Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok) ya da **Faz 5 (Kur'an)**
+ya da ertelenmiş 1.2c / 1.3 / 1.4.
 
-⚠️ **Numara karışıklığı düzeltildi:** bu bölüm eskiden kıble pusulasını "4.3"
-diye anıyordu. Playbook'ta 4.3 **namaz çizelgesi**, 4.4 bildirimler, 4.5 kıble.
-Geçerli numara playbook'unki.
+⚠️ **Namaz modülü (Faz 4) BİTTİ.** 4.0 araştırma, 4.1 veri, 4.2 ekran + çizelge,
+4.3 üç durum + hafta/ay, 4.4 bildirimler, 4.5 kıble. Açık kalan tek borç 4.4'ün
+tetiklenme doğrulaması ve o dev build'e bağlı.
+
+⚠️ **KIBLE DEV BUILD BEKLEMİYOR.** 4.4'ün aksine 4.5'in her parçası Expo Go'da
+uçtan uca sınanabilir: `expo-location` Expo Go'nun içinde geliyor ve
+`expo-sensors` hiç kurulmadı. Elle doğrulama listesi "Kıble kararları"nın
+sonunda.
 
 ⚠️ **BİLDİRİMLER KURULDU AMA TETİKLENDİĞİ GÖRÜLMEDİ.** 4.4'ten sonra beş
 vakit için yerel zamanlanmış bildirim kuruluyor (`features/prayer/
@@ -285,8 +292,10 @@ kurulu, EAS'a `hasanberk` hesabıyla giriş yapılmış, `projectId` `app.json`'
 
 Aşağıdakiler Expo Go'nun İÇİNDE geliyor; dev build beklemeye gerek YOK:
 `expo-sqlite` (namaz çizelgesi, Kur'an ilerlemesi), `expo-audio`, `expo-location`,
-`react-native-svg`, Reanimated + worklets, `expo-sensors` (kıble pusulası —
-⚠️ paket henüz kurulu değil ama Expo Go destekliyor, `npx expo install` yeter).
+`react-native-svg`, Reanimated + worklets, `expo-location` (kıble pusulası —
+⚠️ **`expo-sensors` gerekmedi ve kurulmadı**; pusula yönü `watchHeadingAsync`ten
+geliyor, gerekçe "Kıble kararları"nda). **Faz 4.5'in hiçbir parçası dev build
+beklemiyor** — uçtan uca Expo Go'da sınanabilir.
 
 ### Dev build alındığı gün, sırayla
 
@@ -1837,6 +1846,122 @@ ilgili ve **bu oturumun dosyalarından değil.**
   sesi (2.5'in "ses dosyaları pakete GİRMEZ" kararına çarpar); seri/ders
   hatırlatıcısı (Faz 3'ün konusu — altyapı onu da taşıyacak biçimde yazıldı ama
   tüketicisi yok).
+
+**Kıble kararları (Oturum 4.5):**
+- **Bir SAF modül (testli) + var olan bir yerel modülün genişlemesi.**
+  `qibla.ts` (azimut, dikiş açma, kalibrasyon kovaları, yayın eşiği) saf;
+  karşısında `location.ts` (koordinat + yön), `useQibla.ts` (bağlantı).
+  4.1'in dört saf / üç yerel ayrımının sürdürülmesi.
+- ⚠️ **`expo-sensors` KURULMADI ve prompt onu istiyordu.** Sapma bunu ölçülebilir
+  bir hataya çeviriyordu: ham manyetometre **manyetik** kuzeyi verir, kıble
+  azimutu **gerçek** kuzeye göre hesaplanır ve Türkiye'de ikisi ~5–6° ayrışır.
+  Düzeltmek bir dünya manyetik modeli (WMM) tablosu ister — bu projeye girmez.
+  `expo-location.watchHeadingAsync` üç şeyi birden çözüyor: `trueHeading`
+  (sapma işletim sistemince düzeltilmiş), `accuracy` (kalibrasyon uyarısının
+  GERÇEK kaynağı, tahmin değil) ve cihaz yönelimi.
+  **Sonuç: `package.json` DEĞİŞMEDİ**, yeni bağımlılık yok.
+  ⚠️ `trueHeading` **negatif gelebilir** (iOS henüz gerçek kuzeyi çözemediğinde
+  `-1`); o değeri olduğu gibi kullanmak kadranı yanlış yere kilitler,
+  `magHeading`e düşülüyor ve kalibrasyon uyarısı zaten çıkıyor.
+- ⚠️ **KOORDİNAT DİSKE YAZILMIYOR** (kullanıcı kararı). Yeni göç yok, `MIGRATIONS`
+  **yedi maddede kaldı**. Doğrudan sonucu: `Planlamalar/Magaza/` altındaki
+  gizlilik politikası ve veri güvenliği formu **DEĞİŞMEDİ** — cihazda kalıcı
+  yeni veri yok, yeni uzak sunucu yok, yeni izin yok (`ACCESS_COARSE_LOCATION`
+  4.1'de zaten bildirilmişti). Kalıcılaştırılsaydı ikisi de yeniden yazılırdı.
+  Kabul edilen bedel: ekran her açılışta konum ister.
+- ⚠️ **`lookupCoordinates` ters coğrafi kodlama ÇAĞIRMIYOR** ve bu bir gizlilik
+  kazancı: `lookupCurrentPlace` iOS'ta koordinatı Apple'ın sunucusuna gönderiyor
+  (CLGeocoder), kıble yolu **hiçbir sunucuya bir şey göndermiyor.**
+  `location.ts`in başlık yorumu bu yüzden yeniden yazıldı — eski hâli "cihazdan
+  yalnızca AD DİZGELERİ çıkar" diyordu ve 4.5 o sözü bozdu.
+  ⚠️ Doğruluk `Balanced`, `Low` DEĞİL: `Low` (~1–3 km) ilçe ADI çözmeye yeter,
+  kıble AÇISI için sınırda kalır.
+- ⚠️ **`unwrapRotation` — 360/0 dikişi bu oturumun en kritik satırı.** Ham açı
+  paylaşılan değere doğrudan yazılsaydı kadran 359°→1° geçişinde **tam tur
+  geri** sıçrardı: görünen hata devasa, sebebi tek satır ve yalnızca cihazı elde
+  çevirince fark ediliyor. Çözüm ham açıyı değil BİRİKEN açıyı taşımak
+  (`önceki + enKısaFark`). ⚠️ Sonuç `[0, 360)` içinde **değildir ve olmamalıdır**;
+  kullanıcı dönmeye devam ettikçe değer büyür — sürekliliğin ta kendisi.
+  ⚠️ `signedDelta`da **iki kez modulo**: JS'te `-10 % 360` **-10**'dur
+  (`prayerChart.startOfWeek`in aynı tuzağı).
+- ⚠️ **İKİ KANAL kararı.** Yön verisi saniyede onlarca kez geliyor; hepsini React
+  durumuna yazmak ekrandaki her metni, kalibrasyon kartını ve kıble saati
+  panelini o hızda yeniden çizerdi. Kadranın açısı **`useSharedValue`**e
+  doğrudan yazılıyor (sıfır yeniden çizim, yalnızca `QiblaDial` okuyor);
+  `delta`/`aligned`/`quality` **`setState`** ve yalnızca `shouldEmit` 1°'lik
+  eşiği geçince. 4.1'in **"geri sayım yalnızca `CountdownLabel`de tik atar"**
+  kararının bu modüldeki karşılığı.
+  ⚠️ `useQibla`daki üç `ref` (`bearingRef`/`emittedRef`/`alignedRef`) durum
+  DEĞİL çünkü değişmeleri yeniden çizim gerektirmiyor; durum olsalardı
+  `handleHeading` her ölçümde yeniden kurulur, **abonelik de onunla koparddı**.
+- ⚠️ **SVG ÖZELLİĞİ ANİMASYONLANMIYOR** ve tasarım bunu YAPISAL olarak imkânsız
+  kılıyor: `bearing` koordinat gelince bir kez sabitleniyor → içerideki `<Svg>`
+  tamamen durağan → dönen tek şey onu saran sıradan bir `Animated.View`.
+  `PathTrail.tsx`in kuralı (RN 0.81 + Reanimated 4 + worklets 0.5'te
+  `createAnimatedComponent(Path)` pürüzlü) böylece hiç sınanmıyor.
+  ⚠️ `<Svg>`ye **sayısal** ölçü veriliyor, yüzde değil; ölçü
+  `useWindowDimensions()`tan, `onLayout` YOK (2.1'in `pathLayout` disiplini).
+  ⚠️ Yumuşatma **bileşende** (`useDerivedValue` + `withTiming`), kancada değil:
+  `rotation` ham ölçümü taşıyor ve saf kalmalı.
+- **`react-native-svg`in projedeki İKİNCİ tüketicisi** (birincisi `PathTrail`).
+  İlk kez `Circle`, `Line` ve `Text` kullanıldı; `createAnimatedComponent`
+  yine hiç kullanılmadı.
+- ⚠️ **Hizalanma RENKLE taşınmıyor** — WCAG **1.4.1**'in bu projedeki **onuncu**
+  uygulaması. Taşıyan üç şey: işaretçi ikonunun BİÇİMİ (`caret-down` →
+  `checkmark-circle`), kadranın altındaki metin satırı, ve tek seferlik ekran
+  okuyucu anonsu. Kâbe iğnesi bilgi taşıdığı için **`primary`** (1.4.11'in 3:1'i);
+  ⚠️ `primaryBright` **kullanılmadı** — jetonun tanımı zaten "yalnızca grafik ve
+  ikon, bilgi taşımaz". Halka ve çentikler dekoratif `borderStrong`, ve 2.1'in
+  "algıda ALAN önemli" bulgusu gereği ince çizgi değil kalın kısa bantlar.
+  **`colors.ts` DEĞİŞMEDİ.**
+- ⚠️ **Ekran okuyucuya sürekli açı OKUNMUYOR.** `delta` bir `accessibilityLabel`e
+  bağlansaydı ekran okuyucu saniyede birkaç kez farklı bir sayı anons eder ve
+  ekran kullanılamaz hâle gelirdi. Kadranın etiketi **sabit** kıble azimutunu
+  taşıyor; hizalanma yalnızca DEĞİŞTİĞİNDE ve bir kez anons ediliyor
+  (3.3'ün `useCountUp` ve 4.1'in `prayerRemaining` kararlarının üçüncü uygulaması).
+- ⚠️ **Hareket azaltma pusulayı DURDURMUYOR**, yalnızca ara kareleri kesiyor.
+  Yön bu ekranın tek bilgisi; `Button`ın "hiç oynatma"sı uygulansaydı ekran
+  hiçbir işe yaramazdı. `ProgressBar`ın "değeri doğrudan ata" kalıbı.
+- **`constants/motion.ts`e bir jeton eklendi: `timing.compass`** (120 ms,
+  `Easing.out(Easing.quad)`). ⚠️ Dosyadaki diğer dört jetondan ayrıldığı yer:
+  bu bir ANLATI değil **GECİKME BÜTÇESİ**. `progress` (320 ms) denendi ve elendi
+  — telefon döndükten üçte bir saniye sonra oturan kadran yön göstermiyor,
+  gecikme gösteriyor. Yay yine yok: hedefi aşıp geri gelmek **yanlış yön**
+  göstermek olurdu.
+- **`prayer_time.kible_saati`nin İLK tüketicisi** (4.1'den beri boştaydı; 4.0
+  *"Kıble için ek kaynak gerekmiyor"* demişti ve haklı çıktı). Yeni istek, yeni
+  sütun, yeni ayrıştırma yok. ⚠️ Değer yoksa **yer tutucu YAZILMIYOR**, panel hiç
+  çizilmiyor (namaz sekmesindeki Hicri tarih kararının aynısı).
+- ⚠️ **DİNİ İÇERİK SINIRI.** Ekranda hiçbir fıkhi hüküm, tarif ya da geçerlilik
+  ifadesi yok. Kıble saati paneli **yalnızca astronomik olguyu** söylüyor
+  ("bu saatte güneş Kâbe yönünde bulunur") ve bununla ne yapılacağını
+  anlatmıyor. `ALIGN_TOLERANCE` (5°) bir doğruluk iddiası değil **arayüz
+  eşiği** — telefon pusulası bu büyüklükte hata yapabiliyor ve daha darı
+  göstergeyi elde titretirdi. `KAABA` koordinatı dini içerik değil coğrafi
+  sabit, bu yüzden kodda durabiliyor. Yasaklı dil taraması yeniden yapıldı.
+- ⚠️ **`turkeyOnly` kısıtı YOK** — namaz vakitlerinin aksine kıble açısı dünyanın
+  her yerinde hesaplanabilir; bu ekran ülke sormuyor.
+- ⚠️ **Bozuk girdi sessizce `null`**: `NaN`/`Infinity`, aralık dışı enlem/boylam,
+  ve **Kâbe'nin kendisi ile tam karşı ayak noktası** (yön tanımsız —
+  `atan2(0,0)` sessizce "kuzey" derdi, uydurma bir cevap). `ProgressBar`ın
+  "bozuk girdi sessizce boş çubuk" disiplini; ekran boş durumu dürüstçe gösteriyor.
+- **429 test geçiyor** (404'ten). `tests/qibla.test.ts` yeni.
+  ⚠️ Testler **kesin ondalık çakmıyor, BANT sınıyor**: bant düz trigonometriye
+  kayma gibi gerçek hataları yakalar, ondalık gürültüsünde kırılmaz.
+  ⚠️ `location.ts`, `useQibla`, `QiblaDial` ve ekran için test **yazılamaz**
+  (yerel modül). Saat dilimi turu **gerekmedi** — modül zaman içermiyor.
+- `strings.ts`: `prayer`a kıble metinleri, `a11y`ye iki satır. `npm run lint`
+  0 hata / 11 uyarı — hepsi var olan `strings` varsayılan import sınıfı.
+
+⚠️ **4.5 DEV BUILD BEKLEMİYOR — elle doğrulanacaklar (Expo Go'da hepsi mümkün):**
+`npx expo start` (⚠️ yeni rota `.expo/types` üretimi ister) → Namaz → Kıble.
+(1) izin istemi; (2) reddedip ayarlardan verince ekran düzeliyor mu;
+(3) telefonu tam tur çevir — **359→0 geçişinde tam tur sıçrama var mı**
+(dikiş hatasının tek görünür kanıtı); (4) iğne işaretçiye gelince ikon biçimi
+değişiyor ve anons **bir kez** yapılıyor mu; (5) metal yüzey yanında kalibrasyon
+uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
+(7) İstanbul'da yön güneydoğu (~151°) mu; (8) Hareketi Azalt açıkken kadran
+**çalışmaya devam ediyor** mu (durmamalı).
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

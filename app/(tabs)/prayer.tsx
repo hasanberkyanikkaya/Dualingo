@@ -132,6 +132,18 @@ export default function PrayerScreen() {
             label={strings.prayer.chartTitle}
             onPress={() => router.push('/prayer/chart')}
           />
+          {/*
+            ⚠️ Kıble AYRI bir ekranda ve ilçeye İHTİYAÇ DUYMUYOR — açı cihazın
+            koordinatından hesaplanıyor, Diyanet listesinden değil. Buna rağmen
+            düğme yalnızca burada (ilçe seçiliyken) duruyor: yukarıdaki "önce
+            ilçeni seç" durumu tek amaçlı bir yönlendirme ve ikinci bir düğme
+            onu bulanıklaştırırdı.
+          */}
+          <Button
+            label={strings.prayer.qiblaTitle}
+            variant="secondary"
+            onPress={() => router.push('/prayer/qibla')}
+          />
           <Button
             label={strings.prayer.refresh}
             variant="secondary"

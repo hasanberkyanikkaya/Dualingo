@@ -51,6 +51,22 @@ export const timing = {
    * Bir sonraki oturum bunu doktrin ihlali sanıp silmesin.
    */
   celebrate: { duration: 260, easing: Easing.out(Easing.back(1.5)) },
+  /**
+   * Pusula kadranının yöne oturması (Faz 4.5).
+   *
+   * ⚠️ Buradaki süre bir ANLATI değil, GECİKME bütçesidir — dosyadaki diğer
+   * dört jetondan ayrıldığı yer bu. `progress` (320 ms) denendi ve elendi:
+   * telefon döndükten üçte bir saniye sonra oturan bir kadran yön göstermiyor,
+   * gecikme gösteriyor; kullanıcı da elini durdurup kadranın yetişmesini
+   * bekliyor. 120 ms sensör gürültüsünü yutacak kadar uzun, elin hareketine
+   * yapışık hissettirecek kadar kısa.
+   *
+   * `quad` seçildi çünkü sürekli akan bir değerde `cubic`in yumuşak kapanışı
+   * ölçülebilir bir kazanç vermiyor, yalnızca sonu geciktiriyor.
+   * Yay yine yok (dosyanın doktrini): kadranın hedefi aşıp geri gelmesi
+   * kullanıcıya yanlış yönü gösterirdi.
+   */
+  compass: { duration: 120, easing: Easing.out(Easing.quad) },
 } as const satisfies Record<string, WithTimingConfig>;
 
 export type TimingToken = keyof typeof timing;

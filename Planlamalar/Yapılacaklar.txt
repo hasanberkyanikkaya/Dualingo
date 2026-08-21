@@ -290,6 +290,34 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         ⚠️ app.json değişmedi → 4.4 OTA ile gidebilir, yeni derleme istemez.
         PRAYER_LABELS NextPrayerCard'dan prayerLabels.ts'e taşındı.
 
+[x] 4.5 Kıble pusulası — app/prayer/qibla.tsx, girişi namaz sekmesinde.
+        Bir SAF modül (testli): qibla.ts. 429 test (404'ten).
+        Yeni göç YOK, colors.ts değişmedi, YENİ BAĞIMLILIK YOK.
+        ⚠️ expo-sensors KURULMADI ve kurulmamalı. Ham manyetometre MANYETİK
+        kuzeyi verir; kıble GERÇEK kuzeye göre hesaplanır ve Türkiye'de ikisi
+        ~5-6 derece ayrışır. Düzeltmek WMM tablosu ister. Bunun yerine
+        expo-location watchHeadingAsync: trueHeading + accuracy hazır geliyor.
+        ⚠️ KOORDİNAT DİSKE YAZILMIYOR — yalnızca bellekte, ekranla ölüyor.
+        Bu yüzden Magaza/ altındaki gizlilik politikası ve veri güvenliği
+        formu DEĞİŞMEDİ. Kalıcılaştırılsaydı ikisi de yeniden yazılırdı.
+        ⚠️ lookupCoordinates ters coğrafi kodlama ÇAĞIRMIYOR — lookupCurrentPlace'in
+        aksine hiçbir sunucuya (Apple CLGeocoder dahil) bir şey gitmiyor.
+        ⚠️ unwrapRotation 360/0 dikişini açıyor: ham açı paylaşılan değere
+        yazılsaydı kadran 359->1 geçişinde TAM TUR geri sıçrardı. En kritik test.
+        ⚠️ İKİ KANAL: kadranın açısı useSharedValue (sıfır yeniden çizim),
+        delta/hizalanma setState ve yalnızca 1 dereceyi geçen değişimde.
+        ⚠️ SVG özelliği animasyonlanmıyor — bearing bir kez sabitleniyor, SVG
+        durağan, dönen tek şey onu saran Animated.View (PathTrail kuralı).
+        ⚠️ Hizalanma RENKLE taşınmıyor: işaretçi ikonunun biçimi + metin satırı
+        + tek seferlik ekran okuyucu anonsu. WCAG 1.4.1'in ONUNCU uygulaması.
+        ⚠️ Ekran okuyucuya sürekli açı OKUNMUYOR — yalnızca hizalanma
+        DEĞİŞTİĞİNDE bir kez anons.
+        ⚠️ kible_saati sütununun ilk tüketicisi (4.1'den beri boştaydı).
+        Yalnızca astronomik olgu yazılıyor, fıkhi tarif YOK.
+        ⚠️ turkeyOnly kısıtı YOK — açı dünyanın her yerinde hesaplanabilir.
+        constants/motion.ts'e bir jeton: timing.compass (120 ms).
+        Dev build GEREKMİYOR — expo-location Expo Go'nun içinde geliyor.
+
 
 === AÇIK SORULAR ===
 

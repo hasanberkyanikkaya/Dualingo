@@ -363,6 +363,37 @@ export const strings = {
     openSettings: 'Ayarları aç',
     notificationsAllOff: 'Şu an hiçbir vakit için haber vermiyoruz.',
     notificationsHint: 'Vakitler cihazında saklı; hatırlatma için internet gerekmez.',
+
+    /*
+     * Kıble pusulası (Faz 4.5).
+     *
+     * ⚠️ **Hiçbir FIKHİ ifade yok.** Ekran iki noktayı birleştiren açıyı ve
+     * cihazın okuduğu yönü söyler; bu yönle ne yapılacağını anlatmaz, bir
+     * geçerlilik iddiasında bulunmaz. Dini içerik politikasının bu ekrandaki
+     * karşılığı (4.3/4.4'ün yasaklı dil kuralının devamı).
+     *
+     * ⚠️ `qiblaTimeBody` bir tarif DEĞİL, ASTRONOMİK bir olgudur: o saatte
+     * güneşin Kâbe yönünde bulunduğunu söyler. Değer Diyanet'in yayınladığı
+     * tablodan geliyor (`prayer_time.kible_saati`), bizim hesabımız değil.
+     */
+    qiblaTitle: 'Kıble',
+    qiblaBody: 'Telefonu yere paralel tut ve Kâbe işareti yukarıdaki oka gelene kadar çevir.',
+    qiblaBearing: 'Kıble yönü: {derece}°',
+    qiblaAligned: 'Kâbe yönündesin',
+    qiblaTurnRight: 'Sağa {derece}° çevir',
+    qiblaTurnLeft: 'Sola {derece}° çevir',
+    qiblaCalibrateTitle: 'Pusulayı kalibre et',
+    qiblaCalibrateBody:
+      'Telefonu havada sekiz çizer gibi birkaç kez çevir. Yakındaki metal yüzeyler ve elektronik cihazlar pusulayı şaşırtır.',
+    qiblaTimeTitle: 'Bugünün kıble saati',
+    qiblaTimeBody: 'Bu saatte güneş Kâbe yönünde bulunur.',
+    qiblaLocating: 'Konum alınıyor…',
+    qiblaPermissionTitle: 'Konum izni kapalı',
+    qiblaPermissionBody:
+      'Kıble yönü bulunduğun noktaya göre hesaplanır. Konumun cihazda kalır, hiçbir yere gönderilmez ve saklanmaz.',
+    qiblaUnavailable: 'Yön hesaplanamadı. Konum servisinin açık olduğundan emin olup tekrar deneyebilirsin.',
+    qiblaHint:
+      'Yön cihazın pusula sensöründen okunur; yakındaki metal ve elektronik cihazlar sonucu etkileyebilir.',
   },
 
   /** Kur'an sekmesi — ilk yayında boş */
@@ -450,6 +481,17 @@ export const strings = {
      */
     prayerNotificationToggle: '{vakit} bildirimi',
     prayerOffsetOption: '{vakit} — {secenek}',
+    /*
+     * Kıble pusulası (Faz 4.5).
+     *
+     * ⚠️ Kadranın etiketi SABİT bir açı taşır (kıble azimutu), anlık yönü
+     * DEĞİL. Anlık yön saniyede onlarca kez değişiyor; etikete bağlansaydı
+     * ekran okuyucu durmadan farklı bir sayı anons eder ve ekran kullanılamaz
+     * hâle gelirdi (`prayerRemaining`in dakika hassasiyeti kararının devamı).
+     */
+    qiblaDial: 'Kıble pusulası. Kıble yönü {derece} derece.',
+    /** Hizalanma anons metni — yalnızca durum DEĞİŞTİĞİNDE, bir kez okunur. */
+    qiblaAligned: 'Kâbe yönüne hizalandın',
   },
 } as const;
 
