@@ -10,7 +10,8 @@ mağaza incelemesi beklemeden gider.
 
 > ⚠️ **Bu yapılandırma HENÜZ DOĞRULANMADI.** OTA Expo Go'da hiç çalışmaz;
 > gerçek bir güncellemenin cihaza indiğini görmek **dev build** ister
-> (Faz 1.3, ertelendi — gerekçesi CLAUDE.md "Dev Build Borcu"nda). Aşağıdaki
+> (Faz 1.3, ertelendi — gerekçesi `Planlamalar/KARAR_GECMISI.md` içindeki
+> "Dev Build Borcu" bölümünde). Aşağıdaki
 > her şey yapılandırılmış ama **hiçbiri çalıştırılmamıştır.**
 
 ---
@@ -119,7 +120,8 @@ eas update:republish --group <GROUP_ID>  # eskisini geri getir
 
 ## 5. Dev build alındığı gün yapılacak doğrulama
 
-CLAUDE.md'deki "Dev Build Borcu" listesinin OTA maddesi bu adımlarla kapanır:
+`Planlamalar/KARAR_GECMISI.md` içindeki "Dev Build Borcu" listesinin OTA maddesi
+bu adımlarla kapanır:
 
 1. `eas build --profile preview --platform android`
 2. Derlemeyi cihaza kur, aç, kapat.

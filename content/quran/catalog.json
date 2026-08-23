@@ -1,0 +1,804 @@
+{
+  "schemaVersion": 1,
+  "contentRevision": "tanzil-uthmani-1.1__tr-yazir__2026-08-23",
+  "surahs": [
+    {
+      "id": 1,
+      "nameArabic": "الفاتحة",
+      "nameTurkish": null,
+      "verseCount": 7,
+      "firstGlobalOrder": 1
+    },
+    {
+      "id": 2,
+      "nameArabic": "البقرة",
+      "nameTurkish": null,
+      "verseCount": 286,
+      "firstGlobalOrder": 8
+    },
+    {
+      "id": 3,
+      "nameArabic": "آل عمران",
+      "nameTurkish": null,
+      "verseCount": 200,
+      "firstGlobalOrder": 294
+    },
+    {
+      "id": 4,
+      "nameArabic": "النساء",
+      "nameTurkish": null,
+      "verseCount": 176,
+      "firstGlobalOrder": 494
+    },
+    {
+      "id": 5,
+      "nameArabic": "المائدة",
+      "nameTurkish": null,
+      "verseCount": 120,
+      "firstGlobalOrder": 670
+    },
+    {
+      "id": 6,
+      "nameArabic": "الأنعام",
+      "nameTurkish": null,
+      "verseCount": 165,
+      "firstGlobalOrder": 790
+    },
+    {
+      "id": 7,
+      "nameArabic": "الأعراف",
+      "nameTurkish": null,
+      "verseCount": 206,
+      "firstGlobalOrder": 955
+    },
+    {
+      "id": 8,
+      "nameArabic": "الأنفال",
+      "nameTurkish": null,
+      "verseCount": 75,
+      "firstGlobalOrder": 1161
+    },
+    {
+      "id": 9,
+      "nameArabic": "التوبة",
+      "nameTurkish": null,
+      "verseCount": 129,
+      "firstGlobalOrder": 1236
+    },
+    {
+      "id": 10,
+      "nameArabic": "يونس",
+      "nameTurkish": null,
+      "verseCount": 109,
+      "firstGlobalOrder": 1365
+    },
+    {
+      "id": 11,
+      "nameArabic": "هود",
+      "nameTurkish": null,
+      "verseCount": 123,
+      "firstGlobalOrder": 1474
+    },
+    {
+      "id": 12,
+      "nameArabic": "يوسف",
+      "nameTurkish": null,
+      "verseCount": 111,
+      "firstGlobalOrder": 1597
+    },
+    {
+      "id": 13,
+      "nameArabic": "الرعد",
+      "nameTurkish": null,
+      "verseCount": 43,
+      "firstGlobalOrder": 1708
+    },
+    {
+      "id": 14,
+      "nameArabic": "ابراهيم",
+      "nameTurkish": null,
+      "verseCount": 52,
+      "firstGlobalOrder": 1751
+    },
+    {
+      "id": 15,
+      "nameArabic": "الحجر",
+      "nameTurkish": null,
+      "verseCount": 99,
+      "firstGlobalOrder": 1803
+    },
+    {
+      "id": 16,
+      "nameArabic": "النحل",
+      "nameTurkish": null,
+      "verseCount": 128,
+      "firstGlobalOrder": 1902
+    },
+    {
+      "id": 17,
+      "nameArabic": "الإسراء",
+      "nameTurkish": null,
+      "verseCount": 111,
+      "firstGlobalOrder": 2030
+    },
+    {
+      "id": 18,
+      "nameArabic": "الكهف",
+      "nameTurkish": null,
+      "verseCount": 110,
+      "firstGlobalOrder": 2141
+    },
+    {
+      "id": 19,
+      "nameArabic": "مريم",
+      "nameTurkish": null,
+      "verseCount": 98,
+      "firstGlobalOrder": 2251
+    },
+    {
+      "id": 20,
+      "nameArabic": "طه",
+      "nameTurkish": null,
+      "verseCount": 135,
+      "firstGlobalOrder": 2349
+    },
+    {
+      "id": 21,
+      "nameArabic": "الأنبياء",
+      "nameTurkish": null,
+      "verseCount": 112,
+      "firstGlobalOrder": 2484
+    },
+    {
+      "id": 22,
+      "nameArabic": "الحج",
+      "nameTurkish": null,
+      "verseCount": 78,
+      "firstGlobalOrder": 2596
+    },
+    {
+      "id": 23,
+      "nameArabic": "المؤمنون",
+      "nameTurkish": null,
+      "verseCount": 118,
+      "firstGlobalOrder": 2674
+    },
+    {
+      "id": 24,
+      "nameArabic": "النور",
+      "nameTurkish": null,
+      "verseCount": 64,
+      "firstGlobalOrder": 2792
+    },
+    {
+      "id": 25,
+      "nameArabic": "الفرقان",
+      "nameTurkish": null,
+      "verseCount": 77,
+      "firstGlobalOrder": 2856
+    },
+    {
+      "id": 26,
+      "nameArabic": "الشعراء",
+      "nameTurkish": null,
+      "verseCount": 227,
+      "firstGlobalOrder": 2933
+    },
+    {
+      "id": 27,
+      "nameArabic": "النمل",
+      "nameTurkish": null,
+      "verseCount": 93,
+      "firstGlobalOrder": 3160
+    },
+    {
+      "id": 28,
+      "nameArabic": "القصص",
+      "nameTurkish": null,
+      "verseCount": 88,
+      "firstGlobalOrder": 3253
+    },
+    {
+      "id": 29,
+      "nameArabic": "العنكبوت",
+      "nameTurkish": null,
+      "verseCount": 69,
+      "firstGlobalOrder": 3341
+    },
+    {
+      "id": 30,
+      "nameArabic": "الروم",
+      "nameTurkish": null,
+      "verseCount": 60,
+      "firstGlobalOrder": 3410
+    },
+    {
+      "id": 31,
+      "nameArabic": "لقمان",
+      "nameTurkish": null,
+      "verseCount": 34,
+      "firstGlobalOrder": 3470
+    },
+    {
+      "id": 32,
+      "nameArabic": "السجدة",
+      "nameTurkish": null,
+      "verseCount": 30,
+      "firstGlobalOrder": 3504
+    },
+    {
+      "id": 33,
+      "nameArabic": "الأحزاب",
+      "nameTurkish": null,
+      "verseCount": 73,
+      "firstGlobalOrder": 3534
+    },
+    {
+      "id": 34,
+      "nameArabic": "سبإ",
+      "nameTurkish": null,
+      "verseCount": 54,
+      "firstGlobalOrder": 3607
+    },
+    {
+      "id": 35,
+      "nameArabic": "فاطر",
+      "nameTurkish": null,
+      "verseCount": 45,
+      "firstGlobalOrder": 3661
+    },
+    {
+      "id": 36,
+      "nameArabic": "يس",
+      "nameTurkish": null,
+      "verseCount": 83,
+      "firstGlobalOrder": 3706
+    },
+    {
+      "id": 37,
+      "nameArabic": "الصافات",
+      "nameTurkish": null,
+      "verseCount": 182,
+      "firstGlobalOrder": 3789
+    },
+    {
+      "id": 38,
+      "nameArabic": "ص",
+      "nameTurkish": null,
+      "verseCount": 88,
+      "firstGlobalOrder": 3971
+    },
+    {
+      "id": 39,
+      "nameArabic": "الزمر",
+      "nameTurkish": null,
+      "verseCount": 75,
+      "firstGlobalOrder": 4059
+    },
+    {
+      "id": 40,
+      "nameArabic": "غافر",
+      "nameTurkish": null,
+      "verseCount": 85,
+      "firstGlobalOrder": 4134
+    },
+    {
+      "id": 41,
+      "nameArabic": "فصلت",
+      "nameTurkish": null,
+      "verseCount": 54,
+      "firstGlobalOrder": 4219
+    },
+    {
+      "id": 42,
+      "nameArabic": "الشورى",
+      "nameTurkish": null,
+      "verseCount": 53,
+      "firstGlobalOrder": 4273
+    },
+    {
+      "id": 43,
+      "nameArabic": "الزخرف",
+      "nameTurkish": null,
+      "verseCount": 89,
+      "firstGlobalOrder": 4326
+    },
+    {
+      "id": 44,
+      "nameArabic": "الدخان",
+      "nameTurkish": null,
+      "verseCount": 59,
+      "firstGlobalOrder": 4415
+    },
+    {
+      "id": 45,
+      "nameArabic": "الجاثية",
+      "nameTurkish": null,
+      "verseCount": 37,
+      "firstGlobalOrder": 4474
+    },
+    {
+      "id": 46,
+      "nameArabic": "الأحقاف",
+      "nameTurkish": null,
+      "verseCount": 35,
+      "firstGlobalOrder": 4511
+    },
+    {
+      "id": 47,
+      "nameArabic": "محمد",
+      "nameTurkish": null,
+      "verseCount": 38,
+      "firstGlobalOrder": 4546
+    },
+    {
+      "id": 48,
+      "nameArabic": "الفتح",
+      "nameTurkish": null,
+      "verseCount": 29,
+      "firstGlobalOrder": 4584
+    },
+    {
+      "id": 49,
+      "nameArabic": "الحجرات",
+      "nameTurkish": null,
+      "verseCount": 18,
+      "firstGlobalOrder": 4613
+    },
+    {
+      "id": 50,
+      "nameArabic": "ق",
+      "nameTurkish": null,
+      "verseCount": 45,
+      "firstGlobalOrder": 4631
+    },
+    {
+      "id": 51,
+      "nameArabic": "الذاريات",
+      "nameTurkish": null,
+      "verseCount": 60,
+      "firstGlobalOrder": 4676
+    },
+    {
+      "id": 52,
+      "nameArabic": "الطور",
+      "nameTurkish": null,
+      "verseCount": 49,
+      "firstGlobalOrder": 4736
+    },
+    {
+      "id": 53,
+      "nameArabic": "النجم",
+      "nameTurkish": null,
+      "verseCount": 62,
+      "firstGlobalOrder": 4785
+    },
+    {
+      "id": 54,
+      "nameArabic": "القمر",
+      "nameTurkish": null,
+      "verseCount": 55,
+      "firstGlobalOrder": 4847
+    },
+    {
+      "id": 55,
+      "nameArabic": "الرحمن",
+      "nameTurkish": null,
+      "verseCount": 78,
+      "firstGlobalOrder": 4902
+    },
+    {
+      "id": 56,
+      "nameArabic": "الواقعة",
+      "nameTurkish": null,
+      "verseCount": 96,
+      "firstGlobalOrder": 4980
+    },
+    {
+      "id": 57,
+      "nameArabic": "الحديد",
+      "nameTurkish": null,
+      "verseCount": 29,
+      "firstGlobalOrder": 5076
+    },
+    {
+      "id": 58,
+      "nameArabic": "المجادلة",
+      "nameTurkish": null,
+      "verseCount": 22,
+      "firstGlobalOrder": 5105
+    },
+    {
+      "id": 59,
+      "nameArabic": "الحشر",
+      "nameTurkish": null,
+      "verseCount": 24,
+      "firstGlobalOrder": 5127
+    },
+    {
+      "id": 60,
+      "nameArabic": "الممتحنة",
+      "nameTurkish": null,
+      "verseCount": 13,
+      "firstGlobalOrder": 5151
+    },
+    {
+      "id": 61,
+      "nameArabic": "الصف",
+      "nameTurkish": null,
+      "verseCount": 14,
+      "firstGlobalOrder": 5164
+    },
+    {
+      "id": 62,
+      "nameArabic": "الجمعة",
+      "nameTurkish": null,
+      "verseCount": 11,
+      "firstGlobalOrder": 5178
+    },
+    {
+      "id": 63,
+      "nameArabic": "المنافقون",
+      "nameTurkish": null,
+      "verseCount": 11,
+      "firstGlobalOrder": 5189
+    },
+    {
+      "id": 64,
+      "nameArabic": "التغابن",
+      "nameTurkish": null,
+      "verseCount": 18,
+      "firstGlobalOrder": 5200
+    },
+    {
+      "id": 65,
+      "nameArabic": "الطلاق",
+      "nameTurkish": null,
+      "verseCount": 12,
+      "firstGlobalOrder": 5218
+    },
+    {
+      "id": 66,
+      "nameArabic": "التحريم",
+      "nameTurkish": null,
+      "verseCount": 12,
+      "firstGlobalOrder": 5230
+    },
+    {
+      "id": 67,
+      "nameArabic": "الملك",
+      "nameTurkish": null,
+      "verseCount": 30,
+      "firstGlobalOrder": 5242
+    },
+    {
+      "id": 68,
+      "nameArabic": "القلم",
+      "nameTurkish": null,
+      "verseCount": 52,
+      "firstGlobalOrder": 5272
+    },
+    {
+      "id": 69,
+      "nameArabic": "الحاقة",
+      "nameTurkish": null,
+      "verseCount": 52,
+      "firstGlobalOrder": 5324
+    },
+    {
+      "id": 70,
+      "nameArabic": "المعارج",
+      "nameTurkish": null,
+      "verseCount": 44,
+      "firstGlobalOrder": 5376
+    },
+    {
+      "id": 71,
+      "nameArabic": "نوح",
+      "nameTurkish": null,
+      "verseCount": 28,
+      "firstGlobalOrder": 5420
+    },
+    {
+      "id": 72,
+      "nameArabic": "الجن",
+      "nameTurkish": null,
+      "verseCount": 28,
+      "firstGlobalOrder": 5448
+    },
+    {
+      "id": 73,
+      "nameArabic": "المزمل",
+      "nameTurkish": null,
+      "verseCount": 20,
+      "firstGlobalOrder": 5476
+    },
+    {
+      "id": 74,
+      "nameArabic": "المدثر",
+      "nameTurkish": null,
+      "verseCount": 56,
+      "firstGlobalOrder": 5496
+    },
+    {
+      "id": 75,
+      "nameArabic": "القيامة",
+      "nameTurkish": null,
+      "verseCount": 40,
+      "firstGlobalOrder": 5552
+    },
+    {
+      "id": 76,
+      "nameArabic": "الانسان",
+      "nameTurkish": null,
+      "verseCount": 31,
+      "firstGlobalOrder": 5592
+    },
+    {
+      "id": 77,
+      "nameArabic": "المرسلات",
+      "nameTurkish": null,
+      "verseCount": 50,
+      "firstGlobalOrder": 5623
+    },
+    {
+      "id": 78,
+      "nameArabic": "النبإ",
+      "nameTurkish": null,
+      "verseCount": 40,
+      "firstGlobalOrder": 5673
+    },
+    {
+      "id": 79,
+      "nameArabic": "النازعات",
+      "nameTurkish": null,
+      "verseCount": 46,
+      "firstGlobalOrder": 5713
+    },
+    {
+      "id": 80,
+      "nameArabic": "عبس",
+      "nameTurkish": null,
+      "verseCount": 42,
+      "firstGlobalOrder": 5759
+    },
+    {
+      "id": 81,
+      "nameArabic": "التكوير",
+      "nameTurkish": null,
+      "verseCount": 29,
+      "firstGlobalOrder": 5801
+    },
+    {
+      "id": 82,
+      "nameArabic": "الإنفطار",
+      "nameTurkish": null,
+      "verseCount": 19,
+      "firstGlobalOrder": 5830
+    },
+    {
+      "id": 83,
+      "nameArabic": "المطففين",
+      "nameTurkish": null,
+      "verseCount": 36,
+      "firstGlobalOrder": 5849
+    },
+    {
+      "id": 84,
+      "nameArabic": "الإنشقاق",
+      "nameTurkish": null,
+      "verseCount": 25,
+      "firstGlobalOrder": 5885
+    },
+    {
+      "id": 85,
+      "nameArabic": "البروج",
+      "nameTurkish": null,
+      "verseCount": 22,
+      "firstGlobalOrder": 5910
+    },
+    {
+      "id": 86,
+      "nameArabic": "الطارق",
+      "nameTurkish": null,
+      "verseCount": 17,
+      "firstGlobalOrder": 5932
+    },
+    {
+      "id": 87,
+      "nameArabic": "الأعلى",
+      "nameTurkish": null,
+      "verseCount": 19,
+      "firstGlobalOrder": 5949
+    },
+    {
+      "id": 88,
+      "nameArabic": "الغاشية",
+      "nameTurkish": null,
+      "verseCount": 26,
+      "firstGlobalOrder": 5968
+    },
+    {
+      "id": 89,
+      "nameArabic": "الفجر",
+      "nameTurkish": null,
+      "verseCount": 30,
+      "firstGlobalOrder": 5994
+    },
+    {
+      "id": 90,
+      "nameArabic": "البلد",
+      "nameTurkish": null,
+      "verseCount": 20,
+      "firstGlobalOrder": 6024
+    },
+    {
+      "id": 91,
+      "nameArabic": "الشمس",
+      "nameTurkish": null,
+      "verseCount": 15,
+      "firstGlobalOrder": 6044
+    },
+    {
+      "id": 92,
+      "nameArabic": "الليل",
+      "nameTurkish": null,
+      "verseCount": 21,
+      "firstGlobalOrder": 6059
+    },
+    {
+      "id": 93,
+      "nameArabic": "الضحى",
+      "nameTurkish": null,
+      "verseCount": 11,
+      "firstGlobalOrder": 6080
+    },
+    {
+      "id": 94,
+      "nameArabic": "الشرح",
+      "nameTurkish": null,
+      "verseCount": 8,
+      "firstGlobalOrder": 6091
+    },
+    {
+      "id": 95,
+      "nameArabic": "التين",
+      "nameTurkish": null,
+      "verseCount": 8,
+      "firstGlobalOrder": 6099
+    },
+    {
+      "id": 96,
+      "nameArabic": "العلق",
+      "nameTurkish": null,
+      "verseCount": 19,
+      "firstGlobalOrder": 6107
+    },
+    {
+      "id": 97,
+      "nameArabic": "القدر",
+      "nameTurkish": null,
+      "verseCount": 5,
+      "firstGlobalOrder": 6126
+    },
+    {
+      "id": 98,
+      "nameArabic": "البينة",
+      "nameTurkish": null,
+      "verseCount": 8,
+      "firstGlobalOrder": 6131
+    },
+    {
+      "id": 99,
+      "nameArabic": "الزلزلة",
+      "nameTurkish": null,
+      "verseCount": 8,
+      "firstGlobalOrder": 6139
+    },
+    {
+      "id": 100,
+      "nameArabic": "العاديات",
+      "nameTurkish": null,
+      "verseCount": 11,
+      "firstGlobalOrder": 6147
+    },
+    {
+      "id": 101,
+      "nameArabic": "القارعة",
+      "nameTurkish": null,
+      "verseCount": 11,
+      "firstGlobalOrder": 6158
+    },
+    {
+      "id": 102,
+      "nameArabic": "التكاثر",
+      "nameTurkish": null,
+      "verseCount": 8,
+      "firstGlobalOrder": 6169
+    },
+    {
+      "id": 103,
+      "nameArabic": "العصر",
+      "nameTurkish": null,
+      "verseCount": 3,
+      "firstGlobalOrder": 6177
+    },
+    {
+      "id": 104,
+      "nameArabic": "الهمزة",
+      "nameTurkish": null,
+      "verseCount": 9,
+      "firstGlobalOrder": 6180
+    },
+    {
+      "id": 105,
+      "nameArabic": "الفيل",
+      "nameTurkish": null,
+      "verseCount": 5,
+      "firstGlobalOrder": 6189
+    },
+    {
+      "id": 106,
+      "nameArabic": "قريش",
+      "nameTurkish": null,
+      "verseCount": 4,
+      "firstGlobalOrder": 6194
+    },
+    {
+      "id": 107,
+      "nameArabic": "الماعون",
+      "nameTurkish": null,
+      "verseCount": 7,
+      "firstGlobalOrder": 6198
+    },
+    {
+      "id": 108,
+      "nameArabic": "الكوثر",
+      "nameTurkish": null,
+      "verseCount": 3,
+      "firstGlobalOrder": 6205
+    },
+    {
+      "id": 109,
+      "nameArabic": "الكافرون",
+      "nameTurkish": null,
+      "verseCount": 6,
+      "firstGlobalOrder": 6208
+    },
+    {
+      "id": 110,
+      "nameArabic": "النصر",
+      "nameTurkish": null,
+      "verseCount": 3,
+      "firstGlobalOrder": 6214
+    },
+    {
+      "id": 111,
+      "nameArabic": "المسد",
+      "nameTurkish": null,
+      "verseCount": 5,
+      "firstGlobalOrder": 6217
+    },
+    {
+      "id": 112,
+      "nameArabic": "الإخلاص",
+      "nameTurkish": null,
+      "verseCount": 4,
+      "firstGlobalOrder": 6222
+    },
+    {
+      "id": 113,
+      "nameArabic": "الفلق",
+      "nameTurkish": null,
+      "verseCount": 5,
+      "firstGlobalOrder": 6226
+    },
+    {
+      "id": 114,
+      "nameArabic": "الناس",
+      "nameTurkish": null,
+      "verseCount": 6,
+      "firstGlobalOrder": 6231
+    }
+  ]
+}

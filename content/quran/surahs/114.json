@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 114,
+    "nameArabic": "الناس",
+    "nameTurkish": null,
+    "verseCount": 6,
+    "firstGlobalOrder": 6231
+  },
+  "verses": [
+    {
+      "key": "114:1",
+      "surahId": 114,
+      "numberInSurah": 1,
+      "globalOrder": 6231,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ",
+      "translationText": "De ki: Sığınırım ben insanların Rabbine,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "114:2",
+      "surahId": 114,
+      "numberInSurah": 2,
+      "globalOrder": 6232,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "مَلِكِ ٱلنَّاسِ",
+      "translationText": "İnsanların hükümdârına,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "114:3",
+      "surahId": 114,
+      "numberInSurah": 3,
+      "globalOrder": 6233,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "إِلَـٰهِ ٱلنَّاسِ",
+      "translationText": "İnsanların ilâhına,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "114:4",
+      "surahId": 114,
+      "numberInSurah": 4,
+      "globalOrder": 6234,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ",
+      "translationText": "O sinsi vesvesecinin şerrinden.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "114:5",
+      "surahId": 114,
+      "numberInSurah": 5,
+      "globalOrder": 6235,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ",
+      "translationText": "O ki, insanların göğüslerine vesveseler fısıldar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "114:6",
+      "surahId": 114,
+      "numberInSurah": 6,
+      "globalOrder": 6236,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ",
+      "translationText": "Gerek cinlerden, gerek insanlardan.",
+      "translationFootnotes": []
+    }
+  ]
+}

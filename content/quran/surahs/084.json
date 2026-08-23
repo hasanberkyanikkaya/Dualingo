@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 84,
+    "nameArabic": "الإنشقاق",
+    "nameTurkish": null,
+    "verseCount": 25,
+    "firstGlobalOrder": 5885
+  },
+  "verses": [
+    {
+      "key": "84:1",
+      "surahId": 84,
+      "numberInSurah": 1,
+      "globalOrder": 5885,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "إِذَا ٱلسَّمَآءُ ٱنشَقَّتْ",
+      "translationText": "Gök yarıldığı,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:2",
+      "surahId": 84,
+      "numberInSurah": 2,
+      "globalOrder": 5886,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ",
+      "translationText": "Rabbini dinleyip kendisine yaraşır şekilde boyun eğdiği vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:3",
+      "surahId": 84,
+      "numberInSurah": 3,
+      "globalOrder": 5887,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَإِذَا ٱلْأَرْضُ مُدَّتْ",
+      "translationText": "Yer uzatılıp düzlendiği,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:4",
+      "surahId": 84,
+      "numberInSurah": 4,
+      "globalOrder": 5888,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَأَلْقَتْ مَا فِيهَا وَتَخَلَّتْ",
+      "translationText": "İçinde ne varsa attığı ve tamamen boşaldığı",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:5",
+      "surahId": 84,
+      "numberInSurah": 5,
+      "globalOrder": 5889,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ",
+      "translationText": "Ve Rabbini dinleyip kendisine yaraşır şekilde boyun eğdiği vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:6",
+      "surahId": 84,
+      "numberInSurah": 6,
+      "globalOrder": 5890,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلْإِنسَـٰنُ إِنَّكَ كَادِحٌ إِلَىٰ رَبِّكَ كَدْحًا فَمُلَـٰقِيهِ",
+      "translationText": "Ey insan! Kuşkusuz sen Rabbine doğru çaba üstüne çaba sarfetmektesin, nihayet O'na varacaksın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:7",
+      "surahId": 84,
+      "numberInSurah": 7,
+      "globalOrder": 5891,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَأَمَّا مَنْ أُوتِىَ كِتَـٰبَهُۥ بِيَمِينِهِۦ",
+      "translationText": "O vakit kitabı sağ eline verilen,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:8",
+      "surahId": 84,
+      "numberInSurah": 8,
+      "globalOrder": 5892,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَسَوْفَ يُحَاسَبُ حِسَابًا يَسِيرًا",
+      "translationText": "Kolay bir hesapla hesaba çekilecek,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:9",
+      "surahId": 84,
+      "numberInSurah": 9,
+      "globalOrder": 5893,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَيَنقَلِبُ إِلَىٰٓ أَهْلِهِۦ مَسْرُورًا",
+      "translationText": "Ve sevinçli olarak ailesine dönecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:10",
+      "surahId": 84,
+      "numberInSurah": 10,
+      "globalOrder": 5894,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّا مَنْ أُوتِىَ كِتَـٰبَهُۥ وَرَآءَ ظَهْرِهِۦ",
+      "translationText": "Ama kitabı arkasından verilen,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:11",
+      "surahId": 84,
+      "numberInSurah": 11,
+      "globalOrder": 5895,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَسَوْفَ يَدْعُوا۟ ثُبُورًا",
+      "translationText": "\"Yetiş ey ölüm!\" diye bağıracak",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:12",
+      "surahId": 84,
+      "numberInSurah": 12,
+      "globalOrder": 5896,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَيَصْلَىٰ سَعِيرًا",
+      "translationText": "Ve alevli ateşe girecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:13",
+      "surahId": 84,
+      "numberInSurah": 13,
+      "globalOrder": 5897,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُۥ كَانَ فِىٓ أَهْلِهِۦ مَسْرُورًا",
+      "translationText": "Çünkü o ailesi içinde sevinçli idi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:14",
+      "surahId": 84,
+      "numberInSurah": 14,
+      "globalOrder": 5898,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُۥ ظَنَّ أَن لَّن يَحُورَ",
+      "translationText": "Hiç Rabbine dönmeyeceğini sanmıştı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:15",
+      "surahId": 84,
+      "numberInSurah": 15,
+      "globalOrder": 5899,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "بَلَىٰٓ إِنَّ رَبَّهُۥ كَانَ بِهِۦ بَصِيرًا",
+      "translationText": "Hayır Rabbi onu görmekte idi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:16",
+      "surahId": 84,
+      "numberInSurah": 16,
+      "globalOrder": 5900,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَلَآ أُقْسِمُ بِٱلشَّفَقِ",
+      "translationText": "Şimdi, yemin ederim o şafağa,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:17",
+      "surahId": 84,
+      "numberInSurah": 17,
+      "globalOrder": 5901,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّيْلِ وَمَا وَسَقَ",
+      "translationText": "Geceye ve içinde barındırdığı şeylere,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:18",
+      "surahId": 84,
+      "numberInSurah": 18,
+      "globalOrder": 5902,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْقَمَرِ إِذَا ٱتَّسَقَ",
+      "translationText": "Derlendiği zaman o aya,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:19",
+      "surahId": 84,
+      "numberInSurah": 19,
+      "globalOrder": 5903,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "لَتَرْكَبُنَّ طَبَقًا عَن طَبَقٍ",
+      "translationText": "Ki, siz elbette halden hale geçeceksiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:20",
+      "surahId": 84,
+      "numberInSurah": 20,
+      "globalOrder": 5904,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَمَا لَهُمْ لَا يُؤْمِنُونَ",
+      "translationText": "Böyleyken onlar neden acaba iman etmezler?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:21",
+      "surahId": 84,
+      "numberInSurah": 21,
+      "globalOrder": 5905,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَإِذَا قُرِئَ عَلَيْهِمُ ٱلْقُرْءَانُ لَا يَسْجُدُونَ ۩",
+      "translationText": "Karşılarında Kur'ân okunduğu vakit secde etmezler?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:22",
+      "surahId": 84,
+      "numberInSurah": 22,
+      "globalOrder": 5906,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "بَلِ ٱلَّذِينَ كَفَرُوا۟ يُكَذِّبُونَ",
+      "translationText": "Aksine o nankörler yalanlıyorlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:23",
+      "surahId": 84,
+      "numberInSurah": 23,
+      "globalOrder": 5907,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "وَٱللَّهُ أَعْلَمُ بِمَا يُوعُونَ",
+      "translationText": "Oysa Allah içlerinde sakladıklarını biliyor.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:24",
+      "surahId": 84,
+      "numberInSurah": 24,
+      "globalOrder": 5908,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "فَبَشِّرْهُم بِعَذَابٍ أَلِيمٍ",
+      "translationText": "Onun için onlara elem verici bir azabı müjdele.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "84:25",
+      "surahId": 84,
+      "numberInSurah": 25,
+      "globalOrder": 5909,
+      "pageNumber": 589,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ لَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍۭ",
+      "translationText": "Ancak iman edip iyi ameller işleyenler başkadır. Onlara tükenmez bir ecir vardır.",
+      "translationFootnotes": []
+    }
+  ]
+}

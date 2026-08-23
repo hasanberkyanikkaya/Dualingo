@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 85,
+    "nameArabic": "البروج",
+    "nameTurkish": null,
+    "verseCount": 22,
+    "firstGlobalOrder": 5910
+  },
+  "verses": [
+    {
+      "key": "85:1",
+      "surahId": 85,
+      "numberInSurah": 1,
+      "globalOrder": 5910,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَٱلسَّمَآءِ ذَاتِ ٱلْبُرُوجِ",
+      "translationText": "Burçlar sahibi gökyüzüne,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:2",
+      "surahId": 85,
+      "numberInSurah": 2,
+      "globalOrder": 5911,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْيَوْمِ ٱلْمَوْعُودِ",
+      "translationText": "Vaad olunan o güne,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:3",
+      "surahId": 85,
+      "numberInSurah": 3,
+      "globalOrder": 5912,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَشَاهِدٍ وَمَشْهُودٍ",
+      "translationText": "Şahitlik edene ve edilene andolsun ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:4",
+      "surahId": 85,
+      "numberInSurah": 4,
+      "globalOrder": 5913,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "قُتِلَ أَصْحَـٰبُ ٱلْأُخْدُودِ",
+      "translationText": "Kahroldu o hendeğin sahipleri,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:5",
+      "surahId": 85,
+      "numberInSurah": 5,
+      "globalOrder": 5914,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "ٱلنَّارِ ذَاتِ ٱلْوَقُودِ",
+      "translationText": "O çıralı ateşin,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:6",
+      "surahId": 85,
+      "numberInSurah": 6,
+      "globalOrder": 5915,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "إِذْ هُمْ عَلَيْهَا قُعُودٌ",
+      "translationText": "Hani o ateşin başına oturmuşlar,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:7",
+      "surahId": 85,
+      "numberInSurah": 7,
+      "globalOrder": 5916,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَهُمْ عَلَىٰ مَا يَفْعَلُونَ بِٱلْمُؤْمِنِينَ شُهُودٌ",
+      "translationText": "Müminlere yaptıklarını seyrediyorlardı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:8",
+      "surahId": 85,
+      "numberInSurah": 8,
+      "globalOrder": 5917,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَمَا نَقَمُوا۟ مِنْهُمْ إِلَّآ أَن يُؤْمِنُوا۟ بِٱللَّهِ ٱلْعَزِيزِ ٱلْحَمِيدِ",
+      "translationText": "Müminlere kızmalarının sebebi de, onların yalnız çok güçlü ve övgüye lâyık olan Allah'a iman etmeleri idi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:9",
+      "surahId": 85,
+      "numberInSurah": 9,
+      "globalOrder": 5918,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى لَهُۥ مُلْكُ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ ۚ وَٱللَّهُ عَلَىٰ كُلِّ شَىْءٍ شَهِيدٌ",
+      "translationText": "O Allah ki, göklerin ve yerin hükümranlığı O'nundur ve Allah her şeye şahittir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:10",
+      "surahId": 85,
+      "numberInSurah": 10,
+      "globalOrder": 5919,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ ٱلَّذِينَ فَتَنُوا۟ ٱلْمُؤْمِنِينَ وَٱلْمُؤْمِنَـٰتِ ثُمَّ لَمْ يَتُوبُوا۟ فَلَهُمْ عَذَابُ جَهَنَّمَ وَلَهُمْ عَذَابُ ٱلْحَرِيقِ",
+      "translationText": "İnanan erkek ve kadınlara işkence yapıp sonra da tevbe etmeyenlere cehennem azabı ve yangın azabı vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:11",
+      "surahId": 85,
+      "numberInSurah": 11,
+      "globalOrder": 5920,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ لَهُمْ جَنَّـٰتٌ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَـٰرُ ۚ ذَٰلِكَ ٱلْفَوْزُ ٱلْكَبِيرُ",
+      "translationText": "İnanan ve iyi amel yapanlar için de altından ırmaklar akan cennetler vardır. İşte büyük kurtuluş odur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:12",
+      "surahId": 85,
+      "numberInSurah": 12,
+      "globalOrder": 5921,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ بَطْشَ رَبِّكَ لَشَدِيدٌ",
+      "translationText": "Kuşkusuz Rabbinin yakalaması serttir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:13",
+      "surahId": 85,
+      "numberInSurah": 13,
+      "globalOrder": 5922,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُۥ هُوَ يُبْدِئُ وَيُعِيدُ",
+      "translationText": "Yoktan o yaratır ve tekrar o diriltir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:14",
+      "surahId": 85,
+      "numberInSurah": 14,
+      "globalOrder": 5923,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَهُوَ ٱلْغَفُورُ ٱلْوَدُودُ",
+      "translationText": "Bununla beraber çok bağışlayandır, çok sevendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:15",
+      "surahId": 85,
+      "numberInSurah": 15,
+      "globalOrder": 5924,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "ذُو ٱلْعَرْشِ ٱلْمَجِيدُ",
+      "translationText": "Arş'ın sahibidir, yücedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:16",
+      "surahId": 85,
+      "numberInSurah": 16,
+      "globalOrder": 5925,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "فَعَّالٌ لِّمَا يُرِيدُ",
+      "translationText": "Dilediğini yapandır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:17",
+      "surahId": 85,
+      "numberInSurah": 17,
+      "globalOrder": 5926,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "هَلْ أَتَىٰكَ حَدِيثُ ٱلْجُنُودِ",
+      "translationText": "O orduların kıssası sana geldi mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:18",
+      "surahId": 85,
+      "numberInSurah": 18,
+      "globalOrder": 5927,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "فِرْعَوْنَ وَثَمُودَ",
+      "translationText": "Yani Firavun ve Semud'un?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:19",
+      "surahId": 85,
+      "numberInSurah": 19,
+      "globalOrder": 5928,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "بَلِ ٱلَّذِينَ كَفَرُوا۟ فِى تَكْذِيبٍ",
+      "translationText": "Fakat o inkarcılar hâlâ bir yalanlama içinde.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:20",
+      "surahId": 85,
+      "numberInSurah": 20,
+      "globalOrder": 5929,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "وَٱللَّهُ مِن وَرَآئِهِم مُّحِيطٌۢ",
+      "translationText": "Oysa Allah onları arkalarından kuşatmıştır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:21",
+      "surahId": 85,
+      "numberInSurah": 21,
+      "globalOrder": 5930,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "بَلْ هُوَ قُرْءَانٌ مَّجِيدٌ",
+      "translationText": "Hayır o şerefli bir Kur'ân'dır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "85:22",
+      "surahId": 85,
+      "numberInSurah": 22,
+      "globalOrder": 5931,
+      "pageNumber": 590,
+      "juzNumber": 30,
+      "arabicText": "فِى لَوْحٍ مَّحْفُوظٍۭ",
+      "translationText": "Levhi Mahfuz'dadır.",
+      "translationFootnotes": []
+    }
+  ]
+}

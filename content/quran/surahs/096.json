@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 96,
+    "nameArabic": "العلق",
+    "nameTurkish": null,
+    "verseCount": 19,
+    "firstGlobalOrder": 6107
+  },
+  "verses": [
+    {
+      "key": "96:1",
+      "surahId": 96,
+      "numberInSurah": 1,
+      "globalOrder": 6107,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ",
+      "translationText": "Yaratan Rabbinin adıyla oku!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:2",
+      "surahId": 96,
+      "numberInSurah": 2,
+      "globalOrder": 6108,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "خَلَقَ ٱلْإِنسَـٰنَ مِنْ عَلَقٍ",
+      "translationText": "O, insanı bir alekadan (embriyodan) yarattı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:3",
+      "surahId": 96,
+      "numberInSurah": 3,
+      "globalOrder": 6109,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "ٱقْرَأْ وَرَبُّكَ ٱلْأَكْرَمُ",
+      "translationText": "Oku! Rabbin sonsuz kerem sahibidir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:4",
+      "surahId": 96,
+      "numberInSurah": 4,
+      "globalOrder": 6110,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى عَلَّمَ بِٱلْقَلَمِ",
+      "translationText": "O Rab ki kalemle yazmayı öğretti.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:5",
+      "surahId": 96,
+      "numberInSurah": 5,
+      "globalOrder": 6111,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "عَلَّمَ ٱلْإِنسَـٰنَ مَا لَمْ يَعْلَمْ",
+      "translationText": "İnsana bilmediği şeyleri öğretti.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:6",
+      "surahId": 96,
+      "numberInSurah": 6,
+      "globalOrder": 6112,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "كَلَّآ إِنَّ ٱلْإِنسَـٰنَ لَيَطْغَىٰٓ",
+      "translationText": "Hayır! Doğrusu (kâfir) insan azgınlık eder.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:7",
+      "surahId": 96,
+      "numberInSurah": 7,
+      "globalOrder": 6113,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَن رَّءَاهُ ٱسْتَغْنَىٰٓ",
+      "translationText": "Kendisinin muhtaç olmadığını zannettiği için.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:8",
+      "surahId": 96,
+      "numberInSurah": 8,
+      "globalOrder": 6114,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ إِلَىٰ رَبِّكَ ٱلرُّجْعَىٰٓ",
+      "translationText": "Muhakkak ki dönüş mutlaka Rabbinedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:9",
+      "surahId": 96,
+      "numberInSurah": 9,
+      "globalOrder": 6115,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَرَءَيْتَ ٱلَّذِى يَنْهَىٰ",
+      "translationText": "Namaz kıldığı zaman, bir kulu engelleyeni gördün mü?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:10",
+      "surahId": 96,
+      "numberInSurah": 10,
+      "globalOrder": 6116,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "عَبْدًا إِذَا صَلَّىٰٓ",
+      "translationText": "Namaz kıldığı zaman, bir kulu engelleyeni gördün mü?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:11",
+      "surahId": 96,
+      "numberInSurah": 11,
+      "globalOrder": 6117,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَرَءَيْتَ إِن كَانَ عَلَى ٱلْهُدَىٰٓ",
+      "translationText": "Gördün mü (ne dersin?), ya o (kul) doğru yolda olur,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:12",
+      "surahId": 96,
+      "numberInSurah": 12,
+      "globalOrder": 6118,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَوْ أَمَرَ بِٱلتَّقْوَىٰٓ",
+      "translationText": "Veya kötülüklerden sakınmayı emrederse?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:13",
+      "surahId": 96,
+      "numberInSurah": 13,
+      "globalOrder": 6119,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَرَءَيْتَ إِن كَذَّبَ وَتَوَلَّىٰٓ",
+      "translationText": "Gördün mü, ya bu (adam, hakkı) yalanlar, yüzçevirirse,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:14",
+      "surahId": 96,
+      "numberInSurah": 14,
+      "globalOrder": 6120,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ يَعْلَم بِأَنَّ ٱللَّهَ يَرَىٰ",
+      "translationText": "O adam, Allah'ın kendini gördüğünü hiç bilmiyor mu?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:15",
+      "surahId": 96,
+      "numberInSurah": 15,
+      "globalOrder": 6121,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا لَئِن لَّمْ يَنتَهِ لَنَسْفَعًۢا بِٱلنَّاصِيَةِ",
+      "translationText": "Hayır, hayır! Eğer o, bu davranışından vazgeçmezse, and olsun ki biz, onu perçeminden, o günahkâr ve yalancı perçeminden tutup cehenneme sürükleriz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:16",
+      "surahId": 96,
+      "numberInSurah": 16,
+      "globalOrder": 6122,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "نَاصِيَةٍ كَـٰذِبَةٍ خَاطِئَةٍ",
+      "translationText": "Hayır, hayır! Eğer o, bu davranışından vazgeçmezse, and olsun ki biz, onu perçeminden, o günahkâr ve yalancı perçeminden tutup cehenneme sürükleriz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:17",
+      "surahId": 96,
+      "numberInSurah": 17,
+      "globalOrder": 6123,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "فَلْيَدْعُ نَادِيَهُۥ",
+      "translationText": "O zaman o taraftarlarını yardıma çağırsın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:18",
+      "surahId": 96,
+      "numberInSurah": 18,
+      "globalOrder": 6124,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "سَنَدْعُ ٱلزَّبَانِيَةَ",
+      "translationText": "Biz de Zebanileri çağıracağız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "96:19",
+      "surahId": 96,
+      "numberInSurah": 19,
+      "globalOrder": 6125,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب ۩",
+      "translationText": "Sakın onu dinleme de (Rabbine) secde et ve yaklaş.",
+      "translationFootnotes": []
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 99,
+    "nameArabic": "الزلزلة",
+    "nameTurkish": null,
+    "verseCount": 8,
+    "firstGlobalOrder": 6139
+  },
+  "verses": [
+    {
+      "key": "99:1",
+      "surahId": 99,
+      "numberInSurah": 1,
+      "globalOrder": 6139,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "إِذَا زُلْزِلَتِ ٱلْأَرْضُ زِلْزَالَهَا",
+      "translationText": "Yer o yaman sarsıntı ile sarsıldığı,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:2",
+      "surahId": 99,
+      "numberInSurah": 2,
+      "globalOrder": 6140,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "وَأَخْرَجَتِ ٱلْأَرْضُ أَثْقَالَهَا",
+      "translationText": "Yer, içindeki ağırlıkları çıkarıp dışarı attığı,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:3",
+      "surahId": 99,
+      "numberInSurah": 3,
+      "globalOrder": 6141,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "وَقَالَ ٱلْإِنسَـٰنُ مَا لَهَا",
+      "translationText": "Ve insan: \"Ona ne oluyor?\" dediği zaman.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:4",
+      "surahId": 99,
+      "numberInSurah": 4,
+      "globalOrder": 6142,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا",
+      "translationText": "O gün yer, Rabbinin ona vahyetmesiyle haberlerini anlatacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:5",
+      "surahId": 99,
+      "numberInSurah": 5,
+      "globalOrder": 6143,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "بِأَنَّ رَبَّكَ أَوْحَىٰ لَهَا",
+      "translationText": "O gün yer, Rabbinin ona vahyetmesiyle haberlerini anlatacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:6",
+      "surahId": 99,
+      "numberInSurah": 6,
+      "globalOrder": 6144,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "يَوْمَئِذٍ يَصْدُرُ ٱلنَّاسُ أَشْتَاتًا لِّيُرَوْا۟ أَعْمَـٰلَهُمْ",
+      "translationText": "O gün insanlar, amellerinin karşılığı kendilerine gösterilmek üzere bölük bölük çıkacaklardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:7",
+      "surahId": 99,
+      "numberInSurah": 7,
+      "globalOrder": 6145,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُۥ",
+      "translationText": "Her kim zerre kadar hayır işlemişse onu görecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "99:8",
+      "surahId": 99,
+      "numberInSurah": 8,
+      "globalOrder": 6146,
+      "pageNumber": 599,
+      "juzNumber": 30,
+      "arabicText": "وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُۥ",
+      "translationText": "Her kim, zerre kadar şer işlemişse onu görecektir.",
+      "translationFootnotes": []
+    }
+  ]
+}

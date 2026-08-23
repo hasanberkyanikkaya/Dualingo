@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 109,
+    "nameArabic": "الكافرون",
+    "nameTurkish": null,
+    "verseCount": 6,
+    "firstGlobalOrder": 6208
+  },
+  "verses": [
+    {
+      "key": "109:1",
+      "surahId": 109,
+      "numberInSurah": 1,
+      "globalOrder": 6208,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "قُلْ يَـٰٓأَيُّهَا ٱلْكَـٰفِرُونَ",
+      "translationText": "De ki: Ey kâfirler",
+      "translationFootnotes": []
+    },
+    {
+      "key": "109:2",
+      "surahId": 109,
+      "numberInSurah": 2,
+      "globalOrder": 6209,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "لَآ أَعْبُدُ مَا تَعْبُدُونَ",
+      "translationText": "Sizin taptıklarınıza ben tapmam.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "109:3",
+      "surahId": 109,
+      "numberInSurah": 3,
+      "globalOrder": 6210,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "وَلَآ أَنتُمْ عَـٰبِدُونَ مَآ أَعْبُدُ",
+      "translationText": "Siz de benim taptığıma tapıcılar değilsiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "109:4",
+      "surahId": 109,
+      "numberInSurah": 4,
+      "globalOrder": 6211,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "وَلَآ أَنَا۠ عَابِدٌ مَّا عَبَدتُّمْ",
+      "translationText": "Ben asla sizin taptıklarınıza tapacak değilim.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "109:5",
+      "surahId": 109,
+      "numberInSurah": 5,
+      "globalOrder": 6212,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "وَلَآ أَنتُمْ عَـٰبِدُونَ مَآ أَعْبُدُ",
+      "translationText": "Siz de benim taptığıma tapacak değilsiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "109:6",
+      "surahId": 109,
+      "numberInSurah": 6,
+      "globalOrder": 6213,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "لَكُمْ دِينُكُمْ وَلِىَ دِينِ",
+      "translationText": "Sizin dininiz size, benim dinim banadır.",
+      "translationFootnotes": []
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # Step-by-Step Prompts (English)
 
 Copy-paste prompts, one session at a time. Nothing else — for planning and rationale
-see `PROJE_PLANI_FINAL.md`, for the workflow guide see `CLAUDE_CODE_PLAYBOOK.md`.
+see `PROJE_PLANI_FINAL.md`, for the workflow guide see `CODEX_PLAYBOOK.md`.
 
 **Before every session**
 
@@ -16,7 +16,7 @@ see `PROJE_PLANI_FINAL.md`, for the workflow guide see `CLAUDE_CODE_PLAYBOOK.md`
 2. App still runs?
 3. Committed?
 
-> `CLAUDE.md` still applies even though you prompt in English: code identifiers in
+> `AGENTS.md` still applies even though you prompt in English: code identifiers in
 > English, **code comments in Turkish**, and all user-facing strings in Turkish.
 > Turkish text inside the prompts below is literal UI copy — keep it as-is.
 
@@ -398,16 +398,17 @@ Build a qibla direction compass with expo-sensors:
 
 # PHASE 5 — Quran Module → v0.4
 
-> Resolve the translation (meal) copyright question before starting this phase.
+> Development uses manifest-marked, non-release Quran content. Resolve meal
+> redistribution permission and expert/board approval before publication.
 
 ## 5.1 — Data structure
 
 ```
 Plan the Quran data layer:
 - Surah and verse data model
-- Fields for Arabic text, Turkish translation, and transliteration
+- Fields for Arabic text and Turkish translation; transliteration is deferred
 - Bookmark (last position) storage
-- Reading history (how much was read on which day)
+- Reading history measured as unique verses read per local day
 ```
 
 ## 5.2 — Reading screen
@@ -419,6 +420,12 @@ Build the Quran reading UI:
 - Toggle the translation on and off
 - Font size setting
 - Automatically save the last position
+- A Quran-book presentation with metadata-based pages
+- Horizontal page-turn gesture and animation, with explicit button fallback
+
+Use a self-contained night background and Quran reading palette; do not inherit
+the visual background or colors of the existing app screens. Respect the OS
+Reduce Motion preference.
 ```
 
 ## 5.3 — Goal system

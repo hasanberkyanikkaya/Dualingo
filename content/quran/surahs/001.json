@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 1,
+    "nameArabic": "الفاتحة",
+    "nameTurkish": null,
+    "verseCount": 7,
+    "firstGlobalOrder": 1
+  },
+  "verses": [
+    {
+      "key": "1:1",
+      "surahId": 1,
+      "numberInSurah": 1,
+      "globalOrder": 1,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
+      "translationText": "Rahmân ve Rahîm olan Allah'ın ismiyle.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:2",
+      "surahId": 1,
+      "numberInSurah": 2,
+      "globalOrder": 2,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ",
+      "translationText": "Hamd o âlemlerin Rabbi,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:3",
+      "surahId": 1,
+      "numberInSurah": 3,
+      "globalOrder": 3,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
+      "translationText": "O Rahmân ve Rahim,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:4",
+      "surahId": 1,
+      "numberInSurah": 4,
+      "globalOrder": 4,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "مَـٰلِكِ يَوْمِ ٱلدِّينِ",
+      "translationText": "O, din gününün maliki Allah'ın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:5",
+      "surahId": 1,
+      "numberInSurah": 5,
+      "globalOrder": 5,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+      "translationText": "Ancak sana ederiz kulluğu, ibadeti ve ancak senden dileriz yardımı, inayeti. (Ya Rab!).",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:6",
+      "surahId": 1,
+      "numberInSurah": 6,
+      "globalOrder": 6,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
+      "translationText": "Hidayet eyle bizi doğru yola,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "1:7",
+      "surahId": 1,
+      "numberInSurah": 7,
+      "globalOrder": 7,
+      "pageNumber": 1,
+      "juzNumber": 1,
+      "arabicText": "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ",
+      "translationText": "O kendilerine nimet verdiğin mutlu kimselerin yoluna; o gazaba uğramışların ve o sapmışların yoluna değil.",
+      "translationFootnotes": []
+    }
+  ]
+}

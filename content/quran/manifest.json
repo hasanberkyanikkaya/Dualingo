@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "contentRevision": "tanzil-uthmani-1.1__tr-yazir__2026-08-23",
+  "retrievedAt": "2026-08-23T19:25:14.748Z",
+  "publicationStatus": "development_only",
+  "expertApproved": false,
+  "releaseBlockedReasons": [
+    "Meal veri setinin ticari yeniden dağıtım izni yayın öncesi doğrulanmalı.",
+    "Tanzil metadata kullanım şartları yayın öncesi ayrıca doğrulanmalı.",
+    "Arapça metin ve meal insan uzman tarafından karşılaştırmalı onaylanmalı.",
+    "Elektronik Kur’an yayımı için ilgili kurul süreci tamamlanmalı."
+  ],
+  "surahCount": 114,
+  "verseCount": 6236,
+  "sources": [
+    {
+      "id": "tanzil-quran-uthmani-1.1",
+      "kind": "arabic",
+      "title": "Tanzil Uthmani Quran Text",
+      "version": "1.1",
+      "sourceUrl": "https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=xml&marks=true&sajdah=true&tatweel=true&agree=true",
+      "termsUrl": "https://tanzil.net/download/",
+      "licenseId": "tanzil-verbatim-attribution",
+      "attribution": "Quran text provided by Tanzil Project — https://tanzil.net/",
+      "contentSha256": "8c5aeae20363a98f6963720d29fce040ca8b56a8e75f8b564c257fce7f6d0417"
+    },
+    {
+      "id": "tanzil-tr-yazir",
+      "kind": "translation",
+      "title": "Elmalılı Hamdi Yazır Turkish Translation",
+      "version": "Tanzil repository snapshot",
+      "sourceUrl": "https://tanzil.net/trans/?transID=tr.yazir&type=xml",
+      "termsUrl": "https://tanzil.net/trans/",
+      "licenseId": "tanzil-non-commercial-only",
+      "attribution": "Translation data obtained from Tanzil Translations Repository.",
+      "contentSha256": "5097940d7d14b68543740f0571b02bd05fac219e9127c4bff33779ac5844ba43"
+    },
+    {
+      "id": "tanzil-quran-metadata-1.0",
+      "kind": "metadata",
+      "title": "Tanzil Quran Metadata",
+      "version": "1.0",
+      "sourceUrl": "https://tanzil.net/res/text/metadata/quran-data.xml",
+      "termsUrl": "https://tanzil.net/docs/Quran_Metadata",
+      "licenseId": "terms-not-stated-on-source-page",
+      "attribution": "Quran metadata provided by Tanzil Project.",
+      "contentSha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a"
+    }
+  ]
+}

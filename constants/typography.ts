@@ -10,6 +10,8 @@
 
 import type { TextStyle } from 'react-native';
 
+import type { QuranReaderFontSize } from '@/types';
+
 export const fontSize = {
   xs: 12,
   sm: 14,
@@ -127,3 +129,28 @@ export const textStyles = {
 } as const satisfies Record<string, TextStyleToken>;
 
 export type TextStyleName = keyof typeof textStyles;
+
+export type QuranTextScale = {
+  arabic: { fontSize: number; lineHeight: number };
+  translation: { fontSize: number; lineHeight: number };
+  footnote: { fontSize: number; lineHeight: number };
+};
+
+/** Okuyucunun üç kademeli yazı ölçeği; Arapça harekeler kırpılmasın diye satır aralığı geniştir. */
+export const quranTextScales = {
+  small: {
+    arabic: { fontSize: 24, lineHeight: 42 },
+    translation: { fontSize: 14, lineHeight: 22 },
+    footnote: { fontSize: 12, lineHeight: 18 },
+  },
+  medium: {
+    arabic: { fontSize: 29, lineHeight: 50 },
+    translation: { fontSize: 16, lineHeight: 25 },
+    footnote: { fontSize: 14, lineHeight: 20 },
+  },
+  large: {
+    arabic: { fontSize: 34, lineHeight: 58 },
+    translation: { fontSize: 18, lineHeight: 28 },
+    footnote: { fontSize: 16, lineHeight: 24 },
+  },
+} as const satisfies Record<QuranReaderFontSize, QuranTextScale>;

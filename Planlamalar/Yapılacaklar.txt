@@ -1,10 +1,12 @@
-YAPILACAKLAR — güncel: 6 Ağustos 2026
+YAPILACAKLAR — güncel: 23 Ağustos 2026
 
-=== SENDE OLANLAR (Claude yapamaz) ===
+=== KULLANICIDA OLANLAR (KOD ASİSTANI YAPAMAZ) ===
 
-[ ] UYGULAMA ADI ve bundle identifier kararı
-    Şu an yer tutucu: DieTrying / com.dietrying.app
-    Yayından sonra DEĞİŞTİRİLEMEZ. Faz 1'deki ilk derlemeden önce lazım.
+[ ] UYGULAMA ADINI kesinleştir
+    Şu an görünen geçici ad: Dualingo. Duolingo'ya yakınlığı nedeniyle yayın
+    öncesinde marka riski yeniden değerlendirilecek.
+[x] Bundle identifier kararı
+    iOS + Android: com.hasanberk.ogrenme. Yayından sonra DEĞİŞTİRİLMEYECEK.
 
 [ ] Apple Developer hesabı ($99/yıl) — Faz 2.5'e kadar
 [ ] Google Play hesabı ($25 tek seferlik) — Faz 2.5'e kadar
@@ -13,18 +15,23 @@ YAPILACAKLAR — güncel: 6 Ağustos 2026
     YAYINDAN ÖNCE ZORUNLU. Erken konuşmaya başla, geç kalma.
 
 [ ] Gerçek ders içeriğini yazmaya başla
-    Claude örnek veriyi üretecek, sen üstüne yazacaksın.
+    Kod asistanı yalnız açıkça işaretlenmiş yapısal örnek veri üretebilir;
+    gerçek dini içeriği kullanıcı ve insan uzman hazırlayacak.
     Kodun hızını beklemene gerek yok.
 
-[ ] Kur'an meali telif durumu — Faz 5'ten ÖNCE netleşmeli
+[ ] Kur'an içeriği yayın izni + uzman/kurul onayı — YAYINDAN ÖNCE
+    Geliştirme kaynağı seçildi: Tanzil Uthmani + tr.yazir meal.
+    Manifest durumu development_only; ticari yeniden dağıtım izni ve metadata
+    şartları çözülmeden, insan uzman karşılaştırması yapılmadan yayınlanmayacak.
 
 [x] Maskot karakter tasarımı — aksolotl, assets/images/mascot.png
         ADI HENÜZ YOK — kullanıcı koyacak
-        Palet bu maskottan türetildi (bkz. CLAUDE.md "Maskot ve palet kararı")
+        Palet bu maskottan türetildi (bkz. Planlamalar/KARAR_GECMISI.md
+        "Maskot ve palet kararı")
 [ ] Maskotu açılış ekranı + uygulama ikonu yap (şu an Expo şablonu duruyor)
 
 
-=== SIRADAKİ OTURUMLAR (Claude ile) ===
+=== SIRADAKİ OTURUMLAR (Codex ile) ===
 
 [x] 0.3 Tasarım sistemi — /constants
         Palet: "Aksolotl" (#C9306F / #FFC53D, erik nötr) — maskottan türetildi,
@@ -55,7 +62,8 @@ Sonra Faz 1:
         iOS ad hoc provisioning $99/yıl Apple hesabı istiyor, simulator macOS
         istiyor, makine Windows, telefon iPhone. Android ücretsiz ama cihaz yok.
         ⚠️ Erteleme yüzünden bekleyen HER ŞEY tek yerde:
-        CLAUDE.md → "Dev Build Borcu — Faz 1.3 gelince YAPILACAKLAR"
+        Planlamalar/KARAR_GECMISI.md →
+        "Dev Build Borcu — Faz 1.3 gelince YAPILACAKLAR"
         Kısaca bloke olanlar: MMKV kalıcılık, expo-updates/OTA (2.5),
         Sentry (1.4), nitro-modules açık bağımlılık, bildirim doğrulaması (4),
         tema tercihi kalıcılığı (3). Açılan kazanç: SDK 54 çivisi düşer.
@@ -91,7 +99,7 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         oluyor, 'ıslam' değil — İ/I önce elle eşleniyor
         Yıldız %60/80/100, XP ilk seferde tam + tekrarda %25
         Dikiş bırakıldı: useCompleteLevel (2.4 gövdesini dolduracak)
-        CLAUDE.md'de iki yanlış sözleşme düzeltildi (BlankSlot disabled,
+        Karar arşivinde iki yanlış sözleşme düzeltildi (BlankSlot disabled,
         SafeAreaView dört kenar)
 [x] 2.4 İlerleme kaydı — Zustand store, mockProgress.ts silindi
         /app ve /components'e HİÇ dokunulmadı — 2.3 dikişleri tuttu
@@ -268,7 +276,7 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         ⚠️ Gelecek gün SEÇİLEBİLİR ama düzenlenemez; panel sebebini söylüyor.
         ⚠️ Rol "checkbox" değil "button" — checkbox üçüncü durumu anons edemez.
         ⚠️ Yeni rota .expo/types üretimi ister: npx expo start bir kez koşmalı.
-        Kıble pusulası playbook'ta 4.5, 4.3 DEĞİL — CLAUDE.md'deki numara
+        Kıble pusulası playbook'ta 4.5, 4.3 DEĞİL — eski devir belgesindeki numara
         karışıklığı düzeltildi.
 
 [x] 4.4 Namaz vakti bildirimleri — expo-notifications ilk kez GERÇEKTEN kullanıldı.
@@ -277,7 +285,8 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         girişi PROFİL sekmesinde. Bir SAF modül (testli): prayerNotify.
         404 test (386'dan). MIGRATIONS[6] → sürüm 7: prayer_notification.
         ⚠️ TETİKLENME DOĞRULANMADI — Expo Go'da görünen şey kanıt değil.
-        Dev build kontrol listesi CLAUDE.md → Dev Build Borcu, B maddesi.
+        Dev build kontrol listesi Planlamalar/KARAR_GECMISI.md →
+        Dev Build Borcu, B maddesi.
         ⚠️ MAX_SCHEDULED = 60 iOS'un SERT sınırı (64) yüzünden: fazlası
         SESSİZCE atılır. Bu yüzden plan kayan bir pencere, "kur ve unut" değil.
         ⚠️ Tetikleyici DATE; tekrarlayan tetikleyici kullanılamaz (vakit kayıyor).
@@ -318,6 +327,30 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         constants/motion.ts'e bir jeton: timing.compass (120 ms).
         Dev build GEREKMİYOR — expo-location Expo Go'nun içinde geliyor.
 
+[x] 5.1 Kur'an veri katmanı — Arapça metin + meal, transkripsiyon ertelendi.
+        /content/quran: kaynak manifesti, sure kataloğu ve 114 tembel sure dosyası.
+        6236 ayet; Tanzil Uthmani 1.1 + tr.yazir + metadata 1.0.
+        İçerik development_only ve expertApproved=false; yayın engelleri manifestte.
+        MIGRATIONS[7] → sürüm 8: quran_reading_position + quran_read_event.
+        Son konum tekil last_read kaydı; geçmiş günlük benzersiz ayet anahtarıdır.
+        Aynı gün aynı ayeti tekrar okumak sayıyı artırmaz, zaman aralığını genişletir.
+        İçerik SQLite'a kopyalanmıyor; JSON pakette, yalnız kullanıcı ilerlemesi DB'de.
+        İçerik doğrulayıcı + içe aktarma betiği + 6 yeni test; toplam 435 test.
+        ⚠️ Ekran yok; sonraki adım 5.2 okuma ekranı.
+
+[x] 5.2 Kur'an okuma ekranı — bağımsız gece teması + kitap/sayfa deneyimi.
+        604 sayfalık metadata indeksi üretildi; yalnız gereken sure JSON'ları yükleniyor.
+        Sure seçimi, ayet ayet RTL Arapça, açılıp kapanan meal ve üç yazı boyutu var.
+        Portrede okunabilirlik için çift sayfa yerine fiziksel tek sayfalı kitap kullanıldı.
+        Sağa kaydırma sonraki, sola kaydırma önceki sayfayı açıyor; düğme yedeği var.
+        Reanimated 3B sayfa çevirme, Hareketi Azalt açıkken anlık geçişe düşüyor.
+        En az %55 görünür kalan ayetler 600 ms sonra günlük geçmişe yazılıyor;
+        en son görünür ayet SQLite'taki last_read konumuna otomatik kaydediliyor.
+        Meal/yazı ayarı Zustand + MMKV; Expo Go'da bilinen bellek yedeğine düşebilir.
+        Kaynak atfı ve development_only yayın uyarısı ekranlarda görünür.
+        2 yeni sayfa indeksi testi; toplam 437 test geçti.
+        ⚠️ Sayfa çevirme ve görünürlük davranışı gerçek telefonda elle doğrulanacak.
+
 
 === AÇIK SORULAR ===
 
@@ -332,4 +365,4 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
 - Backend: Faz 7'de, daha erken değil
 - Arayüz metni: /constants/strings.ts, i18n kütüphanesi yok
 - SQLite tabloları baştan updatedAt + deletedAt taşır
-- Renk paletini Claude önerecek, sen seçeceksin
+- Renk paleti önerisini kod asistanı hazırlayabilir; son seçimi kullanıcı yapar

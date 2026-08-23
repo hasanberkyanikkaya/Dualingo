@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 110,
+    "nameArabic": "النصر",
+    "nameTurkish": null,
+    "verseCount": 3,
+    "firstGlobalOrder": 6214
+  },
+  "verses": [
+    {
+      "key": "110:1",
+      "surahId": 110,
+      "numberInSurah": 1,
+      "globalOrder": 6214,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "إِذَا جَآءَ نَصْرُ ٱللَّهِ وَٱلْفَتْحُ",
+      "translationText": "Allah'ın yardımı ve fetih geldiğinde,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "110:2",
+      "surahId": 110,
+      "numberInSurah": 2,
+      "globalOrder": 6215,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "وَرَأَيْتَ ٱلنَّاسَ يَدْخُلُونَ فِى دِينِ ٱللَّهِ أَفْوَاجًا",
+      "translationText": "Ve insanların dalga dalga Allah'ın dinine girdiklerini gördüğünde,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "110:3",
+      "surahId": 110,
+      "numberInSurah": 3,
+      "globalOrder": 6216,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَٱسْتَغْفِرْهُ ۚ إِنَّهُۥ كَانَ تَوَّابًۢا",
+      "translationText": "Rabbini öğerek tesbih et, O'ndan bağışlanmanı dile, çünkü O, tevbeleri çok kabul edendir.",
+      "translationFootnotes": []
+    }
+  ]
+}

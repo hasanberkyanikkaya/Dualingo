@@ -243,6 +243,44 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_prayer_notification_updated_at
      ON prayer_notification (updated_at);`,
+
+  // [7] → sürüm 8: Kur'an kaldığın yer + günlük benzersiz ayet geçmişi (Faz 5.1).
+  //
+  // Metnin kendisi SQLite'a KOPYALANMIYOR: `/content/quran` pakete gömülü ve OTA
+  // ile sürümlü. Burada yalnız kullanıcının ürettiği durum yaşar.
+  //
+  // `quran_reading_position.position_id = 'last_read'` tekil doğal anahtar.
+  // İleride adlandırılmış yer imleri gelirse aynı tablo yeni kimliklerle büyür;
+  // bugünkü tek kaydı taşımak gerekmez. `content_revision`, kaynak paketi
+  // değiştiğinde eski konumu teşhis edebilmek için var; konumun asıl anahtarı
+  // kaynaklar arasında sabit kalan `sure:ayet` biçimindeki `verse_key`.
+  //
+  // `quran_read_event` sayacı KALICILAŞTIRMAZ. Anahtar `(date, verse_key)` olduğu
+  // için aynı ayetin aynı gün tekrar görünmesi tek kaydı günceller; günlük
+  // benzersiz ayet sayısı sorgudan türetilir. Bu ayrıca Faz 7'de iki cihazın
+  // kümelerini sayaç çakışması olmadan birleştirmeyi mümkün kılar.
+  `CREATE TABLE IF NOT EXISTS quran_reading_position (
+     position_id     TEXT    PRIMARY KEY NOT NULL,
+     verse_key       TEXT    NOT NULL,
+     content_revision TEXT   NOT NULL,
+     saved_at        INTEGER NOT NULL,
+     updated_at      INTEGER NOT NULL,
+     deleted_at      INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_quran_reading_position_updated_at
+     ON quran_reading_position (updated_at);
+
+   CREATE TABLE IF NOT EXISTS quran_read_event (
+     date          TEXT    NOT NULL,
+     verse_key     TEXT    NOT NULL,
+     first_read_at INTEGER NOT NULL,
+     last_read_at  INTEGER NOT NULL,
+     updated_at    INTEGER NOT NULL,
+     deleted_at    INTEGER,
+     PRIMARY KEY (date, verse_key)
+   );
+   CREATE INDEX IF NOT EXISTS idx_quran_read_event_updated_at
+     ON quran_read_event (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;
@@ -274,7 +312,7 @@ function openDatabase(): SQLiteDatabase | null {
   } catch (error) {
     if (__DEV__) {
       console.warn(
-        '[lib/database] SQLite açılamadı — seri ve rozet geçmişi bu oturumda kaydedilmeyecek.',
+        '[lib/database] SQLite açılamadı — kalıcı kullanıcı geçmişi bu oturumda kaydedilmeyecek.',
         error,
       );
     }

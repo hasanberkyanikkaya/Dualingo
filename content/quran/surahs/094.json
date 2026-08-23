@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 94,
+    "nameArabic": "الشرح",
+    "nameTurkish": null,
+    "verseCount": 8,
+    "firstGlobalOrder": 6091
+  },
+  "verses": [
+    {
+      "key": "94:1",
+      "surahId": 94,
+      "numberInSurah": 1,
+      "globalOrder": 6091,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ",
+      "translationText": "Biz senin için (mutluluğun) göğsünü açmadık mı?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:2",
+      "surahId": 94,
+      "numberInSurah": 2,
+      "globalOrder": 6092,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَوَضَعْنَا عَنكَ وِزْرَكَ",
+      "translationText": "Senden yükünü indirmedik mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:3",
+      "surahId": 94,
+      "numberInSurah": 3,
+      "globalOrder": 6093,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِىٓ أَنقَضَ ظَهْرَكَ",
+      "translationText": "O senin sırtını ezen yükü.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:4",
+      "surahId": 94,
+      "numberInSurah": 4,
+      "globalOrder": 6094,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَرَفَعْنَا لَكَ ذِكْرَكَ",
+      "translationText": "Senin şanını yüceltmedik mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:5",
+      "surahId": 94,
+      "numberInSurah": 5,
+      "globalOrder": 6095,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+      "translationText": "Demek ki, zorlukla beraber bir kolaylık vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:6",
+      "surahId": 94,
+      "numberInSurah": 6,
+      "globalOrder": 6096,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+      "translationText": "Evet, zorlukla beraber bir kolaylık vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:7",
+      "surahId": 94,
+      "numberInSurah": 7,
+      "globalOrder": 6097,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "فَإِذَا فَرَغْتَ فَٱنصَبْ",
+      "translationText": "O halde boş kaldın mı, yine kalk (başka bir iş ve ibadetle) yorul.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "94:8",
+      "surahId": 94,
+      "numberInSurah": 8,
+      "globalOrder": 6098,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَإِلَىٰ رَبِّكَ فَٱرْغَب",
+      "translationText": "Ancak Rabbine yönel.",
+      "translationFootnotes": []
+    }
+  ]
+}

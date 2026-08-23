@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 95,
+    "nameArabic": "التين",
+    "nameTurkish": null,
+    "verseCount": 8,
+    "firstGlobalOrder": 6099
+  },
+  "verses": [
+    {
+      "key": "95:1",
+      "surahId": 95,
+      "numberInSurah": 1,
+      "globalOrder": 6099,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "وَٱلتِّينِ وَٱلزَّيْتُونِ",
+      "translationText": "Tîn'e ve Zeytun'a,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:2",
+      "surahId": 95,
+      "numberInSurah": 2,
+      "globalOrder": 6100,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "وَطُورِ سِينِينَ",
+      "translationText": "Sina dağına",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:3",
+      "surahId": 95,
+      "numberInSurah": 3,
+      "globalOrder": 6101,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "وَهَـٰذَا ٱلْبَلَدِ ٱلْأَمِينِ",
+      "translationText": "Ve bu güvenli beldeye andolsun ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:4",
+      "surahId": 95,
+      "numberInSurah": 4,
+      "globalOrder": 6102,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "لَقَدْ خَلَقْنَا ٱلْإِنسَـٰنَ فِىٓ أَحْسَنِ تَقْوِيمٍ",
+      "translationText": "Biz insanı en güzel biçimde yarattık.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:5",
+      "surahId": 95,
+      "numberInSurah": 5,
+      "globalOrder": 6103,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ رَدَدْنَـٰهُ أَسْفَلَ سَـٰفِلِينَ",
+      "translationText": "Sonra da çevirdik aşağıların aşağısına attık.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:6",
+      "surahId": 95,
+      "numberInSurah": 6,
+      "globalOrder": 6104,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ فَلَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ",
+      "translationText": "Ancak iman edip iyi işler yapanlar başka; onlar için kesintisiz bir ecir vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:7",
+      "surahId": 95,
+      "numberInSurah": 7,
+      "globalOrder": 6105,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "فَمَا يُكَذِّبُكَ بَعْدُ بِٱلدِّينِ",
+      "translationText": "O halde sana dini ne yalanlatır?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "95:8",
+      "surahId": 95,
+      "numberInSurah": 8,
+      "globalOrder": 6106,
+      "pageNumber": 597,
+      "juzNumber": 30,
+      "arabicText": "أَلَيْسَ ٱللَّهُ بِأَحْكَمِ ٱلْحَـٰكِمِينَ",
+      "translationText": "Allah, hakimlerin hakimi değil mi?",
+      "translationFootnotes": []
+    }
+  ]
+}

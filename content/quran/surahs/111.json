@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 111,
+    "nameArabic": "المسد",
+    "nameTurkish": null,
+    "verseCount": 5,
+    "firstGlobalOrder": 6217
+  },
+  "verses": [
+    {
+      "key": "111:1",
+      "surahId": 111,
+      "numberInSurah": 1,
+      "globalOrder": 6217,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "تَبَّتْ يَدَآ أَبِى لَهَبٍ وَتَبَّ",
+      "translationText": "Ebu Leheb'in elleri kurusun (yok olsun o), zaten yok oldu ya.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "111:2",
+      "surahId": 111,
+      "numberInSurah": 2,
+      "globalOrder": 6218,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "مَآ أَغْنَىٰ عَنْهُ مَالُهُۥ وَمَا كَسَبَ",
+      "translationText": "Ne malı ne de kazandığı onu kurtaramadı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "111:3",
+      "surahId": 111,
+      "numberInSurah": 3,
+      "globalOrder": 6219,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ",
+      "translationText": "(O), alevli bir ateşe girecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "111:4",
+      "surahId": 111,
+      "numberInSurah": 4,
+      "globalOrder": 6220,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "وَٱمْرَأَتُهُۥ حَمَّالَةَ ٱلْحَطَبِ",
+      "translationText": "Karısı da odun hamalı olarak (onunla beraber girecektir).",
+      "translationFootnotes": []
+    },
+    {
+      "key": "111:5",
+      "surahId": 111,
+      "numberInSurah": 5,
+      "globalOrder": 6221,
+      "pageNumber": 603,
+      "juzNumber": 30,
+      "arabicText": "فِى جِيدِهَا حَبْلٌ مِّن مَّسَدٍۭ",
+      "translationText": "Boynunda da hurma lifinden bir ip olacaktır.",
+      "translationFootnotes": []
+    }
+  ]
+}

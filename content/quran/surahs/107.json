@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 107,
+    "nameArabic": "الماعون",
+    "nameTurkish": null,
+    "verseCount": 7,
+    "firstGlobalOrder": 6198
+  },
+  "verses": [
+    {
+      "key": "107:1",
+      "surahId": 107,
+      "numberInSurah": 1,
+      "globalOrder": 6198,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "أَرَءَيْتَ ٱلَّذِى يُكَذِّبُ بِٱلدِّينِ",
+      "translationText": "Dini yalanlayanı gördün mü?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:2",
+      "surahId": 107,
+      "numberInSurah": 2,
+      "globalOrder": 6199,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "فَذَٰلِكَ ٱلَّذِى يَدُعُّ ٱلْيَتِيمَ",
+      "translationText": "İşte o, öksüzü iter, kakar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:3",
+      "surahId": 107,
+      "numberInSurah": 3,
+      "globalOrder": 6200,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "وَلَا يَحُضُّ عَلَىٰ طَعَامِ ٱلْمِسْكِينِ",
+      "translationText": "Yoksulu doyurmaya önayak olmaz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:4",
+      "surahId": 107,
+      "numberInSurah": 4,
+      "globalOrder": 6201,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "فَوَيْلٌ لِّلْمُصَلِّينَ",
+      "translationText": "Vay haline o namaz kılanların ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:5",
+      "surahId": 107,
+      "numberInSurah": 5,
+      "globalOrder": 6202,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ",
+      "translationText": "Kıldıkları namazın değerine aldırış etmezler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:6",
+      "surahId": 107,
+      "numberInSurah": 6,
+      "globalOrder": 6203,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِينَ هُمْ يُرَآءُونَ",
+      "translationText": "Gösteriş yaparlar onlar,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "107:7",
+      "surahId": 107,
+      "numberInSurah": 7,
+      "globalOrder": 6204,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "وَيَمْنَعُونَ ٱلْمَاعُونَ",
+      "translationText": "Ve yardımlığı sakınırlar (zekatı vermezler).",
+      "translationFootnotes": []
+    }
+  ]
+}

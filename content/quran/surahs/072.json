@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 72,
+    "nameArabic": "الجن",
+    "nameTurkish": null,
+    "verseCount": 28,
+    "firstGlobalOrder": 5448
+  },
+  "verses": [
+    {
+      "key": "72:1",
+      "surahId": 72,
+      "numberInSurah": 1,
+      "globalOrder": 5448,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "قُلْ أُوحِىَ إِلَىَّ أَنَّهُ ٱسْتَمَعَ نَفَرٌ مِّنَ ٱلْجِنِّ فَقَالُوٓا۟ إِنَّا سَمِعْنَا قُرْءَانًا عَجَبًا",
+      "translationText": "Deki: Hakikat bir takım cinnin Kur'ân dinleyip de şöyle dedikleri bana vahyedildi. Şüphesiz biz, hayret verici bir Kur'ân dinledik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:2",
+      "surahId": 72,
+      "numberInSurah": 2,
+      "globalOrder": 5449,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "يَهْدِىٓ إِلَى ٱلرُّشْدِ فَـَٔامَنَّا بِهِۦ ۖ وَلَن نُّشْرِكَ بِرَبِّنَآ أَحَدًا",
+      "translationText": "O Kur'ân hidayete erdiriyor, biz de ona iman ettik. Rabbimize hiçbir şeyi ortak koşmayacağız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:3",
+      "surahId": 72,
+      "numberInSurah": 3,
+      "globalOrder": 5450,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّهُۥ تَعَـٰلَىٰ جَدُّ رَبِّنَا مَا ٱتَّخَذَ صَـٰحِبَةً وَلَا وَلَدًا",
+      "translationText": "Doğrusu, Rabbimizin şanı çok yüksektir. Ne bir arkadaş edinmiştir, ne de bir çocuk.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:4",
+      "surahId": 72,
+      "numberInSurah": 4,
+      "globalOrder": 5451,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّهُۥ كَانَ يَقُولُ سَفِيهُنَا عَلَى ٱللَّهِ شَطَطًا",
+      "translationText": "Meğer bizim beyinsiz (İblis), Allah hakkında saçma şeyler söylüyormuş.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:5",
+      "surahId": 72,
+      "numberInSurah": 5,
+      "globalOrder": 5452,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا ظَنَنَّآ أَن لَّن تَقُولَ ٱلْإِنسُ وَٱلْجِنُّ عَلَى ٱللَّهِ كَذِبًا",
+      "translationText": "Doğrusu biz insanları ve cinleri Allah'a karşı asla yalan söylemez sanmışız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:6",
+      "surahId": 72,
+      "numberInSurah": 6,
+      "globalOrder": 5453,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّهُۥ كَانَ رِجَالٌ مِّنَ ٱلْإِنسِ يَعُوذُونَ بِرِجَالٍ مِّنَ ٱلْجِنِّ فَزَادُوهُمْ رَهَقًا",
+      "translationText": "Doğrusu insanlardan bazı erkekler, cinlerden bazı erkeklere sığınırlardı da onların şımarıklıklarını artırırlardı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:7",
+      "surahId": 72,
+      "numberInSurah": 7,
+      "globalOrder": 5454,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّهُمْ ظَنُّوا۟ كَمَا ظَنَنتُمْ أَن لَّن يَبْعَثَ ٱللَّهُ أَحَدًا",
+      "translationText": "Doğrusu onlar sizin zannettiğiniz gibi, zannetmişlerdi ki, Allah asla kimseyi Peygamber göndermeyecek.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:8",
+      "surahId": 72,
+      "numberInSurah": 8,
+      "globalOrder": 5455,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا لَمَسْنَا ٱلسَّمَآءَ فَوَجَدْنَـٰهَا مُلِئَتْ حَرَسًا شَدِيدًا وَشُهُبًا",
+      "translationText": "(Cinler, dediler ki): \"Biz göğe dokunduk, onu kuvvetli bekçiler ve alevlerle dolu bulduk.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:9",
+      "surahId": 72,
+      "numberInSurah": 9,
+      "globalOrder": 5456,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا كُنَّا نَقْعُدُ مِنْهَا مَقَـٰعِدَ لِلسَّمْعِ ۖ فَمَن يَسْتَمِعِ ٱلْـَٔانَ يَجِدْ لَهُۥ شِهَابًا رَّصَدًا",
+      "translationText": "\"Doğrusu biz göğün bazı mevkilerinde dinlemek için otururduk. Fakat şimdi her kim dinleyecek olursa kendini gözetleyen parlak bir alev buluyor.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:10",
+      "surahId": 72,
+      "numberInSurah": 10,
+      "globalOrder": 5457,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا لَا نَدْرِىٓ أَشَرٌّ أُرِيدَ بِمَن فِى ٱلْأَرْضِ أَمْ أَرَادَ بِهِمْ رَبُّهُمْ رَشَدًا",
+      "translationText": "\"Doğrusu biz bilmiyoruz, yeryüzündekilere kötülük mü murat edildi, yoksa Rableri onlara bir hayır mı diledi?\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:11",
+      "surahId": 72,
+      "numberInSurah": 11,
+      "globalOrder": 5458,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا مِنَّا ٱلصَّـٰلِحُونَ وَمِنَّا دُونَ ذَٰلِكَ ۖ كُنَّا طَرَآئِقَ قِدَدًا",
+      "translationText": "Doğrusu bizler; bizden iyi olanlar da var, olmayanlar da var. Biz çeşitli yollara ayrılmışız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:12",
+      "surahId": 72,
+      "numberInSurah": 12,
+      "globalOrder": 5459,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا ظَنَنَّآ أَن لَّن نُّعْجِزَ ٱللَّهَ فِى ٱلْأَرْضِ وَلَن نُّعْجِزَهُۥ هَرَبًا",
+      "translationText": "\"Doğrusu biz anladık ki, Allah'ı yerde acze düşürmemize imkân yok. Kaçmakla da O'nu asla âciz bırakamayacağız.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:13",
+      "surahId": 72,
+      "numberInSurah": 13,
+      "globalOrder": 5460,
+      "pageNumber": 572,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا لَمَّا سَمِعْنَا ٱلْهُدَىٰٓ ءَامَنَّا بِهِۦ ۖ فَمَن يُؤْمِنۢ بِرَبِّهِۦ فَلَا يَخَافُ بَخْسًا وَلَا رَهَقًا",
+      "translationText": "\"Doğrusu biz o hidayet rehberini dinlediğimizde ona iman ettik. Kim Rabbine inanırsa, ne hakkının eksik verilmesinden korkar, ne de kendisine kötülük edilmesinden.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:14",
+      "surahId": 72,
+      "numberInSurah": 14,
+      "globalOrder": 5461,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّا مِنَّا ٱلْمُسْلِمُونَ وَمِنَّا ٱلْقَـٰسِطُونَ ۖ فَمَنْ أَسْلَمَ فَأُو۟لَـٰٓئِكَ تَحَرَّوْا۟ رَشَدًا",
+      "translationText": "\"Ve biz, bizlerden müslümanlar da var, hak yoldan sapanlar da var. Müslüman olanlar, işte onlar doğru yolu arayanlardır.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:15",
+      "surahId": 72,
+      "numberInSurah": 15,
+      "globalOrder": 5462,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "وَأَمَّا ٱلْقَـٰسِطُونَ فَكَانُوا۟ لِجَهَنَّمَ حَطَبًا",
+      "translationText": "Ama yoldan çıkanlar, işte onlar cehenneme odun olmuşlardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:16",
+      "surahId": 72,
+      "numberInSurah": 16,
+      "globalOrder": 5463,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "وَأَلَّوِ ٱسْتَقَـٰمُوا۟ عَلَى ٱلطَّرِيقَةِ لَأَسْقَيْنَـٰهُم مَّآءً غَدَقًا",
+      "translationText": "Onlar gerçekten o yol üzere dosdoğru gitselerdi, elbette kendilerine bol bir su verirdik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:17",
+      "surahId": 72,
+      "numberInSurah": 17,
+      "globalOrder": 5464,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "لِّنَفْتِنَهُمْ فِيهِ ۚ وَمَن يُعْرِضْ عَن ذِكْرِ رَبِّهِۦ يَسْلُكْهُ عَذَابًا صَعَدًا",
+      "translationText": "Ki onları onunla sınayalım. Kim Rabbini anmaktan yüz çevirirse, Rabbi onu gittikçe yükselen bir azaba sokar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:18",
+      "surahId": 72,
+      "numberInSurah": 18,
+      "globalOrder": 5465,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّ ٱلْمَسَـٰجِدَ لِلَّهِ فَلَا تَدْعُوا۟ مَعَ ٱللَّهِ أَحَدًا",
+      "translationText": "Mescitler kuşkusuz Allah'ındır. O halde Allah ile birlikte kimseye yalvarmayın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:19",
+      "surahId": 72,
+      "numberInSurah": 19,
+      "globalOrder": 5466,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "وَأَنَّهُۥ لَمَّا قَامَ عَبْدُ ٱللَّهِ يَدْعُوهُ كَادُوا۟ يَكُونُونَ عَلَيْهِ لِبَدًا",
+      "translationText": "Allah'ın kulu (Hz. Peygamber) kalkmış O'na dua ederken, neredeyse (cinler) onun etrafında keçe gibi birbirlerine geçeceklerdi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:20",
+      "surahId": 72,
+      "numberInSurah": 20,
+      "globalOrder": 5467,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "قُلْ إِنَّمَآ أَدْعُوا۟ رَبِّى وَلَآ أُشْرِكُ بِهِۦٓ أَحَدًا",
+      "translationText": "De ki: \"Ben ancak Rabbime dua eder ve O'na hiçbir şeyi ortak koşmam\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:21",
+      "surahId": 72,
+      "numberInSurah": 21,
+      "globalOrder": 5468,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "قُلْ إِنِّى لَآ أَمْلِكُ لَكُمْ ضَرًّا وَلَا رَشَدًا",
+      "translationText": "De ki, \"Haberiniz olsun, ben size kendiliğimden ne bir zarar verebilirim, ne de bir yol gösterebilirim.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:22",
+      "surahId": 72,
+      "numberInSurah": 22,
+      "globalOrder": 5469,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "قُلْ إِنِّى لَن يُجِيرَنِى مِنَ ٱللَّهِ أَحَدٌ وَلَنْ أَجِدَ مِن دُونِهِۦ مُلْتَحَدًا",
+      "translationText": "De ki, \"Allah'tan beni kimse kurtaramaz ve ben O'ndan başka bir sığınacak bulamam.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:23",
+      "surahId": 72,
+      "numberInSurah": 23,
+      "globalOrder": 5470,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "إِلَّا بَلَـٰغًا مِّنَ ٱللَّهِ وَرِسَـٰلَـٰتِهِۦ ۚ وَمَن يَعْصِ ٱللَّهَ وَرَسُولَهُۥ فَإِنَّ لَهُۥ نَارَ جَهَنَّمَ خَـٰلِدِينَ فِيهَآ أَبَدًا",
+      "translationText": "\"Benim yapabileceğim, sadece Allah'tan size duyuru yapmak ve O'nun elçilik görevlerini yerine getirmektir.\" Artık kim Allah'a ve onun elçisine baş kaldırırsa, ona içinde ebedi kalacakları cehennem ateşi vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:24",
+      "surahId": 72,
+      "numberInSurah": 24,
+      "globalOrder": 5471,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "حَتَّىٰٓ إِذَا رَأَوْا۟ مَا يُوعَدُونَ فَسَيَعْلَمُونَ مَنْ أَضْعَفُ نَاصِرًا وَأَقَلُّ عَدَدًا",
+      "translationText": "Kendilerine vaad edilen şeyi gördükleri zaman, kimin yardımcısının en zayıf ve en az olduğunu bileceklerdir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:25",
+      "surahId": 72,
+      "numberInSurah": 25,
+      "globalOrder": 5472,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "قُلْ إِنْ أَدْرِىٓ أَقَرِيبٌ مَّا تُوعَدُونَ أَمْ يَجْعَلُ لَهُۥ رَبِّىٓ أَمَدًا",
+      "translationText": "De ki: \"Ben bilmem, o size vaad edilen şey yakın mı, yoksa Rabbim onun için uzun bir süre mi koyar..\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:26",
+      "surahId": 72,
+      "numberInSurah": 26,
+      "globalOrder": 5473,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "عَـٰلِمُ ٱلْغَيْبِ فَلَا يُظْهِرُ عَلَىٰ غَيْبِهِۦٓ أَحَدًا",
+      "translationText": "O bütün gaybı bilir. Fakat gaybını hiç kimseye açmaz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:27",
+      "surahId": 72,
+      "numberInSurah": 27,
+      "globalOrder": 5474,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "إِلَّا مَنِ ٱرْتَضَىٰ مِن رَّسُولٍ فَإِنَّهُۥ يَسْلُكُ مِنۢ بَيْنِ يَدَيْهِ وَمِنْ خَلْفِهِۦ رَصَدًا",
+      "translationText": "Ancak seçtiği elçiye açar. Çünkü onun önünden ve ardından gözetleyiciler salar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "72:28",
+      "surahId": 72,
+      "numberInSurah": 28,
+      "globalOrder": 5475,
+      "pageNumber": 573,
+      "juzNumber": 29,
+      "arabicText": "لِّيَعْلَمَ أَن قَدْ أَبْلَغُوا۟ رِسَـٰلَـٰتِ رَبِّهِمْ وَأَحَاطَ بِمَا لَدَيْهِمْ وَأَحْصَىٰ كُلَّ شَىْءٍ عَدَدًۢا",
+      "translationText": "Bilsin diye ki, onlar Rablerinin elçiliklerini yerine getirmişlerdir. Allah onlarda bulunan her şeyi kuşatmış ve her şeyi bir bir saymıştır",
+      "translationFootnotes": []
+    }
+  ]
+}

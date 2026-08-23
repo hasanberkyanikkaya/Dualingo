@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 101,
+    "nameArabic": "القارعة",
+    "nameTurkish": null,
+    "verseCount": 11,
+    "firstGlobalOrder": 6158
+  },
+  "verses": [
+    {
+      "key": "101:1",
+      "surahId": 101,
+      "numberInSurah": 1,
+      "globalOrder": 6158,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "ٱلْقَارِعَةُ",
+      "translationText": "Kâria! (Çarpacak kıyamet) Nedir o kâria? Kârianın ne olduğunu sen bilir misin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:2",
+      "surahId": 101,
+      "numberInSurah": 2,
+      "globalOrder": 6159,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "مَا ٱلْقَارِعَةُ",
+      "translationText": "Kâria! (Çarpacak kıyamet) Nedir o kâria? Kârianın ne olduğunu sen bilir misin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:3",
+      "surahId": 101,
+      "numberInSurah": 3,
+      "globalOrder": 6160,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا ٱلْقَارِعَةُ",
+      "translationText": "Kâria! (Çarpacak kıyamet) Nedir o kâria? Kârianın ne olduğunu sen bilir misin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:4",
+      "surahId": 101,
+      "numberInSurah": 4,
+      "globalOrder": 6161,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "يَوْمَ يَكُونُ ٱلنَّاسُ كَٱلْفَرَاشِ ٱلْمَبْثُوثِ",
+      "translationText": "O gün insanlar yayılmış pervaneler gibi olurlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:5",
+      "surahId": 101,
+      "numberInSurah": 5,
+      "globalOrder": 6162,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "وَتَكُونُ ٱلْجِبَالُ كَٱلْعِهْنِ ٱلْمَنفُوشِ",
+      "translationText": "Dağlar atılmış renkli yünler gibi olur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:6",
+      "surahId": 101,
+      "numberInSurah": 6,
+      "globalOrder": 6163,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "فَأَمَّا مَن ثَقُلَتْ مَوَٰزِينُهُۥ",
+      "translationText": "O gün kimin tartıları ağır basarsa o, hoşnut olacağı bir hayat içindedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:7",
+      "surahId": 101,
+      "numberInSurah": 7,
+      "globalOrder": 6164,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "فَهُوَ فِى عِيشَةٍ رَّاضِيَةٍ",
+      "translationText": "O gün kimin tartıları ağır basarsa o, hoşnut olacağı bir hayat içindedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:8",
+      "surahId": 101,
+      "numberInSurah": 8,
+      "globalOrder": 6165,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّا مَنْ خَفَّتْ مَوَٰزِينُهُۥ",
+      "translationText": "Kimin tartıları hafif gelirse, onun anası da (varacağı yer, sığınacağı durağı) hâviye (uçurum)dır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:9",
+      "surahId": 101,
+      "numberInSurah": 9,
+      "globalOrder": 6166,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "فَأُمُّهُۥ هَاوِيَةٌ",
+      "translationText": "Kimin tartıları hafif gelirse, onun anası da (varacağı yer, sığınacağı durağı) hâviye (uçurum)dır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:10",
+      "surahId": 101,
+      "numberInSurah": 10,
+      "globalOrder": 6167,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا هِيَهْ",
+      "translationText": "O uçurumun ne olduğunu sen nereden bileceksin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "101:11",
+      "surahId": 101,
+      "numberInSurah": 11,
+      "globalOrder": 6168,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "نَارٌ حَامِيَةٌۢ",
+      "translationText": "O, kızgın bir ateştir.",
+      "translationFootnotes": []
+    }
+  ]
+}

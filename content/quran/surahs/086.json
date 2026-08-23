@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 86,
+    "nameArabic": "الطارق",
+    "nameTurkish": null,
+    "verseCount": 17,
+    "firstGlobalOrder": 5932
+  },
+  "verses": [
+    {
+      "key": "86:1",
+      "surahId": 86,
+      "numberInSurah": 1,
+      "globalOrder": 5932,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَٱلسَّمَآءِ وَٱلطَّارِقِ",
+      "translationText": "Andolsun o göğe ve Târık'a,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:2",
+      "surahId": 86,
+      "numberInSurah": 2,
+      "globalOrder": 5933,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا ٱلطَّارِقُ",
+      "translationText": "Târık nedir, bildin mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:3",
+      "surahId": 86,
+      "numberInSurah": 3,
+      "globalOrder": 5934,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "ٱلنَّجْمُ ٱلثَّاقِبُ",
+      "translationText": "O, karanlığı delen yıldızdır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:4",
+      "surahId": 86,
+      "numberInSurah": 4,
+      "globalOrder": 5935,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "إِن كُلُّ نَفْسٍ لَّمَّا عَلَيْهَا حَافِظٌ",
+      "translationText": "Hiçbir nefis yoktur ki başında bir denetleyici bulunmasın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:5",
+      "surahId": 86,
+      "numberInSurah": 5,
+      "globalOrder": 5936,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "فَلْيَنظُرِ ٱلْإِنسَـٰنُ مِمَّ خُلِقَ",
+      "translationText": "Onun için insan neden yaratıldığına bir baksın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:6",
+      "surahId": 86,
+      "numberInSurah": 6,
+      "globalOrder": 5937,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "خُلِقَ مِن مَّآءٍ دَافِقٍ",
+      "translationText": "Atılan bir sudan yaratıldı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:7",
+      "surahId": 86,
+      "numberInSurah": 7,
+      "globalOrder": 5938,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "يَخْرُجُ مِنۢ بَيْنِ ٱلصُّلْبِ وَٱلتَّرَآئِبِ",
+      "translationText": "O su, erkeğin sulbü ile kadının göğüs kemikleri arasından çıkar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:8",
+      "surahId": 86,
+      "numberInSurah": 8,
+      "globalOrder": 5939,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُۥ عَلَىٰ رَجْعِهِۦ لَقَادِرٌ",
+      "translationText": "Elbette Allah'ın onu döndürmeye gücü yeter.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:9",
+      "surahId": 86,
+      "numberInSurah": 9,
+      "globalOrder": 5940,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "يَوْمَ تُبْلَى ٱلسَّرَآئِرُ",
+      "translationText": "O gün bütün sırlar yoklanıp, meydana çıkarılır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:10",
+      "surahId": 86,
+      "numberInSurah": 10,
+      "globalOrder": 5941,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "فَمَا لَهُۥ مِن قُوَّةٍ وَلَا نَاصِرٍ",
+      "translationText": "İnsanın o gün ne bir gücü vardır, ne de bir yardımcısı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:11",
+      "surahId": 86,
+      "numberInSurah": 11,
+      "globalOrder": 5942,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَٱلسَّمَآءِ ذَاتِ ٱلرَّجْعِ",
+      "translationText": "Andolsun o dönüşlü göğe,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:12",
+      "surahId": 86,
+      "numberInSurah": 12,
+      "globalOrder": 5943,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْأَرْضِ ذَاتِ ٱلصَّدْعِ",
+      "translationText": "O yarılıp çatlayan yere,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:13",
+      "surahId": 86,
+      "numberInSurah": 13,
+      "globalOrder": 5944,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُۥ لَقَوْلٌ فَصْلٌ",
+      "translationText": "Kuşkusuz Kur'ân, ayırıcı bir sözdür.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:14",
+      "surahId": 86,
+      "numberInSurah": 14,
+      "globalOrder": 5945,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَمَا هُوَ بِٱلْهَزْلِ",
+      "translationText": "O asla bir şaka değildir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:15",
+      "surahId": 86,
+      "numberInSurah": 15,
+      "globalOrder": 5946,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهُمْ يَكِيدُونَ كَيْدًا",
+      "translationText": "Haberin olsun ki, kâfirler hep hile kuruyorlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:16",
+      "surahId": 86,
+      "numberInSurah": 16,
+      "globalOrder": 5947,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَأَكِيدُ كَيْدًا",
+      "translationText": "Ben de hilelerine karşılık veririm.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "86:17",
+      "surahId": 86,
+      "numberInSurah": 17,
+      "globalOrder": 5948,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "فَمَهِّلِ ٱلْكَـٰفِرِينَ أَمْهِلْهُمْ رُوَيْدًۢا",
+      "translationText": "Onun için sen kâfirlere mühlet ver, onlara az bir zaman tanı.",
+      "translationFootnotes": []
+    }
+  ]
+}

@@ -2,8 +2,8 @@
 
 **Proje:** Türkçe İslami Öğrenme ve İbadet Takip Uygulaması
 **Geliştirici:** Tek kişi + küçük bütçe
-**Araç:** VS Code + Claude Code
-**Güncelleme:** 6 Ağustos 2026
+**Araç:** Codex + VS Code
+**Güncelleme:** 22 Ağustos 2026
 
 > v1.0'dan farkı: teknik yığın gerçek duruma göre düzeltildi, üç yeni iş kalemi eklendi
 > (test, hata izleme, yayın hazırlığı), içerik dağıtım kararı verildi, faz planı
@@ -201,7 +201,7 @@ Bilinen risk: kullanıcının uygulamayı her gün açması için bir sebep Faz 
 ### Faz 0 Kontrol Listesi
 
 Kod:
-- [x] Expo projesi kuruldu, klasör yapısı CLAUDE.md'ye uygun
+- [x] Expo projesi kuruldu, klasör yapısı AGENTS.md'ye uygun
 - [x] Bağımlılıklar kuruldu, `expo-doctor` 20/20
 - [ ] `/constants` — tasarım sistemi (renk, tipografi, boşluk, yarıçap, metin)
 - [ ] `/types` — öğrenme modülü tipleri
@@ -217,7 +217,7 @@ Sonraya ertelenen (artık Faz 0'ı bloklamıyor):
 - [ ] İlk 2 ünitenin gerçek içeriği — örnek veriyle ilerlenecek, sonra elle doldurulacak
 - [ ] İlahiyatçı onayı — **yayından önce zorunlu**
 - [ ] Maskot tasarımı — yer tutucuyla ilerlenir
-- [ ] Kur'an meali telif araştırması — Faz 5'ten önce
+- [ ] Kur'an meali ticari yeniden dağıtım izni + uzman/kurul onayı — yayın öncesi
 - [ ] Diyanet vakit verisi kaynağı — Faz 4'ün ilk oturumu
 
 ---
@@ -277,7 +277,7 @@ Sentry, **Faz 1'de** kurulur. İlk yayında kullanıcı telefonunda çöken bir 
 | **Dini içerikte hata** | Kritik — itibar kaybı geri dönülmez | Uzman onayı zorunlu; AI'ya içerik yazdırılmaz; yer tutucular yayından önce temizlenir |
 | **Yer tutucu içeriğin yayına kaçması** | Kritik | Yayın öncesi `ÖRNEK` / `TODO` taraması zorunlu adım |
 | **Diyanet veri kaynağı bulunamaması** | Yüksek — Faz 4'ü yeniden tasarlatır | Faz 4'ün ilk oturumu araştırma, bloklayıcı |
-| **Kur'an meali telifi** | Yüksek — yayını engeller | Faz 5'ten önce netleştir |
+| **Kur'an meali telifi** | Yüksek — yayını engeller | Geliştirme verisini `development_only` tut; izin ve onayları yayın öncesi tamamla |
 | **Kapsam büyümesi** | Yüksek — proje bitmez | Faz planına sadık kal, park listesine ekle |
 | **Tek kişi tükenmesi** | Yüksek | Faz 1 sonunda telefonunda çalışan uygulama; erken yayın |
 | **İlk yayında günlük kullanım sebebi yok** | Orta | Streak/rozet Faz 3'te; kabul edilmiş takas |
@@ -296,19 +296,21 @@ Sentry, **Faz 1'de** kurulur. İlk yayında kullanıcı telefonunda çöken bir 
 
 ## 10. YAPAY ZEKA POLİTİKASI
 
-**Claude Code KULLANILIR:** kod yazımı, refactor, hata ayıklama, UI bileşenleri, test, içeriği JSON şemasına dönüştürme, **yapısal yer tutucu örnek veri üretimi**
+**Kod asistanı KULLANILIR:** kod yazımı, refactor, hata ayıklama, UI bileşenleri, test, içeriği JSON şemasına dönüştürme, **yapısal yer tutucu örnek veri üretimi**
 
-**Claude Code KULLANILMAZ:** dini içerik üretimi, ayet/hadis/dua metni yazımı, fıkhi hüküm belirleme veya yorumlama
+**Kod asistanı KULLANILMAZ:** dini içerik üretimi, ayet/hadis/dua metni yazımı, fıkhi hüküm belirleme veya yorumlama
 
 Örnek veri üretirken: yapı, soru sayısı ve tip dağılımı gerçekçi olur; ünite/ders **başlıkları** yapısal olduğu için gerçek olabilir; ama soru metni, cevap, açıklama ve her türlü dini metin `ÖRNEK` veya `TODO` yer tutucusudur ve dosya başında `ÖRNEK VERİ — GERÇEK DEĞİL` işaretiyle gelir.
 
-Kod AI'dan gelir, içerik insandan. Bu ayrım istisnasızdır ve CLAUDE.md'de kayıtlıdır.
+Kod yapay zekâ desteğiyle yazılabilir, dini içerik insandan gelir. Bu ayrım
+istisnasızdır ve `AGENTS.md` dosyasında kayıtlıdır.
 
 ---
 
 ## İLGİLİ DOSYALAR
 
-- `CLAUDE.md` — Claude Code'un proje kuralları (proje kökünde)
-- `Planlamalar/CLAUDE_CODE_PLAYBOOK.md` — faz faz promptlar + token verimliliği rehberi
+- `AGENTS.md` — aktif proje kuralları ve güncel durum (proje kökünde)
+- `Planlamalar/KARAR_GECMISI.md` — ayrıntılı tarihsel teknik kararlar
+- `Planlamalar/CODEX_PLAYBOOK.md` — faz faz promptlar + bağlam verimliliği rehberi
 - `Planlamalar/PROMPTS_EN.md` — sadece promptlar, İngilizce, kopyala-yapıştır
 - `Planlamalar/Yapılacaklar.txt` — güncel iş listesi

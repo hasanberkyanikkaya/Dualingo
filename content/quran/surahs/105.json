@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 105,
+    "nameArabic": "الفيل",
+    "nameTurkish": null,
+    "verseCount": 5,
+    "firstGlobalOrder": 6189
+  },
+  "verses": [
+    {
+      "key": "105:1",
+      "surahId": 105,
+      "numberInSurah": 1,
+      "globalOrder": 6189,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَـٰبِ ٱلْفِيلِ",
+      "translationText": "Görmedin mi Rabb'in fil sahiplerine ne yaptı?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "105:2",
+      "surahId": 105,
+      "numberInSurah": 2,
+      "globalOrder": 6190,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ يَجْعَلْ كَيْدَهُمْ فِى تَضْلِيلٍ",
+      "translationText": "Onların tuzaklarını boşa çıkarmadı mı?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "105:3",
+      "surahId": 105,
+      "numberInSurah": 3,
+      "globalOrder": 6191,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ",
+      "translationText": "Üzerlerine sürü sürü kuşlar gönderdi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "105:4",
+      "surahId": 105,
+      "numberInSurah": 4,
+      "globalOrder": 6192,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ",
+      "translationText": "Onlara çamurdan sertleşmiş taşlar atıyorlardı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "105:5",
+      "surahId": 105,
+      "numberInSurah": 5,
+      "globalOrder": 6193,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍۭ",
+      "translationText": "Ve onları, yenilmiş ekin yaprağı gibi yaptı.",
+      "translationFootnotes": []
+    }
+  ]
+}

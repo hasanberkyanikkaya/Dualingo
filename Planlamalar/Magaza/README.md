@@ -70,7 +70,8 @@ Bu maddeler kapanmadan v0.1 yayınlanamaz. Hiçbiri bu oturumda çözülemezdi.
 4. **Hata izleme yok.** `@sentry/react-native` kurulu değil (Faz 1.4). Yayında
    çöken bir uygulamadan haber alınamaz.
 5. **Dev build alınmadı** (Faz 1.3). Kalıcı ilerleme (MMKV), OTA ve bildirimler
-   gerçek cihazda **hiç doğrulanmadı**. Ayrıntı: `CLAUDE.md` → "Dev Build Borcu".
+   gerçek cihazda **hiç doğrulanmadı**. Ayrıntı:
+   `Planlamalar/KARAR_GECMISI.md` → "Dev Build Borcu".
    ⚠️ Bugünkü Expo Go'da ilerleme **uygulama kapanınca sıfırlanıyor**; bu hâliyle
    yayınlanamaz.
 6. **Mağaza hesapları açılmadı.** Apple Developer Program ($99/yıl) ve Google

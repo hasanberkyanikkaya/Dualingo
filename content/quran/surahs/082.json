@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 82,
+    "nameArabic": "الإنفطار",
+    "nameTurkish": null,
+    "verseCount": 19,
+    "firstGlobalOrder": 5830
+  },
+  "verses": [
+    {
+      "key": "82:1",
+      "surahId": 82,
+      "numberInSurah": 1,
+      "globalOrder": 5830,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "إِذَا ٱلسَّمَآءُ ٱنفَطَرَتْ",
+      "translationText": "Gök çatladığı vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:2",
+      "surahId": 82,
+      "numberInSurah": 2,
+      "globalOrder": 5831,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَإِذَا ٱلْكَوَاكِبُ ٱنتَثَرَتْ",
+      "translationText": "Yıldızlar döküldüğü vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:3",
+      "surahId": 82,
+      "numberInSurah": 3,
+      "globalOrder": 5832,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَإِذَا ٱلْبِحَارُ فُجِّرَتْ",
+      "translationText": "Denizler yarılıp akıtıldığı vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:4",
+      "surahId": 82,
+      "numberInSurah": 4,
+      "globalOrder": 5833,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَإِذَا ٱلْقُبُورُ بُعْثِرَتْ",
+      "translationText": "Kabirlerin içi dışına getirildiği vakit,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:5",
+      "surahId": 82,
+      "numberInSurah": 5,
+      "globalOrder": 5834,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "عَلِمَتْ نَفْسٌ مَّا قَدَّمَتْ وَأَخَّرَتْ",
+      "translationText": "Herkes neyi önünden gönderdiğini ve neyi geri bıraktığını bilir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:6",
+      "surahId": 82,
+      "numberInSurah": 6,
+      "globalOrder": 5835,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلْإِنسَـٰنُ مَا غَرَّكَ بِرَبِّكَ ٱلْكَرِيمِ",
+      "translationText": "Ey insan! İhsanı bol Rabb'ine karşı seni aldatan nedir?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:7",
+      "surahId": 82,
+      "numberInSurah": 7,
+      "globalOrder": 5836,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى خَلَقَكَ فَسَوَّىٰكَ فَعَدَلَكَ",
+      "translationText": "O Allah ki seni yarattı, seni düzgün yapılı kılıp ölçülü bir biçim verdi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:8",
+      "surahId": 82,
+      "numberInSurah": 8,
+      "globalOrder": 5837,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "فِىٓ أَىِّ صُورَةٍ مَّا شَآءَ رَكَّبَكَ",
+      "translationText": "Seni dilediği her hangi bir şekilde parçalardan oluşturdu.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:9",
+      "surahId": 82,
+      "numberInSurah": 9,
+      "globalOrder": 5838,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا بَلْ تُكَذِّبُونَ بِٱلدِّينِ",
+      "translationText": "Hayır hayır, siz cezayı yalanlıyorsunuz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:10",
+      "surahId": 82,
+      "numberInSurah": 10,
+      "globalOrder": 5839,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَإِنَّ عَلَيْكُمْ لَحَـٰفِظِينَ",
+      "translationText": "Oysa üzerinizde koruyucular var.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:11",
+      "surahId": 82,
+      "numberInSurah": 11,
+      "globalOrder": 5840,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "كِرَامًا كَـٰتِبِينَ",
+      "translationText": "Değerli yazıcılar",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:12",
+      "surahId": 82,
+      "numberInSurah": 12,
+      "globalOrder": 5841,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "يَعْلَمُونَ مَا تَفْعَلُونَ",
+      "translationText": "Onlar, siz her ne yaparsanız bilirler",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:13",
+      "surahId": 82,
+      "numberInSurah": 13,
+      "globalOrder": 5842,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ ٱلْأَبْرَارَ لَفِى نَعِيمٍ",
+      "translationText": "Kuşkusuz iyiler nimet içindedirler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:14",
+      "surahId": 82,
+      "numberInSurah": 14,
+      "globalOrder": 5843,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَإِنَّ ٱلْفُجَّارَ لَفِى جَحِيمٍ",
+      "translationText": "Kötüler de cehennemdedirler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:15",
+      "surahId": 82,
+      "numberInSurah": 15,
+      "globalOrder": 5844,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "يَصْلَوْنَهَا يَوْمَ ٱلدِّينِ",
+      "translationText": "Ceza günü ona girecekler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:16",
+      "surahId": 82,
+      "numberInSurah": 16,
+      "globalOrder": 5845,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَمَا هُمْ عَنْهَا بِغَآئِبِينَ",
+      "translationText": "Onlar o cehennemin gözünden kaçamazlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:17",
+      "surahId": 82,
+      "numberInSurah": 17,
+      "globalOrder": 5846,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا يَوْمُ ٱلدِّينِ",
+      "translationText": "Ceza gününün ne olduğunu sen bilir misin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:18",
+      "surahId": 82,
+      "numberInSurah": 18,
+      "globalOrder": 5847,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ مَآ أَدْرَىٰكَ مَا يَوْمُ ٱلدِّينِ",
+      "translationText": "Evet, bilir misin nedir acaba o ceza günü?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "82:19",
+      "surahId": 82,
+      "numberInSurah": 19,
+      "globalOrder": 5848,
+      "pageNumber": 587,
+      "juzNumber": 30,
+      "arabicText": "يَوْمَ لَا تَمْلِكُ نَفْسٌ لِّنَفْسٍ شَيْـًٔا ۖ وَٱلْأَمْرُ يَوْمَئِذٍ لِّلَّهِ",
+      "translationText": "O gün, hiç kimsenin başkası için hiçbir şeye sahip olamadığı gündür. O gün buyruk yalnız Allah'ındır.",
+      "translationFootnotes": []
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 97,
+    "nameArabic": "القدر",
+    "nameTurkish": null,
+    "verseCount": 5,
+    "firstGlobalOrder": 6126
+  },
+  "verses": [
+    {
+      "key": "97:1",
+      "surahId": 97,
+      "numberInSurah": 1,
+      "globalOrder": 6126,
+      "pageNumber": 598,
+      "juzNumber": 30,
+      "arabicText": "إِنَّآ أَنزَلْنَـٰهُ فِى لَيْلَةِ ٱلْقَدْرِ",
+      "translationText": "Biz o (Kur'ân)nu Kadir gecesinde indirdik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "97:2",
+      "surahId": 97,
+      "numberInSurah": 2,
+      "globalOrder": 6127,
+      "pageNumber": 598,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا لَيْلَةُ ٱلْقَدْرِ",
+      "translationText": "Kadir gecesinin ne olduğunu sen nereden bileceksin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "97:3",
+      "surahId": 97,
+      "numberInSurah": 3,
+      "globalOrder": 6128,
+      "pageNumber": 598,
+      "juzNumber": 30,
+      "arabicText": "لَيْلَةُ ٱلْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+      "translationText": "Kadir gecesi bin aydan daha hayırlıdır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "97:4",
+      "surahId": 97,
+      "numberInSurah": 4,
+      "globalOrder": 6129,
+      "pageNumber": 598,
+      "juzNumber": 30,
+      "arabicText": "تَنَزَّلُ ٱلْمَلَـٰٓئِكَةُ وَٱلرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍ",
+      "translationText": "Melekler ve Ruh (Cebrail veya Ruh adındaki melek) o gece Rablerinin izniyle, her iş için inerler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "97:5",
+      "surahId": 97,
+      "numberInSurah": 5,
+      "globalOrder": 6130,
+      "pageNumber": 598,
+      "juzNumber": 30,
+      "arabicText": "سَلَـٰمٌ هِىَ حَتَّىٰ مَطْلَعِ ٱلْفَجْرِ",
+      "translationText": "O gece, tanyeri ağarıncaya kadar süren bir selâmettir.",
+      "translationFootnotes": []
+    }
+  ]
+}

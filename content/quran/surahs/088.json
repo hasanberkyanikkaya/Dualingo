@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 88,
+    "nameArabic": "الغاشية",
+    "nameTurkish": null,
+    "verseCount": 26,
+    "firstGlobalOrder": 5968
+  },
+  "verses": [
+    {
+      "key": "88:1",
+      "surahId": 88,
+      "numberInSurah": 1,
+      "globalOrder": 5968,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "هَلْ أَتَىٰكَ حَدِيثُ ٱلْغَـٰشِيَةِ",
+      "translationText": "O her şeyi kuşatacak olan Kıyamet'in haberi sana geldi mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:2",
+      "surahId": 88,
+      "numberInSurah": 2,
+      "globalOrder": 5969,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وُجُوهٌ يَوْمَئِذٍ خَـٰشِعَةٌ",
+      "translationText": "Yüzler var ki, o gün eğilmiş, zillete düşmüştür.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:3",
+      "surahId": 88,
+      "numberInSurah": 3,
+      "globalOrder": 5970,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "عَامِلَةٌ نَّاصِبَةٌ",
+      "translationText": "Çalışmış, yorulmuştur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:4",
+      "surahId": 88,
+      "numberInSurah": 4,
+      "globalOrder": 5971,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "تَصْلَىٰ نَارًا حَامِيَةً",
+      "translationText": "Kızışmış bir ateşe girer.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:5",
+      "surahId": 88,
+      "numberInSurah": 5,
+      "globalOrder": 5972,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "تُسْقَىٰ مِنْ عَيْنٍ ءَانِيَةٍ",
+      "translationText": "Onlara kızgın bir kaynaktan su verilir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:6",
+      "surahId": 88,
+      "numberInSurah": 6,
+      "globalOrder": 5973,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "لَّيْسَ لَهُمْ طَعَامٌ إِلَّا مِن ضَرِيعٍ",
+      "translationText": "Onlar için kuru bir dikenden başka yiyecek de yoktur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:7",
+      "surahId": 88,
+      "numberInSurah": 7,
+      "globalOrder": 5974,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "لَّا يُسْمِنُ وَلَا يُغْنِى مِن جُوعٍ",
+      "translationText": "O da ne besler, ne de açlığı giderir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:8",
+      "surahId": 88,
+      "numberInSurah": 8,
+      "globalOrder": 5975,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وُجُوهٌ يَوْمَئِذٍ نَّاعِمَةٌ",
+      "translationText": "Yüzler de var ki, o gün nimetle mutludur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:9",
+      "surahId": 88,
+      "numberInSurah": 9,
+      "globalOrder": 5976,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "لِّسَعْيِهَا رَاضِيَةٌ",
+      "translationText": "Yaptığından hoşnuttur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:10",
+      "surahId": 88,
+      "numberInSurah": 10,
+      "globalOrder": 5977,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "فِى جَنَّةٍ عَالِيَةٍ",
+      "translationText": "Yüksek bir cennettedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:11",
+      "surahId": 88,
+      "numberInSurah": 11,
+      "globalOrder": 5978,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "لَّا تَسْمَعُ فِيهَا لَـٰغِيَةً",
+      "translationText": "Orada boş bir söz işitmez.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:12",
+      "surahId": 88,
+      "numberInSurah": 12,
+      "globalOrder": 5979,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "فِيهَا عَيْنٌ جَارِيَةٌ",
+      "translationText": "Orada akan bir kaynak,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:13",
+      "surahId": 88,
+      "numberInSurah": 13,
+      "globalOrder": 5980,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "فِيهَا سُرُرٌ مَّرْفُوعَةٌ",
+      "translationText": "Yükseltilmiş divanlar,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:14",
+      "surahId": 88,
+      "numberInSurah": 14,
+      "globalOrder": 5981,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَأَكْوَابٌ مَّوْضُوعَةٌ",
+      "translationText": "Konulmuş kadehler,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:15",
+      "surahId": 88,
+      "numberInSurah": 15,
+      "globalOrder": 5982,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَنَمَارِقُ مَصْفُوفَةٌ",
+      "translationText": "Dizilmiş koltuklar, yastıklar,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:16",
+      "surahId": 88,
+      "numberInSurah": 16,
+      "globalOrder": 5983,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَزَرَابِىُّ مَبْثُوثَةٌ",
+      "translationText": "Serilmiş halılar vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:17",
+      "surahId": 88,
+      "numberInSurah": 17,
+      "globalOrder": 5984,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "أَفَلَا يَنظُرُونَ إِلَى ٱلْإِبِلِ كَيْفَ خُلِقَتْ",
+      "translationText": "Bakmıyorlar mı o develere, nasıl yaratılmış?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:18",
+      "surahId": 88,
+      "numberInSurah": 18,
+      "globalOrder": 5985,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَإِلَى ٱلسَّمَآءِ كَيْفَ رُفِعَتْ",
+      "translationText": "Göğe bakmıyorlar mı, nasıl yükseltilmiş?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:19",
+      "surahId": 88,
+      "numberInSurah": 19,
+      "globalOrder": 5986,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَإِلَى ٱلْجِبَالِ كَيْفَ نُصِبَتْ",
+      "translationText": "Bakmıyorlar mı dağlara, nasıl dikilmiş?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:20",
+      "surahId": 88,
+      "numberInSurah": 20,
+      "globalOrder": 5987,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَإِلَى ٱلْأَرْضِ كَيْفَ سُطِحَتْ",
+      "translationText": "Yere bakmıyorlar mı, nasıl yayılmış?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:21",
+      "surahId": 88,
+      "numberInSurah": 21,
+      "globalOrder": 5988,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "فَذَكِّرْ إِنَّمَآ أَنتَ مُذَكِّرٌ",
+      "translationText": "Haydi öğüt ver; sen şimdi sırf bir öğütçüsün.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:22",
+      "surahId": 88,
+      "numberInSurah": 22,
+      "globalOrder": 5989,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "لَّسْتَ عَلَيْهِم بِمُصَيْطِرٍ",
+      "translationText": "Onların üzerinde bir zorba değilsin.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:23",
+      "surahId": 88,
+      "numberInSurah": 23,
+      "globalOrder": 5990,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا مَن تَوَلَّىٰ وَكَفَرَ",
+      "translationText": "Ancak kim yüz çevirir ve kâfir olursa,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:24",
+      "surahId": 88,
+      "numberInSurah": 24,
+      "globalOrder": 5991,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "فَيُعَذِّبُهُ ٱللَّهُ ٱلْعَذَابَ ٱلْأَكْبَرَ",
+      "translationText": "Allah ona en büyük azap ile azap edecek.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:25",
+      "surahId": 88,
+      "numberInSurah": 25,
+      "globalOrder": 5992,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ إِلَيْنَآ إِيَابَهُمْ",
+      "translationText": "Kuşkusuz onlar döne dolaşa bize gelecekler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "88:26",
+      "surahId": 88,
+      "numberInSurah": 26,
+      "globalOrder": 5993,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ إِنَّ عَلَيْنَا حِسَابَهُم",
+      "translationText": "Sonra da bize hesap verecekler.",
+      "translationFootnotes": []
+    }
+  ]
+}

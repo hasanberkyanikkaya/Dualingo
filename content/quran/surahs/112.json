@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 112,
+    "nameArabic": "الإخلاص",
+    "nameTurkish": null,
+    "verseCount": 4,
+    "firstGlobalOrder": 6222
+  },
+  "verses": [
+    {
+      "key": "112:1",
+      "surahId": 112,
+      "numberInSurah": 1,
+      "globalOrder": 6222,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "قُلْ هُوَ ٱللَّهُ أَحَدٌ",
+      "translationText": "De ki; O Allah bir tektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "112:2",
+      "surahId": 112,
+      "numberInSurah": 2,
+      "globalOrder": 6223,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "ٱللَّهُ ٱلصَّمَدُ",
+      "translationText": "Allah eksiksiz, sameddir (Bütün varlıklar O'na muhtaç, fakat O, hiç bir şeye muhtaç değildir",
+      "translationFootnotes": []
+    },
+    {
+      "key": "112:3",
+      "surahId": 112,
+      "numberInSurah": 3,
+      "globalOrder": 6224,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "translationText": "Doğurmadı ve doğurulmadı",
+      "translationFootnotes": []
+    },
+    {
+      "key": "112:4",
+      "surahId": 112,
+      "numberInSurah": 4,
+      "globalOrder": 6225,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ",
+      "translationText": "O 'na bir denk de olmadı.",
+      "translationFootnotes": []
+    }
+  ]
+}

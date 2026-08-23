@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 102,
+    "nameArabic": "التكاثر",
+    "nameTurkish": null,
+    "verseCount": 8,
+    "firstGlobalOrder": 6169
+  },
+  "verses": [
+    {
+      "key": "102:1",
+      "surahId": 102,
+      "numberInSurah": 1,
+      "globalOrder": 6169,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "أَلْهَىٰكُمُ ٱلتَّكَاثُرُ",
+      "translationText": "Çoklukla övünmek, sizi kabirlere varıncaya kadar oyaladı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:2",
+      "surahId": 102,
+      "numberInSurah": 2,
+      "globalOrder": 6170,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "حَتَّىٰ زُرْتُمُ ٱلْمَقَابِرَ",
+      "translationText": "Çoklukla övünmek, sizi kabirlere varıncaya kadar oyaladı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:3",
+      "surahId": 102,
+      "numberInSurah": 3,
+      "globalOrder": 6171,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا سَوْفَ تَعْلَمُونَ",
+      "translationText": "Hayır! Yakında bileceksiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:4",
+      "surahId": 102,
+      "numberInSurah": 4,
+      "globalOrder": 6172,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ",
+      "translationText": "Yine hayır! Yakında bileceksiniz (hatanızı).",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:5",
+      "surahId": 102,
+      "numberInSurah": 5,
+      "globalOrder": 6173,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا لَوْ تَعْلَمُونَ عِلْمَ ٱلْيَقِينِ",
+      "translationText": "Hayır! Eğer kesin bilgi ile bilseniz, elbette cehennemi görürsünüz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:6",
+      "surahId": 102,
+      "numberInSurah": 6,
+      "globalOrder": 6174,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "لَتَرَوُنَّ ٱلْجَحِيمَ",
+      "translationText": "Hayır! Eğer kesin bilgi ile bilseniz, elbette cehennemi görürsünüz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:7",
+      "surahId": 102,
+      "numberInSurah": 7,
+      "globalOrder": 6175,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ لَتَرَوُنَّهَا عَيْنَ ٱلْيَقِينِ",
+      "translationText": "Sonra, yemin olsun ki, cehennemi yakin gözüyle göreceksiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "102:8",
+      "surahId": 102,
+      "numberInSurah": 8,
+      "globalOrder": 6176,
+      "pageNumber": 600,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ لَتُسْـَٔلُنَّ يَوْمَئِذٍ عَنِ ٱلنَّعِيمِ",
+      "translationText": "Sonra, yemin olsun ki, o gün (size verilen) her nimetten sorulacaksınız",
+      "translationFootnotes": []
+    }
+  ]
+}

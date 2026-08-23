@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 106,
+    "nameArabic": "قريش",
+    "nameTurkish": null,
+    "verseCount": 4,
+    "firstGlobalOrder": 6194
+  },
+  "verses": [
+    {
+      "key": "106:1",
+      "surahId": 106,
+      "numberInSurah": 1,
+      "globalOrder": 6194,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "لِإِيلَـٰفِ قُرَيْشٍ",
+      "translationText": "Kureyş'in ilâfı (güven ve barış andlaşmalarından faydalanmalarını sağlamak) için.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "106:2",
+      "surahId": 106,
+      "numberInSurah": 2,
+      "globalOrder": 6195,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "إِۦلَـٰفِهِمْ رِحْلَةَ ٱلشِّتَآءِ وَٱلصَّيْفِ",
+      "translationText": "Kış ve yaz seferlerinde (faydalandıkları andlaşmaların) kadrini bilmiş olmaları için.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "106:3",
+      "surahId": 106,
+      "numberInSurah": 3,
+      "globalOrder": 6196,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "فَلْيَعْبُدُوا۟ رَبَّ هَـٰذَا ٱلْبَيْتِ",
+      "translationText": "Bu Beyt (Kâbe)nin Rabbine kulluk etsinler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "106:4",
+      "surahId": 106,
+      "numberInSurah": 4,
+      "globalOrder": 6197,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِىٓ أَطْعَمَهُم مِّن جُوعٍ وَءَامَنَهُم مِّنْ خَوْفٍۭ",
+      "translationText": "O, kendilerini açlıktan kurtararak beslemiştir ve her tehlikeye karşı onlara emniyet vermiştir.",
+      "translationFootnotes": []
+    }
+  ]
+}

@@ -396,11 +396,39 @@ export const strings = {
       'Yön cihazın pusula sensöründen okunur; yakındaki metal ve elektronik cihazlar sonucu etkileyebilir.',
   },
 
-  /** Kur'an sekmesi — ilk yayında boş */
+  /** Kur'an okuma alanı (Faz 5.2). Dini metin değil, yalnız arayüz dili. */
   quran: {
     title: "Kur'an",
-    comingSoonTitle: 'Okuma takibi yakında',
-    comingSoonBody: 'Okuma hedefi ve ilerleme takibi sonraki güncellemelerde gelecek.',
+    subtitle: 'Gece sakinliğinde, kaldığın yerden devam et.',
+    continueTitle: 'Kaldığın yer',
+    continueBody: '{sure}. sure · {ayet}. ayet · {sayfa}. sayfa',
+    continueAction: 'Okumaya devam et',
+    startTitle: 'Okumaya başla',
+    startBody: 'Bir sure seç veya ilk sayfadan başla.',
+    startAction: 'İlk sayfayı aç',
+    chooseSurah: 'Sure seç',
+    changeSurah: 'Sureyi değiştir',
+    surahNumber: '{number}. sure',
+    surahPickerTitle: 'Sureler',
+    surahPickerBody: 'Okumaya başlamak istediğin sureyi seç.',
+    readerTitle: 'Okuyucu',
+    page: '{number}. sayfa',
+    juz: '{number}. cüz',
+    juzRange: '{first}–{last}. cüz',
+    verse: '{number}. ayet',
+    translation: 'Meal',
+    fontSize: 'Yazı boyutu',
+    fontSmall: 'Küçük',
+    fontMedium: 'Orta',
+    fontLarge: 'Büyük',
+    previousPage: 'Önceki',
+    nextPage: 'Sonraki',
+    firstPage: 'İlk sayfadasın',
+    lastPage: 'Son sayfadasın',
+    contentUnavailable: 'Bu sayfa şu anda açılamadı.',
+    developmentNotice: 'Geliştirme içeriği · yayın için henüz onaylı değil',
+    sourceAttribution: 'Kur’an metni: Tanzil Project · Meal: Elmalılı Hamdi Yazır',
+    openSource: 'Kaynak bilgisini aç',
   },
 
   /** Hata ve boş durumlar */
@@ -492,6 +520,11 @@ export const strings = {
     qiblaDial: 'Kıble pusulası. Kıble yönü {derece} derece.',
     /** Hizalanma anons metni — yalnızca durum DEĞİŞTİĞİNDE, bir kez okunur. */
     qiblaAligned: 'Kâbe yönüne hizalandın',
+    quranSurahOption: '{number}. sure, {name}',
+    quranPage: '{page}. sayfa, {juz}',
+    quranVerse: '{sure}. sure, {ayet}. ayet',
+    quranPreviousPage: 'Önceki sayfaya geç',
+    quranNextPage: 'Sonraki sayfaya geç',
   },
 } as const;
 

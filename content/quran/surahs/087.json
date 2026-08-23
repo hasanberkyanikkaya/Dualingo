@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 87,
+    "nameArabic": "الأعلى",
+    "nameTurkish": null,
+    "verseCount": 19,
+    "firstGlobalOrder": 5949
+  },
+  "verses": [
+    {
+      "key": "87:1",
+      "surahId": 87,
+      "numberInSurah": 1,
+      "globalOrder": 5949,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "سَبِّحِ ٱسْمَ رَبِّكَ ٱلْأَعْلَى",
+      "translationText": "Rabbinin yüce adını tesbih et.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:2",
+      "surahId": 87,
+      "numberInSurah": 2,
+      "globalOrder": 5950,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى خَلَقَ فَسَوَّىٰ",
+      "translationText": "Yaratıp düzene koyan O'dur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:3",
+      "surahId": 87,
+      "numberInSurah": 3,
+      "globalOrder": 5951,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّذِى قَدَّرَ فَهَدَىٰ",
+      "translationText": "Takdir edip hidayeti gösteren O'dur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:4",
+      "surahId": 87,
+      "numberInSurah": 4,
+      "globalOrder": 5952,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّذِىٓ أَخْرَجَ ٱلْمَرْعَىٰ",
+      "translationText": "Otlağı çıkaran,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:5",
+      "surahId": 87,
+      "numberInSurah": 5,
+      "globalOrder": 5953,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "فَجَعَلَهُۥ غُثَآءً أَحْوَىٰ",
+      "translationText": "Sonra da onu karamsı bir sel köpüğü haline getiren O'dur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:6",
+      "surahId": 87,
+      "numberInSurah": 6,
+      "globalOrder": 5954,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "سَنُقْرِئُكَ فَلَا تَنسَىٰٓ",
+      "translationText": "Bundan böyle sana Kur'ân'ı okutacağız da unutmayacaksın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:7",
+      "surahId": 87,
+      "numberInSurah": 7,
+      "globalOrder": 5955,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا مَا شَآءَ ٱللَّهُ ۚ إِنَّهُۥ يَعْلَمُ ٱلْجَهْرَ وَمَا يَخْفَىٰ",
+      "translationText": "Yalnız Allah'ın dilediği başkadır. Çünkü o açığı da bilir, gizliyi de.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:8",
+      "surahId": 87,
+      "numberInSurah": 8,
+      "globalOrder": 5956,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَنُيَسِّرُكَ لِلْيُسْرَىٰ",
+      "translationText": "Seni en kolay yola muvaffak kılacağız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:9",
+      "surahId": 87,
+      "numberInSurah": 9,
+      "globalOrder": 5957,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "فَذَكِّرْ إِن نَّفَعَتِ ٱلذِّكْرَىٰ",
+      "translationText": "Onun için öğüt ver, eğer öğüt fayda verirse.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:10",
+      "surahId": 87,
+      "numberInSurah": 10,
+      "globalOrder": 5958,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "سَيَذَّكَّرُ مَن يَخْشَىٰ",
+      "translationText": "Saygısı olan öğüt alacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:11",
+      "surahId": 87,
+      "numberInSurah": 11,
+      "globalOrder": 5959,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَيَتَجَنَّبُهَا ٱلْأَشْقَى",
+      "translationText": "Pek bedbaht olan da ondan kaçınacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:12",
+      "surahId": 87,
+      "numberInSurah": 12,
+      "globalOrder": 5960,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى يَصْلَى ٱلنَّارَ ٱلْكُبْرَىٰ",
+      "translationText": "O ki, en büyük ateşe girecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:13",
+      "surahId": 87,
+      "numberInSurah": 13,
+      "globalOrder": 5961,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ لَا يَمُوتُ فِيهَا وَلَا يَحْيَىٰ",
+      "translationText": "Sonra ne ölecek onda, ne de hayat bulacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:14",
+      "surahId": 87,
+      "numberInSurah": 14,
+      "globalOrder": 5962,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "قَدْ أَفْلَحَ مَن تَزَكَّىٰ",
+      "translationText": "Doğrusu felah buldu (günahtan) temizlenen.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:15",
+      "surahId": 87,
+      "numberInSurah": 15,
+      "globalOrder": 5963,
+      "pageNumber": 591,
+      "juzNumber": 30,
+      "arabicText": "وَذَكَرَ ٱسْمَ رَبِّهِۦ فَصَلَّىٰ",
+      "translationText": "Rabbinin adını anıp namaz kılan.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:16",
+      "surahId": 87,
+      "numberInSurah": 16,
+      "globalOrder": 5964,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "بَلْ تُؤْثِرُونَ ٱلْحَيَوٰةَ ٱلدُّنْيَا",
+      "translationText": "Fakat siz dünya hayatını tercih ediyorsunuz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:17",
+      "surahId": 87,
+      "numberInSurah": 17,
+      "globalOrder": 5965,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْـَٔاخِرَةُ خَيْرٌ وَأَبْقَىٰٓ",
+      "translationText": "Oysa ahiret daha hayırlı ve daha kalıcıdır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:18",
+      "surahId": 87,
+      "numberInSurah": 18,
+      "globalOrder": 5966,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ هَـٰذَا لَفِى ٱلصُّحُفِ ٱلْأُولَىٰ",
+      "translationText": "Kuşkusuz bu ilk sahifelerde vardır,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "87:19",
+      "surahId": 87,
+      "numberInSurah": 19,
+      "globalOrder": 5967,
+      "pageNumber": 592,
+      "juzNumber": 30,
+      "arabicText": "صُحُفِ إِبْرَٰهِيمَ وَمُوسَىٰ",
+      "translationText": "İbrahim ve Musa'nın sahifelerinde.",
+      "translationFootnotes": []
+    }
+  ]
+}

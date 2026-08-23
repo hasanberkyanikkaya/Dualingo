@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 93,
+    "nameArabic": "الضحى",
+    "nameTurkish": null,
+    "verseCount": 11,
+    "firstGlobalOrder": 6080
+  },
+  "verses": [
+    {
+      "key": "93:1",
+      "surahId": 93,
+      "numberInSurah": 1,
+      "globalOrder": 6080,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَٱلضُّحَىٰ",
+      "translationText": "Andolsun kuşluk vaktine.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:2",
+      "surahId": 93,
+      "numberInSurah": 2,
+      "globalOrder": 6081,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّيْلِ إِذَا سَجَىٰ",
+      "translationText": "Ve sakinleştiği zaman geceye ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:3",
+      "surahId": 93,
+      "numberInSurah": 3,
+      "globalOrder": 6082,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
+      "translationText": "Rabbin seni bırakmadı ve darılmadı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:4",
+      "surahId": 93,
+      "numberInSurah": 4,
+      "globalOrder": 6083,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَلَلْـَٔاخِرَةُ خَيْرٌ لَّكَ مِنَ ٱلْأُولَىٰ",
+      "translationText": "Ahiret senin için dünyadan iyi olacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:5",
+      "surahId": 93,
+      "numberInSurah": 5,
+      "globalOrder": 6084,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰٓ",
+      "translationText": "Rabbın sana verecek ve sen hoşnut olacaksın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:6",
+      "surahId": 93,
+      "numberInSurah": 6,
+      "globalOrder": 6085,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ يَجِدْكَ يَتِيمًا فَـَٔاوَىٰ",
+      "translationText": "O seni yetim bulup da barındırmadı mı?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:7",
+      "surahId": 93,
+      "numberInSurah": 7,
+      "globalOrder": 6086,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَوَجَدَكَ ضَآلًّا فَهَدَىٰ",
+      "translationText": "Seni yol bilmez bulup yola iletmedi mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:8",
+      "surahId": 93,
+      "numberInSurah": 8,
+      "globalOrder": 6087,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَوَجَدَكَ عَآئِلًا فَأَغْنَىٰ",
+      "translationText": "Seni yoksul bulup zengin etmedi mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:9",
+      "surahId": 93,
+      "numberInSurah": 9,
+      "globalOrder": 6088,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "فَأَمَّا ٱلْيَتِيمَ فَلَا تَقْهَرْ",
+      "translationText": "Öyleyse sakın yetimi ezme.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:10",
+      "surahId": 93,
+      "numberInSurah": 10,
+      "globalOrder": 6089,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّا ٱلسَّآئِلَ فَلَا تَنْهَرْ",
+      "translationText": "Dilenciyi de azarlama.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "93:11",
+      "surahId": 93,
+      "numberInSurah": 11,
+      "globalOrder": 6090,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+      "translationText": "Fakat Rabbinin nimetini anlat da anlat.",
+      "translationFootnotes": []
+    }
+  ]
+}

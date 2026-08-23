@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 92,
+    "nameArabic": "الليل",
+    "nameTurkish": null,
+    "verseCount": 21,
+    "firstGlobalOrder": 6059
+  },
+  "verses": [
+    {
+      "key": "92:1",
+      "surahId": 92,
+      "numberInSurah": 1,
+      "globalOrder": 6059,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّيْلِ إِذَا يَغْشَىٰ",
+      "translationText": "Örttüğü zaman geceye,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:2",
+      "surahId": 92,
+      "numberInSurah": 2,
+      "globalOrder": 6060,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلنَّهَارِ إِذَا تَجَلَّىٰ",
+      "translationText": "Açıldığı zaman gündüze,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:3",
+      "surahId": 92,
+      "numberInSurah": 3,
+      "globalOrder": 6061,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَمَا خَلَقَ ٱلذَّكَرَ وَٱلْأُنثَىٰٓ",
+      "translationText": "Erkeği ve dişiyi yaratana and olsun ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:4",
+      "surahId": 92,
+      "numberInSurah": 4,
+      "globalOrder": 6062,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ سَعْيَكُمْ لَشَتَّىٰ",
+      "translationText": "Gerçekten sizin işiniz başka başkadır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:5",
+      "surahId": 92,
+      "numberInSurah": 5,
+      "globalOrder": 6063,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَأَمَّا مَنْ أَعْطَىٰ وَٱتَّقَىٰ",
+      "translationText": "Bundan böyle her kim malını hayır için verir ve korunursa,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:6",
+      "surahId": 92,
+      "numberInSurah": 6,
+      "globalOrder": 6064,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَصَدَّقَ بِٱلْحُسْنَىٰ",
+      "translationText": "Ve en güzel olanı doğrularsa,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:7",
+      "surahId": 92,
+      "numberInSurah": 7,
+      "globalOrder": 6065,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَسَنُيَسِّرُهُۥ لِلْيُسْرَىٰ",
+      "translationText": "Biz onu en kolay yola muvaffak kılacağız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:8",
+      "surahId": 92,
+      "numberInSurah": 8,
+      "globalOrder": 6066,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّا مَنۢ بَخِلَ وَٱسْتَغْنَىٰ",
+      "translationText": "Kim de cimrilik eder ve kendini hiçbir şeye ihtiyacı kalmamış görür.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:9",
+      "surahId": 92,
+      "numberInSurah": 9,
+      "globalOrder": 6067,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَكَذَّبَ بِٱلْحُسْنَىٰ",
+      "translationText": "Ve en güzeli de yalanlarsa,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:10",
+      "surahId": 92,
+      "numberInSurah": 10,
+      "globalOrder": 6068,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَسَنُيَسِّرُهُۥ لِلْعُسْرَىٰ",
+      "translationText": "Onu da en zor yola hazırlarız.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:11",
+      "surahId": 92,
+      "numberInSurah": 11,
+      "globalOrder": 6069,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَمَا يُغْنِى عَنْهُ مَالُهُۥٓ إِذَا تَرَدَّىٰٓ",
+      "translationText": "Çukura yuvarlandığı zaman malı onu kurtaramayacak.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:12",
+      "surahId": 92,
+      "numberInSurah": 12,
+      "globalOrder": 6070,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ عَلَيْنَا لَلْهُدَىٰ",
+      "translationText": "Doğru yolu göstermek muhakkak bize aittir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:13",
+      "surahId": 92,
+      "numberInSurah": 13,
+      "globalOrder": 6071,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَإِنَّ لَنَا لَلْـَٔاخِرَةَ وَٱلْأُولَىٰ",
+      "translationText": "Kuşkusuz ahiret de dünya da bizimdir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:14",
+      "surahId": 92,
+      "numberInSurah": 14,
+      "globalOrder": 6072,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَأَنذَرْتُكُمْ نَارًا تَلَظَّىٰ",
+      "translationText": "Ben sizi köpürdükçe köpüren bir ateşe karşı uyardım.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:15",
+      "surahId": 92,
+      "numberInSurah": 15,
+      "globalOrder": 6073,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "لَا يَصْلَىٰهَآ إِلَّا ٱلْأَشْقَى",
+      "translationText": "Ona ancak en azgın olan girer.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:16",
+      "surahId": 92,
+      "numberInSurah": 16,
+      "globalOrder": 6074,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى كَذَّبَ وَتَوَلَّىٰ",
+      "translationText": "Öyle azgın ki, yalanlamış ve sırtını dönmüştür.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:17",
+      "surahId": 92,
+      "numberInSurah": 17,
+      "globalOrder": 6075,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَسَيُجَنَّبُهَا ٱلْأَتْقَى",
+      "translationText": "En çok korunan ise ondan uzaklaştırılacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:18",
+      "surahId": 92,
+      "numberInSurah": 18,
+      "globalOrder": 6076,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى يُؤْتِى مَالَهُۥ يَتَزَكَّىٰ",
+      "translationText": "O ki, Allah yolunda malını verir, temizlenir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:19",
+      "surahId": 92,
+      "numberInSurah": 19,
+      "globalOrder": 6077,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَمَا لِأَحَدٍ عِندَهُۥ مِن نِّعْمَةٍ تُجْزَىٰٓ",
+      "translationText": "Onun yanında, başka bir kimse için karşılığı verilecek hiçbir nimet yoktur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:20",
+      "surahId": 92,
+      "numberInSurah": 20,
+      "globalOrder": 6078,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا ٱبْتِغَآءَ وَجْهِ رَبِّهِ ٱلْأَعْلَىٰ",
+      "translationText": "O ancak yüce Rabbinin rızasını aramak için verir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "92:21",
+      "surahId": 92,
+      "numberInSurah": 21,
+      "globalOrder": 6079,
+      "pageNumber": 596,
+      "juzNumber": 30,
+      "arabicText": "وَلَسَوْفَ يَرْضَىٰ",
+      "translationText": "Elbette yakında kendisi de hoşnut olacaktır.",
+      "translationFootnotes": []
+    }
+  ]
+}

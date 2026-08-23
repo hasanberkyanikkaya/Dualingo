@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 91,
+    "nameArabic": "الشمس",
+    "nameTurkish": null,
+    "verseCount": 15,
+    "firstGlobalOrder": 6044
+  },
+  "verses": [
+    {
+      "key": "91:1",
+      "surahId": 91,
+      "numberInSurah": 1,
+      "globalOrder": 6044,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلشَّمْسِ وَضُحَىٰهَا",
+      "translationText": "Güneş'e ve onun parıltısına,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:2",
+      "surahId": 91,
+      "numberInSurah": 2,
+      "globalOrder": 6045,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْقَمَرِ إِذَا تَلَىٰهَا",
+      "translationText": "Güneş'in ardından gelen Ay'a,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:3",
+      "surahId": 91,
+      "numberInSurah": 3,
+      "globalOrder": 6046,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلنَّهَارِ إِذَا جَلَّىٰهَا",
+      "translationText": "Güneş'i açıp ortaya çıkaran gündüze,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:4",
+      "surahId": 91,
+      "numberInSurah": 4,
+      "globalOrder": 6047,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّيْلِ إِذَا يَغْشَىٰهَا",
+      "translationText": "Onu örten geceye,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:5",
+      "surahId": 91,
+      "numberInSurah": 5,
+      "globalOrder": 6048,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلسَّمَآءِ وَمَا بَنَىٰهَا",
+      "translationText": "Göğe ve onu bina edene,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:6",
+      "surahId": 91,
+      "numberInSurah": 6,
+      "globalOrder": 6049,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْأَرْضِ وَمَا طَحَىٰهَا",
+      "translationText": "Yere ve onu döşeyene,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:7",
+      "surahId": 91,
+      "numberInSurah": 7,
+      "globalOrder": 6050,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَنَفْسٍ وَمَا سَوَّىٰهَا",
+      "translationText": "Nefse ve onu biçimlendirene,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:8",
+      "surahId": 91,
+      "numberInSurah": 8,
+      "globalOrder": 6051,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَأَلْهَمَهَا فُجُورَهَا وَتَقْوَىٰهَا",
+      "translationText": "Sonra da ona kötülük ve takva kabiliyetini verene yemin olsun ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:9",
+      "surahId": 91,
+      "numberInSurah": 9,
+      "globalOrder": 6052,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "قَدْ أَفْلَحَ مَن زَكَّىٰهَا",
+      "translationText": "Elbette nefsini temizleyip parlatan kurtulmuştur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:10",
+      "surahId": 91,
+      "numberInSurah": 10,
+      "globalOrder": 6053,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَقَدْ خَابَ مَن دَسَّىٰهَا",
+      "translationText": "Onu kirletip gömen de ziyan etmiştir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:11",
+      "surahId": 91,
+      "numberInSurah": 11,
+      "globalOrder": 6054,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "كَذَّبَتْ ثَمُودُ بِطَغْوَىٰهَآ",
+      "translationText": "Semud, azgınlığıyla Hakk'ı yalanladı,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:12",
+      "surahId": 91,
+      "numberInSurah": 12,
+      "globalOrder": 6055,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "إِذِ ٱنۢبَعَثَ أَشْقَىٰهَا",
+      "translationText": "En azgınları ileri atılınca,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:13",
+      "surahId": 91,
+      "numberInSurah": 13,
+      "globalOrder": 6056,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَقَالَ لَهُمْ رَسُولُ ٱللَّهِ نَاقَةَ ٱللَّهِ وَسُقْيَـٰهَا",
+      "translationText": "Allah'ın Rasulü (Salih peygamber) onlara: \"Allah'ın devesini ve onun su nöbetini gözetin.\" demişti.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:14",
+      "surahId": 91,
+      "numberInSurah": 14,
+      "globalOrder": 6057,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "فَكَذَّبُوهُ فَعَقَرُوهَا فَدَمْدَمَ عَلَيْهِمْ رَبُّهُم بِذَنۢبِهِمْ فَسَوَّىٰهَا",
+      "translationText": "Fakat onlar peygamberi yalanlayıp deveyi kestiler. Rableri de günahlarını başlarına geçiriverdi de orayı dümdüz etti.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "91:15",
+      "surahId": 91,
+      "numberInSurah": 15,
+      "globalOrder": 6058,
+      "pageNumber": 595,
+      "juzNumber": 30,
+      "arabicText": "وَلَا يَخَافُ عُقْبَـٰهَا",
+      "translationText": "Öyle ya, Allah bu işin sonundan korkacak değil ya.",
+      "translationFootnotes": []
+    }
+  ]
+}

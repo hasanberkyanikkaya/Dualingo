@@ -1,4 +1,4 @@
-# Claude Code Prompt Kılavuzu — v2.0
+# Codex Oturum Kılavuzu — v3.0
 
 Faz faz kopyala-yapıştır promptlar + token verimliliği rehberi.
 
@@ -10,11 +10,14 @@ Faz faz kopyala-yapıştır promptlar + token verimliliği rehberi.
 
 # BÖLÜM 1 — Token Verimliliği (Önce Bunu Oku)
 
-Claude Code'un her oturumda sınırlı bir "hafızası" (context window) var. Doldukça hem kalite düşer hem kotanı hızlı tüketirsin. Aşağıdakiler pratikte en çok fark yaratan alışkanlıklar.
+Codex görevlerinin sınırlı bir bağlam penceresi vardır. Gereksiz dosya ve tarihçe
+yüklemek kaliteyi düşürür. Aşağıdakiler pratikte en çok fark yaratan alışkanlıklardır.
 
-## 1.1 En büyük tasarruf: CLAUDE.md
+## 1.1 En büyük tasarruf: AGENTS.md
 
-Projenin kurallarını her prompt'ta tekrar anlatmak, aynı bilgiyi defalarca ödemek demektir. CLAUDE.md bir kere okunur ve orada durur.
+Projenin kurallarını her prompt'ta tekrar anlatma. Codex kökteki kısa
+`AGENTS.md` dosyasını otomatik okur; ayrıntılı geçmişi yalnız gerektiğinde
+`Planlamalar/KARAR_GECMISI.md` içindeki ilgili başlıktan yükler.
 
 ❌ "React Native + Expo kullanıyoruz, TypeScript ile, klasör yapımız şöyle... şimdi bir buton yap"
 ✅ "Bir birincil buton bileşeni yap"
@@ -44,7 +47,8 @@ Karmaşık bir özellikte önce plan iste, planı onayla, sonra parça parça uy
 
 ## 1.6 İçerik klasörünü okutma
 
-`/content` altındaki JSON dosyaları büyür. Claude'un hepsini okumasına asla izin verme.
+`/content` altındaki JSON dosyaları büyür. Codex'in hepsini gereksiz yere
+okumasına izin verme.
 
 ❌ "@content klasörünü incele"
 ✅ "@content/lessons/namaz-01.json şemasına bakarak yeni bir ders dosyası oluştur"
@@ -79,11 +83,12 @@ Sıra: **önce öğrenme platformu.** İlk yayın (v0.1) sadece öğrenme modül
 
 ## FAZ 0 — Kurulum ve Şema (1 hafta)
 
-> İçerik yazımı artık bu fazı bloklamıyor. Claude yapısal örnek veri üretecek,
+> İçerik yazımı artık bu fazı bloklamıyor. Kod asistanı yalnız açıkça işaretli
+> yapısal örnek veri üretecek,
 > sen sonra elle gerçek içerikle değiştireceksin.
 
 ### Oturum 0.1 — Proje kurulumu ✅ TAMAMLANDI
-Expo iskeleti kuruldu, klasör yapısı CLAUDE.md'ye uygun hâle getirildi.
+Expo iskeleti kuruldu, klasör yapısı aktif proje kurallarına uygun hâle getirildi.
 
 ### Oturum 0.2 — Bağımlılıklar ✅ TAMAMLANDI
 Yığın kuruldu, `expo-doctor` 20/20 geçiyor.
@@ -441,15 +446,16 @@ expo-sensors ile kıble yönü pusulası:
 
 ## FAZ 5 — Kur'an Modülü (5-6 hafta) → v0.4
 
-> ⚠️ Bu faza başlamadan önce meal telif durumunu netleştirmiş olmalısın.
+> ⚠️ Geliştirmede manifestte yayın dışı işaretlenen içerik kullanılabilir. Meal
+> yeniden dağıtım izni ile uzman/kurul onayı yayın öncesinde zorunludur.
 
 ### Oturum 5.1 — Veri yapısı
 ```
 Kur'an veri katmanı planı çıkar:
 - Sure ve ayet veri modeli
-- Arapça metin + meal + transkripsiyon alanları
+- Arapça metin + meal alanları; transkripsiyon ertelendi
 - Yer imi (kaldığın yer) kaydı
-- Okuma geçmişi (hangi gün ne kadar)
+- Okuma geçmişi (yerel gün başına benzersiz ayet sayısı)
 ```
 
 ### Oturum 5.2 — Okuma ekranı
@@ -531,4 +537,4 @@ Oturum sonunda:
 8. [ ] Uygulamayı çalıştırıp test ettim mi?
 9. [ ] `npx tsc --noEmit` temiz mi?
 10. [ ] Git commit attım mı?
-11. [ ] CLAUDE.md'deki "Şu Anki Faz" bölümünü güncellemem gerekiyor mu?
+11. [ ] `AGENTS.md` içindeki “Şu anki durum” ve açık borçlar güncellenmeli mi?

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 104,
+    "nameArabic": "الهمزة",
+    "nameTurkish": null,
+    "verseCount": 9,
+    "firstGlobalOrder": 6180
+  },
+  "verses": [
+    {
+      "key": "104:1",
+      "surahId": 104,
+      "numberInSurah": 1,
+      "globalOrder": 6180,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ",
+      "translationText": "Mal toplayıp onu tekrar tekrar sayan, insanları arkadan çekiştirip, kaş göz hareketleriyle alay edenlerin (hümeze ve lümezenin) vay haline!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:2",
+      "surahId": 104,
+      "numberInSurah": 2,
+      "globalOrder": 6181,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِى جَمَعَ مَالًا وَعَدَّدَهُۥ",
+      "translationText": "Mal toplayıp onu tekrar tekrar sayan, insanları arkadan çekiştirip, kaş göz hareketleriyle alay edenlerin (hümeze ve lümezenin) vay haline!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:3",
+      "surahId": 104,
+      "numberInSurah": 3,
+      "globalOrder": 6182,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "يَحْسَبُ أَنَّ مَالَهُۥٓ أَخْلَدَهُۥ",
+      "translationText": "Malının, kendisini ebedi yaşatacağını sanır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:4",
+      "surahId": 104,
+      "numberInSurah": 4,
+      "globalOrder": 6183,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا ۖ لَيُنۢبَذَنَّ فِى ٱلْحُطَمَةِ",
+      "translationText": "Hayır, andolsun ki, o hutame (cehennem)ye atılacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:5",
+      "surahId": 104,
+      "numberInSurah": 5,
+      "globalOrder": 6184,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا ٱلْحُطَمَةُ",
+      "translationText": "Hutame'nin ne olduğunu bilir misin?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:6",
+      "surahId": 104,
+      "numberInSurah": 6,
+      "globalOrder": 6185,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "نَارُ ٱللَّهِ ٱلْمُوقَدَةُ",
+      "translationText": "O, kalplerin içine işleyecek, Allah'ın tutuşturulmuş bir ateşidir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:7",
+      "surahId": 104,
+      "numberInSurah": 7,
+      "globalOrder": 6186,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّتِى تَطَّلِعُ عَلَى ٱلْأَفْـِٔدَةِ",
+      "translationText": "O, kalplerin içine işleyecek, Allah'ın tutuşturulmuş bir ateşidir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:8",
+      "surahId": 104,
+      "numberInSurah": 8,
+      "globalOrder": 6187,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "إِنَّهَا عَلَيْهِم مُّؤْصَدَةٌ",
+      "translationText": "Cehennemlikler, dikilmiş direklere bağlı oldukları halde, o ateşin kapıları üzerlerine kapatılacaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "104:9",
+      "surahId": 104,
+      "numberInSurah": 9,
+      "globalOrder": 6188,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "فِى عَمَدٍ مُّمَدَّدَةٍۭ",
+      "translationText": "Cehennemlikler, dikilmiş direklere bağlı oldukları halde, o ateşin kapıları üzerlerine kapatılacaktır.",
+      "translationFootnotes": []
+    }
+  ]
+}

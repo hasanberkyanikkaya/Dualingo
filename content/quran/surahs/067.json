@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 67,
+    "nameArabic": "الملك",
+    "nameTurkish": null,
+    "verseCount": 30,
+    "firstGlobalOrder": 5242
+  },
+  "verses": [
+    {
+      "key": "67:1",
+      "surahId": 67,
+      "numberInSurah": 1,
+      "globalOrder": 5242,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "تَبَـٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ",
+      "translationText": "Mutlak hükümranlık elinde bulunan Allah, yüceler yücesidir ve O'nun her şeye gücü yeter.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:2",
+      "surahId": 67,
+      "numberInSurah": 2,
+      "globalOrder": 5243,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ",
+      "translationText": "O, hanginizin daha güzel iş yapacağınızı denemek için ölümü ve hayatı yarattı. O, üstündür, bağışlayandır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:3",
+      "surahId": 67,
+      "numberInSurah": 3,
+      "globalOrder": 5244,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "ٱلَّذِى خَلَقَ سَبْعَ سَمَـٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَـٰنِ مِن تَفَـٰوُتٍ ۖ فَٱرْجِعِ ٱلْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ",
+      "translationText": "O, yedi göğü, birbiri üzerine yarattı. Rahmân'ın yaratmasında bir aykırılık, uygunsuzluk görmezsin. Gözünü döndür de bak, bir bozukluk görüyor musun?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:4",
+      "surahId": 67,
+      "numberInSurah": 4,
+      "globalOrder": 5245,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "ثُمَّ ٱرْجِعِ ٱلْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ ٱلْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ",
+      "translationText": "Sonra gözünü tekrar tekrar döndür (bak). Göz (aradığı bozukluğu bulmaktan) âciz ve bitkin halde sana dönecektir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:5",
+      "surahId": 67,
+      "numberInSurah": 5,
+      "globalOrder": 5246,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "وَلَقَدْ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنْيَا بِمَصَـٰبِيحَ وَجَعَلْنَـٰهَا رُجُومًا لِّلشَّيَـٰطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ ٱلسَّعِيرِ",
+      "translationText": "Andolsun biz, en yakın göğü kandillerle donattık ve onları, şeytanlar için taşlamalar yaptık. Ve onlar için alevli ateş azabını hazırladık.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:6",
+      "surahId": 67,
+      "numberInSurah": 6,
+      "globalOrder": 5247,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "وَلِلَّذِينَ كَفَرُوا۟ بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ ٱلْمَصِيرُ",
+      "translationText": "Rablerini inkâr edenler için cehennem azabı vardır. Ne kötü gidilecek yerdir o!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:7",
+      "surahId": 67,
+      "numberInSurah": 7,
+      "globalOrder": 5248,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "إِذَآ أُلْقُوا۟ فِيهَا سَمِعُوا۟ لَهَا شَهِيقًا وَهِىَ تَفُورُ",
+      "translationText": "Oraya atıldıklarında, onun kaynarken çıkardığı uğultuyu işitirler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:8",
+      "surahId": 67,
+      "numberInSurah": 8,
+      "globalOrder": 5249,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "تَكَادُ تَمَيَّزُ مِنَ ٱلْغَيْظِ ۖ كُلَّمَآ أُلْقِىَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَآ أَلَمْ يَأْتِكُمْ نَذِيرٌ",
+      "translationText": "Az daha öfkeden çatlayacak. Her ne zaman oraya bir topluluk atılsa, onun bekçileri onlara: \"Size korkutucu bir peygamber gelmemiş miydi?\" diye sorarlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:9",
+      "surahId": 67,
+      "numberInSurah": 9,
+      "globalOrder": 5250,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "قَالُوا۟ بَلَىٰ قَدْ جَآءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ ٱللَّهُ مِن شَىْءٍ إِنْ أَنتُمْ إِلَّا فِى ضَلَـٰلٍ كَبِيرٍ",
+      "translationText": "Derler: \"Evet, bize uyarıcı geldi ama biz yalanladık ve Allah hiçbir şey indirmedi, siz ancak büyük bir sapıklık içindesiniz.\" dedik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:10",
+      "surahId": 67,
+      "numberInSurah": 10,
+      "globalOrder": 5251,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "وَقَالُوا۟ لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِىٓ أَصْحَـٰبِ ٱلسَّعِيرِ",
+      "translationText": "Ve derler ki: \"Eğer biz dinleseydik, yahut düşünüp anlasaydık şu çılgın ateşin halkı arasında bulunmazdık!\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:11",
+      "surahId": 67,
+      "numberInSurah": 11,
+      "globalOrder": 5252,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "فَٱعْتَرَفُوا۟ بِذَنۢبِهِمْ فَسُحْقًا لِّأَصْحَـٰبِ ٱلسَّعِيرِ",
+      "translationText": "Böylece günahlarını itiraf ederler. (Artık) o çılgın ateş halkı (Allah'ın rahmetinden) uzak olsunlar!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:12",
+      "surahId": 67,
+      "numberInSurah": 12,
+      "globalOrder": 5253,
+      "pageNumber": 562,
+      "juzNumber": 29,
+      "arabicText": "إِنَّ ٱلَّذِينَ يَخْشَوْنَ رَبَّهُم بِٱلْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ",
+      "translationText": "Fakat daha görmeden Rablerinden korkanlar var ya, işte onlar için bağışlanma ve büyük bir mükâfat vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:13",
+      "surahId": 67,
+      "numberInSurah": 13,
+      "globalOrder": 5254,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "وَأَسِرُّوا۟ قَوْلَكُمْ أَوِ ٱجْهَرُوا۟ بِهِۦٓ ۖ إِنَّهُۥ عَلِيمٌۢ بِذَاتِ ٱلصُّدُورِ",
+      "translationText": "Sözünüzü ister gizleyin, ister açığa vurun; bilin ki, O, göğüslerin özünü bilir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:14",
+      "surahId": 67,
+      "numberInSurah": 14,
+      "globalOrder": 5255,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ ٱللَّطِيفُ ٱلْخَبِيرُ",
+      "translationText": "Hiç yaratan bilmez mi? O, en ince işleri görüp bilmektedir ve her şeyden haberdardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:15",
+      "surahId": 67,
+      "numberInSurah": 15,
+      "globalOrder": 5256,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "هُوَ ٱلَّذِى جَعَلَ لَكُمُ ٱلْأَرْضَ ذَلُولًا فَٱمْشُوا۟ فِى مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزْقِهِۦ ۖ وَإِلَيْهِ ٱلنُّشُورُ",
+      "translationText": "O size yeri boyun eğer kıldı. Haydi onun omuzlarında (dağlarında, tepelerinde) yürüyün ve Allah'ın rızkından yeyin. Dönüş ancak O'nadır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:16",
+      "surahId": 67,
+      "numberInSurah": 16,
+      "globalOrder": 5257,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "ءَأَمِنتُم مَّن فِى ٱلسَّمَآءِ أَن يَخْسِفَ بِكُمُ ٱلْأَرْضَ فَإِذَا هِىَ تَمُورُ",
+      "translationText": "Her şeyi kuşatmış olan Allah ın yeri sizinle birlikte göçürüvermesinden emin misiniz? O zaman yer çalkalanıyordur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:17",
+      "surahId": 67,
+      "numberInSurah": 17,
+      "globalOrder": 5258,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَمْ أَمِنتُم مَّن فِى ٱلسَّمَآءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا ۖ فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ",
+      "translationText": "Yoksa siz, gökte olanın üzerinize taş yağdıran bir kasırga göndermeyeceğinden emin misiniz? Tehdidim nasılmış bileceksiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:18",
+      "surahId": 67,
+      "numberInSurah": 18,
+      "globalOrder": 5259,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "وَلَقَدْ كَذَّبَ ٱلَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ",
+      "translationText": "Andolsun, onlardan öncekiler de yalanladılar. Ama beni inkâr nasıl oldu?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:19",
+      "surahId": 67,
+      "numberInSurah": 19,
+      "globalOrder": 5260,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَوَلَمْ يَرَوْا۟ إِلَى ٱلطَّيْرِ فَوْقَهُمْ صَـٰٓفَّـٰتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا ٱلرَّحْمَـٰنُ ۚ إِنَّهُۥ بِكُلِّ شَىْءٍۭ بَصِيرٌ",
+      "translationText": "Üstlerinde kanatlarını açıp yumarak uçan kuşları görmüyorlar mı? Onları Rahmân'dan başkası tutmuyor. Doğrusu O, her şeyi görmektedir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:20",
+      "surahId": 67,
+      "numberInSurah": 20,
+      "globalOrder": 5261,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَمَّنْ هَـٰذَا ٱلَّذِى هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ ٱلرَّحْمَـٰنِ ۚ إِنِ ٱلْكَـٰفِرُونَ إِلَّا فِى غُرُورٍ",
+      "translationText": "Rahmân olan Allah'a karşı şu size yardım edecek askerleriniz hani kimlerdir? İnkârcılar, ancak derin bir gaflet içinde bulunmaktadırlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:21",
+      "surahId": 67,
+      "numberInSurah": 21,
+      "globalOrder": 5262,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَمَّنْ هَـٰذَا ٱلَّذِى يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُۥ ۚ بَل لَّجُّوا۟ فِى عُتُوٍّ وَنُفُورٍ",
+      "translationText": "Allah size verdiği rızkı kesiverse, size rızık verecek olabilen kimdir? Hayır, onlar azgınlık ve nefrette direnip durmaktadırlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:22",
+      "surahId": 67,
+      "numberInSurah": 22,
+      "globalOrder": 5263,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "أَفَمَن يَمْشِى مُكِبًّا عَلَىٰ وَجْهِهِۦٓ أَهْدَىٰٓ أَمَّن يَمْشِى سَوِيًّا عَلَىٰ صِرَٰطٍ مُّسْتَقِيمٍ",
+      "translationText": "Şimdi yüz üstü kapanarak yürüyen mi doğru gider, yoksa dosdoğru yolda yürüyen mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:23",
+      "surahId": 67,
+      "numberInSurah": 23,
+      "globalOrder": 5264,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "قُلْ هُوَ ٱلَّذِىٓ أَنشَأَكُمْ وَجَعَلَ لَكُمُ ٱلسَّمْعَ وَٱلْأَبْصَـٰرَ وَٱلْأَفْـِٔدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ",
+      "translationText": "De ki: \"Sizi yaratan, size kulaklar gözler ve gönüller veren O'dur. Ne kadar az şükrediyorsunuz!\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:24",
+      "surahId": 67,
+      "numberInSurah": 24,
+      "globalOrder": 5265,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "قُلْ هُوَ ٱلَّذِى ذَرَأَكُمْ فِى ٱلْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ",
+      "translationText": "De ki: \"Sizi yerden üreten O'dur ve O'na toplanıp götürüleceksiniz.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:25",
+      "surahId": 67,
+      "numberInSurah": 25,
+      "globalOrder": 5266,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "وَيَقُولُونَ مَتَىٰ هَـٰذَا ٱلْوَعْدُ إِن كُنتُمْ صَـٰدِقِينَ",
+      "translationText": "(Onlar): \"Doğru iseniz bu tehdit ne zaman olacak?\" diyorlar",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:26",
+      "surahId": 67,
+      "numberInSurah": 26,
+      "globalOrder": 5267,
+      "pageNumber": 563,
+      "juzNumber": 29,
+      "arabicText": "قُلْ إِنَّمَا ٱلْعِلْمُ عِندَ ٱللَّهِ وَإِنَّمَآ أَنَا۠ نَذِيرٌ مُّبِينٌ",
+      "translationText": "De ki: \"(O'na ait) bilgi, Allah'ın yanındadır. Ben ancak apaçık bir uyarıcıyım.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:27",
+      "surahId": 67,
+      "numberInSurah": 27,
+      "globalOrder": 5268,
+      "pageNumber": 564,
+      "juzNumber": 29,
+      "arabicText": "فَلَمَّا رَأَوْهُ زُلْفَةً سِيٓـَٔتْ وُجُوهُ ٱلَّذِينَ كَفَرُوا۟ وَقِيلَ هَـٰذَا ٱلَّذِى كُنتُم بِهِۦ تَدَّعُونَ",
+      "translationText": "Onu yakın görünce inkâr edenlerin yüzleri kötüleşti. Ve: \"İşte çağırıp durduğunuz şey budur!\" dendi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:28",
+      "surahId": 67,
+      "numberInSurah": 28,
+      "globalOrder": 5269,
+      "pageNumber": 564,
+      "juzNumber": 29,
+      "arabicText": "قُلْ أَرَءَيْتُمْ إِنْ أَهْلَكَنِىَ ٱللَّهُ وَمَن مَّعِىَ أَوْ رَحِمَنَا فَمَن يُجِيرُ ٱلْكَـٰفِرِينَ مِنْ عَذَابٍ أَلِيمٍ",
+      "translationText": "De ki: \"Baksanıza, eğer Allah beni ve benimle beraber olanları öldürse, yahut bize merhamet etse, kâfirleri acı bir azabdan kim kurtarabilir?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:29",
+      "surahId": 67,
+      "numberInSurah": 29,
+      "globalOrder": 5270,
+      "pageNumber": 564,
+      "juzNumber": 29,
+      "arabicText": "قُلْ هُوَ ٱلرَّحْمَـٰنُ ءَامَنَّا بِهِۦ وَعَلَيْهِ تَوَكَّلْنَا ۖ فَسَتَعْلَمُونَ مَنْ هُوَ فِى ضَلَـٰلٍ مُّبِينٍ",
+      "translationText": "De ki: \"O çok merhametlidir. O'na inanmış, O'na dayanmışızdır. Yakında kimin apaçık bir sapıklık içinde olduğunu bileceksiniz.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "67:30",
+      "surahId": 67,
+      "numberInSurah": 30,
+      "globalOrder": 5271,
+      "pageNumber": 564,
+      "juzNumber": 29,
+      "arabicText": "قُلْ أَرَءَيْتُمْ إِنْ أَصْبَحَ مَآؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَآءٍ مَّعِينٍۭ",
+      "translationText": "De ki: \"Baksanıza, eğer suyunuz çekilse, size kim bir akarsu getirebilir?\"",
+      "translationFootnotes": []
+    }
+  ]
+}

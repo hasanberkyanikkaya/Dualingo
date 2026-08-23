@@ -9,6 +9,10 @@ import {
   validateLearningPath,
   validatePlacementContent,
 } from '@/features/learning/contentValidation';
+import {
+  countQuranIssues,
+  validateQuranCorpus,
+} from '@/features/quran/contentValidation';
 
 import type {
   BadgeCatalog,
@@ -16,6 +20,10 @@ import type {
   LearningPath,
   LearningPathIndex,
   PlacementContent,
+  QuranCatalog,
+  QuranContentManifest,
+  QuranPageIndex,
+  QuranSurahContent,
   Unit,
 } from '@/types';
 
@@ -49,6 +57,8 @@ import type {
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = join(projectRoot, 'content');
 const lessonsDir = join(contentDir, 'lessons');
+const quranDir = join(contentDir, 'quran');
+const quranSurahsDir = join(quranDir, 'surahs');
 
 // ── A. Yapısal doğrulama ─────────────────────────────────────────────────────
 
@@ -135,6 +145,42 @@ function loadBadgesFromDisk(): { content: BadgeCatalog | null; fatal: string[] }
   } catch (error) {
     return { content: null, fatal: [`badges.json: okunamadı — ${String(error)}`] };
   }
+}
+
+function loadQuranFromDisk(): {
+  manifest: QuranContentManifest | null;
+  catalog: QuranCatalog | null;
+  pageIndex: QuranPageIndex | null;
+  surahs: QuranSurahContent[];
+  fatal: string[];
+} {
+  const fatal: string[] = [];
+  let manifest: QuranContentManifest | null = null;
+  let catalog: QuranCatalog | null = null;
+  let pageIndex: QuranPageIndex | null = null;
+  const surahs: QuranSurahContent[] = [];
+
+  try {
+    manifest = readJson(join(quranDir, 'manifest.json')) as QuranContentManifest;
+    catalog = readJson(join(quranDir, 'catalog.json')) as QuranCatalog;
+    pageIndex = readJson(join(quranDir, 'page-index.json')) as QuranPageIndex;
+  } catch (error) {
+    fatal.push(`quran manifesti veya kataloğu okunamadı — ${String(error)}`);
+  }
+
+  try {
+    const files = readdirSync(quranSurahsDir)
+      .filter((file) => file.endsWith('.json'))
+      .sort();
+
+    for (const file of files) {
+      surahs.push(readJson(join(quranSurahsDir, file)) as QuranSurahContent);
+    }
+  } catch (error) {
+    fatal.push(`quran sure dosyaları okunamadı — ${String(error)}`);
+  }
+
+  return { manifest, catalog, pageIndex, surahs, fatal };
 }
 
 // ── B. Yer tutucu taraması ───────────────────────────────────────────────────
@@ -286,6 +332,12 @@ function main(): number {
     console.log(`HATA  ${message}`);
   }
 
+  const quran = loadQuranFromDisk();
+
+  for (const message of quran.fatal) {
+    console.log(`HATA  ${message}`);
+  }
+
   // Rozet eşiklerinin erişilebilirliği yola bağlı; sınırlar doğrulayıcıya
   // argüman olarak veriliyor (aynı saflık gerekçesi).
   const allLevels = path.units.flatMap((unit) => unit.levels);
@@ -305,7 +357,12 @@ function main(): number {
   ];
 
   const { errors, warnings } = countBySeverity(issues);
-  const allFatal = [...fatal, ...placement.fatal, ...badges.fatal];
+  const quranIssues =
+    quran.manifest === null || quran.catalog === null || quran.pageIndex === null
+      ? []
+      : validateQuranCorpus(quran.manifest, quran.catalog, quran.pageIndex, quran.surahs);
+  const quranCounts = countQuranIssues(quranIssues);
+  const allFatal = [...fatal, ...placement.fatal, ...badges.fatal, ...quran.fatal];
 
   console.log(`\nA. Yapısal doğrulama — ${errors} hata, ${warnings} uyarı`);
 
@@ -317,10 +374,27 @@ function main(): number {
     console.log('  Bulgu yok.');
   }
 
+  console.log(
+    `\nA2. Kur’an içerik doğrulama — ${quranCounts.errors} hata, ${quranCounts.warnings} uyarı`,
+  );
+
+  for (const issue of quranIssues) {
+    console.log(`  ${issue.severity.toUpperCase()}  ${issue.where}: ${issue.message}`);
+  }
+
+  if (quranIssues.length === 0 && quran.fatal.length === 0) {
+    console.log('  Bulgu yok.');
+  }
+
+  for (const reason of quran.manifest?.releaseBlockedReasons ?? []) {
+    console.log(`  YAYIN ENGELİ  ${reason}`);
+  }
+
   // ⚠️ Klasörü tarıyor: `placement.json` gibi `lessons/` dışındaki içerik
   // dosyaları da yer tutucu taramasına kendiliğinden giriyor.
   const contentFiles = walk(contentDir, ['.json']);
-  printHits('B1. İçerik yer tutucuları (/content)', scan(contentFiles, CONTENT_MARKERS), detailed);
+  const markerFiles = contentFiles.filter((file) => !file.startsWith(quranSurahsDir));
+  printHits('B1. İçerik yer tutucuları (/content)', scan(markerFiles, CONTENT_MARKERS), detailed);
 
   const sourceFiles = SOURCE_DIRS.flatMap((dir) =>
     walk(join(projectRoot, dir), ['.ts', '.tsx']),
@@ -340,7 +414,7 @@ function main(): number {
 
   console.log('\n' + '='.repeat(60));
 
-  return errors > 0 || allFatal.length > 0 ? 1 : 0;
+  return errors > 0 || quranCounts.errors > 0 || allFatal.length > 0 ? 1 : 0;
 }
 
 process.exitCode = main();

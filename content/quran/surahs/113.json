@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 113,
+    "nameArabic": "الفلق",
+    "nameTurkish": null,
+    "verseCount": 5,
+    "firstGlobalOrder": 6226
+  },
+  "verses": [
+    {
+      "key": "113:1",
+      "surahId": 113,
+      "numberInSurah": 1,
+      "globalOrder": 6226,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ",
+      "translationText": "De ki: \"Ben, ağaran sabahın Rabbine sığınırım,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "113:2",
+      "surahId": 113,
+      "numberInSurah": 2,
+      "globalOrder": 6227,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "مِن شَرِّ مَا خَلَقَ",
+      "translationText": "Yarattığı şeylerin şerrinden,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "113:3",
+      "surahId": 113,
+      "numberInSurah": 3,
+      "globalOrder": 6228,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",
+      "translationText": "Karanlığı çöktüğü zaman gecenin şerrinden,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "113:4",
+      "surahId": 113,
+      "numberInSurah": 4,
+      "globalOrder": 6229,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ",
+      "translationText": "Ve düğümlere üfleyen büyücülerin şerrinden,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "113:5",
+      "surahId": 113,
+      "numberInSurah": 5,
+      "globalOrder": 6230,
+      "pageNumber": 604,
+      "juzNumber": 30,
+      "arabicText": "وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+      "translationText": "Ve hased ettiği zaman hasetçinin şerrinden.",
+      "translationFootnotes": []
+    }
+  ]
+}

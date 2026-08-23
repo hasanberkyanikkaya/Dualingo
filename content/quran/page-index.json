@@ -1,0 +1,8152 @@
+{
+  "schemaVersion": 1,
+  "contentRevision": "tanzil-uthmani-1.1__tr-yazir__2026-08-23",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 1,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 2,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 3,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 4,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 5,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 6,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 30,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 7,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 48
+        }
+      ]
+    },
+    {
+      "pageNumber": 8,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 49,
+          "lastVerseNumber": 57
+        }
+      ]
+    },
+    {
+      "pageNumber": 9,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 58,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 10,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 69
+        }
+      ]
+    },
+    {
+      "pageNumber": 11,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 70,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 12,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 13,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 84,
+          "lastVerseNumber": 88
+        }
+      ]
+    },
+    {
+      "pageNumber": 14,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 89,
+          "lastVerseNumber": 93
+        }
+      ]
+    },
+    {
+      "pageNumber": 15,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 94,
+          "lastVerseNumber": 101
+        }
+      ]
+    },
+    {
+      "pageNumber": 16,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 102,
+          "lastVerseNumber": 105
+        }
+      ]
+    },
+    {
+      "pageNumber": 17,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 106,
+          "lastVerseNumber": 112
+        }
+      ]
+    },
+    {
+      "pageNumber": 18,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 113,
+          "lastVerseNumber": 119
+        }
+      ]
+    },
+    {
+      "pageNumber": 19,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 120,
+          "lastVerseNumber": 126
+        }
+      ]
+    },
+    {
+      "pageNumber": 20,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 127,
+          "lastVerseNumber": 134
+        }
+      ]
+    },
+    {
+      "pageNumber": 21,
+      "juzNumbers": [
+        1
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 135,
+          "lastVerseNumber": 141
+        }
+      ]
+    },
+    {
+      "pageNumber": 22,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 142,
+          "lastVerseNumber": 145
+        }
+      ]
+    },
+    {
+      "pageNumber": 23,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 146,
+          "lastVerseNumber": 153
+        }
+      ]
+    },
+    {
+      "pageNumber": 24,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 154,
+          "lastVerseNumber": 163
+        }
+      ]
+    },
+    {
+      "pageNumber": 25,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 164,
+          "lastVerseNumber": 169
+        }
+      ]
+    },
+    {
+      "pageNumber": 26,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 170,
+          "lastVerseNumber": 176
+        }
+      ]
+    },
+    {
+      "pageNumber": 27,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 177,
+          "lastVerseNumber": 181
+        }
+      ]
+    },
+    {
+      "pageNumber": 28,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 182,
+          "lastVerseNumber": 186
+        }
+      ]
+    },
+    {
+      "pageNumber": 29,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 187,
+          "lastVerseNumber": 190
+        }
+      ]
+    },
+    {
+      "pageNumber": 30,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 191,
+          "lastVerseNumber": 196
+        }
+      ]
+    },
+    {
+      "pageNumber": 31,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 197,
+          "lastVerseNumber": 202
+        }
+      ]
+    },
+    {
+      "pageNumber": 32,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 203,
+          "lastVerseNumber": 210
+        }
+      ]
+    },
+    {
+      "pageNumber": 33,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 211,
+          "lastVerseNumber": 215
+        }
+      ]
+    },
+    {
+      "pageNumber": 34,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 216,
+          "lastVerseNumber": 219
+        }
+      ]
+    },
+    {
+      "pageNumber": 35,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 220,
+          "lastVerseNumber": 224
+        }
+      ]
+    },
+    {
+      "pageNumber": 36,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 225,
+          "lastVerseNumber": 230
+        }
+      ]
+    },
+    {
+      "pageNumber": 37,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 231,
+          "lastVerseNumber": 233
+        }
+      ]
+    },
+    {
+      "pageNumber": 38,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 234,
+          "lastVerseNumber": 237
+        }
+      ]
+    },
+    {
+      "pageNumber": 39,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 238,
+          "lastVerseNumber": 245
+        }
+      ]
+    },
+    {
+      "pageNumber": 40,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 246,
+          "lastVerseNumber": 248
+        }
+      ]
+    },
+    {
+      "pageNumber": 41,
+      "juzNumbers": [
+        2
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 249,
+          "lastVerseNumber": 252
+        }
+      ]
+    },
+    {
+      "pageNumber": 42,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 253,
+          "lastVerseNumber": 256
+        }
+      ]
+    },
+    {
+      "pageNumber": 43,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 257,
+          "lastVerseNumber": 259
+        }
+      ]
+    },
+    {
+      "pageNumber": 44,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 260,
+          "lastVerseNumber": 264
+        }
+      ]
+    },
+    {
+      "pageNumber": 45,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 265,
+          "lastVerseNumber": 269
+        }
+      ]
+    },
+    {
+      "pageNumber": 46,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 270,
+          "lastVerseNumber": 274
+        }
+      ]
+    },
+    {
+      "pageNumber": 47,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 275,
+          "lastVerseNumber": 281
+        }
+      ]
+    },
+    {
+      "pageNumber": 48,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 282,
+          "lastVerseNumber": 282
+        }
+      ]
+    },
+    {
+      "pageNumber": 49,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 2,
+          "firstVerseNumber": 283,
+          "lastVerseNumber": 286
+        }
+      ]
+    },
+    {
+      "pageNumber": 50,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 51,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 52,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 53,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 54,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 30,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 55,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 56,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 57,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 53,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 58,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 59,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 77
+        }
+      ]
+    },
+    {
+      "pageNumber": 60,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 78,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 61,
+      "juzNumbers": [
+        3
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 84,
+          "lastVerseNumber": 91
+        }
+      ]
+    },
+    {
+      "pageNumber": 62,
+      "juzNumbers": [
+        3,
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 92,
+          "lastVerseNumber": 100
+        }
+      ]
+    },
+    {
+      "pageNumber": 63,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 101,
+          "lastVerseNumber": 108
+        }
+      ]
+    },
+    {
+      "pageNumber": 64,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 109,
+          "lastVerseNumber": 115
+        }
+      ]
+    },
+    {
+      "pageNumber": 65,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 116,
+          "lastVerseNumber": 121
+        }
+      ]
+    },
+    {
+      "pageNumber": 66,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 122,
+          "lastVerseNumber": 132
+        }
+      ]
+    },
+    {
+      "pageNumber": 67,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 133,
+          "lastVerseNumber": 140
+        }
+      ]
+    },
+    {
+      "pageNumber": 68,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 141,
+          "lastVerseNumber": 148
+        }
+      ]
+    },
+    {
+      "pageNumber": 69,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 149,
+          "lastVerseNumber": 153
+        }
+      ]
+    },
+    {
+      "pageNumber": 70,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 154,
+          "lastVerseNumber": 157
+        }
+      ]
+    },
+    {
+      "pageNumber": 71,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 158,
+          "lastVerseNumber": 165
+        }
+      ]
+    },
+    {
+      "pageNumber": 72,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 166,
+          "lastVerseNumber": 173
+        }
+      ]
+    },
+    {
+      "pageNumber": 73,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 174,
+          "lastVerseNumber": 180
+        }
+      ]
+    },
+    {
+      "pageNumber": 74,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 181,
+          "lastVerseNumber": 186
+        }
+      ]
+    },
+    {
+      "pageNumber": 75,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 187,
+          "lastVerseNumber": 194
+        }
+      ]
+    },
+    {
+      "pageNumber": 76,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 3,
+          "firstVerseNumber": 195,
+          "lastVerseNumber": 200
+        }
+      ]
+    },
+    {
+      "pageNumber": 77,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 78,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 79,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 80,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 81,
+      "juzNumbers": [
+        4
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 82,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 83,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 84,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 85,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 86,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 87,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 59
+        }
+      ]
+    },
+    {
+      "pageNumber": 88,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 60,
+          "lastVerseNumber": 65
+        }
+      ]
+    },
+    {
+      "pageNumber": 89,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 66,
+          "lastVerseNumber": 74
+        }
+      ]
+    },
+    {
+      "pageNumber": 90,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 75,
+          "lastVerseNumber": 79
+        }
+      ]
+    },
+    {
+      "pageNumber": 91,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 80,
+          "lastVerseNumber": 86
+        }
+      ]
+    },
+    {
+      "pageNumber": 92,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 87,
+          "lastVerseNumber": 91
+        }
+      ]
+    },
+    {
+      "pageNumber": 93,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 92,
+          "lastVerseNumber": 94
+        }
+      ]
+    },
+    {
+      "pageNumber": 94,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 95,
+          "lastVerseNumber": 101
+        }
+      ]
+    },
+    {
+      "pageNumber": 95,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 102,
+          "lastVerseNumber": 105
+        }
+      ]
+    },
+    {
+      "pageNumber": 96,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 106,
+          "lastVerseNumber": 113
+        }
+      ]
+    },
+    {
+      "pageNumber": 97,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 114,
+          "lastVerseNumber": 121
+        }
+      ]
+    },
+    {
+      "pageNumber": 98,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 122,
+          "lastVerseNumber": 127
+        }
+      ]
+    },
+    {
+      "pageNumber": 99,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 128,
+          "lastVerseNumber": 134
+        }
+      ]
+    },
+    {
+      "pageNumber": 100,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 135,
+          "lastVerseNumber": 140
+        }
+      ]
+    },
+    {
+      "pageNumber": 101,
+      "juzNumbers": [
+        5
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 141,
+          "lastVerseNumber": 147
+        }
+      ]
+    },
+    {
+      "pageNumber": 102,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 148,
+          "lastVerseNumber": 154
+        }
+      ]
+    },
+    {
+      "pageNumber": 103,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 155,
+          "lastVerseNumber": 162
+        }
+      ]
+    },
+    {
+      "pageNumber": 104,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 163,
+          "lastVerseNumber": 170
+        }
+      ]
+    },
+    {
+      "pageNumber": 105,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 171,
+          "lastVerseNumber": 175
+        }
+      ]
+    },
+    {
+      "pageNumber": 106,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 4,
+          "firstVerseNumber": 176,
+          "lastVerseNumber": 176
+        },
+        {
+          "surahId": 5,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 2
+        }
+      ]
+    },
+    {
+      "pageNumber": 107,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 3,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 108,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 109,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 110,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 17
+        }
+      ]
+    },
+    {
+      "pageNumber": 111,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 18,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 112,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 113,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 36
+        }
+      ]
+    },
+    {
+      "pageNumber": 114,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 37,
+          "lastVerseNumber": 41
+        }
+      ]
+    },
+    {
+      "pageNumber": 115,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 42,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 116,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 117,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 51,
+          "lastVerseNumber": 57
+        }
+      ]
+    },
+    {
+      "pageNumber": 118,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 58,
+          "lastVerseNumber": 64
+        }
+      ]
+    },
+    {
+      "pageNumber": 119,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 65,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 120,
+      "juzNumbers": [
+        6
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 121,
+      "juzNumbers": [
+        6,
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 82
+        }
+      ]
+    },
+    {
+      "pageNumber": 122,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 83,
+          "lastVerseNumber": 89
+        }
+      ]
+    },
+    {
+      "pageNumber": 123,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 90,
+          "lastVerseNumber": 95
+        }
+      ]
+    },
+    {
+      "pageNumber": 124,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 96,
+          "lastVerseNumber": 103
+        }
+      ]
+    },
+    {
+      "pageNumber": 125,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 104,
+          "lastVerseNumber": 108
+        }
+      ]
+    },
+    {
+      "pageNumber": 126,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 109,
+          "lastVerseNumber": 113
+        }
+      ]
+    },
+    {
+      "pageNumber": 127,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 5,
+          "firstVerseNumber": 114,
+          "lastVerseNumber": 120
+        }
+      ]
+    },
+    {
+      "pageNumber": 128,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 129,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 9,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 130,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 131,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 132,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 133,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 134,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 53,
+          "lastVerseNumber": 59
+        }
+      ]
+    },
+    {
+      "pageNumber": 135,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 60,
+          "lastVerseNumber": 68
+        }
+      ]
+    },
+    {
+      "pageNumber": 136,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 69,
+          "lastVerseNumber": 73
+        }
+      ]
+    },
+    {
+      "pageNumber": 137,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 74,
+          "lastVerseNumber": 81
+        }
+      ]
+    },
+    {
+      "pageNumber": 138,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 82,
+          "lastVerseNumber": 90
+        }
+      ]
+    },
+    {
+      "pageNumber": 139,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 91,
+          "lastVerseNumber": 94
+        }
+      ]
+    },
+    {
+      "pageNumber": 140,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 95,
+          "lastVerseNumber": 101
+        }
+      ]
+    },
+    {
+      "pageNumber": 141,
+      "juzNumbers": [
+        7
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 102,
+          "lastVerseNumber": 110
+        }
+      ]
+    },
+    {
+      "pageNumber": 142,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 111,
+          "lastVerseNumber": 118
+        }
+      ]
+    },
+    {
+      "pageNumber": 143,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 119,
+          "lastVerseNumber": 124
+        }
+      ]
+    },
+    {
+      "pageNumber": 144,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 125,
+          "lastVerseNumber": 131
+        }
+      ]
+    },
+    {
+      "pageNumber": 145,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 132,
+          "lastVerseNumber": 137
+        }
+      ]
+    },
+    {
+      "pageNumber": 146,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 138,
+          "lastVerseNumber": 142
+        }
+      ]
+    },
+    {
+      "pageNumber": 147,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 143,
+          "lastVerseNumber": 146
+        }
+      ]
+    },
+    {
+      "pageNumber": 148,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 147,
+          "lastVerseNumber": 151
+        }
+      ]
+    },
+    {
+      "pageNumber": 149,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 152,
+          "lastVerseNumber": 157
+        }
+      ]
+    },
+    {
+      "pageNumber": 150,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 6,
+          "firstVerseNumber": 158,
+          "lastVerseNumber": 165
+        }
+      ]
+    },
+    {
+      "pageNumber": 151,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 152,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 153,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 154,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 155,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 156,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 157,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 57
+        }
+      ]
+    },
+    {
+      "pageNumber": 158,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 58,
+          "lastVerseNumber": 67
+        }
+      ]
+    },
+    {
+      "pageNumber": 159,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 68,
+          "lastVerseNumber": 73
+        }
+      ]
+    },
+    {
+      "pageNumber": 160,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 74,
+          "lastVerseNumber": 81
+        }
+      ]
+    },
+    {
+      "pageNumber": 161,
+      "juzNumbers": [
+        8
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 82,
+          "lastVerseNumber": 87
+        }
+      ]
+    },
+    {
+      "pageNumber": 162,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 88,
+          "lastVerseNumber": 95
+        }
+      ]
+    },
+    {
+      "pageNumber": 163,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 96,
+          "lastVerseNumber": 104
+        }
+      ]
+    },
+    {
+      "pageNumber": 164,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 105,
+          "lastVerseNumber": 120
+        }
+      ]
+    },
+    {
+      "pageNumber": 165,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 121,
+          "lastVerseNumber": 130
+        }
+      ]
+    },
+    {
+      "pageNumber": 166,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 131,
+          "lastVerseNumber": 137
+        }
+      ]
+    },
+    {
+      "pageNumber": 167,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 138,
+          "lastVerseNumber": 143
+        }
+      ]
+    },
+    {
+      "pageNumber": 168,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 144,
+          "lastVerseNumber": 149
+        }
+      ]
+    },
+    {
+      "pageNumber": 169,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 150,
+          "lastVerseNumber": 155
+        }
+      ]
+    },
+    {
+      "pageNumber": 170,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 156,
+          "lastVerseNumber": 159
+        }
+      ]
+    },
+    {
+      "pageNumber": 171,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 160,
+          "lastVerseNumber": 163
+        }
+      ]
+    },
+    {
+      "pageNumber": 172,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 164,
+          "lastVerseNumber": 170
+        }
+      ]
+    },
+    {
+      "pageNumber": 173,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 171,
+          "lastVerseNumber": 178
+        }
+      ]
+    },
+    {
+      "pageNumber": 174,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 179,
+          "lastVerseNumber": 187
+        }
+      ]
+    },
+    {
+      "pageNumber": 175,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 188,
+          "lastVerseNumber": 195
+        }
+      ]
+    },
+    {
+      "pageNumber": 176,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 7,
+          "firstVerseNumber": 196,
+          "lastVerseNumber": 206
+        }
+      ]
+    },
+    {
+      "pageNumber": 177,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 178,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 9,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 179,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 180,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 26,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 181,
+      "juzNumbers": [
+        9
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 182,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 183,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 184,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 53,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 185,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 69
+        }
+      ]
+    },
+    {
+      "pageNumber": 186,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 8,
+          "firstVerseNumber": 70,
+          "lastVerseNumber": 75
+        }
+      ]
+    },
+    {
+      "pageNumber": 187,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 188,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 189,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 190,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 191,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 192,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 36
+        }
+      ]
+    },
+    {
+      "pageNumber": 193,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 37,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 194,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 47
+        }
+      ]
+    },
+    {
+      "pageNumber": 195,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 48,
+          "lastVerseNumber": 54
+        }
+      ]
+    },
+    {
+      "pageNumber": 196,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 55,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 197,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 68
+        }
+      ]
+    },
+    {
+      "pageNumber": 198,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 69,
+          "lastVerseNumber": 72
+        }
+      ]
+    },
+    {
+      "pageNumber": 199,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 73,
+          "lastVerseNumber": 79
+        }
+      ]
+    },
+    {
+      "pageNumber": 200,
+      "juzNumbers": [
+        10
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 80,
+          "lastVerseNumber": 86
+        }
+      ]
+    },
+    {
+      "pageNumber": 201,
+      "juzNumbers": [
+        10,
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 87,
+          "lastVerseNumber": 93
+        }
+      ]
+    },
+    {
+      "pageNumber": 202,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 94,
+          "lastVerseNumber": 99
+        }
+      ]
+    },
+    {
+      "pageNumber": 203,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 100,
+          "lastVerseNumber": 106
+        }
+      ]
+    },
+    {
+      "pageNumber": 204,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 107,
+          "lastVerseNumber": 111
+        }
+      ]
+    },
+    {
+      "pageNumber": 205,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 112,
+          "lastVerseNumber": 117
+        }
+      ]
+    },
+    {
+      "pageNumber": 206,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 118,
+          "lastVerseNumber": 122
+        }
+      ]
+    },
+    {
+      "pageNumber": 207,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 9,
+          "firstVerseNumber": 123,
+          "lastVerseNumber": 129
+        }
+      ]
+    },
+    {
+      "pageNumber": 208,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 209,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 210,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 211,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 212,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 26,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 213,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 214,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 53
+        }
+      ]
+    },
+    {
+      "pageNumber": 215,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 54,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 216,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 217,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 78
+        }
+      ]
+    },
+    {
+      "pageNumber": 218,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 79,
+          "lastVerseNumber": 88
+        }
+      ]
+    },
+    {
+      "pageNumber": 219,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 89,
+          "lastVerseNumber": 97
+        }
+      ]
+    },
+    {
+      "pageNumber": 220,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 98,
+          "lastVerseNumber": 106
+        }
+      ]
+    },
+    {
+      "pageNumber": 221,
+      "juzNumbers": [
+        11
+      ],
+      "spans": [
+        {
+          "surahId": 10,
+          "firstVerseNumber": 107,
+          "lastVerseNumber": 109
+        },
+        {
+          "surahId": 11,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 222,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 223,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 13,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 224,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 225,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 226,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 227,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 53
+        }
+      ]
+    },
+    {
+      "pageNumber": 228,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 54,
+          "lastVerseNumber": 62
+        }
+      ]
+    },
+    {
+      "pageNumber": 229,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 63,
+          "lastVerseNumber": 71
+        }
+      ]
+    },
+    {
+      "pageNumber": 230,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 72,
+          "lastVerseNumber": 81
+        }
+      ]
+    },
+    {
+      "pageNumber": 231,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 82,
+          "lastVerseNumber": 88
+        }
+      ]
+    },
+    {
+      "pageNumber": 232,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 89,
+          "lastVerseNumber": 97
+        }
+      ]
+    },
+    {
+      "pageNumber": 233,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 98,
+          "lastVerseNumber": 108
+        }
+      ]
+    },
+    {
+      "pageNumber": 234,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 109,
+          "lastVerseNumber": 117
+        }
+      ]
+    },
+    {
+      "pageNumber": 235,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 11,
+          "firstVerseNumber": 118,
+          "lastVerseNumber": 123
+        },
+        {
+          "surahId": 12,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        }
+      ]
+    },
+    {
+      "pageNumber": 236,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 5,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 237,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 238,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 239,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 240,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 241,
+      "juzNumbers": [
+        12
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 242,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 53,
+          "lastVerseNumber": 63
+        }
+      ]
+    },
+    {
+      "pageNumber": 243,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 64,
+          "lastVerseNumber": 69
+        }
+      ]
+    },
+    {
+      "pageNumber": 244,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 70,
+          "lastVerseNumber": 78
+        }
+      ]
+    },
+    {
+      "pageNumber": 245,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 79,
+          "lastVerseNumber": 86
+        }
+      ]
+    },
+    {
+      "pageNumber": 246,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 87,
+          "lastVerseNumber": 95
+        }
+      ]
+    },
+    {
+      "pageNumber": 247,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 96,
+          "lastVerseNumber": 103
+        }
+      ]
+    },
+    {
+      "pageNumber": 248,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 12,
+          "firstVerseNumber": 104,
+          "lastVerseNumber": 111
+        }
+      ]
+    },
+    {
+      "pageNumber": 249,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 250,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 251,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 252,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 253,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 254,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 35,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 255,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 13,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 43
+        },
+        {
+          "surahId": 14,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 256,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 257,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 258,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 259,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 260,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 261,
+      "juzNumbers": [
+        13
+      ],
+      "spans": [
+        {
+          "surahId": 14,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 262,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 263,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 264,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 265,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 266,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 90
+        }
+      ]
+    },
+    {
+      "pageNumber": 267,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 15,
+          "firstVerseNumber": 91,
+          "lastVerseNumber": 99
+        },
+        {
+          "surahId": 16,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 268,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 269,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 270,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 271,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 35,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 272,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 54
+        }
+      ]
+    },
+    {
+      "pageNumber": 273,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 55,
+          "lastVerseNumber": 64
+        }
+      ]
+    },
+    {
+      "pageNumber": 274,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 65,
+          "lastVerseNumber": 72
+        }
+      ]
+    },
+    {
+      "pageNumber": 275,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 73,
+          "lastVerseNumber": 79
+        }
+      ]
+    },
+    {
+      "pageNumber": 276,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 80,
+          "lastVerseNumber": 87
+        }
+      ]
+    },
+    {
+      "pageNumber": 277,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 88,
+          "lastVerseNumber": 93
+        }
+      ]
+    },
+    {
+      "pageNumber": 278,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 94,
+          "lastVerseNumber": 102
+        }
+      ]
+    },
+    {
+      "pageNumber": 279,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 103,
+          "lastVerseNumber": 110
+        }
+      ]
+    },
+    {
+      "pageNumber": 280,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 111,
+          "lastVerseNumber": 118
+        }
+      ]
+    },
+    {
+      "pageNumber": 281,
+      "juzNumbers": [
+        14
+      ],
+      "spans": [
+        {
+          "surahId": 16,
+          "firstVerseNumber": 119,
+          "lastVerseNumber": 128
+        }
+      ]
+    },
+    {
+      "pageNumber": 282,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 283,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 8,
+          "lastVerseNumber": 17
+        }
+      ]
+    },
+    {
+      "pageNumber": 284,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 18,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 285,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 286,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 49
+        }
+      ]
+    },
+    {
+      "pageNumber": 287,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 50,
+          "lastVerseNumber": 58
+        }
+      ]
+    },
+    {
+      "pageNumber": 288,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 59,
+          "lastVerseNumber": 66
+        }
+      ]
+    },
+    {
+      "pageNumber": 289,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 67,
+          "lastVerseNumber": 75
+        }
+      ]
+    },
+    {
+      "pageNumber": 290,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 76,
+          "lastVerseNumber": 86
+        }
+      ]
+    },
+    {
+      "pageNumber": 291,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 87,
+          "lastVerseNumber": 96
+        }
+      ]
+    },
+    {
+      "pageNumber": 292,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 97,
+          "lastVerseNumber": 104
+        }
+      ]
+    },
+    {
+      "pageNumber": 293,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 17,
+          "firstVerseNumber": 105,
+          "lastVerseNumber": 111
+        },
+        {
+          "surahId": 18,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        }
+      ]
+    },
+    {
+      "pageNumber": 294,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 5,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 295,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 296,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 297,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 298,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 35,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 299,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 53
+        }
+      ]
+    },
+    {
+      "pageNumber": 300,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 54,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 301,
+      "juzNumbers": [
+        15
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 74
+        }
+      ]
+    },
+    {
+      "pageNumber": 302,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 75,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 303,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 84,
+          "lastVerseNumber": 97
+        }
+      ]
+    },
+    {
+      "pageNumber": 304,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 18,
+          "firstVerseNumber": 98,
+          "lastVerseNumber": 110
+        }
+      ]
+    },
+    {
+      "pageNumber": 305,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 306,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 307,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 26,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 308,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 309,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 64
+        }
+      ]
+    },
+    {
+      "pageNumber": 310,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 65,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 311,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 95
+        }
+      ]
+    },
+    {
+      "pageNumber": 312,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 19,
+          "firstVerseNumber": 96,
+          "lastVerseNumber": 98
+        },
+        {
+          "surahId": 20,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 313,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 13,
+          "lastVerseNumber": 37
+        }
+      ]
+    },
+    {
+      "pageNumber": 314,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 38,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 315,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 64
+        }
+      ]
+    },
+    {
+      "pageNumber": 316,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 65,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 317,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 87
+        }
+      ]
+    },
+    {
+      "pageNumber": 318,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 88,
+          "lastVerseNumber": 98
+        }
+      ]
+    },
+    {
+      "pageNumber": 319,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 99,
+          "lastVerseNumber": 113
+        }
+      ]
+    },
+    {
+      "pageNumber": 320,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 114,
+          "lastVerseNumber": 125
+        }
+      ]
+    },
+    {
+      "pageNumber": 321,
+      "juzNumbers": [
+        16
+      ],
+      "spans": [
+        {
+          "surahId": 20,
+          "firstVerseNumber": 126,
+          "lastVerseNumber": 135
+        }
+      ]
+    },
+    {
+      "pageNumber": 322,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 323,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 324,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 325,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 326,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 57
+        }
+      ]
+    },
+    {
+      "pageNumber": 327,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 58,
+          "lastVerseNumber": 72
+        }
+      ]
+    },
+    {
+      "pageNumber": 328,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 73,
+          "lastVerseNumber": 81
+        }
+      ]
+    },
+    {
+      "pageNumber": 329,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 82,
+          "lastVerseNumber": 90
+        }
+      ]
+    },
+    {
+      "pageNumber": 330,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 91,
+          "lastVerseNumber": 101
+        }
+      ]
+    },
+    {
+      "pageNumber": 331,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 21,
+          "firstVerseNumber": 102,
+          "lastVerseNumber": 112
+        }
+      ]
+    },
+    {
+      "pageNumber": 332,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 333,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 334,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 335,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 336,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 337,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 46
+        }
+      ]
+    },
+    {
+      "pageNumber": 338,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 47,
+          "lastVerseNumber": 55
+        }
+      ]
+    },
+    {
+      "pageNumber": 339,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 56,
+          "lastVerseNumber": 64
+        }
+      ]
+    },
+    {
+      "pageNumber": 340,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 65,
+          "lastVerseNumber": 72
+        }
+      ]
+    },
+    {
+      "pageNumber": 341,
+      "juzNumbers": [
+        17
+      ],
+      "spans": [
+        {
+          "surahId": 22,
+          "firstVerseNumber": 73,
+          "lastVerseNumber": 78
+        }
+      ]
+    },
+    {
+      "pageNumber": 342,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 17
+        }
+      ]
+    },
+    {
+      "pageNumber": 343,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 18,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 344,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 345,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 59
+        }
+      ]
+    },
+    {
+      "pageNumber": 346,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 60,
+          "lastVerseNumber": 74
+        }
+      ]
+    },
+    {
+      "pageNumber": 347,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 75,
+          "lastVerseNumber": 89
+        }
+      ]
+    },
+    {
+      "pageNumber": 348,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 90,
+          "lastVerseNumber": 104
+        }
+      ]
+    },
+    {
+      "pageNumber": 349,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 23,
+          "firstVerseNumber": 105,
+          "lastVerseNumber": 118
+        }
+      ]
+    },
+    {
+      "pageNumber": 350,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 351,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 352,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 353,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 354,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 36
+        }
+      ]
+    },
+    {
+      "pageNumber": 355,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 37,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 356,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 53
+        }
+      ]
+    },
+    {
+      "pageNumber": 357,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 54,
+          "lastVerseNumber": 58
+        }
+      ]
+    },
+    {
+      "pageNumber": 358,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 59,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 359,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 24,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 64
+        },
+        {
+          "surahId": 25,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 2
+        }
+      ]
+    },
+    {
+      "pageNumber": 360,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 3,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 361,
+      "juzNumbers": [
+        18
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 362,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 32
+        }
+      ]
+    },
+    {
+      "pageNumber": 363,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 33,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 364,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 55
+        }
+      ]
+    },
+    {
+      "pageNumber": 365,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 56,
+          "lastVerseNumber": 67
+        }
+      ]
+    },
+    {
+      "pageNumber": 366,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 25,
+          "firstVerseNumber": 68,
+          "lastVerseNumber": 77
+        }
+      ]
+    },
+    {
+      "pageNumber": 367,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 368,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 39
+        }
+      ]
+    },
+    {
+      "pageNumber": 369,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 40,
+          "lastVerseNumber": 60
+        }
+      ]
+    },
+    {
+      "pageNumber": 370,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 61,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 371,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 84,
+          "lastVerseNumber": 111
+        }
+      ]
+    },
+    {
+      "pageNumber": 372,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 112,
+          "lastVerseNumber": 136
+        }
+      ]
+    },
+    {
+      "pageNumber": 373,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 137,
+          "lastVerseNumber": 159
+        }
+      ]
+    },
+    {
+      "pageNumber": 374,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 160,
+          "lastVerseNumber": 183
+        }
+      ]
+    },
+    {
+      "pageNumber": 375,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 184,
+          "lastVerseNumber": 206
+        }
+      ]
+    },
+    {
+      "pageNumber": 376,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 26,
+          "firstVerseNumber": 207,
+          "lastVerseNumber": 227
+        }
+      ]
+    },
+    {
+      "pageNumber": 377,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 378,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 379,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 380,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 381,
+      "juzNumbers": [
+        19
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 55
+        }
+      ]
+    },
+    {
+      "pageNumber": 382,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 56,
+          "lastVerseNumber": 63
+        }
+      ]
+    },
+    {
+      "pageNumber": 383,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 64,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 384,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 88
+        }
+      ]
+    },
+    {
+      "pageNumber": 385,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 27,
+          "firstVerseNumber": 89,
+          "lastVerseNumber": 93
+        },
+        {
+          "surahId": 28,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 386,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 387,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 21
+        }
+      ]
+    },
+    {
+      "pageNumber": 388,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 22,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 389,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 390,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 391,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 392,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 51,
+          "lastVerseNumber": 59
+        }
+      ]
+    },
+    {
+      "pageNumber": 393,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 60,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 394,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 77
+        }
+      ]
+    },
+    {
+      "pageNumber": 395,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 78,
+          "lastVerseNumber": 84
+        }
+      ]
+    },
+    {
+      "pageNumber": 396,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 28,
+          "firstVerseNumber": 85,
+          "lastVerseNumber": 88
+        },
+        {
+          "surahId": 29,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 397,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 398,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 399,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 400,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 401,
+      "juzNumbers": [
+        20
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 45
+        }
+      ]
+    },
+    {
+      "pageNumber": 402,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 46,
+          "lastVerseNumber": 52
+        }
+      ]
+    },
+    {
+      "pageNumber": 403,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 53,
+          "lastVerseNumber": 63
+        }
+      ]
+    },
+    {
+      "pageNumber": 404,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 29,
+          "firstVerseNumber": 64,
+          "lastVerseNumber": 69
+        },
+        {
+          "surahId": 30,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 405,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 406,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 407,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 32
+        }
+      ]
+    },
+    {
+      "pageNumber": 408,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 33,
+          "lastVerseNumber": 41
+        }
+      ]
+    },
+    {
+      "pageNumber": 409,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 42,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 410,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 30,
+          "firstVerseNumber": 51,
+          "lastVerseNumber": 60
+        }
+      ]
+    },
+    {
+      "pageNumber": 411,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 31,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 412,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 31,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 413,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 31,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 414,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 31,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 415,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 32,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 416,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 32,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 417,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 32,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 418,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 419,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 420,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 421,
+      "juzNumbers": [
+        21
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 422,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 423,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 43
+        }
+      ]
+    },
+    {
+      "pageNumber": 424,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 44,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 425,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 51,
+          "lastVerseNumber": 54
+        }
+      ]
+    },
+    {
+      "pageNumber": 426,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 55,
+          "lastVerseNumber": 62
+        }
+      ]
+    },
+    {
+      "pageNumber": 427,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 33,
+          "firstVerseNumber": 63,
+          "lastVerseNumber": 73
+        }
+      ]
+    },
+    {
+      "pageNumber": 428,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 429,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 8,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 430,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 431,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 432,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 39
+        }
+      ]
+    },
+    {
+      "pageNumber": 433,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 40,
+          "lastVerseNumber": 48
+        }
+      ]
+    },
+    {
+      "pageNumber": 434,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 34,
+          "firstVerseNumber": 49,
+          "lastVerseNumber": 54
+        },
+        {
+          "surahId": 35,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        }
+      ]
+    },
+    {
+      "pageNumber": 435,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 4,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 436,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 437,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 438,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 439,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 440,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 35,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 45
+        },
+        {
+          "surahId": 36,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 441,
+      "juzNumbers": [
+        22
+      ],
+      "spans": [
+        {
+          "surahId": 36,
+          "firstVerseNumber": 13,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 442,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 36,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 443,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 36,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 54
+        }
+      ]
+    },
+    {
+      "pageNumber": 444,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 36,
+          "firstVerseNumber": 55,
+          "lastVerseNumber": 70
+        }
+      ]
+    },
+    {
+      "pageNumber": 445,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 36,
+          "firstVerseNumber": 71,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 446,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 447,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 448,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 449,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 102
+        }
+      ]
+    },
+    {
+      "pageNumber": 450,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 103,
+          "lastVerseNumber": 126
+        }
+      ]
+    },
+    {
+      "pageNumber": 451,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 127,
+          "lastVerseNumber": 153
+        }
+      ]
+    },
+    {
+      "pageNumber": 452,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 37,
+          "firstVerseNumber": 154,
+          "lastVerseNumber": 182
+        }
+      ]
+    },
+    {
+      "pageNumber": 453,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 454,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 455,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 456,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 61
+        }
+      ]
+    },
+    {
+      "pageNumber": 457,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 62,
+          "lastVerseNumber": 83
+        }
+      ]
+    },
+    {
+      "pageNumber": 458,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 38,
+          "firstVerseNumber": 84,
+          "lastVerseNumber": 88
+        },
+        {
+          "surahId": 39,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 459,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 460,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 21
+        }
+      ]
+    },
+    {
+      "pageNumber": 461,
+      "juzNumbers": [
+        23
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 22,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 462,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 463,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 47
+        }
+      ]
+    },
+    {
+      "pageNumber": 464,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 48,
+          "lastVerseNumber": 56
+        }
+      ]
+    },
+    {
+      "pageNumber": 465,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 57,
+          "lastVerseNumber": 67
+        }
+      ]
+    },
+    {
+      "pageNumber": 466,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 68,
+          "lastVerseNumber": 74
+        }
+      ]
+    },
+    {
+      "pageNumber": 467,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 39,
+          "firstVerseNumber": 75,
+          "lastVerseNumber": 75
+        },
+        {
+          "surahId": 40,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 468,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 8,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 469,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 470,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 26,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 471,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 472,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 49
+        }
+      ]
+    },
+    {
+      "pageNumber": 473,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 50,
+          "lastVerseNumber": 58
+        }
+      ]
+    },
+    {
+      "pageNumber": 474,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 59,
+          "lastVerseNumber": 66
+        }
+      ]
+    },
+    {
+      "pageNumber": 475,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 67,
+          "lastVerseNumber": 77
+        }
+      ]
+    },
+    {
+      "pageNumber": 476,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 40,
+          "firstVerseNumber": 78,
+          "lastVerseNumber": 85
+        }
+      ]
+    },
+    {
+      "pageNumber": 477,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 478,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 479,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 480,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 30,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 481,
+      "juzNumbers": [
+        24
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 39,
+          "lastVerseNumber": 46
+        }
+      ]
+    },
+    {
+      "pageNumber": 482,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 41,
+          "firstVerseNumber": 47,
+          "lastVerseNumber": 54
+        }
+      ]
+    },
+    {
+      "pageNumber": 483,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 484,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 485,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 486,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 487,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 488,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 489,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 42,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 53
+        },
+        {
+          "surahId": 43,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 490,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 491,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 33
+        }
+      ]
+    },
+    {
+      "pageNumber": 492,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 34,
+          "lastVerseNumber": 47
+        }
+      ]
+    },
+    {
+      "pageNumber": 493,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 48,
+          "lastVerseNumber": 60
+        }
+      ]
+    },
+    {
+      "pageNumber": 494,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 61,
+          "lastVerseNumber": 73
+        }
+      ]
+    },
+    {
+      "pageNumber": 495,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 43,
+          "firstVerseNumber": 74,
+          "lastVerseNumber": 89
+        }
+      ]
+    },
+    {
+      "pageNumber": 496,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 44,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 497,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 44,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 39
+        }
+      ]
+    },
+    {
+      "pageNumber": 498,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 44,
+          "firstVerseNumber": 40,
+          "lastVerseNumber": 59
+        }
+      ]
+    },
+    {
+      "pageNumber": 499,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 45,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 500,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 45,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 501,
+      "juzNumbers": [
+        25
+      ],
+      "spans": [
+        {
+          "surahId": 45,
+          "firstVerseNumber": 23,
+          "lastVerseNumber": 32
+        }
+      ]
+    },
+    {
+      "pageNumber": 502,
+      "juzNumbers": [
+        25,
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 45,
+          "firstVerseNumber": 33,
+          "lastVerseNumber": 37
+        },
+        {
+          "surahId": 46,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 503,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 46,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 504,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 46,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 505,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 46,
+          "firstVerseNumber": 21,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 506,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 46,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 507,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 47,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 508,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 47,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 509,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 47,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 510,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 47,
+          "firstVerseNumber": 30,
+          "lastVerseNumber": 38
+        }
+      ]
+    },
+    {
+      "pageNumber": 511,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 48,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 512,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 48,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 513,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 48,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 514,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 48,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 515,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 48,
+          "firstVerseNumber": 29,
+          "lastVerseNumber": 29
+        },
+        {
+          "surahId": 49,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        }
+      ]
+    },
+    {
+      "pageNumber": 516,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 49,
+          "firstVerseNumber": 5,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 517,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 49,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 518,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 50,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 519,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 50,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 35
+        }
+      ]
+    },
+    {
+      "pageNumber": 520,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 50,
+          "firstVerseNumber": 36,
+          "lastVerseNumber": 45
+        },
+        {
+          "surahId": 51,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 521,
+      "juzNumbers": [
+        26
+      ],
+      "spans": [
+        {
+          "surahId": 51,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 522,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 51,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 51
+        }
+      ]
+    },
+    {
+      "pageNumber": 523,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 51,
+          "firstVerseNumber": 52,
+          "lastVerseNumber": 60
+        },
+        {
+          "surahId": 52,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 524,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 52,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 31
+        }
+      ]
+    },
+    {
+      "pageNumber": 525,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 52,
+          "firstVerseNumber": 32,
+          "lastVerseNumber": 49
+        }
+      ]
+    },
+    {
+      "pageNumber": 526,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 53,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 527,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 53,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 44
+        }
+      ]
+    },
+    {
+      "pageNumber": 528,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 53,
+          "firstVerseNumber": 45,
+          "lastVerseNumber": 62
+        },
+        {
+          "surahId": 54,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 529,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 54,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 27
+        }
+      ]
+    },
+    {
+      "pageNumber": 530,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 54,
+          "firstVerseNumber": 28,
+          "lastVerseNumber": 49
+        }
+      ]
+    },
+    {
+      "pageNumber": 531,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 54,
+          "firstVerseNumber": 50,
+          "lastVerseNumber": 55
+        },
+        {
+          "surahId": 55,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 532,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 55,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 40
+        }
+      ]
+    },
+    {
+      "pageNumber": 533,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 55,
+          "firstVerseNumber": 41,
+          "lastVerseNumber": 67
+        }
+      ]
+    },
+    {
+      "pageNumber": 534,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 55,
+          "firstVerseNumber": 68,
+          "lastVerseNumber": 78
+        },
+        {
+          "surahId": 56,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 535,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 56,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 536,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 56,
+          "firstVerseNumber": 51,
+          "lastVerseNumber": 76
+        }
+      ]
+    },
+    {
+      "pageNumber": 537,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 56,
+          "firstVerseNumber": 77,
+          "lastVerseNumber": 96
+        },
+        {
+          "surahId": 57,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        }
+      ]
+    },
+    {
+      "pageNumber": 538,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 57,
+          "firstVerseNumber": 4,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 539,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 57,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 540,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 57,
+          "firstVerseNumber": 19,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 541,
+      "juzNumbers": [
+        27
+      ],
+      "spans": [
+        {
+          "surahId": 57,
+          "firstVerseNumber": 25,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 542,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 58,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 543,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 58,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 544,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 58,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 21
+        }
+      ]
+    },
+    {
+      "pageNumber": 545,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 58,
+          "firstVerseNumber": 22,
+          "lastVerseNumber": 22
+        },
+        {
+          "surahId": 59,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        }
+      ]
+    },
+    {
+      "pageNumber": 546,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 59,
+          "firstVerseNumber": 4,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 547,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 59,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 16
+        }
+      ]
+    },
+    {
+      "pageNumber": 548,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 59,
+          "firstVerseNumber": 17,
+          "lastVerseNumber": 24
+        }
+      ]
+    },
+    {
+      "pageNumber": 549,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 60,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 550,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 60,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 551,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 60,
+          "firstVerseNumber": 12,
+          "lastVerseNumber": 13
+        },
+        {
+          "surahId": 61,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 552,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 61,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 553,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 62,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 554,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 62,
+          "firstVerseNumber": 9,
+          "lastVerseNumber": 11
+        },
+        {
+          "surahId": 63,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        }
+      ]
+    },
+    {
+      "pageNumber": 555,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 63,
+          "firstVerseNumber": 5,
+          "lastVerseNumber": 11
+        }
+      ]
+    },
+    {
+      "pageNumber": 556,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 64,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 557,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 64,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 18
+        }
+      ]
+    },
+    {
+      "pageNumber": 558,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 65,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 559,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 65,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 560,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 66,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 561,
+      "juzNumbers": [
+        28
+      ],
+      "spans": [
+        {
+          "surahId": 66,
+          "firstVerseNumber": 8,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 562,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 67,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 12
+        }
+      ]
+    },
+    {
+      "pageNumber": 563,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 67,
+          "firstVerseNumber": 13,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 564,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 67,
+          "firstVerseNumber": 27,
+          "lastVerseNumber": 30
+        },
+        {
+          "surahId": 68,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 565,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 68,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 566,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 68,
+          "firstVerseNumber": 43,
+          "lastVerseNumber": 52
+        },
+        {
+          "surahId": 69,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 567,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 69,
+          "firstVerseNumber": 9,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 568,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 69,
+          "firstVerseNumber": 35,
+          "lastVerseNumber": 52
+        },
+        {
+          "surahId": 70,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 569,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 70,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 39
+        }
+      ]
+    },
+    {
+      "pageNumber": 570,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 70,
+          "firstVerseNumber": 40,
+          "lastVerseNumber": 44
+        },
+        {
+          "surahId": 71,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 10
+        }
+      ]
+    },
+    {
+      "pageNumber": 571,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 71,
+          "firstVerseNumber": 11,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 572,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 72,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 13
+        }
+      ]
+    },
+    {
+      "pageNumber": 573,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 72,
+          "firstVerseNumber": 14,
+          "lastVerseNumber": 28
+        }
+      ]
+    },
+    {
+      "pageNumber": 574,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 73,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 575,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 73,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 20
+        },
+        {
+          "surahId": 74,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 17
+        }
+      ]
+    },
+    {
+      "pageNumber": 576,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 74,
+          "firstVerseNumber": 18,
+          "lastVerseNumber": 47
+        }
+      ]
+    },
+    {
+      "pageNumber": 577,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 74,
+          "firstVerseNumber": 48,
+          "lastVerseNumber": 56
+        },
+        {
+          "surahId": 75,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 578,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 75,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 40
+        },
+        {
+          "surahId": 76,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 579,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 76,
+          "firstVerseNumber": 6,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 580,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 76,
+          "firstVerseNumber": 26,
+          "lastVerseNumber": 31
+        },
+        {
+          "surahId": 77,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 581,
+      "juzNumbers": [
+        29
+      ],
+      "spans": [
+        {
+          "surahId": 77,
+          "firstVerseNumber": 20,
+          "lastVerseNumber": 50
+        }
+      ]
+    },
+    {
+      "pageNumber": 582,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 78,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 30
+        }
+      ]
+    },
+    {
+      "pageNumber": 583,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 78,
+          "firstVerseNumber": 31,
+          "lastVerseNumber": 40
+        },
+        {
+          "surahId": 79,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 584,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 79,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 46
+        }
+      ]
+    },
+    {
+      "pageNumber": 585,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 80,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 42
+        }
+      ]
+    },
+    {
+      "pageNumber": 586,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 81,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 29
+        }
+      ]
+    },
+    {
+      "pageNumber": 587,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 82,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        },
+        {
+          "surahId": 83,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    },
+    {
+      "pageNumber": 588,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 83,
+          "firstVerseNumber": 7,
+          "lastVerseNumber": 34
+        }
+      ]
+    },
+    {
+      "pageNumber": 589,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 83,
+          "firstVerseNumber": 35,
+          "lastVerseNumber": 36
+        },
+        {
+          "surahId": 84,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 25
+        }
+      ]
+    },
+    {
+      "pageNumber": 590,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 85,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 22
+        }
+      ]
+    },
+    {
+      "pageNumber": 591,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 86,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 17
+        },
+        {
+          "surahId": 87,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        }
+      ]
+    },
+    {
+      "pageNumber": 592,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 87,
+          "firstVerseNumber": 16,
+          "lastVerseNumber": 19
+        },
+        {
+          "surahId": 88,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 26
+        }
+      ]
+    },
+    {
+      "pageNumber": 593,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 89,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 23
+        }
+      ]
+    },
+    {
+      "pageNumber": 594,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 89,
+          "firstVerseNumber": 24,
+          "lastVerseNumber": 30
+        },
+        {
+          "surahId": 90,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 20
+        }
+      ]
+    },
+    {
+      "pageNumber": 595,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 91,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 15
+        },
+        {
+          "surahId": 92,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 14
+        }
+      ]
+    },
+    {
+      "pageNumber": 596,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 92,
+          "firstVerseNumber": 15,
+          "lastVerseNumber": 21
+        },
+        {
+          "surahId": 93,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        },
+        {
+          "surahId": 94,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 597,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 95,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        },
+        {
+          "surahId": 96,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 19
+        }
+      ]
+    },
+    {
+      "pageNumber": 598,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 97,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        },
+        {
+          "surahId": 98,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        }
+      ]
+    },
+    {
+      "pageNumber": 599,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 98,
+          "firstVerseNumber": 8,
+          "lastVerseNumber": 8
+        },
+        {
+          "surahId": 99,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        },
+        {
+          "surahId": 100,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 9
+        }
+      ]
+    },
+    {
+      "pageNumber": 600,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 100,
+          "firstVerseNumber": 10,
+          "lastVerseNumber": 11
+        },
+        {
+          "surahId": 101,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 11
+        },
+        {
+          "surahId": 102,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 8
+        }
+      ]
+    },
+    {
+      "pageNumber": 601,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 103,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        },
+        {
+          "surahId": 104,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 9
+        },
+        {
+          "surahId": 105,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 602,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 106,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        },
+        {
+          "surahId": 107,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 7
+        },
+        {
+          "surahId": 108,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        }
+      ]
+    },
+    {
+      "pageNumber": 603,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 109,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        },
+        {
+          "surahId": 110,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 3
+        },
+        {
+          "surahId": 111,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        }
+      ]
+    },
+    {
+      "pageNumber": 604,
+      "juzNumbers": [
+        30
+      ],
+      "spans": [
+        {
+          "surahId": 112,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 4
+        },
+        {
+          "surahId": 113,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 5
+        },
+        {
+          "surahId": 114,
+          "firstVerseNumber": 1,
+          "lastVerseNumber": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 108,
+    "nameArabic": "الكوثر",
+    "nameTurkish": null,
+    "verseCount": 3,
+    "firstGlobalOrder": 6205
+  },
+  "verses": [
+    {
+      "key": "108:1",
+      "surahId": 108,
+      "numberInSurah": 1,
+      "globalOrder": 6205,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "إِنَّآ أَعْطَيْنَـٰكَ ٱلْكَوْثَرَ",
+      "translationText": "Muhakkak biz sana Kevser'i verdik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "108:2",
+      "surahId": 108,
+      "numberInSurah": 2,
+      "globalOrder": 6206,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "فَصَلِّ لِرَبِّكَ وَٱنْحَرْ",
+      "translationText": "Öyleyse Rabb'in için namaz kıl ve kurban kes.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "108:3",
+      "surahId": 108,
+      "numberInSurah": 3,
+      "globalOrder": 6207,
+      "pageNumber": 602,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ",
+      "translationText": "Muhakkak ki sonu kesik olan, sana buğzedendir.",
+      "translationFootnotes": []
+    }
+  ]
+}

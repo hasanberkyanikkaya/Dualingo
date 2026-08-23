@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 90,
+    "nameArabic": "البلد",
+    "nameTurkish": null,
+    "verseCount": 20,
+    "firstGlobalOrder": 6024
+  },
+  "verses": [
+    {
+      "key": "90:1",
+      "surahId": 90,
+      "numberInSurah": 1,
+      "globalOrder": 6024,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "لَآ أُقْسِمُ بِهَـٰذَا ٱلْبَلَدِ",
+      "translationText": "Andolsun bu beldeye",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:2",
+      "surahId": 90,
+      "numberInSurah": 2,
+      "globalOrder": 6025,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَأَنتَ حِلٌّۢ بِهَـٰذَا ٱلْبَلَدِ",
+      "translationText": "Ki sen bu beldede oturmaktasın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:3",
+      "surahId": 90,
+      "numberInSurah": 3,
+      "globalOrder": 6026,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَوَالِدٍ وَمَا وَلَدَ",
+      "translationText": "Ve and olsun baba ve çocuğuna.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:4",
+      "surahId": 90,
+      "numberInSurah": 4,
+      "globalOrder": 6027,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "لَقَدْ خَلَقْنَا ٱلْإِنسَـٰنَ فِى كَبَدٍ",
+      "translationText": "Biz insanı gerçekten bir sıkıntı içinde yarattık.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:5",
+      "surahId": 90,
+      "numberInSurah": 5,
+      "globalOrder": 6028,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أَيَحْسَبُ أَن لَّن يَقْدِرَ عَلَيْهِ أَحَدٌ",
+      "translationText": "İnsan, kendisine karşı kimse güç yetiremez mi sanıyor?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:6",
+      "surahId": 90,
+      "numberInSurah": 6,
+      "globalOrder": 6029,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "يَقُولُ أَهْلَكْتُ مَالًا لُّبَدًا",
+      "translationText": "Ben, yığın yığın mal yok ettim diyor.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:7",
+      "surahId": 90,
+      "numberInSurah": 7,
+      "globalOrder": 6030,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أَيَحْسَبُ أَن لَّمْ يَرَهُۥٓ أَحَدٌ",
+      "translationText": "Kendisini bir gören olmadı mı sanıyor?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:8",
+      "surahId": 90,
+      "numberInSurah": 8,
+      "globalOrder": 6031,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ نَجْعَل لَّهُۥ عَيْنَيْنِ",
+      "translationText": "Biz ona iki göz vermedik mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:9",
+      "surahId": 90,
+      "numberInSurah": 9,
+      "globalOrder": 6032,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَلِسَانًا وَشَفَتَيْنِ",
+      "translationText": "Bir dil ve iki dudak?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:10",
+      "surahId": 90,
+      "numberInSurah": 10,
+      "globalOrder": 6033,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَهَدَيْنَـٰهُ ٱلنَّجْدَيْنِ",
+      "translationText": "Ona iki yolu gösterdik.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:11",
+      "surahId": 90,
+      "numberInSurah": 11,
+      "globalOrder": 6034,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "فَلَا ٱقْتَحَمَ ٱلْعَقَبَةَ",
+      "translationText": "Fakat o, o sarp yokuşa göğüs veremedi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:12",
+      "surahId": 90,
+      "numberInSurah": 12,
+      "globalOrder": 6035,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَمَآ أَدْرَىٰكَ مَا ٱلْعَقَبَةُ",
+      "translationText": "Bildin mi sen, o sarp yokuş nedir?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:13",
+      "surahId": 90,
+      "numberInSurah": 13,
+      "globalOrder": 6036,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "فَكُّ رَقَبَةٍ",
+      "translationText": "Köle azat etmek,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:14",
+      "surahId": 90,
+      "numberInSurah": 14,
+      "globalOrder": 6037,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أَوْ إِطْعَـٰمٌ فِى يَوْمٍ ذِى مَسْغَبَةٍ",
+      "translationText": "Veya salgın bir kıtlık gününde yemek yedirmektir,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:15",
+      "surahId": 90,
+      "numberInSurah": 15,
+      "globalOrder": 6038,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "يَتِيمًا ذَا مَقْرَبَةٍ",
+      "translationText": "Yakınlığı olan bir yetime,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:16",
+      "surahId": 90,
+      "numberInSurah": 16,
+      "globalOrder": 6039,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أَوْ مِسْكِينًا ذَا مَتْرَبَةٍ",
+      "translationText": "Veya hiçbir şeyi olmayan yoksula.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:17",
+      "surahId": 90,
+      "numberInSurah": 17,
+      "globalOrder": 6040,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "ثُمَّ كَانَ مِنَ ٱلَّذِينَ ءَامَنُوا۟ وَتَوَاصَوْا۟ بِٱلصَّبْرِ وَتَوَاصَوْا۟ بِٱلْمَرْحَمَةِ",
+      "translationText": "Sonra da iman edip de sabrı tavsiye eden ve merhamet tavsiye edenlerden olmaktır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:18",
+      "surahId": 90,
+      "numberInSurah": 18,
+      "globalOrder": 6041,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "أُو۟لَـٰٓئِكَ أَصْحَـٰبُ ٱلْمَيْمَنَةِ",
+      "translationText": "İşte bunlar, amel defterleri sağlarından verilenlerdir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:19",
+      "surahId": 90,
+      "numberInSurah": 19,
+      "globalOrder": 6042,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّذِينَ كَفَرُوا۟ بِـَٔايَـٰتِنَا هُمْ أَصْحَـٰبُ ٱلْمَشْـَٔمَةِ",
+      "translationText": "Âyetlerimizi tanımayanlar ise, onlardır işte amel defterleri sollarından verilenler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "90:20",
+      "surahId": 90,
+      "numberInSurah": 20,
+      "globalOrder": 6043,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "عَلَيْهِمْ نَارٌ مُّؤْصَدَةٌۢ",
+      "translationText": "Onların üzerlerine bir ateş bastırılıp kapıları kapanacaktır.",
+      "translationFootnotes": []
+    }
+  ]
+}

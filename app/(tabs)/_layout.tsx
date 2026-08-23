@@ -3,6 +3,7 @@ import { Redirect, Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { layout } from '@/constants/spacing';
+import { quranTheme } from '@/constants/quranTheme';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import { usePlacement } from '@/features/onboarding/usePlacement';
@@ -79,6 +80,13 @@ export default function TabsLayout() {
         name="quran"
         options={{
           title: strings.tabs.quran,
+          tabBarActiveTintColor: quranTheme.accent,
+          tabBarInactiveTintColor: quranTheme.textMuted,
+          tabBarStyle: {
+            height: layout.tabBarHeight + insets.bottom,
+            backgroundColor: quranTheme.backgroundBottom,
+            borderTopColor: quranTheme.glassBorder,
+          },
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color} />
           ),

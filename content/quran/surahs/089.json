@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 89,
+    "nameArabic": "الفجر",
+    "nameTurkish": null,
+    "verseCount": 30,
+    "firstGlobalOrder": 5994
+  },
+  "verses": [
+    {
+      "key": "89:1",
+      "surahId": 89,
+      "numberInSurah": 1,
+      "globalOrder": 5994,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْفَجْرِ",
+      "translationText": "Andolsun fecre.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:2",
+      "surahId": 89,
+      "numberInSurah": 2,
+      "globalOrder": 5995,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَلَيَالٍ عَشْرٍ",
+      "translationText": "On geceye (Zilhicce ayının ilk on gecesine).",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:3",
+      "surahId": 89,
+      "numberInSurah": 3,
+      "globalOrder": 5996,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَٱلشَّفْعِ وَٱلْوَتْرِ",
+      "translationText": "Çifte ve teke.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:4",
+      "surahId": 89,
+      "numberInSurah": 4,
+      "globalOrder": 5997,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَٱلَّيْلِ إِذَا يَسْرِ",
+      "translationText": "Gitmekte olan geceye.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:5",
+      "surahId": 89,
+      "numberInSurah": 5,
+      "globalOrder": 5998,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "هَلْ فِى ذَٰلِكَ قَسَمٌ لِّذِى حِجْرٍ",
+      "translationText": "Nasıl, bunlarda bir akıl sahibi için yemin var değil mi?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:6",
+      "surahId": 89,
+      "numberInSurah": 6,
+      "globalOrder": 5999,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِعَادٍ",
+      "translationText": "Görmedin mi Rabbin ne yaptı Âd kavmine?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:7",
+      "surahId": 89,
+      "numberInSurah": 7,
+      "globalOrder": 6000,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "إِرَمَ ذَاتِ ٱلْعِمَادِ",
+      "translationText": "Sütunlar sahibi İrem'e?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:8",
+      "surahId": 89,
+      "numberInSurah": 8,
+      "globalOrder": 6001,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّتِى لَمْ يُخْلَقْ مِثْلُهَا فِى ٱلْبِلَـٰدِ",
+      "translationText": "Ki ülkeler içinde onun benzeri yaratılmamıştı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:9",
+      "surahId": 89,
+      "numberInSurah": 9,
+      "globalOrder": 6002,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَثَمُودَ ٱلَّذِينَ جَابُوا۟ ٱلصَّخْرَ بِٱلْوَادِ",
+      "translationText": "Vâdide kayaları yontan Semud kavmine?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:10",
+      "surahId": 89,
+      "numberInSurah": 10,
+      "globalOrder": 6003,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَفِرْعَوْنَ ذِى ٱلْأَوْتَادِ",
+      "translationText": "Kazıklar sahibi (güçlü, kuvvetli) Firavun'a?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:11",
+      "surahId": 89,
+      "numberInSurah": 11,
+      "globalOrder": 6004,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "ٱلَّذِينَ طَغَوْا۟ فِى ٱلْبِلَـٰدِ",
+      "translationText": "Bunlar ülkelerde azmışlardı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:12",
+      "surahId": 89,
+      "numberInSurah": 12,
+      "globalOrder": 6005,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "فَأَكْثَرُوا۟ فِيهَا ٱلْفَسَادَ",
+      "translationText": "Oralarda çok bozgunculuk yapmışlardı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:13",
+      "surahId": 89,
+      "numberInSurah": 13,
+      "globalOrder": 6006,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "فَصَبَّ عَلَيْهِمْ رَبُّكَ سَوْطَ عَذَابٍ",
+      "translationText": "Bu yüzden Rabbin onların üstüne azap kamçısı yağdırdı.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:14",
+      "surahId": 89,
+      "numberInSurah": 14,
+      "globalOrder": 6007,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ رَبَّكَ لَبِٱلْمِرْصَادِ",
+      "translationText": "Kuşkusuz Rabbin her an gözetlemededir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:15",
+      "surahId": 89,
+      "numberInSurah": 15,
+      "globalOrder": 6008,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "فَأَمَّا ٱلْإِنسَـٰنُ إِذَا مَا ٱبْتَلَىٰهُ رَبُّهُۥ فَأَكْرَمَهُۥ وَنَعَّمَهُۥ فَيَقُولُ رَبِّىٓ أَكْرَمَنِ",
+      "translationText": "Ama insan, her ne zaman Rabbi onu sınayıp da ikramda bulunur, nimet verirse, \"Rabbim bana ikram etti.\" der.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:16",
+      "surahId": 89,
+      "numberInSurah": 16,
+      "globalOrder": 6009,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَأَمَّآ إِذَا مَا ٱبْتَلَىٰهُ فَقَدَرَ عَلَيْهِ رِزْقَهُۥ فَيَقُولُ رَبِّىٓ أَهَـٰنَنِ",
+      "translationText": "Ama her ne zaman da sınayıp rızkını daraltırsa, o vakit de, \"Rabbim beni zillete düşürdü.\" der.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:17",
+      "surahId": 89,
+      "numberInSurah": 17,
+      "globalOrder": 6010,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "كَلَّا ۖ بَل لَّا تُكْرِمُونَ ٱلْيَتِيمَ",
+      "translationText": "Hayır hayır, doğrusu siz yetime ikram etmiyorsunuz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:18",
+      "surahId": 89,
+      "numberInSurah": 18,
+      "globalOrder": 6011,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَلَا تَحَـٰٓضُّونَ عَلَىٰ طَعَامِ ٱلْمِسْكِينِ",
+      "translationText": "Birbirinizi yoksulu yedirmeye teşvik etmiyorsunuz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:19",
+      "surahId": 89,
+      "numberInSurah": 19,
+      "globalOrder": 6012,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَتَأْكُلُونَ ٱلتُّرَاثَ أَكْلًا لَّمًّا",
+      "translationText": "Oysa mirası öyle bir yiyorsunuz ki, haramhelal gözetmeden.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:20",
+      "surahId": 89,
+      "numberInSurah": 20,
+      "globalOrder": 6013,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَتُحِبُّونَ ٱلْمَالَ حُبًّا جَمًّا",
+      "translationText": "Malı öyle bir seviyorsunuz ki, yığmacasına.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:21",
+      "surahId": 89,
+      "numberInSurah": 21,
+      "globalOrder": 6014,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "كَلَّآ إِذَا دُكَّتِ ٱلْأَرْضُ دَكًّا دَكًّا",
+      "translationText": "Hayır hayır, yer birbiri ardınca sarsılıp dümdüz olduğu zaman,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:22",
+      "surahId": 89,
+      "numberInSurah": 22,
+      "globalOrder": 6015,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَجَآءَ رَبُّكَ وَٱلْمَلَكُ صَفًّا صَفًّا",
+      "translationText": "Rabbinin emri gelip melekler sıra sıra dizildiği zaman,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:23",
+      "surahId": 89,
+      "numberInSurah": 23,
+      "globalOrder": 6016,
+      "pageNumber": 593,
+      "juzNumber": 30,
+      "arabicText": "وَجِا۟ىٓءَ يَوْمَئِذٍۭ بِجَهَنَّمَ ۚ يَوْمَئِذٍ يَتَذَكَّرُ ٱلْإِنسَـٰنُ وَأَنَّىٰ لَهُ ٱلذِّكْرَىٰ",
+      "translationText": "Ki cehennem de o gün getirilmiştir. İşte o gün insan anlar. Fakat bu anlamanın ona ne yararı var?",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:24",
+      "surahId": 89,
+      "numberInSurah": 24,
+      "globalOrder": 6017,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "يَقُولُ يَـٰلَيْتَنِى قَدَّمْتُ لِحَيَاتِى",
+      "translationText": "\"Keşke hayatım için bir şeyler yapıp gönderseydim.\" der.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:25",
+      "surahId": 89,
+      "numberInSurah": 25,
+      "globalOrder": 6018,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "فَيَوْمَئِذٍ لَّا يُعَذِّبُ عَذَابَهُۥٓ أَحَدٌ",
+      "translationText": "Artık o gün Allah'ın edeceği azabı kimse edemez.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:26",
+      "surahId": 89,
+      "numberInSurah": 26,
+      "globalOrder": 6019,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَلَا يُوثِقُ وَثَاقَهُۥٓ أَحَدٌ",
+      "translationText": "Onun vuracağı bağı kimse vuramaz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:27",
+      "surahId": 89,
+      "numberInSurah": 27,
+      "globalOrder": 6020,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "يَـٰٓأَيَّتُهَا ٱلنَّفْسُ ٱلْمُطْمَئِنَّةُ",
+      "translationText": "Ey, Rabbine, itaat edip huzura eren nefis!",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:28",
+      "surahId": 89,
+      "numberInSurah": 28,
+      "globalOrder": 6021,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "ٱرْجِعِىٓ إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً",
+      "translationText": "Hem hoşnut edici, hem de hoşnut edilmiş olarak Rabbine dön.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:29",
+      "surahId": 89,
+      "numberInSurah": 29,
+      "globalOrder": 6022,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "فَٱدْخُلِى فِى عِبَـٰدِى",
+      "translationText": "Kullarımın arasına gir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "89:30",
+      "surahId": 89,
+      "numberInSurah": 30,
+      "globalOrder": 6023,
+      "pageNumber": 594,
+      "juzNumber": 30,
+      "arabicText": "وَٱدْخُلِى جَنَّتِى",
+      "translationText": "Cennetime gir.",
+      "translationFootnotes": []
+    }
+  ]
+}

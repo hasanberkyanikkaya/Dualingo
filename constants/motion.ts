@@ -67,9 +67,17 @@ export const timing = {
    * kullanıcıya yanlış yönü gösterirdi.
    */
   compass: { duration: 120, easing: Easing.out(Easing.quad) },
+  /** Mushaf yaprağının 3B dönüşü; içerik yarıda değişir ve hedefi aşmaz. */
+  pageTurn: { duration: 360, easing: Easing.inOut(Easing.cubic) },
 } as const satisfies Record<string, WithTimingConfig>;
 
 export type TimingToken = keyof typeof timing;
+
+/** 3B sayfa dönüşünün geometrisi; bileşen içinde sihirli sayı bırakmaz. */
+export const pageTurnMotion = {
+  perspective: 1200,
+  angle: 88,
+} as const;
 
 /**
  * Sahne sıralaması — birden çok öğenin arka arkaya belirdiği anların zamanlaması.

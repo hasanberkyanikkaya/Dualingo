@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 49,
+    "nameArabic": "الحجرات",
+    "nameTurkish": null,
+    "verseCount": 18,
+    "firstGlobalOrder": 4613
+  },
+  "verses": [
+    {
+      "key": "49:1",
+      "surahId": 49,
+      "numberInSurah": 1,
+      "globalOrder": 4613,
+      "pageNumber": 515,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا تُقَدِّمُوا۟ بَيْنَ يَدَىِ ٱللَّهِ وَرَسُولِهِۦ ۖ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ سَمِيعٌ عَلِيمٌ",
+      "translationText": "Ey iman edenler! Allah'ın ve Resulünün huzurunda öne geçmeyin. Allah'tan korkun. Şüphesiz Allah işitendir, bilendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:2",
+      "surahId": 49,
+      "numberInSurah": 2,
+      "globalOrder": 4614,
+      "pageNumber": 515,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا تَرْفَعُوٓا۟ أَصْوَٰتَكُمْ فَوْقَ صَوْتِ ٱلنَّبِىِّ وَلَا تَجْهَرُوا۟ لَهُۥ بِٱلْقَوْلِ كَجَهْرِ بَعْضِكُمْ لِبَعْضٍ أَن تَحْبَطَ أَعْمَـٰلُكُمْ وَأَنتُمْ لَا تَشْعُرُونَ",
+      "translationText": "Ey iman edenler! Seslerinizi Peygamber'in sesinden fazla yükseltmeyin. Birbirinize bağırdığınız gibi, Peygamber'e yüksek sesle bağırmayın. Öyle yaparsanız, siz farkına varmadan amelleriniz boşa gider.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:3",
+      "surahId": 49,
+      "numberInSurah": 3,
+      "globalOrder": 4615,
+      "pageNumber": 515,
+      "juzNumber": 26,
+      "arabicText": "إِنَّ ٱلَّذِينَ يَغُضُّونَ أَصْوَٰتَهُمْ عِندَ رَسُولِ ٱللَّهِ أُو۟لَـٰٓئِكَ ٱلَّذِينَ ٱمْتَحَنَ ٱللَّهُ قُلُوبَهُمْ لِلتَّقْوَىٰ ۚ لَهُم مَّغْفِرَةٌ وَأَجْرٌ عَظِيمٌ",
+      "translationText": "Allah'ın elçisinin huzurunda seslerini kısanlar, şüphesiz Allah'ın kalplerini takva ile imtihan ettiği kimselerdir. Onlara mağfiret ve büyük bir mükâfat vardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:4",
+      "surahId": 49,
+      "numberInSurah": 4,
+      "globalOrder": 4616,
+      "pageNumber": 515,
+      "juzNumber": 26,
+      "arabicText": "إِنَّ ٱلَّذِينَ يُنَادُونَكَ مِن وَرَآءِ ٱلْحُجُرَٰتِ أَكْثَرُهُمْ لَا يَعْقِلُونَ",
+      "translationText": "(Resülüm!) Sana odaların arkasından bağıranların çokları, aklı ermez kimselerdir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:5",
+      "surahId": 49,
+      "numberInSurah": 5,
+      "globalOrder": 4617,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "وَلَوْ أَنَّهُمْ صَبَرُوا۟ حَتَّىٰ تَخْرُجَ إِلَيْهِمْ لَكَانَ خَيْرًا لَّهُمْ ۚ وَٱللَّهُ غَفُورٌ رَّحِيمٌ",
+      "translationText": "Eğer onlar, sen yanlarına çıkıncaya kadar sabretselerdi, elbette kendileri için daha iyi olurdu. Bununla beraber Allah çok bağışlayan, çok merhamet edendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:6",
+      "surahId": 49,
+      "numberInSurah": 6,
+      "globalOrder": 4618,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن جَآءَكُمْ فَاسِقٌۢ بِنَبَإٍ فَتَبَيَّنُوٓا۟ أَن تُصِيبُوا۟ قَوْمًۢا بِجَهَـٰلَةٍ فَتُصْبِحُوا۟ عَلَىٰ مَا فَعَلْتُمْ نَـٰدِمِينَ",
+      "translationText": "Ey iman edenler! Eğer fasıkın biri size bir haber getirirsen onun doğruluğunu araştırın. Yoksa bilmeden bir topluluğa sataşırsınız da sonra yaptığınızdan pişman olursunuz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:7",
+      "surahId": 49,
+      "numberInSurah": 7,
+      "globalOrder": 4619,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "وَٱعْلَمُوٓا۟ أَنَّ فِيكُمْ رَسُولَ ٱللَّهِ ۚ لَوْ يُطِيعُكُمْ فِى كَثِيرٍ مِّنَ ٱلْأَمْرِ لَعَنِتُّمْ وَلَـٰكِنَّ ٱللَّهَ حَبَّبَ إِلَيْكُمُ ٱلْإِيمَـٰنَ وَزَيَّنَهُۥ فِى قُلُوبِكُمْ وَكَرَّهَ إِلَيْكُمُ ٱلْكُفْرَ وَٱلْفُسُوقَ وَٱلْعِصْيَانَ ۚ أُو۟لَـٰٓئِكَ هُمُ ٱلرَّٰشِدُونَ",
+      "translationText": "Hem bilin ki, içinizde Allah'ın elçisi vardır. Şayet o, birçok işlerde size uysaydı, sıkıntıya düşerdiniz. Fakat Allah size imanı sevdirmiş ve onu kalplerinize zinet yapmıştır. Küfrü, fasıklığı ve isyanı da size çirkin göstermiştir. İşte doğru yolda olanlar bunlardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:8",
+      "surahId": 49,
+      "numberInSurah": 8,
+      "globalOrder": 4620,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "فَضْلًا مِّنَ ٱللَّهِ وَنِعْمَةً ۚ وَٱللَّهُ عَلِيمٌ حَكِيمٌ",
+      "translationText": "Bu, Allah'tan bir lütuf ve nimettir. Allah herşeyi bilir, hüküm ve hikmet sahibidir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:9",
+      "surahId": 49,
+      "numberInSurah": 9,
+      "globalOrder": 4621,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "وَإِن طَآئِفَتَانِ مِنَ ٱلْمُؤْمِنِينَ ٱقْتَتَلُوا۟ فَأَصْلِحُوا۟ بَيْنَهُمَا ۖ فَإِنۢ بَغَتْ إِحْدَىٰهُمَا عَلَى ٱلْأُخْرَىٰ فَقَـٰتِلُوا۟ ٱلَّتِى تَبْغِى حَتَّىٰ تَفِىٓءَ إِلَىٰٓ أَمْرِ ٱللَّهِ ۚ فَإِن فَآءَتْ فَأَصْلِحُوا۟ بَيْنَهُمَا بِٱلْعَدْلِ وَأَقْسِطُوٓا۟ ۖ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُقْسِطِينَ",
+      "translationText": "Eğer müminlerden iki grup birbirleriyle vuruşurlarsa aralarını düzeltin. Şayet biri ötekine saldırırsa, Allah'ın buyruğuna dönünceye kadar saldıran tarafla savaşın. Eğer dönerse aralarını adaletle düzeltin ve (her işte) adaletli davranın. Şüphesiz ki Allah, adil davrananları sever.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:10",
+      "surahId": 49,
+      "numberInSurah": 10,
+      "globalOrder": 4622,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "إِنَّمَا ٱلْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا۟ بَيْنَ أَخَوَيْكُمْ ۚ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُرْحَمُونَ",
+      "translationText": "Müminler ancak kardeştirler. Öyleyse kardeşlerinizin arasını düzeltin ve Allah'tan korkun ki rahmete eresiniz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:11",
+      "surahId": 49,
+      "numberInSurah": 11,
+      "globalOrder": 4623,
+      "pageNumber": 516,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ لَا يَسْخَرْ قَوْمٌ مِّن قَوْمٍ عَسَىٰٓ أَن يَكُونُوا۟ خَيْرًا مِّنْهُمْ وَلَا نِسَآءٌ مِّن نِّسَآءٍ عَسَىٰٓ أَن يَكُنَّ خَيْرًا مِّنْهُنَّ ۖ وَلَا تَلْمِزُوٓا۟ أَنفُسَكُمْ وَلَا تَنَابَزُوا۟ بِٱلْأَلْقَـٰبِ ۖ بِئْسَ ٱلِٱسْمُ ٱلْفُسُوقُ بَعْدَ ٱلْإِيمَـٰنِ ۚ وَمَن لَّمْ يَتُبْ فَأُو۟لَـٰٓئِكَ هُمُ ٱلظَّـٰلِمُونَ",
+      "translationText": "Ey iman edenler! Bir topluluk diğer bir toplulukla alay etmesin. Belki de onlar, kendilerinden daha iyidirler. Kadınlar da kadınları alaya almasınlar. Belki onlar kendilerinden daha iyidirler. Kendi kendinizi ayıplamayın, birbirinizi kötü lakaplarla çağırmayın. İmandan sora fâsıklık ne kötü bir isimdir! Kim de tevbe etmezse işte bu kimseler zalimlerdir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:12",
+      "surahId": 49,
+      "numberInSurah": 12,
+      "globalOrder": 4624,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱجْتَنِبُوا۟ كَثِيرًا مِّنَ ٱلظَّنِّ إِنَّ بَعْضَ ٱلظَّنِّ إِثْمٌ ۖ وَلَا تَجَسَّسُوا۟ وَلَا يَغْتَب بَّعْضُكُم بَعْضًا ۚ أَيُحِبُّ أَحَدُكُمْ أَن يَأْكُلَ لَحْمَ أَخِيهِ مَيْتًا فَكَرِهْتُمُوهُ ۚ وَٱتَّقُوا۟ ٱللَّهَ ۚ إِنَّ ٱللَّهَ تَوَّابٌ رَّحِيمٌ",
+      "translationText": "Ey iman edenler! Zannın bir çoğundan kaçının. Çünkü zannın bir kısmı günahtır. Birbirinizin kusurunu araştırmayın. Biriniz diğerini arkasından çekiştirmesin. Biriniz, ölmüş kardeşinin etini yemekten hoşlanır mı? İşte bundan tiksindiniz. O halde Allah'tan korkun. Şüphesiz Allah, tevbeyi çok kabul edendir, çok merhamet edendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:13",
+      "surahId": 49,
+      "numberInSurah": 13,
+      "globalOrder": 4625,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "يَـٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقْنَـٰكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَـٰكُمْ شُعُوبًا وَقَبَآئِلَ لِتَعَارَفُوٓا۟ ۚ إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ ۚ إِنَّ ٱللَّهَ عَلِيمٌ خَبِيرٌ",
+      "translationText": "Ey insanlar! Doğrusu biz sizi bir erkekle bir dişiden yarattık. Ve birbirinizle tanışmanız için sizi milletlere ve kabilelere ayırdık. Muhakkak ki Allah yanında en değerli ve en üstününüz O'ndan en çok korkanınızdır. Şüphesiz Allah bilendir, herşeyden haberdar olandır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:14",
+      "surahId": 49,
+      "numberInSurah": 14,
+      "globalOrder": 4626,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "قَالَتِ ٱلْأَعْرَابُ ءَامَنَّا ۖ قُل لَّمْ تُؤْمِنُوا۟ وَلَـٰكِن قُولُوٓا۟ أَسْلَمْنَا وَلَمَّا يَدْخُلِ ٱلْإِيمَـٰنُ فِى قُلُوبِكُمْ ۖ وَإِن تُطِيعُوا۟ ٱللَّهَ وَرَسُولَهُۥ لَا يَلِتْكُم مِّنْ أَعْمَـٰلِكُمْ شَيْـًٔا ۚ إِنَّ ٱللَّهَ غَفُورٌ رَّحِيمٌ",
+      "translationText": "Bedevîler \"inandık\" dediler. De ki: Siz iman etmediniz ama \"İslâm olduk.\" deyin. Henüz iman kalplerinize yerleşmedi. Eğer Allah'a ve Resulüne itaat ederseniz, Allah işlerinizden hiçbir şeyi eksiltmez. Çünkü Allah çok bağışlayan, çok merhamet edendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:15",
+      "surahId": 49,
+      "numberInSurah": 15,
+      "globalOrder": 4627,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "إِنَّمَا ٱلْمُؤْمِنُونَ ٱلَّذِينَ ءَامَنُوا۟ بِٱللَّهِ وَرَسُولِهِۦ ثُمَّ لَمْ يَرْتَابُوا۟ وَجَـٰهَدُوا۟ بِأَمْوَٰلِهِمْ وَأَنفُسِهِمْ فِى سَبِيلِ ٱللَّهِ ۚ أُو۟لَـٰٓئِكَ هُمُ ٱلصَّـٰدِقُونَ",
+      "translationText": "Gerçek müminler ancak Allah'a ve Resulüne iman eden, ondan sonra asla şüpheye düşmeyen, Allah yolunda mallarıyla ve canlarıyla savaşanlardır. İşte doğrular ancak onlardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:16",
+      "surahId": 49,
+      "numberInSurah": 16,
+      "globalOrder": 4628,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "قُلْ أَتُعَلِّمُونَ ٱللَّهَ بِدِينِكُمْ وَٱللَّهُ يَعْلَمُ مَا فِى ٱلسَّمَـٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۚ وَٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمٌ",
+      "translationText": "De ki: Siz dininizi Allah'a mı öğretiyorsunuz? Oysa Allah göklerde olanları da bilir, yerde olanları da. Allah herşeyi hakkıyla bilendir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:17",
+      "surahId": 49,
+      "numberInSurah": 17,
+      "globalOrder": 4629,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "يَمُنُّونَ عَلَيْكَ أَنْ أَسْلَمُوا۟ ۖ قُل لَّا تَمُنُّوا۟ عَلَىَّ إِسْلَـٰمَكُم ۖ بَلِ ٱللَّهُ يَمُنُّ عَلَيْكُمْ أَنْ هَدَىٰكُمْ لِلْإِيمَـٰنِ إِن كُنتُمْ صَـٰدِقِينَ",
+      "translationText": "Onlar İslâm'a girdikleri için sana minnet ediyorlar. De ki: Müslümanlığınızı benim başıma kakmayın. Bilakis sizi imana erdirdiği için Allah sizin başınıza kakar. Eğer doğrulardan iseniz (Allah'a minnettar olmanız gerekir.)",
+      "translationFootnotes": []
+    },
+    {
+      "key": "49:18",
+      "surahId": 49,
+      "numberInSurah": 18,
+      "globalOrder": 4630,
+      "pageNumber": 517,
+      "juzNumber": 26,
+      "arabicText": "إِنَّ ٱللَّهَ يَعْلَمُ غَيْبَ ٱلسَّمَـٰوَٰتِ وَٱلْأَرْضِ ۚ وَٱللَّهُ بَصِيرٌۢ بِمَا تَعْمَلُونَ",
+      "translationText": "Şüphesiz Allah, göklerin ve yerin görülmeyen esrarını bilir. Allah yaptıklarınızı görür.",
+      "translationFootnotes": []
+    }
+  ]
+}

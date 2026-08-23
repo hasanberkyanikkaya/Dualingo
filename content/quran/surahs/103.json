@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 103,
+    "nameArabic": "العصر",
+    "nameTurkish": null,
+    "verseCount": 3,
+    "firstGlobalOrder": 6177
+  },
+  "verses": [
+    {
+      "key": "103:1",
+      "surahId": 103,
+      "numberInSurah": 1,
+      "globalOrder": 6177,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "وَٱلْعَصْرِ",
+      "translationText": "Asra yemin olsun ki,",
+      "translationFootnotes": []
+    },
+    {
+      "key": "103:2",
+      "surahId": 103,
+      "numberInSurah": 2,
+      "globalOrder": 6178,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "إِنَّ ٱلْإِنسَـٰنَ لَفِى خُسْرٍ",
+      "translationText": "İnsan mutlaka ziyandadır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "103:3",
+      "surahId": 103,
+      "numberInSurah": 3,
+      "globalOrder": 6179,
+      "pageNumber": 601,
+      "juzNumber": 30,
+      "arabicText": "إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ وَتَوَاصَوْا۟ بِٱلْحَقِّ وَتَوَاصَوْا۟ بِٱلصَّبْرِ",
+      "translationText": "Ancak iman edenler, salih amel (iyi işler) işleyenler, birbirlerine hakkı tavsiye eden ve sabrı tavsiye edenler bunun dışındadır",
+      "translationFootnotes": []
+    }
+  ]
+}

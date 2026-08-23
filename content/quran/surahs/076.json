@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "surah": {
+    "id": 76,
+    "nameArabic": "الانسان",
+    "nameTurkish": null,
+    "verseCount": 31,
+    "firstGlobalOrder": 5592
+  },
+  "verses": [
+    {
+      "key": "76:1",
+      "surahId": 76,
+      "numberInSurah": 1,
+      "globalOrder": 5592,
+      "pageNumber": 578,
+      "juzNumber": 29,
+      "arabicText": "هَلْ أَتَىٰ عَلَى ٱلْإِنسَـٰنِ حِينٌ مِّنَ ٱلدَّهْرِ لَمْ يَكُن شَيْـًٔا مَّذْكُورًا",
+      "translationText": "Gerçekten insan üzerine dehirden (zamandan) öyle bir müddet geldi ki o zaman o, anılmaya değer bir şey değildi.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:2",
+      "surahId": 76,
+      "numberInSurah": 2,
+      "globalOrder": 5593,
+      "pageNumber": 578,
+      "juzNumber": 29,
+      "arabicText": "إِنَّا خَلَقْنَا ٱلْإِنسَـٰنَ مِن نُّطْفَةٍ أَمْشَاجٍ نَّبْتَلِيهِ فَجَعَلْنَـٰهُ سَمِيعًۢا بَصِيرًا",
+      "translationText": "Doğrusu biz insanı, imtihan etmek için karışık bir nutfeden (erkek ve kadın sularından) yarattık da onu işitici, görücü yaptık.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:3",
+      "surahId": 76,
+      "numberInSurah": 3,
+      "globalOrder": 5594,
+      "pageNumber": 578,
+      "juzNumber": 29,
+      "arabicText": "إِنَّا هَدَيْنَـٰهُ ٱلسَّبِيلَ إِمَّا شَاكِرًا وَإِمَّا كَفُورًا",
+      "translationText": "Kuşkusuz biz ona yolu gösterdik; ister şükredici olsun, ister nankör.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:4",
+      "surahId": 76,
+      "numberInSurah": 4,
+      "globalOrder": 5595,
+      "pageNumber": 578,
+      "juzNumber": 29,
+      "arabicText": "إِنَّآ أَعْتَدْنَا لِلْكَـٰفِرِينَ سَلَـٰسِلَا۟ وَأَغْلَـٰلًا وَسَعِيرًا",
+      "translationText": "Çünkü biz, kâfirler için zincirler, demir halkalar ve alevli bir ateş hazırlamışızdır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:5",
+      "surahId": 76,
+      "numberInSurah": 5,
+      "globalOrder": 5596,
+      "pageNumber": 578,
+      "juzNumber": 29,
+      "arabicText": "إِنَّ ٱلْأَبْرَارَ يَشْرَبُونَ مِن كَأْسٍ كَانَ مِزَاجُهَا كَافُورًا",
+      "translationText": "Kuşkusuz iyiler de karışımı kâfûr olan dolgun bir kadehten içerler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:6",
+      "surahId": 76,
+      "numberInSurah": 6,
+      "globalOrder": 5597,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "عَيْنًا يَشْرَبُ بِهَا عِبَادُ ٱللَّهِ يُفَجِّرُونَهَا تَفْجِيرًا",
+      "translationText": "Bir kaynak ki ondan Allah'ın kulları içerler, güzel yollar açarak akıtırlar onu.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:7",
+      "surahId": 76,
+      "numberInSurah": 7,
+      "globalOrder": 5598,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "يُوفُونَ بِٱلنَّذْرِ وَيَخَافُونَ يَوْمًا كَانَ شَرُّهُۥ مُسْتَطِيرًا",
+      "translationText": "O kullar adaklarını yerine getirirler ve fenalığı salgın (olan) bir günden korkarlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:8",
+      "surahId": 76,
+      "numberInSurah": 8,
+      "globalOrder": 5599,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَيُطْعِمُونَ ٱلطَّعَامَ عَلَىٰ حُبِّهِۦ مِسْكِينًا وَيَتِيمًا وَأَسِيرًا",
+      "translationText": "Düşküne, yetime ve esire seve seve yemek yedirirler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:9",
+      "surahId": 76,
+      "numberInSurah": 9,
+      "globalOrder": 5600,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ ٱللَّهِ لَا نُرِيدُ مِنكُمْ جَزَآءً وَلَا شُكُورًا",
+      "translationText": "\"Size sırf Allah rızası için yemek yediriyoruz. Sizden ne bir karşılık, ne de bir teşekkür bekliyoruz.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:10",
+      "surahId": 76,
+      "numberInSurah": 10,
+      "globalOrder": 5601,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "إِنَّا نَخَافُ مِن رَّبِّنَا يَوْمًا عَبُوسًا قَمْطَرِيرًا",
+      "translationText": "\"Biz sert ve belalı bir günde Rabbimizden korkarız.\" derler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:11",
+      "surahId": 76,
+      "numberInSurah": 11,
+      "globalOrder": 5602,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "فَوَقَىٰهُمُ ٱللَّهُ شَرَّ ذَٰلِكَ ٱلْيَوْمِ وَلَقَّىٰهُمْ نَضْرَةً وَسُرُورًا",
+      "translationText": "Allah da onları o günün fenalığından korur, yüzlerine parlaklık, gönüllerine sevinç verir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:12",
+      "surahId": 76,
+      "numberInSurah": 12,
+      "globalOrder": 5603,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَجَزَىٰهُم بِمَا صَبَرُوا۟ جَنَّةً وَحَرِيرًا",
+      "translationText": "Sabırlarına karşılık onlara bir cennet ve ipekten elbiseler verir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:13",
+      "surahId": 76,
+      "numberInSurah": 13,
+      "globalOrder": 5604,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "مُّتَّكِـِٔينَ فِيهَا عَلَى ٱلْأَرَآئِكِ ۖ لَا يَرَوْنَ فِيهَا شَمْسًا وَلَا زَمْهَرِيرًا",
+      "translationText": "Orada donatılmış koltuklar üzerine dayanmışlardır: Orada ne yakıcı güneş görürler, ne de şiddetli soğuk.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:14",
+      "surahId": 76,
+      "numberInSurah": 14,
+      "globalOrder": 5605,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَدَانِيَةً عَلَيْهِمْ ظِلَـٰلُهَا وَذُلِّلَتْ قُطُوفُهَا تَذْلِيلًا",
+      "translationText": "Üzerlerine cennet gölgeleri sarkmış, meyveleri bol bol önlerine konmuştur.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:15",
+      "surahId": 76,
+      "numberInSurah": 15,
+      "globalOrder": 5606,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَيُطَافُ عَلَيْهِم بِـَٔانِيَةٍ مِّن فِضَّةٍ وَأَكْوَابٍ كَانَتْ قَوَارِيرَا۠",
+      "translationText": "Yanlarında gümüşten kaplar, billur kupalar dolaştırılır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:16",
+      "surahId": 76,
+      "numberInSurah": 16,
+      "globalOrder": 5607,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "قَوَارِيرَا۟ مِن فِضَّةٍ قَدَّرُوهَا تَقْدِيرًا",
+      "translationText": "Gümüşten öyle kadehler ki onları türlü türlü biçimlere koymuşlardır.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:17",
+      "surahId": 76,
+      "numberInSurah": 17,
+      "globalOrder": 5608,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَيُسْقَوْنَ فِيهَا كَأْسًا كَانَ مِزَاجُهَا زَنجَبِيلًا",
+      "translationText": "Onlara orada bir dolu kadeh sunulur ki, karışımı zencefildir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:18",
+      "surahId": 76,
+      "numberInSurah": 18,
+      "globalOrder": 5609,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "عَيْنًا فِيهَا تُسَمَّىٰ سَلْسَبِيلًا",
+      "translationText": "Bu orada bir pınardır ki, adına \"selsebil\" derler.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:19",
+      "surahId": 76,
+      "numberInSurah": 19,
+      "globalOrder": 5610,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَيَطُوفُ عَلَيْهِمْ وِلْدَٰنٌ مُّخَلَّدُونَ إِذَا رَأَيْتَهُمْ حَسِبْتَهُمْ لُؤْلُؤًا مَّنثُورًا",
+      "translationText": "Etraflarında ölümsüz hizmetçiler dolaşır, onları görünce saçılmış inciler sanırsın.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:20",
+      "surahId": 76,
+      "numberInSurah": 20,
+      "globalOrder": 5611,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَإِذَا رَأَيْتَ ثَمَّ رَأَيْتَ نَعِيمًا وَمُلْكًا كَبِيرًا",
+      "translationText": "Orada nereye baksan bir nimet ve pek büyük bir mülk görürsün.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:21",
+      "surahId": 76,
+      "numberInSurah": 21,
+      "globalOrder": 5612,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "عَـٰلِيَهُمْ ثِيَابُ سُندُسٍ خُضْرٌ وَإِسْتَبْرَقٌ ۖ وَحُلُّوٓا۟ أَسَاوِرَ مِن فِضَّةٍ وَسَقَىٰهُمْ رَبُّهُمْ شَرَابًا طَهُورًا",
+      "translationText": "Üstlerinde zarif ve yeşil, kalın ipekten bir elbise vardır. Gümüş bileziklerle süslenmişlerdir. Rableri onlara temiz bir içecek içirmiştir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:22",
+      "surahId": 76,
+      "numberInSurah": 22,
+      "globalOrder": 5613,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "إِنَّ هَـٰذَا كَانَ لَكُمْ جَزَآءً وَكَانَ سَعْيُكُم مَّشْكُورًا",
+      "translationText": "(Onlara şöyle denir): \"İşte bu sizin bir mükâfatınızdı. Gayretiniz karşılığını bulmuştur.\"",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:23",
+      "surahId": 76,
+      "numberInSurah": 23,
+      "globalOrder": 5614,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "إِنَّا نَحْنُ نَزَّلْنَا عَلَيْكَ ٱلْقُرْءَانَ تَنزِيلًا",
+      "translationText": "Kur'ân'ı sana kısım kısım biz indirdik biz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:24",
+      "surahId": 76,
+      "numberInSurah": 24,
+      "globalOrder": 5615,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "فَٱصْبِرْ لِحُكْمِ رَبِّكَ وَلَا تُطِعْ مِنْهُمْ ءَاثِمًا أَوْ كَفُورًا",
+      "translationText": "O halde Rabbinin hüküm vermesi için sabret. Onlardan hiçbir günahkâra yahut nanköre itaat etme.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:25",
+      "surahId": 76,
+      "numberInSurah": 25,
+      "globalOrder": 5616,
+      "pageNumber": 579,
+      "juzNumber": 29,
+      "arabicText": "وَٱذْكُرِ ٱسْمَ رَبِّكَ بُكْرَةً وَأَصِيلًا",
+      "translationText": "Sabahakşam Rabbinin ismini an.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:26",
+      "surahId": 76,
+      "numberInSurah": 26,
+      "globalOrder": 5617,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "وَمِنَ ٱلَّيْلِ فَٱسْجُدْ لَهُۥ وَسَبِّحْهُ لَيْلًا طَوِيلًا",
+      "translationText": "Gecenin bir bölümünde de O'na secde et (akşam ve yatsı namazlarını kıl). Hem de O'nu uzun bir gece tesbih et (teheccüd namazı kıl).",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:27",
+      "surahId": 76,
+      "numberInSurah": 27,
+      "globalOrder": 5618,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "إِنَّ هَـٰٓؤُلَآءِ يُحِبُّونَ ٱلْعَاجِلَةَ وَيَذَرُونَ وَرَآءَهُمْ يَوْمًا ثَقِيلًا",
+      "translationText": "Çünkü onlar bu dünyayı seviyorlar ve önlerindeki ağır bir günü arkaya atıyorlar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:28",
+      "surahId": 76,
+      "numberInSurah": 28,
+      "globalOrder": 5619,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "نَّحْنُ خَلَقْنَـٰهُمْ وَشَدَدْنَآ أَسْرَهُمْ ۖ وَإِذَا شِئْنَا بَدَّلْنَآ أَمْثَـٰلَهُمْ تَبْدِيلًا",
+      "translationText": "Onları biz yarattık ve mafsallarını sımsıkı bağladık. Dilediğimiz vakit de kılıklarını değiştiririz.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:29",
+      "surahId": 76,
+      "numberInSurah": 29,
+      "globalOrder": 5620,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "إِنَّ هَـٰذِهِۦ تَذْكِرَةٌ ۖ فَمَن شَآءَ ٱتَّخَذَ إِلَىٰ رَبِّهِۦ سَبِيلًا",
+      "translationText": "İşte bu bir öğüttür. Dileyen Rabbine giden yolu tutar.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:30",
+      "surahId": 76,
+      "numberInSurah": 30,
+      "globalOrder": 5621,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "وَمَا تَشَآءُونَ إِلَّآ أَن يَشَآءَ ٱللَّهُ ۚ إِنَّ ٱللَّهَ كَانَ عَلِيمًا حَكِيمًا",
+      "translationText": "Allah dilemedikçe siz dileyemezsiniz. Kuşkusuz Allah, bilendir, hüküm ve hikmet sahibidir.",
+      "translationFootnotes": []
+    },
+    {
+      "key": "76:31",
+      "surahId": 76,
+      "numberInSurah": 31,
+      "globalOrder": 5622,
+      "pageNumber": 580,
+      "juzNumber": 29,
+      "arabicText": "يُدْخِلُ مَن يَشَآءُ فِى رَحْمَتِهِۦ ۚ وَٱلظَّـٰلِمِينَ أَعَدَّ لَهُمْ عَذَابًا أَلِيمًۢا",
+      "translationText": "Allah dilediğini rahmetine sokar. Zalimlere ise, acıklı bir azap hazırlamıştır.",
+      "translationFootnotes": []
+    }
+  ]
+}
