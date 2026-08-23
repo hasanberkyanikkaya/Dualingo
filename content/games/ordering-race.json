@@ -1,0 +1,45 @@
+{
+  "note": "ÖRNEK VERİ — GERÇEK DEĞİL",
+  "schemaVersion": 1,
+  "isSampleData": true,
+  "data": {
+    "id": "ordering-race",
+    "title": "Sıralama Yarışı",
+    "description": "ÖRNEK AÇIKLAMA — GERÇEK DEĞİL",
+    "puzzles": [
+      {
+        "id": "ornek-siralama-01",
+        "prompt": "ÖRNEK SORU 1",
+        "items": [
+          { "id": "ornek-01-a", "text": "ÖRNEK ADIM 1-A" },
+          { "id": "ornek-01-b", "text": "ÖRNEK ADIM 1-B" },
+          { "id": "ornek-01-c", "text": "ÖRNEK ADIM 1-C" },
+          { "id": "ornek-01-d", "text": "ÖRNEK ADIM 1-D" }
+        ],
+        "correctOrder": ["ornek-01-c", "ornek-01-a", "ornek-01-d", "ornek-01-b"]
+      },
+      {
+        "id": "ornek-siralama-02",
+        "prompt": "ÖRNEK SORU 2",
+        "items": [
+          { "id": "ornek-02-a", "text": "ÖRNEK ADIM 2-A" },
+          { "id": "ornek-02-b", "text": "ÖRNEK ADIM 2-B" },
+          { "id": "ornek-02-c", "text": "ÖRNEK ADIM 2-C" },
+          { "id": "ornek-02-d", "text": "ÖRNEK ADIM 2-D" }
+        ],
+        "correctOrder": ["ornek-02-b", "ornek-02-d", "ornek-02-a", "ornek-02-c"]
+      },
+      {
+        "id": "ornek-siralama-03",
+        "prompt": "ÖRNEK SORU 3",
+        "items": [
+          { "id": "ornek-03-a", "text": "ÖRNEK ADIM 3-A" },
+          { "id": "ornek-03-b", "text": "ÖRNEK ADIM 3-B" },
+          { "id": "ornek-03-c", "text": "ÖRNEK ADIM 3-C" },
+          { "id": "ornek-03-d", "text": "ÖRNEK ADIM 3-D" }
+        ],
+        "correctOrder": ["ornek-03-d", "ornek-03-c", "ornek-03-b", "ornek-03-a"]
+      }
+    ]
+  }
+}

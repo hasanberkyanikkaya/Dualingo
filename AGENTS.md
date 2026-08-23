@@ -173,9 +173,12 @@ listesi ver.
 - Faz 5.3 Kur'an hedef sistemi — tamam
   - Günlük sayfa, aylık cüz ve tarihe kadar bitirme hedefleri SQLite'ta kalıcıdır.
   - Saf hesaplama motoru, tahmini bitiş, günlük yerel hatırlatma ve 30 cüz ızgarası var.
+- Faz 6 Sıralama Yarışı — tamam
+  - Öğren sekmesinden açılan, 60 saniyelik ve oturumluk puan tutan ilk mini oyun var.
+  - İçerik `/content/games` altında açıkça örnek işaretlidir; gerçek içerik yoktur.
 
-Sıradaki mantıklı ürün işi **seri arayüzü**. Alternatifler Faz 6 mini oyunlar
-veya ertelenmiş Faz 1.2c Card bileşenidir.
+Sıradaki mantıklı ürün işi **seri arayüzü**. Alternatifler Faz 6'nın diğer mini
+oyunları veya ertelenmiş Faz 1.2c Card bileşenidir.
 
 ## Açık borçlar ve sınırlar
 
@@ -204,7 +207,7 @@ vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 
 ### İçerik ve yayın borcu
 
-- Gerçek ders içeriği ve uzman onayı yok; örnek içerikle yayın yapılmaz.
+- Gerçek ders/mini oyun içeriği ve uzman onayı yok; örnek içerikle yayın yapılmaz.
 - Kur'an içeriği geliştirme amaçlıdır; mealin ticari yeniden dağıtım izni,
   metadata şartları, uzman karşılaştırması ve ilgili kurul süreci yayın öncesi
   açıktır.
@@ -222,6 +225,7 @@ vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 - Faz 1.3 EAS dev build
 - Faz 1.4 Sentry
 - Seri sisteminin görünür arayüzü
+- Faz 6'nın diğer mini oyunları
 
 ## Belge haritası
 

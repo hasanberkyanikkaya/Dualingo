@@ -154,8 +154,9 @@ Faz 4.5 kıble pusulası — TAMAM.
 Faz 5.1 Kur'an veri katmanı — TAMAM.
 Faz 5.2 Kur'an okuma ekranı — TAMAM.
 Faz 5.3 Kur'an hedef sistemi — TAMAM (kod tam, BİLDİRİM TETİKLENMESİ DOĞRULANMADI).
-Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok), Faz 6 mini oyunlar ya da
-ertelenmiş 1.2c / 1.3 / 1.4.
+Faz 6 Sıralama Yarışı — TAMAM (örnek içerik; diğer mini oyunlar henüz yok).
+Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok), Faz 6'nın diğer mini
+oyunları ya da ertelenmiş 1.2c / 1.3 / 1.4.
 
 ⚠️ **Namaz modülü (Faz 4) BİTTİ.** 4.0 araştırma, 4.1 veri, 4.2 ekran + çizelge,
 4.3 üç durum + hafta/ay, 4.4 bildirimler, 4.5 kıble. Açık kalan tek borç 4.4'ün
@@ -2069,6 +2070,38 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   Hedef/tarih motoru ve hatırlatma imzası için 17 test eklenmiş, toplam **454
   test** geçmiştir. TypeScript, içerik denetimi ve Android Metro paketi hata
   vermemiştir; lintte proje genelindeki 12 mevcut `strings` import uyarısı sürer.
+
+## Sıralama Yarışı kararları (Faz 6.1 — 23 Ağustos 2026)
+
+- **İlk mini oyun Öğren sekmesinde açık bir karttır.** Yeni bir alt sekme
+  eklenmedi; genel ekran yapısındaki “Öğren → seviye haritası, dersler, oyunlar”
+  kararı korundu. Kilit/ödül koşulu ve XP entegrasyonu bu ilk oturuma eklenmedi.
+- **İçerik tümüyle JSON'dur ve açıkça örnektir.**
+  `content/games/ordering-race.json` üç yapısal bulmaca taşır; bütün metinler
+  `ÖRNEK VERİ — GERÇEK DEĞİL` işaretlidir. Kod tarafından dini/eğitsel içerik
+  üretilmedi. Şema, kimlik benzersizliği ve doğru sıranın tam permütasyon olması
+  hem çalışma anında hem `npm run check:content` içindeki A3 bölümünde denetlenir.
+- **Sürükle-bırak zorunlu değildir.** Havuzdaki öğeye dokunmak onu sıranın sonuna
+  ekler; sıradaki öğeye dokunmak geri çıkarır. Konum numarası görünür ve ekran
+  okuyucu etiketindedir. Böylece aynı oyun motor beceri ve erişilebilirlik
+  gereksinimlerine ayrı yollar yazmadan çalışır.
+- **Koşu gerçek saate bağlı tam 60 saniyedir.** Başlangıçta `deadlineAt` üretilir;
+  sayaç her tikte `Date.now()` ile kalan süreyi yeniden hesaplar. Interval kayması
+  veya uygulamanın arka plana alınması kullanıcıya fazladan süre kazandırmaz;
+  cevap işleyicisi de son tarih anında skoru kapatır.
+- **Puanlama yalındır:** her doğru sıra +100, yanlışta puan ve süre cezası yoktur;
+  saat işlemeyi sürdürür. Doğru cevap sonraki bulmacaya geçer ve aynı bulmacadan
+  tekrar puan alınamaz. Bütün örnek deste çözülürse oyun erken biter.
+- Karıştırma mevcut tohumlu Fisher–Yates yardımcısını kullanır; tohum koşu anı ve
+  bulmaca kimliğinden gelir. Sonuç doğru sıraya tesadüfen eşitse bir konum
+  döndürülür, yani bulmaca hiçbir koşuda çözülmüş olarak sunulmaz.
+- Sonuç ekranı puanı, doğru bulmaca sayısını ve toplam denemeyi gösterir. Bunlar
+  yalnız o React oturumunda yaşar; SQLite/MMKV, seri, rozet veya XP değişmez.
+- Saf oturum motoru ve içerik doğrulaması için 14 test eklendi; toplam **468
+  test** geçti. TypeScript, içerik denetimi ve Android Metro paketi hata
+  vermedi; lintte proje genelindeki 12 mevcut `strings` import uyarısı sürüyor.
+  Ekran düzeni, büyük yazı, ekran okuyucu ve arka plan/süre davranışı gerçek
+  cihazda elle doğrulanmalıdır.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

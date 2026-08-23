@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -18,6 +18,7 @@ import type { LevelId } from '@/types';
 
 type LevelMapProps = {
   onSelectLevel: (levelId: LevelId) => void;
+  topContent?: ReactNode;
 };
 
 /**
@@ -27,7 +28,7 @@ type LevelMapProps = {
  * ince kalsın diye (mimari kural 2). Bunun ikinci kazancı: Faz 2.4'te sahte
  * ilerleme gerçek store'la değiştiğinde `/app` altında hiçbir şey değişmiyor.
  */
-export default function LevelMap({ onSelectLevel }: LevelMapProps) {
+export default function LevelMap({ onSelectLevel, topContent }: LevelMapProps) {
   const { theme } = useTheme();
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -58,6 +59,8 @@ export default function LevelMap({ onSelectLevel }: LevelMapProps) {
       contentContainerStyle={styles.content}
     >
       <ScreenHeader title={strings.learn.title} subtitle={strings.learn.pathSubtitle} />
+
+      {topContent}
 
       {!hasContent ? (
         <View style={styles.empty}>

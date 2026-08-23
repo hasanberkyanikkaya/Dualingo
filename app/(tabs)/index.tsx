@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 
 import Screen from '@/components/Screen';
+import OrderingRaceEntryCard from '@/features/games/components/OrderingRaceEntryCard';
 import LevelMap from '@/features/learning/components/map/LevelMap';
 
 import type { LevelId } from '@/types';
@@ -13,9 +14,16 @@ export default function LearnScreen() {
     router.push({ pathname: '/lesson/[id]', params: { id: levelId } });
   }
 
+  function openOrderingRace() {
+    router.push('/games/ordering-race');
+  }
+
   return (
     <Screen>
-      <LevelMap onSelectLevel={handleSelectLevel} />
+      <LevelMap
+        onSelectLevel={handleSelectLevel}
+        topContent={<OrderingRaceEntryCard onPress={openOrderingRace} />}
+      />
     </Screen>
   );
 }

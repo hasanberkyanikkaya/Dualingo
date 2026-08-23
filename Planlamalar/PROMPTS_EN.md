@@ -461,6 +461,13 @@ Build the "Sıralama Yarışı" mini game under /features/games:
 - End-of-game screen
 
 Do not write content — use placeholder sample data.
+
+Approved first-game rules:
+- Expose it as an always-open card inside the Learn tab; no unlock or XP integration yet
+- Use tap-to-place and tap-to-remove ordering rather than mandatory drag-and-drop
+- Award 100 session-only points per correct order
+- Give no score or time penalty for a wrong attempt; the clock keeps running
+- End early when every sample puzzle is solved, otherwise end at exactly 60 seconds
 ```
 
 ---

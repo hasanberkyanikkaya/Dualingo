@@ -158,6 +158,38 @@ export const strings = {
     matchAllHint: 'Tüm eşleşmeleri kur',
   },
 
+  /** Mini oyunlar — içerik metni değil, oyun kabuğunun arayüz dili. */
+  games: {
+    orderingRaceTitle: 'Sıralama Yarışı',
+    orderingRaceEntryBody: 'Karışık adımları süre dolmadan doğru sıraya yerleştir.',
+    orderingRaceOpen: 'Oyunu aç',
+    orderingRaceIntroTitle: 'Sıralamaya hazır mısın?',
+    orderingRaceIntroBody:
+      'Adımlara dokunarak sıranı oluştur. Doğru sıralamalar puan kazandırır.',
+    orderingRaceDurationRule: '60 saniyelik tek koşu',
+    orderingRaceScoreRule: 'Her doğru sıralama +100 puan',
+    orderingRaceNoPenaltyRule: 'Yanlış denemede ceza yok; süre işlemeye devam eder',
+    orderingRaceStart: 'Yarışı başlat',
+    orderingRaceSampleNotice: 'Geliştirme için örnek içerik · gerçek içerik değil',
+    orderingRaceYourOrder: 'Sıralaman',
+    orderingRacePool: 'Karışık adımlar',
+    orderingRaceEmpty: 'Aşağıdaki adımlara dokunarak sıranı oluştur.',
+    orderingRaceCheck: 'Sırayı kontrol et',
+    orderingRaceCorrect: 'Doğru sıra · +100 puan',
+    orderingRaceIncorrect: 'Sıra henüz doğru değil. Süre işlerken yeniden düzenleyebilirsin.',
+    orderingRacePuzzleProgress: '{current} / {total} sıralama',
+    orderingRaceScore: '{score} puan',
+    orderingRacePointsLabel: 'puan',
+    orderingRaceFinishedTime: 'Süre doldu',
+    orderingRaceFinishedDeck: 'Tüm sıralamalar tamamlandı',
+    orderingRaceFinishedBody: 'Bu koşudaki sonucun hazır.',
+    orderingRaceCorrectCount: 'Doğru sıralama',
+    orderingRaceAttemptCount: 'Toplam deneme',
+    orderingRacePlayAgain: 'Tekrar oyna',
+    orderingRaceBackToLearn: 'Öğren ekranına dön',
+    orderingRaceNoContent: 'Oyun içeriği şu anda kullanılamıyor.',
+  },
+
   /** Ders bitiş ekranı */
   result: {
     title: 'Ders tamamlandı',
@@ -579,6 +611,10 @@ export const strings = {
     quranNextPage: 'Sonraki sayfaya geç',
     quranGoalType: '{title}. {body}',
     quranJuzProgress: '{juz}. cüz, yüzde {percent} tamamlandı',
+    orderingRaceTimer: '{seconds} saniye kaldı',
+    orderingRaceScore: 'Puan: {score}',
+    orderingRaceAvailableItem: '{text}. Sıraya ekle.',
+    orderingRacePlacedItem: '{position}. sırada: {text}. Sıradan çıkar.',
   },
 } as const;
 

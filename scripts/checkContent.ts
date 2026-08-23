@@ -10,6 +10,10 @@ import {
   validatePlacementContent,
 } from '@/features/learning/contentValidation';
 import {
+  countOrderingRaceIssues,
+  validateOrderingRaceContent,
+} from '@/features/games/orderingRaceValidation';
+import {
   countQuranIssues,
   validateQuranCorpus,
 } from '@/features/quran/contentValidation';
@@ -19,6 +23,7 @@ import type {
   ContentEnvelope,
   LearningPath,
   LearningPathIndex,
+  OrderingRaceContentFile,
   PlacementContent,
   QuranCatalog,
   QuranContentManifest,
@@ -57,6 +62,7 @@ import type {
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = join(projectRoot, 'content');
 const lessonsDir = join(contentDir, 'lessons');
+const gamesDir = join(contentDir, 'games');
 const quranDir = join(contentDir, 'quran');
 const quranSurahsDir = join(quranDir, 'surahs');
 
@@ -144,6 +150,23 @@ function loadBadgesFromDisk(): { content: BadgeCatalog | null; fatal: string[] }
     return { content: envelope.data, fatal: [] };
   } catch (error) {
     return { content: null, fatal: [`badges.json: okunamadı — ${String(error)}`] };
+  }
+}
+
+function loadOrderingRaceFromDisk(): {
+  content: OrderingRaceContentFile | null;
+  fatal: string[];
+} {
+  const file = join(gamesDir, 'ordering-race.json');
+
+  try {
+    const content = readJson(file) as OrderingRaceContentFile;
+    if (content.schemaVersion !== 1) {
+      return { content: null, fatal: ['games/ordering-race.json: desteklenmeyen şema sürümü.'] };
+    }
+    return { content, fatal: [] };
+  } catch (error) {
+    return { content: null, fatal: [`games/ordering-race.json: okunamadı — ${String(error)}`] };
   }
 }
 
@@ -338,6 +361,12 @@ function main(): number {
     console.log(`HATA  ${message}`);
   }
 
+  const orderingRace = loadOrderingRaceFromDisk();
+
+  for (const message of orderingRace.fatal) {
+    console.log(`HATA  ${message}`);
+  }
+
   // Rozet eşiklerinin erişilebilirliği yola bağlı; sınırlar doğrulayıcıya
   // argüman olarak veriliyor (aynı saflık gerekçesi).
   const allLevels = path.units.flatMap((unit) => unit.levels);
@@ -362,7 +391,18 @@ function main(): number {
       ? []
       : validateQuranCorpus(quran.manifest, quran.catalog, quran.pageIndex, quran.surahs);
   const quranCounts = countQuranIssues(quranIssues);
-  const allFatal = [...fatal, ...placement.fatal, ...badges.fatal, ...quran.fatal];
+  const gameIssues =
+    orderingRace.content === null
+      ? []
+      : validateOrderingRaceContent(orderingRace.content.data);
+  const gameCounts = countOrderingRaceIssues(gameIssues);
+  const allFatal = [
+    ...fatal,
+    ...placement.fatal,
+    ...badges.fatal,
+    ...quran.fatal,
+    ...orderingRace.fatal,
+  ];
 
   console.log(`\nA. Yapısal doğrulama — ${errors} hata, ${warnings} uyarı`);
 
@@ -390,6 +430,18 @@ function main(): number {
     console.log(`  YAYIN ENGELİ  ${reason}`);
   }
 
+  console.log(
+    `\nA3. Mini oyun içerik doğrulama — ${gameCounts.errors} hata, ${gameCounts.warnings} uyarı`,
+  );
+
+  for (const issue of gameIssues) {
+    console.log(`  ${issue.severity.toUpperCase()}  ${issue.path}: ${issue.message}`);
+  }
+
+  if (gameIssues.length === 0 && orderingRace.fatal.length === 0) {
+    console.log('  Bulgu yok.');
+  }
+
   // ⚠️ Klasörü tarıyor: `placement.json` gibi `lessons/` dışındaki içerik
   // dosyaları da yer tutucu taramasına kendiliğinden giriyor.
   const contentFiles = walk(contentDir, ['.json']);
@@ -414,7 +466,9 @@ function main(): number {
 
   console.log('\n' + '='.repeat(60));
 
-  return errors > 0 || quranCounts.errors > 0 || allFatal.length > 0 ? 1 : 0;
+  return errors > 0 || quranCounts.errors > 0 || gameCounts.errors > 0 || allFatal.length > 0
+    ? 1
+    : 0;
 }
 
 process.exitCode = main();

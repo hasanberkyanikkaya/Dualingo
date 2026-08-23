@@ -364,6 +364,17 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         Android Metro paketi hata vermedi.
         ⚠️ Hedef ekranı ile kapalı uygulamada bildirim tetiklenmesi cihazda doğrulanacak.
 
+[x] 6.1 Sıralama Yarışı — Faz 6'nın ilk mini oyunu.
+        Öğren sekmesindeki açık kart /games/ordering-race rotasına gider.
+        Üç geliştirme bulmacası /content/games/ordering-race.json altında yalnız
+        ÖRNEK VERİ — GERÇEK DEĞİL olarak tutulur; dini içerik üretilmedi.
+        Dokunarak sıraya ekleme/çıkarma kullanıldı; sürükle-bırak zorunlu değil.
+        Koşu 60 saniyedir; doğru sıra +100, yanlışta ceza yok ve süre devam eder.
+        Bütün bulmacalar çözülürse koşu erken biter; sonuç ekranı puan, doğru ve
+        deneme sayısını gösterir. Sonuç oturumluk; XP veya kalıcı kayıt yoktur.
+        Oyun motoru ve içerik doğrulaması saf + testli; toplam 468 test.
+        ⚠️ Büyük yazı, ekran okuyucu, arka plana alma ve süre bitişi cihazda sınanacak.
+
 
 === AÇIK SORULAR ===
 

@@ -45,9 +45,9 @@ node -e "const f=require('fs');let i=0,b=[],h='',L='';for(const l of f.readFileS
 
 Bu maddeler kapanmadan v0.1 yayınlanamaz. Hiçbiri bu oturumda çözülemezdi.
 
-1. **İçeriğin tamamı örnek veri.** `/content` altındaki dört dosyanın dördü de
-   `isSampleData: true` ve `"ÖRNEK VERİ — GERÇEK DEĞİL"` işaretini taşıyor;
-   19 yerde `TODO` bekliyor. Tam döküm: Faz 2.5.1 yer tutucu tarama raporu.
+1. **Öğrenme ve mini oyun içeriğinin tamamı örnek veri.** `/content` altında
+   altı dosya `isSampleData: true` ve `"ÖRNEK VERİ — GERÇEK DEĞİL"` işaretini
+   taşıyor. Güncel dosya ve yer tutucu dökümü doğrulama raporundadır.
    Doğrulama komutu: `npm run check:content`.
    ⚠️ **Bu bir içerik işidir, kod işi değil** — dini içeriği insan uzman yazar.
 2. ✅ **ÇÖZÜLDÜ (Oturum 4.1) — kullanılmayan izinler temizlendi.**
