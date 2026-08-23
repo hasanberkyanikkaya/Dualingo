@@ -14,8 +14,10 @@ import { textStyles } from '@/constants/typography';
 import { findQuranVerse, getQuranManifest } from '@/features/quran/contentLoader';
 import QuranButton from '@/features/quran/components/QuranButton';
 import QuranNightBackground from '@/features/quran/components/QuranNightBackground';
+import QuranProgressBar from '@/features/quran/components/QuranProgressBar';
 import SurahPickerModal from '@/features/quran/components/SurahPickerModal';
 import { readLastReadPosition } from '@/features/quran/quranDb';
+import { useQuranGoal } from '@/features/quran/useQuranGoal';
 import { formatString } from '@/lib/formatString';
 
 import type { QuranReadingPosition, QuranSurahSummary } from '@/types';
@@ -25,6 +27,7 @@ export default function QuranScreen() {
     readLastReadPosition(),
   );
   const [pickerVisible, setPickerVisible] = useState(false);
+  const { progress: goalProgress, refresh: refreshGoal } = useQuranGoal();
   const manifest = getQuranManifest();
   const lastVerse =
     lastPosition?.contentRevision === manifest.contentRevision
@@ -34,7 +37,8 @@ export default function QuranScreen() {
   useFocusEffect(
     useCallback(() => {
       setLastPosition(readLastReadPosition());
-    }, []),
+      refreshGoal();
+    }, [refreshGoal]),
   );
 
   function openReader(verseKey: string): void {
@@ -88,6 +92,37 @@ export default function QuranScreen() {
               label={lastVerse === null ? strings.quran.startAction : strings.quran.continueAction}
               onPress={() => openReader(lastVerse?.key ?? '1:1')}
               variant="accent"
+            />
+          </View>
+
+          <View style={styles.glassCard}>
+            <View style={styles.selectCopy}>
+              <Ionicons name="flag-outline" size={spacing.xl} color={quranTheme.accent} />
+              <View style={styles.selectText}>
+                <Text style={[textStyles.h4, { color: quranTheme.text }]}>
+                  {strings.quran.goalCardTitle}
+                </Text>
+                <Text style={[textStyles.bodySmall, { color: quranTheme.textMuted }]}>
+                  {goalProgress === null
+                    ? strings.quran.goalCardEmpty
+                    : formatString(strings.quran.goalCardProgress, {
+                        percent: goalProgress.percent,
+                      })}
+                </Text>
+              </View>
+            </View>
+            {goalProgress === null ? null : (
+              <QuranProgressBar
+                accessibilityLabel={formatString(strings.quran.goalCardProgress, {
+                  percent: goalProgress.percent,
+                })}
+                ratio={goalProgress.ratio}
+              />
+            )}
+            <QuranButton
+              icon="flag-outline"
+              label={strings.quran.goalOpen}
+              onPress={() => router.push('/quran/goals')}
             />
           </View>
 

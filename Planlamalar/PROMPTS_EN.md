@@ -438,6 +438,13 @@ Build Quran reading goals:
 - Visual progress (juz-based grid)
 
 Date and goal calculations must be pure functions with unit tests.
+
+Approved measurement rules:
+- Count a page after the existing 600 ms visible-verse read event records it
+- Count the same page only once inside the active goal period
+- Treat one monthly juz target as 604 / 30 page equivalents
+- Keep one active goal; soft-delete the old goal when its definition changes
+- Schedule one editable recurring local reminder, defaulting to 20:00
 ```
 
 ---

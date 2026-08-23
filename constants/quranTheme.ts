@@ -16,6 +16,8 @@ export const quranTheme = {
   accent: '#53C9C1',
   onAccent: '#04211F',
   accentSoft: 'rgba(83, 201, 193, 0.16)',
+  warning: '#E6C774',
+  danger: '#FFB4AB',
 
   glass: 'rgba(12, 48, 61, 0.72)',
   glassStrong: 'rgba(8, 38, 51, 0.94)',
@@ -34,4 +36,3 @@ export const quranTheme = {
   translationInk: '#485B54',
   footnoteInk: '#63736D',
 } as const;
-

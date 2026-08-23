@@ -170,9 +170,12 @@ listesi ver.
   - Kur'an modülüne özel gece arka planı ve tek sayfalı kitap görünümü var.
   - Sure seçimi, RTL Arapça, meal anahtarı, üç yazı boyutu ve sayfa çevirme var.
   - Görünür ayetler son konumu ve günlük okuma geçmişini otomatik kaydeder.
+- Faz 5.3 Kur'an hedef sistemi — tamam
+  - Günlük sayfa, aylık cüz ve tarihe kadar bitirme hedefleri SQLite'ta kalıcıdır.
+  - Saf hesaplama motoru, tahmini bitiş, günlük yerel hatırlatma ve 30 cüz ızgarası var.
 
-Sıradaki mantıklı Faz 5 işi **5.3 Kur'an hedef sistemi**. Alternatifler seri
-arayüzü veya ertelenmiş Faz 1.2c Card bileşenidir.
+Sıradaki mantıklı ürün işi **seri arayüzü**. Alternatifler Faz 6 mini oyunlar
+veya ertelenmiş Faz 1.2c Card bileşenidir.
 
 ## Açık borçlar ve sınırlar
 
@@ -187,8 +190,8 @@ Dev build geldiğinde ayrı planla:
 - `react-native-nitro-modules` doğrudan bağımlılık yapılacak.
 - MMKV ile XP, seviye ve placement kalıcılığı doğrulanacak.
 - OTA güncelleme doğrulanacak.
-- Namaz bildirimlerinin doğru dakikada ve uygulama kapalıyken tetiklenmesi
-  doğrulanacak.
+- Namaz ve Kur'an hedef bildirimlerinin doğru dakikada ve uygulama kapalıyken
+  tetiklenmesi doğrulanacak.
 - Tema tercihi kalıcılığı doğrulanacak.
 - Sentry ayrı oturumda kurulacak.
 - `npx expo-doctor` tam geçmeli.
@@ -196,8 +199,8 @@ Dev build geldiğinde ayrı planla:
 
 Bugün Expo Go'da XP/seviye/placement ile Kur'an okuyucu yazı/meal ayarı belleğe
 düşer ve soğuk açılışta sıfırlanır; bu bilinen MMKV sınırıdır. Buna karşılık
-Kur'an son konumu ve okuma geçmişi ile seri, rozet, namaz ilçesi, vakitleri,
-çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
+Kur'an son konumu, okuma geçmişi ve hedefi ile seri, rozet, namaz ilçesi,
+vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 
 ### İçerik ve yayın borcu
 
@@ -219,7 +222,6 @@ Kur'an son konumu ve okuma geçmişi ile seri, rozet, namaz ilçesi, vakitleri,
 - Faz 1.3 EAS dev build
 - Faz 1.4 Sentry
 - Seri sisteminin görünür arayüzü
-- Faz 5.3 Kur'an hedef sistemi
 
 ## Belge haritası
 

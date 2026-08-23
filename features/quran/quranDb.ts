@@ -124,7 +124,7 @@ export function readQuranEventsBetween(start: IsoDate, end: IsoDate): QuranReadE
     .map(toReadEvent);
 }
 
-/** Geliştirme sıfırlaması için iki Kur'an tablosunu yumuşak siler. */
+/** Geliştirme sıfırlaması için Kur'an ilerlemesi ve hedefini yumuşak siler. */
 export function softDeleteAllQuranProgress(now: Timestamp): void {
   const database = getDatabase();
   if (database === null) {
@@ -138,6 +138,10 @@ export function softDeleteAllQuranProgress(now: Timestamp): void {
     );
     database.runSync(
       'UPDATE quran_read_event SET deleted_at = ?, updated_at = ? WHERE deleted_at IS NULL;',
+      [now, now],
+    );
+    database.runSync(
+      'UPDATE quran_goal SET deleted_at = ?, updated_at = ? WHERE deleted_at IS NULL;',
       [now, now],
     );
   });

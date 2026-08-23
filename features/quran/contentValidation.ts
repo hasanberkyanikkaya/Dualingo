@@ -127,12 +127,18 @@ export function validateQuranPageIndex(
   const pageNumbers = [...new Set(allVerses.map((verse) => verse.pageNumber))].sort(
     (left, right) => left - right,
   );
+  const expectedVerseCountsByJuz = Array.from({ length: 30 }, (_, index) =>
+    allVerses.filter((verse) => verse.juzNumber === index + 1).length,
+  );
 
   if (pageIndex.schemaVersion !== 1 || pageIndex.contentRevision !== manifest.contentRevision) {
     found.push(issue('error', 'page-index', 'sayfa indeksi ile manifest revizyonları uyuşmuyor.'));
   }
   if (pageIndex.pages.length !== pageNumbers.length) {
     found.push(issue('error', 'page-index', 'sayfa indeksindeki toplam sayfa sayısı yanlış.'));
+  }
+  if (JSON.stringify(pageIndex.verseCountsByJuz) !== JSON.stringify(expectedVerseCountsByJuz)) {
+    found.push(issue('error', 'page-index', 'cüz ayet toplamları külliyatla uyuşmuyor.'));
   }
 
   pageNumbers.forEach((pageNumber, index) => {

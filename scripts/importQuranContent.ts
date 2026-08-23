@@ -237,9 +237,11 @@ function buildPageIndex(
   contentRevision: string,
 ): QuranPageIndex {
   const versesByPage = new Map<number, QuranVerse[]>();
+  const verseCountsByJuz = Array.from({ length: 30 }, () => 0);
 
   for (const content of surahs) {
     for (const verse of content.verses) {
+      verseCountsByJuz[verse.juzNumber - 1] += 1;
       const verses = versesByPage.get(verse.pageNumber) ?? [];
       verses.push(verse);
       versesByPage.set(verse.pageNumber, verses);
@@ -261,7 +263,7 @@ function buildPageIndex(
       }),
     }));
 
-  return { schemaVersion: 1, contentRevision, pages };
+  return { schemaVersion: 1, contentRevision, verseCountsByJuz, pages };
 }
 
 function registrySource(surahs: readonly QuranSurahContent[]): string {

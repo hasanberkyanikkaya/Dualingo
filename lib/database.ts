@@ -281,6 +281,34 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_quran_read_event_updated_at
      ON quran_read_event (updated_at);`,
+
+  // [8] → sürüm 9: tek aktif Kur’an okuma hedefi + günlük hatırlatma tercihi (Faz 5.3).
+  //
+  // Aynı anda yalnız bir yaşayan hedef vardır. Hedef tanımı değişince eski satır
+  // `deleted_at` alır ve yeni kimlikle yeni satır açılır; yalnız hatırlatma ayarı
+  // değişirse mevcut satır güncellenir. Böylece geçmiş hedef Faz 7 birleşiminde
+  // sessizce kaybolmaz.
+  // Okuma ilerlemesi bu tabloda sayaç olarak tutulmaz, `quran_read_event`ten saf
+  // biçimde türetilir. Böylece aynı ayetin tekrar okunması hedefi şişirmez.
+  //
+  // Hatırlatma tercihi SQLite'tadır; MMKV Expo Go'da belleğe düştüğü için oraya
+  // yazmak kullanıcının kapattığı bildirimi soğuk açılışta yeniden açabilirdi.
+  `CREATE TABLE IF NOT EXISTS quran_goal (
+     goal_id          TEXT    PRIMARY KEY NOT NULL,
+     goal_type        TEXT    NOT NULL,
+     target_value     INTEGER NOT NULL,
+     target_date      TEXT,
+     start_date       TEXT    NOT NULL,
+     content_revision TEXT    NOT NULL,
+     reminder_enabled INTEGER NOT NULL DEFAULT 0,
+     reminder_hour    INTEGER NOT NULL DEFAULT 20,
+     reminder_minute  INTEGER NOT NULL DEFAULT 0,
+     created_at       INTEGER NOT NULL,
+     updated_at       INTEGER NOT NULL,
+     deleted_at       INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_quran_goal_updated_at
+     ON quran_goal (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;

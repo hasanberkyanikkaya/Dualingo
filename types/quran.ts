@@ -86,6 +86,8 @@ export type QuranPageIndexEntry = {
 export type QuranPageIndex = {
   schemaVersion: 1;
   contentRevision: string;
+  /** 1–30 sırasındaki toplam ayet sayıları; hedef ızgarasının paydasıdır. */
+  verseCountsByJuz: readonly number[];
   pages: readonly QuranPageIndexEntry[];
 };
 
@@ -121,4 +123,67 @@ export type QuranReadingDaySummary = {
   uniqueVerseCount: number;
   firstReadAt: Timestamp;
   lastReadAt: Timestamp;
+};
+
+export type QuranGoalType = 'daily_pages' | 'monthly_juz' | 'finish_by_date';
+
+/** Cihazda aynı anda yalnızca bir yaşayan Kur’an hedefi bulunur. */
+export type QuranGoal = {
+  goalId: string;
+  type: QuranGoalType;
+  targetValue: number;
+  targetDate: IsoDate | null;
+  startDate: IsoDate;
+  contentRevision: string;
+  reminderEnabled: boolean;
+  reminderHour: number;
+  reminderMinute: number;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+  deletedAt: Timestamp | null;
+};
+
+export type QuranGoalInput = Pick<
+  QuranGoal,
+  | 'type'
+  | 'targetValue'
+  | 'targetDate'
+  | 'startDate'
+  | 'contentRevision'
+  | 'reminderEnabled'
+  | 'reminderHour'
+  | 'reminderMinute'
+>;
+
+/** Saf hedef motoruna verilen, içerik metni taşımayan okuma konumu. */
+export type QuranGoalRead = {
+  date: IsoDate;
+  verseKey: QuranVerseKey;
+  pageNumber: number;
+  juzNumber: number;
+  deletedAt: Timestamp | null;
+};
+
+export type QuranJuzProgress = {
+  juzNumber: number;
+  readVerseCount: number;
+  totalVerseCount: number;
+  ratio: number;
+};
+
+export type QuranGoalStatus = 'active' | 'complete' | 'overdue';
+
+export type QuranGoalProgress = {
+  status: QuranGoalStatus;
+  periodStart: IsoDate;
+  periodEnd: IsoDate;
+  completedPages: number;
+  targetPages: number;
+  remainingPages: number;
+  ratio: number;
+  percent: number;
+  overallCompletedPages: number;
+  dailyAveragePages: number;
+  estimatedCompletionDate: IsoDate | null;
+  juzProgress: readonly QuranJuzProgress[];
 };

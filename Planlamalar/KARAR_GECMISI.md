@@ -153,8 +153,9 @@ Faz 4.4 namaz vakti bildirimleri — TAMAM (kod tam, TETİKLENME DOĞRULANMADI).
 Faz 4.5 kıble pusulası — TAMAM.
 Faz 5.1 Kur'an veri katmanı — TAMAM.
 Faz 5.2 Kur'an okuma ekranı — TAMAM.
-Sırada **Faz 5.3 Kur'an hedef sistemi** ya da **seri arayüzü** (3.1'in görünen
-yüzü hâlâ yok) ya da ertelenmiş 1.2c / 1.3 / 1.4.
+Faz 5.3 Kur'an hedef sistemi — TAMAM (kod tam, BİLDİRİM TETİKLENMESİ DOĞRULANMADI).
+Sırada **seri arayüzü** (3.1'in görünen yüzü hâlâ yok), Faz 6 mini oyunlar ya da
+ertelenmiş 1.2c / 1.3 / 1.4.
 
 ⚠️ **Namaz modülü (Faz 4) BİTTİ.** 4.0 araştırma, 4.1 veri, 4.2 ekran + çizelge,
 4.3 üç durum + hafta/ay, 4.4 bildirimler, 4.5 kıble. Açık kalan tek borç 4.4'ün
@@ -2036,6 +2037,38 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   indeksi testiyle toplam **437 test** geçti. Lintte proje genelindeki 12
   `strings` varsayılan import uyarısı sürüyor. Sayfa çevirme, gerçek font ölçüleri
   ve görünürlük eşiği cihazda elle doğrulanmalıdır.
+
+## Kur'an hedef sistemi kararları (Faz 5.3 — 23 Ağustos 2026)
+
+- **Aynı anda tek etkin hedef vardır.** Türler günlük X sayfa, takvim ayı içinde
+  X cüz ve seçilen tarihe kadar 604 sayfayı bitirmedir. Hedef tanımı değişirse
+  yaşayan kayıt `deleted_at` ile pasifleştirilir ve yeni başlangıç tarihli kayıt
+  açılır; yalnız hatırlatma değişirse mevcut hedef korunur.
+- **Hedef ilerlemesi mevcut okuma olayından türetilir.** Faz 5.2'de bir ayet yüzde
+  55 görünürlükle 600 ms ekranda kalınca yazılan kayıt, ayetin metadata sayfasına
+  çevrilir. Aynı sayfa aynı hedef döneminde yalnız bir kez sayılır; yeniden açmak
+  ilerlemeyi şişirmez. Günlük hedef yerel gün, aylık hedef takvim ayı, bitirme
+  hedefi hedef başlangıcından bugüne kadar olan benzersiz sayfaları kullanır.
+- **Aylık cüz hedefi sayfa eşdeğeridir.** Metadata düzenindeki 604 sayfa 30 cüze
+  bölünür; 1 cüz = `604 / 30` sayfa. Böylece farklı uzunluktaki metadata cüzleri
+  aylık sayısal hedefi beklenmedik biçimde değiştirmez.
+- **Yüzde ve tarihler saf fonksiyonlarla hesaplanır.** Hedef doğrulama, yerel gün
+  ve ay sınırları, yüzde, kalan miktar, durum ve tahmini bitiş veritabanı veya
+  cihaz API'sine dokunmaz. Tahmini bitiş, hedef başlangıcından beri okunan
+  benzersiz sayfaların geçen yerel günlere ortalamasıyla hesaplanır; henüz okuma
+  yoksa tarih tahmini gösterilmez.
+- **Cüz ızgarası ayet kapsamına dayanır.** İçerik indeksine mekanik olarak
+  `verseCountsByJuz` eklenmiştir. Otuz hücre tamam/kısmi/boş biçim ve metinle
+  ayrılır; durum yalnız renkle aktarılmaz. Dini metin veya yorum üretilmez.
+- **Hatırlatma tek ve yereldir.** Varsayılan saat 20:00'dır; kullanıcı saati
+  değiştirip kapatabilir. `expo-notifications` ile günlük yinelenen tek kayıt
+  kurulur, push jetonu alınmaz. Namaz modülünün 60 kayıtlık iOS penceresiyle
+  birlikte işletim sistemi sınırı aşılmaz. Gerçek saatte ve uygulama kapalıyken
+  tetiklenme dev build'de elle doğrulanmalıdır.
+- `MIGRATIONS[8]` veritabanını sürüm 9'a çıkarır ve `quran_goal` tablosunu ekler.
+  Hedef/tarih motoru ve hatırlatma imzası için 17 test eklenmiş, toplam **454
+  test** geçmiştir. TypeScript, içerik denetimi ve Android Metro paketi hata
+  vermemiştir; lintte proje genelindeki 12 mevcut `strings` import uyarısı sürer.
 
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 

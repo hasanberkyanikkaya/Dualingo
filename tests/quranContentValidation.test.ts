@@ -87,6 +87,7 @@ function pageIndex(): QuranPageIndex {
   return {
     schemaVersion: 1,
     contentRevision: 'test-revision',
+    verseCountsByJuz: [2, ...Array.from({ length: 29 }, () => 0)],
     pages: [
       {
         pageNumber: 1,

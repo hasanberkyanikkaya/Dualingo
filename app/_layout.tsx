@@ -6,6 +6,7 @@ import { AppState } from 'react-native';
 
 import { syncPrayerNotifications } from '@/features/prayer/notificationSync';
 import { prepareNotifications } from '@/features/prayer/notifications';
+import { syncQuranGoalNotification } from '@/features/quran/goalNotificationSync';
 import { buildNavigationTheme } from '@/lib/navigationTheme';
 import { useTheme } from '@/lib/useTheme';
 
@@ -19,28 +20,29 @@ export default function RootLayout() {
   const { theme, isDark } = useTheme();
 
   /**
-   * Bildirim hazırlığı ve zamanlaması (Faz 4.4).
+   * Bildirim hazırlığı ve zamanlaması (Faz 4.4 ve 5.3).
    *
-   * ⚠️ **Burada olmak ZORUNDA, namaz sekmesinde değil.** Kullanıcı namaz
-   * sekmesine hiç girmezse `usePrayerTimes` monte olmaz; hatırlatmalar
-   * kurulduğu yerde kalır, önbellek penceresi kayar ve bir gün sessizce
-   * tükenirdi. Zamanlanmış bildirimin bütün anlamı uygulamanın açılmadığı
-   * günlerde de çalışması.
+   * ⚠️ **Burada olmak ZORUNDA, özellik sekmelerinde değil.** Kullanıcı ilgili
+   * sekmeye hiç girmezse özellik hook'u monte olmaz; hatırlatmalar kurulduğu
+   * yerde kalır, namaz önbellek penceresi kayar ve bir gün sessizce tükenirdi.
+   * Zamanlanmış bildirimin bütün anlamı uygulamanın açılmadığı günlerde de
+   * çalışması.
    *
    * ⚠️ Ön plana dönüş de dinleniyor: gün dönmüş, kullanıcı sistem
    * ayarlarından izni değiştirmiş ya da aradan bildirimler tetiklenmiş
-   * olabilir. `syncPrayerNotifications` aynı planı ikinci kez KURMUYOR
-   * (imza denetimi), yani bu dinleyici bedavaya yakın.
+   * olabilir. Her iki eşitleyici de aynı planı ikinci kez KURMUYOR (imza
+   * denetimi), yani bu dinleyici bedavaya yakın.
    */
   useEffect(() => {
     void (async () => {
       await prepareNotifications();
-      await syncPrayerNotifications();
+      await Promise.all([syncPrayerNotifications(), syncQuranGoalNotification()]);
     })();
 
     const subscription = AppState.addEventListener('change', (status) => {
       if (status === 'active') {
         void syncPrayerNotifications();
+        void syncQuranGoalNotification();
       }
     });
 

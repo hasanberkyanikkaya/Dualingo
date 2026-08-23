@@ -59,7 +59,8 @@ Bu maddeler kapanmadan v0.1 yayınlanamaz. Hiçbiri bu oturumda çözülemezdi.
    `npx expo prebuild` çıktısındaki birleşik manifestte **doğrulanmalı** —
    `expo-location` eklentisi onu geri birleştirebilir.
    ✅ **(b) ÇÖZÜLDÜ (Oturum 4.4):** `expo-notifications` eklentisi artık
-   gerçekten kullanılıyor — namaz vakti hatırlatmaları. Bildirilmiş ama
+   gerçekten kullanılıyor — namaz vakti ve Kur'an hedefi hatırlatmaları.
+   Bildirilmiş ama
    kullanılmayan yetenek kalmadı. ⚠️ Yalnızca **yerel zamanlanmış** bildirim;
    push jetonu alınmıyor, yani veri güvenliği formu değişmiyor.
    Ayrıntı: `VERI_GUVENLIGI_FORMU.md` Bölüm 3.

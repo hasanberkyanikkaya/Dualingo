@@ -68,6 +68,7 @@ veya başka bir tarafa **gönderilmez**. Saklanan veriler şunlardır:
 | İndirilmiş namaz vakti tablosu (yaklaşık bir aylık) | Vakitleri internet olmadan da gösterebilmek |
 | İşaretlediğiniz namaz vakitleri (tarih + vakit adı + kılındı/kaza) | Namaz çizelgenizi göstermek |
 | Namaz vakti bildirim tercihleriniz (hangi vakit açık, kaç dakika sonra) | Hatırlatmaları istediğiniz gibi kurmak |
+| Kur'an okuma hedefiniz, ilerlemeniz ve günlük hatırlatma saatiniz | Hedef ilerlemesini göstermek ve seçtiğiniz saatte hatırlatmak |
 
 Bu veriler cihazın kendi güvenli uygulama alanında tutulur ve yalnızca
 {APP_NAME} tarafından okunabilir.
@@ -121,16 +122,18 @@ Bunların dışında uygulama **hiçbir sunucuya bağlanmaz.**
 
 ## 3c. Bildirimler — tamamen cihazınızda
 
-Namaz vakti hatırlatmaları **yerel bildirimdir**: cihazınızın kendi
-zamanlayıcısına kurulur ve doğrudan cihazınız tarafından gösterilir.
+Namaz vakti ve Kur'an okuma hedefi hatırlatmaları **yerel bildirimdir**:
+cihazınızın kendi zamanlayıcısına kurulur ve doğrudan cihazınız tarafından
+gösterilir.
 
 - Bildirimler için **hiçbir sunucuya bağlanılmaz.**
 - **Cihaz bildirim jetonu (push token) alınmaz**, saklanmaz ve kimseyle
   paylaşılmaz. Uzaktan bildirim (push) gönderme özelliği **yoktur**.
-- Hangi vakitler için bildirim istediğiniz **yalnızca cihazınızda** saklanır.
+- Hangi vakitler ve hangi Kur'an hedefi saati için bildirim istediğiniz
+  **yalnızca cihazınızda** saklanır.
 - Bildirim izni **zorunlu değildir**; izin vermezseniz uygulamanın geri kalanı
   tam olarak çalışır. İzni istediğiniz zaman cihaz ayarlarından kapatabilir,
-  hatırlatmaları uygulama içinden vakit vakit kapatabilirsiniz.
+  hatırlatmaları uygulama içinden kapatabilirsiniz.
 
 ## 4. Üçüncü taraflar
 
