@@ -1,5 +1,10 @@
 import { ThemeProvider } from '@react-navigation/native';
 import NetInfo from '@react-native-community/netinfo';
+import { Nunito_400Regular } from '@expo-google-fonts/nunito/400Regular';
+import { Nunito_600SemiBold } from '@expo-google-fonts/nunito/600SemiBold';
+import { Nunito_700Bold } from '@expo-google-fonts/nunito/700Bold';
+import { Nunito_800ExtraBold } from '@expo-google-fonts/nunito/800ExtraBold';
+import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -23,6 +28,12 @@ import { requestSync } from '@/features/sync/syncEngine';
  */
 export default function RootLayout() {
   const { theme, isDark } = useTheme();
+  const [fontsLoaded, fontError] = useFonts({
+    Nunito_400Regular,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+  });
 
   /**
    * Bildirim hazırlığı ve zamanlaması (Faz 4.4 ve 5.3).
@@ -75,6 +86,10 @@ export default function RootLayout() {
       networkSubscription();
     };
   }, []);
+
+  if (!fontsLoaded && fontError === null) {
+    return null;
+  }
 
   return (
     <ThemeProvider value={buildNavigationTheme(theme, isDark)}>

@@ -31,7 +31,7 @@ export default function PrayerScreen() {
   const dateLine = [gregorian, hijri].filter((part) => part !== null).join('  ·  ');
 
   return (
-    <Screen>
+    <Screen tabPane>
       <ScreenHeader title={strings.prayer.title} subtitle={subtitle} />
 
       <ScrollView contentContainerStyle={styles.body} showsVerticalScrollIndicator={false}>

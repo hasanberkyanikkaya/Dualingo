@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -21,12 +21,25 @@ const METADATA_URL = 'https://tanzil.net/res/text/metadata/quran-data.xml';
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outputDir = join(projectRoot, 'content', 'quran');
 const surahsDir = join(outputDir, 'surahs');
+const turkishNamesFile = join(outputDir, 'surahNames.tr.json');
 const generatedRegistry = join(projectRoot, 'features', 'quran', 'contentRegistry.generated.ts');
 
 type RawVerse = { surahId: number; numberInSurah: number; text: string };
 type RawSurah = { id: number; nameArabic: string; verses: RawVerse[] };
 type Boundary = { index: number; surahId: number; verseNumber: number };
 type SourceFile = { bytes: Uint8Array; text: string; sha256: string };
+type TurkishSurahNames = { schemaVersion: 1; names: Record<string, string> };
+
+async function loadTurkishSurahNames(): Promise<ReadonlyMap<number, string>> {
+  const source = JSON.parse(await readFile(turkishNamesFile, 'utf8')) as TurkishSurahNames;
+  const names = new Map(
+    Object.entries(source.names).map(([id, name]) => [Number(id), name.trim()] as const),
+  );
+  if (source.schemaVersion !== 1 || names.size !== 114 || [...names.values()].some((name) => name === '')) {
+    throw new Error('Türkçe sure adı kataloğu eksik veya desteklenmeyen biçimde.');
+  }
+  return names;
+}
 
 function sha256(bytes: Uint8Array): string {
   return createHash('sha256').update(bytes).digest('hex');
@@ -127,6 +140,7 @@ function composeSurahs(
   translation: readonly RawSurah[],
   pages: readonly Boundary[],
   juzs: readonly Boundary[],
+  turkishNames: ReadonlyMap<number, string>,
 ): QuranSurahContent[] {
   let globalOrder = 0;
 
@@ -153,12 +167,17 @@ function composeSurahs(
       };
     });
 
+    const nameTurkish = turkishNames.get(sourceSurah.id);
+    if (nameTurkish === undefined) {
+      throw new Error(`Türkçe sure adı eksik: sure ${sourceSurah.id}`);
+    }
+
     return {
       schemaVersion: 1,
       surah: {
         id: sourceSurah.id,
         nameArabic: sourceSurah.nameArabic,
-        nameTurkish: null,
+        nameTurkish,
         verseCount: verses.length,
         firstGlobalOrder,
       },
@@ -185,6 +204,7 @@ function buildManifest(
     releaseBlockedReasons: [
       'Meal veri setinin ticari yeniden dağıtım izni yayın öncesi doğrulanmalı.',
       'Tanzil metadata kullanım şartları yayın öncesi ayrıca doğrulanmalı.',
+      'Kullanıcı tarafından sağlanan Türkçe sure adları insan uzman tarafından onaylanmalı.',
       'Arapça metin ve meal insan uzman tarafından karşılaştırmalı onaylanmalı.',
       'Elektronik Kur’an yayımı için ilgili kurul süreci tamamlanmalı.',
     ],
@@ -306,10 +326,11 @@ async function writeOutput(surahs: readonly QuranSurahContent[], manifest: Quran
 }
 
 async function main(): Promise<void> {
-  const [arabic, translation, metadata] = await Promise.all([
+  const [arabic, translation, metadata, turkishNames] = await Promise.all([
     download(ARABIC_URL),
     download(TRANSLATION_URL),
     download(METADATA_URL),
+    loadTurkishSurahNames(),
   ]);
 
   const surahs = composeSurahs(
@@ -317,6 +338,7 @@ async function main(): Promise<void> {
     parseCorpus(translation.text),
     parseBoundaries(metadata.text, 'pages', 'page'),
     parseBoundaries(metadata.text, 'juzs', 'juz'),
+    turkishNames,
   );
   const manifest = buildManifest(surahs, arabic, translation, metadata);
 

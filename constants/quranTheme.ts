@@ -1,38 +1,34 @@
-/**
- * Kur'an modülünün bağımsız görsel kimliği.
- *
- * Bu jetonlar genel Aksolotl temasından bilinçli olarak türetilmez. Okuyucu,
- * referanstaki gece laciverti / turkuaz atmosferi ve sıcak kitap kâğıdını
- * kullanır. Bileşenler bu dosyadaki anlamsal adları okur; ham renk yazmaz.
- */
+import { palette } from '@/constants/colors';
+
+/** Kur'an yüzeylerinin yeni sıcak kâğıt diline uyarlanmış anlamsal renkleri. */
 export const quranTheme = {
-  backgroundTop: '#082534',
-  backgroundBottom: '#03131E',
-  backgroundGlow: '#0E5861',
-  pattern: '#8DD8D4',
+  backgroundTop: palette.paper0,
+  backgroundBottom: palette.paper50,
+  backgroundGlow: palette.yellow100,
+  pattern: '#D9D0C3',
 
-  text: '#F4FBFA',
-  textMuted: '#ACC4C7',
-  accent: '#53C9C1',
-  onAccent: '#04211F',
-  accentSoft: 'rgba(83, 201, 193, 0.16)',
-  warning: '#E6C774',
-  danger: '#FFB4AB',
+  text: palette.graphite950,
+  textMuted: palette.graphite650,
+  accent: palette.yellow400,
+  onAccent: palette.graphite950,
+  accentSoft: 'rgba(247, 204, 24, 0.2)',
+  warning: palette.pink600,
+  danger: palette.red700,
 
-  glass: 'rgba(12, 48, 61, 0.72)',
-  glassStrong: 'rgba(8, 38, 51, 0.94)',
-  glassPressed: 'rgba(25, 82, 91, 0.88)',
-  glassBorder: 'rgba(172, 224, 222, 0.34)',
-  overlay: 'rgba(1, 10, 16, 0.74)',
+  glass: 'rgba(255, 255, 255, 0.84)',
+  glassStrong: 'rgba(255, 253, 248, 0.96)',
+  glassPressed: 'rgba(255, 243, 176, 0.92)',
+  glassBorder: 'rgba(23, 23, 23, 0.28)',
+  overlay: 'rgba(23, 23, 23, 0.56)',
 
-  bookCover: '#125B57',
-  bookCoverDark: '#083D3A',
-  bookGold: '#C9AA62',
-  bookShadow: '#01080D',
-  paper: '#FFF9E9',
+  bookCover: palette.graphite800,
+  bookCoverDark: palette.graphite950,
+  bookGold: palette.yellow400,
+  bookShadow: '#090909',
+  paper: palette.paper0,
   paperEdge: '#E4D8B8',
   paperRule: '#D8C99F',
-  ink: '#182823',
-  translationInk: '#485B54',
-  footnoteInk: '#63736D',
+  ink: palette.graphite950,
+  translationInk: palette.graphite650,
+  footnoteInk: palette.graphite500,
 } as const;

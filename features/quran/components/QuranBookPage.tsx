@@ -1,22 +1,17 @@
 import { useEffect, useRef } from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  type FlatList as FlatListType,
-  type ViewToken,
-} from 'react-native';
+import { ScrollView, StyleSheet, Text, View, type ScrollView as ScrollViewType } from 'react-native';
 
 import { quranTheme } from '@/constants/quranTheme';
 import { componentRadius } from '@/constants/radius';
 import { spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
-import { quranTextScales, textStyles } from '@/constants/typography';
+import { textStyles } from '@/constants/typography';
+import QuranArabicFlow from '@/features/quran/components/QuranArabicFlow';
+import QuranTranslationList from '@/features/quran/components/QuranTranslationList';
 import { getQuranCatalog } from '@/features/quran/contentLoader';
 import { formatString } from '@/lib/formatString';
 
-import type { QuranPage, QuranReaderFontSize, QuranVerse, QuranVerseKey } from '@/types';
+import type { QuranPage, QuranReaderFontSize, QuranVerseKey } from '@/types';
 
 type QuranBookPageProps = {
   page: QuranPage;
@@ -37,98 +32,29 @@ export default function QuranBookPage({
   trackVisibility,
   onVisibleVerses,
 }: QuranBookPageProps) {
-  const listRef = useRef<FlatListType<QuranVerse>>(null);
+  const scrollRef = useRef<ScrollViewType>(null);
   const visibleCallback = useRef(onVisibleVerses);
-  const trackRef = useRef(trackVisibility);
-  const viewabilityConfig = useRef({
-    itemVisiblePercentThreshold: 55,
-    minimumViewTime: 600,
-  }).current;
-  const scale = quranTextScales[fontSize];
-  const focusIndex = page.verses.findIndex((verse) => verse.key === focusVerseKey);
-  const pageSurahNames = [...new Set(page.verses.map((verse) => verse.surahId))]
-    .map((surahId) => surahById.get(surahId)?.nameArabic)
-    .filter((name): name is string => name !== undefined)
-    .join(' · ');
-  const juzLabel =
-    page.juzNumbers.length > 1
-      ? formatString(strings.quran.juzRange, {
-          first: page.juzNumbers[0],
-          last: page.juzNumbers[page.juzNumbers.length - 1],
-        })
-      : formatString(strings.quran.juz, { number: page.juzNumbers[0] ?? 1 });
+  const firstSurah = surahById.get(page.verses[0]?.surahId ?? 0);
+  const juzLabel = getJuzLabel(page);
 
   useEffect(() => {
     visibleCallback.current = onVisibleVerses;
-    trackRef.current = trackVisibility;
-  }, [onVisibleVerses, trackVisibility]);
+  }, [onVisibleVerses]);
 
   useEffect(() => {
-    if (focusIndex <= 0) {
-      listRef.current?.scrollToOffset({ offset: 0, animated: false });
-      return;
+    scrollRef.current?.scrollTo({ y: 0, animated: false });
+  }, [page.pageNumber]);
+
+  useEffect(() => {
+    if (!trackVisibility) {
+      return undefined;
     }
 
-    listRef.current?.scrollToIndex({ index: focusIndex, animated: false, viewPosition: 0 });
-  }, [focusIndex, page.pageNumber]);
-
-  const onViewableItemsChanged = useRef(
-    ({ viewableItems }: { viewableItems: ViewToken<QuranVerse>[] }) => {
-      if (!trackRef.current) {
-        return;
-      }
-      const keys = viewableItems
-        .filter((token) => token.isViewable && token.item !== undefined)
-        .sort((left, right) => (left.index ?? 0) - (right.index ?? 0))
-        .map((token) => token.item.key);
-      visibleCallback.current(keys);
-    },
-  ).current;
-
-  function renderVerse({ item }: { item: QuranVerse }) {
-    return (
-      <View style={styles.verseBlock}>
-        <View style={styles.verseHeading}>
-          <View style={styles.verseNumber}>
-            <Text style={[textStyles.labelSmall, { color: quranTheme.ink }]}>
-              {item.numberInSurah}
-            </Text>
-          </View>
-          <Text style={[textStyles.caption, { color: quranTheme.footnoteInk }]}>
-            {formatString(strings.quran.verse, { number: item.numberInSurah })}
-          </Text>
-        </View>
-
-        <Text
-          selectable
-          style={[
-            styles.arabic,
-            scale.arabic,
-            { color: quranTheme.ink },
-          ]}
-        >
-          {item.arabicText}
-        </Text>
-
-        {showTranslation ? (
-          <View style={styles.translationBlock}>
-            <Text selectable style={[scale.translation, { color: quranTheme.translationInk }]}>
-              {item.translationText}
-            </Text>
-            {item.translationFootnotes.map((footnote, index) => (
-              <Text
-                key={`${item.key}-footnote-${index}`}
-                selectable
-                style={[styles.footnote, scale.footnote, { color: quranTheme.footnoteInk }]}
-              >
-                {footnote}
-              </Text>
-            ))}
-          </View>
-        ) : null}
-      </View>
-    );
-  }
+    const timer = setTimeout(() => {
+      visibleCallback.current(page.verses.map((verse) => verse.key));
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [page.pageNumber, page.verses, trackVisibility]);
 
   return (
     <View style={styles.paper}>
@@ -137,30 +63,37 @@ export default function QuranBookPage({
           numberOfLines={1}
           style={[textStyles.bodyLarge, styles.surahName, { color: quranTheme.ink }]}
         >
-          {pageSurahNames}
+          {firstSurah?.nameTurkish ?? firstSurah?.nameArabic}
         </Text>
         <Text style={[textStyles.caption, { color: quranTheme.footnoteInk }]}>{juzLabel}</Text>
       </View>
 
       <View style={styles.rule} />
 
-      <FlatList
-        ref={listRef}
+      <ScrollView
+        ref={scrollRef}
         contentContainerStyle={styles.pageContent}
-        data={page.verses}
-        initialNumToRender={page.verses.length}
-        keyExtractor={(verse) => verse.key}
-        onScrollToIndexFailed={({ averageItemLength, index }) => {
-          listRef.current?.scrollToOffset({
-            offset: Math.max(0, averageItemLength * index),
-            animated: false,
-          });
-        }}
-        onViewableItemsChanged={onViewableItemsChanged}
-        renderItem={renderVerse}
         showsVerticalScrollIndicator={false}
-        viewabilityConfig={viewabilityConfig}
-      />
+      >
+        <QuranArabicFlow
+          focusVerseKey={focusVerseKey}
+          fontSize={fontSize}
+          verses={page.verses}
+        />
+
+        {showTranslation ? (
+          <View style={styles.translationSection}>
+            <View style={styles.translationHeading}>
+              <View style={styles.translationRule} />
+              <Text style={[textStyles.labelLarge, { color: quranTheme.translationInk }]}>
+                {strings.quran.pageTranslation}
+              </Text>
+              <View style={styles.translationRule} />
+            </View>
+            <QuranTranslationList fontSize={fontSize} verses={page.verses} />
+          </View>
+        ) : null}
+      </ScrollView>
 
       <View style={styles.pageNumberRow}>
         <View style={styles.pageNumberRule} />
@@ -173,6 +106,15 @@ export default function QuranBookPage({
   );
 }
 
+function getJuzLabel(page: QuranPage): string {
+  return page.juzNumbers.length > 1
+    ? formatString(strings.quran.juzRange, {
+        first: page.juzNumbers[0],
+        last: page.juzNumbers[page.juzNumbers.length - 1],
+      })
+    : formatString(strings.quran.juz, { number: page.juzNumbers[0] ?? 1 });
+}
+
 const styles = StyleSheet.create({
   paper: {
     flex: 1,
@@ -182,7 +124,7 @@ const styles = StyleSheet.create({
   },
   pageHeader: {
     minHeight: spacing.xxxl,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.md,
     paddingHorizontal: spacing.lg,
@@ -190,8 +132,6 @@ const styles = StyleSheet.create({
   },
   surahName: {
     flex: 1,
-    textAlign: 'right',
-    writingDirection: 'rtl',
   },
   rule: {
     height: 1,
@@ -200,39 +140,23 @@ const styles = StyleSheet.create({
   },
   pageContent: {
     paddingHorizontal: spacing.lg,
+    paddingTop: spacing.md,
     paddingBottom: spacing.xxl,
   },
-  verseBlock: {
-    gap: spacing.sm,
-    paddingVertical: spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: quranTheme.paperRule,
+  translationSection: {
+    gap: spacing.lg,
+    paddingTop: spacing.xl,
   },
-  verseHeading: {
+  translationHeading: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
-  },
-  verseNumber: {
-    minWidth: spacing.xl,
-    height: spacing.xl,
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: spacing.xs,
-    borderWidth: 1,
-    borderColor: quranTheme.bookGold,
-    borderRadius: componentRadius.button,
-  },
-  arabic: {
-    textAlign: 'right',
-    writingDirection: 'rtl',
-  },
-  translationBlock: {
     gap: spacing.sm,
-    paddingTop: spacing.sm,
   },
-  footnote: {
-    fontStyle: 'italic',
+  translationRule: {
+    flex: 1,
+    height: 1,
+    backgroundColor: quranTheme.paperRule,
   },
   pageNumberRow: {
     minHeight: spacing.xxl,

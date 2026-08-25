@@ -34,7 +34,7 @@ export const layout = {
   /** En küçük dokunulabilir alan — erişilebilirlik alt sınırı */
   minTouchTarget: 48,
   /** Alt sekme çubuğu yüksekliği (güvenli alan hariç) */
-  tabBarHeight: 60,
+  tabBarHeight: 72,
   /**
    * Üst çubuğun (tavan) yüksekliği — durum çubuğu alanı HARİÇ.
    * Referans görüntüde pembe şerit ekranın ~%12'si; durum çubuğu düşülünce

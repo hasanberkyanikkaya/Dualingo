@@ -5,25 +5,30 @@ import {
   getQuranManifest,
   getQuranPageIndex,
   loadQuranPage,
-  loadQuranSurah,
 } from '@/features/quran/contentLoader';
 import {
   readLastReadPosition,
   recordQuranRead,
   saveLastReadPosition,
 } from '@/features/quran/quranDb';
+import { shouldTrackQuranReading } from '@/features/quran/readerLayout';
 import { toLocalIsoDate } from '@/features/progress/streak';
 
-import type { QuranPage, QuranSurahSummary, QuranVerseKey } from '@/types';
+import type { QuranPage, QuranReaderMode, QuranVerseKey } from '@/types';
 
 type InitialReaderState = {
   page: QuranPage;
   focusVerseKey: QuranVerseKey;
 };
 
-function firstReaderState(requestedVerseKey?: QuranVerseKey): InitialReaderState {
-  const saved = readLastReadPosition();
-  const requested = requestedVerseKey === undefined ? null : findQuranVerse(requestedVerseKey);
+function firstReaderState(
+  mode: QuranReaderMode,
+  requestedVerseKey?: QuranVerseKey,
+): InitialReaderState {
+  const tracked = shouldTrackQuranReading(mode);
+  const saved = tracked ? readLastReadPosition() : null;
+  const requested =
+    tracked && requestedVerseKey !== undefined ? findQuranVerse(requestedVerseKey) : null;
   const savedVerse =
     saved?.contentRevision === getQuranManifest().contentRevision
       ? findQuranVerse(saved.verseKey)
@@ -42,9 +47,9 @@ function firstReaderState(requestedVerseKey?: QuranVerseKey): InitialReaderState
   return { page, focusVerseKey: verse.key };
 }
 
-export function useQuranReader(requestedVerseKey?: QuranVerseKey) {
+export function useQuranReader(mode: QuranReaderMode, requestedVerseKey?: QuranVerseKey) {
   const [{ page, focusVerseKey }, setReader] = useState(() =>
-    firstReaderState(requestedVerseKey),
+    firstReaderState(mode, requestedVerseKey),
   );
   const lastSavedKey = useRef<QuranVerseKey | null>(null);
   const pageCount = getQuranPageIndex().pages.length;
@@ -62,14 +67,8 @@ export function useQuranReader(requestedVerseKey?: QuranVerseKey) {
     return true;
   }
 
-  function openSurah(surah: QuranSurahSummary): boolean {
-    const content = loadQuranSurah(surah.id);
-    const firstVerse = content?.verses[0] ?? null;
-    return firstVerse === null ? false : openPage(firstVerse.pageNumber, firstVerse.key);
-  }
-
   function recordVisibleVerses(keys: readonly QuranVerseKey[]): void {
-    if (keys.length === 0) {
+    if (!shouldTrackQuranReading(mode) || keys.length === 0) {
       return;
     }
 
@@ -94,7 +93,6 @@ export function useQuranReader(requestedVerseKey?: QuranVerseKey) {
     pageCount,
     selectedSurahId: focusedVerse?.surahId ?? page.verses[0]?.surahId ?? null,
     openPage,
-    openSurah,
     recordVisibleVerses,
   };
 }

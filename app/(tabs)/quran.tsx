@@ -4,14 +4,14 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import Screen from '@/components/Screen';
 import { quranTheme } from '@/constants/quranTheme';
 import { componentRadius } from '@/constants/radius';
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
-import { findQuranVerse, getQuranManifest } from '@/features/quran/contentLoader';
+import { findQuranVerse, getQuranCatalog, getQuranManifest } from '@/features/quran/contentLoader';
 import QuranButton from '@/features/quran/components/QuranButton';
 import QuranNightBackground from '@/features/quran/components/QuranNightBackground';
 import QuranProgressBar from '@/features/quran/components/QuranProgressBar';
@@ -33,6 +33,10 @@ export default function QuranScreen() {
     lastPosition?.contentRevision === manifest.contentRevision
       ? findQuranVerse(lastPosition.verseKey)
       : null;
+  const lastSurah =
+    lastVerse === null
+      ? null
+      : getQuranCatalog().surahs.find((surah) => surah.id === lastVerse.surahId) ?? null;
 
   useFocusEffect(
     useCallback(() => {
@@ -41,19 +45,23 @@ export default function QuranScreen() {
     }, [refreshGoal]),
   );
 
-  function openReader(verseKey: string): void {
-    router.push({ pathname: '/quran/reader', params: { verseKey } });
+  function openMushaf(verseKey: string): void {
+    router.push({ pathname: '/quran/reader', params: { mode: 'mushaf', verseKey } });
   }
 
   function selectSurah(surah: QuranSurahSummary): void {
     setPickerVisible(false);
-    openReader(`${surah.id}:1`);
+    router.push({
+      pathname: '/quran/reader',
+      params: { mode: 'surah', surahId: String(surah.id) },
+    });
   }
 
   return (
-    <QuranNightBackground>
-      <StatusBar style="light" />
-      <SafeAreaView edges={['top', 'left', 'right']} style={styles.safeArea}>
+    <Screen contentStyle={styles.screenContent} tabPane>
+      <QuranNightBackground>
+        <StatusBar style="dark" />
+        <View style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.titleBlock}>
@@ -81,7 +89,7 @@ export default function QuranScreen() {
                 {lastVerse === null
                   ? strings.quran.startBody
                   : formatString(strings.quran.continueBody, {
-                      sure: lastVerse.surahId,
+                      sure: lastSurah?.nameTurkish ?? lastVerse.surahId,
                       ayet: lastVerse.numberInSurah,
                       sayfa: lastVerse.pageNumber,
                     })}
@@ -90,7 +98,7 @@ export default function QuranScreen() {
             <QuranButton
               icon="book-outline"
               label={lastVerse === null ? strings.quran.startAction : strings.quran.continueAction}
-              onPress={() => openReader(lastVerse?.key ?? '1:1')}
+              onPress={() => openMushaf(lastVerse?.key ?? '1:1')}
               variant="accent"
             />
           </View>
@@ -171,19 +179,21 @@ export default function QuranScreen() {
             <Ionicons name="open-outline" size={spacing.lg} color={quranTheme.textMuted} />
           </Pressable>
         </ScrollView>
-      </SafeAreaView>
+        </View>
 
-      <SurahPickerModal
-        onClose={() => setPickerVisible(false)}
-        onSelect={selectSurah}
-        selectedSurahId={lastVerse?.surahId ?? null}
-        visible={pickerVisible}
-      />
-    </QuranNightBackground>
+        <SurahPickerModal
+          onClose={() => setPickerVisible(false)}
+          onSelect={selectSurah}
+          selectedSurahId={null}
+          visible={pickerVisible}
+        />
+      </QuranNightBackground>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  screenContent: { paddingHorizontal: spacing.none, paddingVertical: spacing.none },
   safeArea: { flex: 1 },
   content: {
     flexGrow: 1,

@@ -36,7 +36,7 @@ export default function SurahPickerModal({
         accessibilityRole="button"
         accessibilityLabel={formatString(strings.a11y.quranSurahOption, {
           number: item.id,
-          name: item.nameArabic,
+          name: item.nameTurkish ?? item.nameArabic,
         })}
         accessibilityState={{ selected }}
         onPress={() => onSelect(item)}
@@ -52,8 +52,8 @@ export default function SurahPickerModal({
           <Text style={[textStyles.labelMedium, { color: quranTheme.textMuted }]}>
             {numberLabel}
           </Text>
-          <Text style={[textStyles.bodyLarge, styles.arabicName, { color: quranTheme.text }]}>
-            {item.nameArabic}
+          <Text style={[textStyles.bodyLarge, { color: quranTheme.text }]}>
+            {item.nameTurkish ?? item.nameArabic}
           </Text>
         </View>
         <Ionicons
@@ -161,9 +161,5 @@ const styles = StyleSheet.create({
   rowText: {
     flex: 1,
     gap: spacing.xs,
-  },
-  arabicName: {
-    textAlign: 'right',
-    writingDirection: 'rtl',
   },
 });

@@ -38,8 +38,8 @@ export type QuranContentManifest = {
 export type QuranSurahSummary = {
   id: number;
   nameArabic: string;
-  /** Türkçe ad için onaylı bir kaynak henüz yok. */
-  nameTurkish: string | null;
+  /** Kullanıcı tarafından sağlanan Türkçe sure adı; yayın için uzman onayı bekler. */
+  nameTurkish: string;
   verseCount: number;
   firstGlobalOrder: number;
 };
@@ -98,6 +98,7 @@ export type QuranPage = {
 };
 
 export type QuranReaderFontSize = 'small' | 'medium' | 'large';
+export type QuranReaderMode = 'mushaf' | 'surah';
 
 export type QuranReadingPosition = {
   positionId: 'last_read';

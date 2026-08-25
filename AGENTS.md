@@ -157,7 +157,7 @@ listesi ver.
 - Faz 2.1–2.6 öğrenme yolu, soru tipleri, ders akışı, ilerleme, ses/OTA
   altyapısı ve seviye tespiti — tamam
 - Faz 2.5.3 mağaza metinleri — tamam; yayın hazır değil
-- Faz 3.1 seri veri sistemi — tamam; **görünür seri arayüzü yok**
+- Faz 3.1 seri veri sistemi — tamam; seri günü Öğren ekranındaki üst HUD'da görünür
 - Faz 3.2 rozet sistemi — tamam
 - Faz 3.3 maskot ve kutlama — tamam
 - Faz 4.0–4.6 namaz modülü — tamam
@@ -175,9 +175,14 @@ listesi ver.
   - Arapça metin + meal gömülü; transkripsiyon ertelendi.
   - Yer imi ve günlük benzersiz ayet geçmişi SQLite'ta.
 - Faz 5.2 Kur'an okuma ekranı — tamam
-  - Kur'an modülüne özel gece arka planı ve tek sayfalı kitap görünümü var.
-  - Sure seçimi, RTL Arapça, meal anahtarı, üç yazı boyutu ve sayfa çevirme var.
-  - Görünür ayetler son konumu ve günlük okuma geçmişini otomatik kaydeder.
+  - Kur'an modülü sıcak kâğıt/grafit/sarı görsel dilini ve tek sayfalı kitap görünümünü kullanır.
+  - Mushaf okuması ile bağımsız sure okuması ayrı modlardır. Bağımsız sure
+    okuması son konumu, geçmişi ve hedefleri değiştirmez.
+  - Mushaf metni ayet başına satır yerine RTL ve iki yana yaslı sürekli akışta;
+    ayet numarası satır içi küçük işarettir. Sayfa içi sure geçişinde Türkçe ad
+    ve ayraç görünür.
+  - Meal anahtarı, üç yazı boyutu ve sayfa çevirme vardır. Mushaf sayfası
+    görüntülendiğinde sayfadaki ayetler son konum ve günlük geçmişe kaydedilir.
 - Faz 5.3 Kur'an hedef sistemi — tamam
   - Günlük sayfa, aylık cüz ve tarihe kadar bitirme hedefleri SQLite'ta kalıcıdır.
   - Saf hesaplama motoru, tahmini bitiş, günlük yerel hatırlatma ve 30 cüz ızgarası var.
@@ -191,10 +196,27 @@ listesi ver.
     liderlik tablosu yoktur.
   - Supabase migration/RLS testi/Edge Function dosyaları hazır; gerçek proje,
     SMTP, deploy ve iki cihaz sınaması yapılmadı.
+- Bakım ve arayüz yenilemesi — 25 Ağustos 2026
+  - Profil her girişte açılan sol kategori menüsüne ve seçili bölüm için
+    kaydırılabilir içerik alanına taşındı.
+  - Öğren ekranındaki büyük oyun kartı, yeni oyunları taşıyabilecek yatay etkinlik
+    çubuğuna dönüştürüldü; bugün yalnız Sıralama Yarışı etkindir.
+  - Kullanıcının sağladığı 114 Türkçe sure adı içerik kataloğuna işlendi;
+    `expertApproved: false` olduğu için yayın öncesi uzman onayı gerekir.
+  - Kur'an okuyucusunda sure adları Türkçe gösterilir; ayet ayırıcıları ve tekrar
+    eden “x. ayet” yazıları kaldırıldı, yalnız küçük başlangıç numarası bırakıldı.
+  - Ana navigasyon dört metin sekmesidir; ikon yoktur, seçili sekme küçük nokta ve
+    koyu yazıyla belirtilir. İçerik yüzeyi alt bardan yuvarlak köşe ve gölgeyle ayrılır.
+  - Genel palet sıcak kâğıt, grafit, sarı, pudra pembe ve açık maviye; uygulama
+    tipografisi Nunito'ya taşındı. Kur'an'ın eski lacivert/turkuaz gece paleti kaldırıldı.
+  - Öğren ekranında sabit özgün kâğıt illüstrasyonu, ince konturlu sarı yol,
+    çıkartma seviyeler, kayan kırtasiye süsleri, gerçek seri/konum HUD'u ve geçerli
+    seviyede bayrak vardır. Dini metin veya sembol içeren yeni görsel üretilmedi.
 
-Sıradaki mantıklı iş **Faz 7 dış hizmet kurulumu ve iki cihaz E2E doğrulaması**.
-Ürün tarafındaki alternatifler seri arayüzü, Faz 6'nın diğer mini oyunları veya
-ertelenmiş Faz 1.2c Card bileşenidir.
+Ana faz planı tamamlandı. Bundan sonraki geliştirme kullanıcıdan gelen hata,
+değişiklik ve yenileme talepleri için **incele → planla → geliştir → doğrula →
+belgele** döngüsüyle ilerler. Açık borçlar kaybolmaz; ilgili talep geldiğinde ele
+alınır.
 
 ## Açık borçlar ve sınırlar
 
@@ -233,6 +255,8 @@ bellek yedeğine düşebilir ve soğuk açılışta sıfırlanabilir.
 - `icon.png` ve `splash-icon.png` Expo şablonudur; maskot henüz uygulanmadı.
 - Kutlama Lottie dosyası yok; `CelebrationMascot.tsx` maskot PNG'ye düşer.
 - `extra.audioBaseUrl` boş ve gerçek ses dosyaları yok; yazılı yedek çalışır.
+- Yeni metin sekmeli kabuk, Nunito yüklemesi, sabit Öğren arka planı, yol
+  yerleşimi ve açık renk Kur'an yüzeyleri gerçek telefonda elle doğrulanacak.
 - OTA ve bildirim tetiklenmesi dev build olmadan doğrulanamaz.
 - Faz 7 Supabase projesi henüz bağlanmadı: migration/Edge Function deploy,
   Auth SMTP ve redirect URL, Docker pgTAP/RLS testi ve iki cihaz E2E açıktır.
@@ -250,6 +274,10 @@ bellek yedeğine düşebilir ve soğuk açılışta sıfırlanabilir.
 - Seri sisteminin görünür arayüzü
 - Faz 6'nın diğer mini oyunları
 - Faz 7 gerçek Supabase kurulumu ve cihazlar arası E2E doğrulaması
+- Kur'an için birebir 15 satırlı QCF Mushaf dizgisi; `open-quran-view` web
+  bileşeni React Native'e doğrudan uymaz, sayfa fontu/veri lisansı çözülmeden
+  varlıkları projeye kopyalanmaz. Bugünkü okuyucu mevcut doğrulanmış metni RTL
+  ve iki yana yaslı yerel akışta gösterir.
 
 ## Belge haritası
 

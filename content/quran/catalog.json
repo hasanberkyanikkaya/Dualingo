@@ -5,798 +5,798 @@
     {
       "id": 1,
       "nameArabic": "الفاتحة",
-      "nameTurkish": null,
+      "nameTurkish": "Fâtiha Sûresi",
       "verseCount": 7,
       "firstGlobalOrder": 1
     },
     {
       "id": 2,
       "nameArabic": "البقرة",
-      "nameTurkish": null,
+      "nameTurkish": "Bakara Sûresi",
       "verseCount": 286,
       "firstGlobalOrder": 8
     },
     {
       "id": 3,
       "nameArabic": "آل عمران",
-      "nameTurkish": null,
+      "nameTurkish": "Âl-i İmrân Sûresi",
       "verseCount": 200,
       "firstGlobalOrder": 294
     },
     {
       "id": 4,
       "nameArabic": "النساء",
-      "nameTurkish": null,
+      "nameTurkish": "Nisâ Sûresi",
       "verseCount": 176,
       "firstGlobalOrder": 494
     },
     {
       "id": 5,
       "nameArabic": "المائدة",
-      "nameTurkish": null,
+      "nameTurkish": "Mâide Sûresi",
       "verseCount": 120,
       "firstGlobalOrder": 670
     },
     {
       "id": 6,
       "nameArabic": "الأنعام",
-      "nameTurkish": null,
+      "nameTurkish": "En'âm Sûresi",
       "verseCount": 165,
       "firstGlobalOrder": 790
     },
     {
       "id": 7,
       "nameArabic": "الأعراف",
-      "nameTurkish": null,
+      "nameTurkish": "A'râf Sûresi",
       "verseCount": 206,
       "firstGlobalOrder": 955
     },
     {
       "id": 8,
       "nameArabic": "الأنفال",
-      "nameTurkish": null,
+      "nameTurkish": "Enfâl Sûresi",
       "verseCount": 75,
       "firstGlobalOrder": 1161
     },
     {
       "id": 9,
       "nameArabic": "التوبة",
-      "nameTurkish": null,
+      "nameTurkish": "Tevbe Sûresi",
       "verseCount": 129,
       "firstGlobalOrder": 1236
     },
     {
       "id": 10,
       "nameArabic": "يونس",
-      "nameTurkish": null,
+      "nameTurkish": "Yunus Sûresi",
       "verseCount": 109,
       "firstGlobalOrder": 1365
     },
     {
       "id": 11,
       "nameArabic": "هود",
-      "nameTurkish": null,
+      "nameTurkish": "Hûd Sûresi",
       "verseCount": 123,
       "firstGlobalOrder": 1474
     },
     {
       "id": 12,
       "nameArabic": "يوسف",
-      "nameTurkish": null,
+      "nameTurkish": "Yusuf Sûresi",
       "verseCount": 111,
       "firstGlobalOrder": 1597
     },
     {
       "id": 13,
       "nameArabic": "الرعد",
-      "nameTurkish": null,
+      "nameTurkish": "Ra'd Sûresi",
       "verseCount": 43,
       "firstGlobalOrder": 1708
     },
     {
       "id": 14,
       "nameArabic": "ابراهيم",
-      "nameTurkish": null,
+      "nameTurkish": "İbrahim Sûresi",
       "verseCount": 52,
       "firstGlobalOrder": 1751
     },
     {
       "id": 15,
       "nameArabic": "الحجر",
-      "nameTurkish": null,
+      "nameTurkish": "Hicr Sûresi",
       "verseCount": 99,
       "firstGlobalOrder": 1803
     },
     {
       "id": 16,
       "nameArabic": "النحل",
-      "nameTurkish": null,
+      "nameTurkish": "Nahl Sûresi",
       "verseCount": 128,
       "firstGlobalOrder": 1902
     },
     {
       "id": 17,
       "nameArabic": "الإسراء",
-      "nameTurkish": null,
+      "nameTurkish": "İsrâ Sûresi",
       "verseCount": 111,
       "firstGlobalOrder": 2030
     },
     {
       "id": 18,
       "nameArabic": "الكهف",
-      "nameTurkish": null,
+      "nameTurkish": "Kehf Sûresi",
       "verseCount": 110,
       "firstGlobalOrder": 2141
     },
     {
       "id": 19,
       "nameArabic": "مريم",
-      "nameTurkish": null,
+      "nameTurkish": "Meryem Sûresi",
       "verseCount": 98,
       "firstGlobalOrder": 2251
     },
     {
       "id": 20,
       "nameArabic": "طه",
-      "nameTurkish": null,
+      "nameTurkish": "Tâ-Hâ Sûresi",
       "verseCount": 135,
       "firstGlobalOrder": 2349
     },
     {
       "id": 21,
       "nameArabic": "الأنبياء",
-      "nameTurkish": null,
+      "nameTurkish": "Enbiyâ Sûresi",
       "verseCount": 112,
       "firstGlobalOrder": 2484
     },
     {
       "id": 22,
       "nameArabic": "الحج",
-      "nameTurkish": null,
+      "nameTurkish": "Hac Sûresi",
       "verseCount": 78,
       "firstGlobalOrder": 2596
     },
     {
       "id": 23,
       "nameArabic": "المؤمنون",
-      "nameTurkish": null,
+      "nameTurkish": "Mü'minûn Sûresi",
       "verseCount": 118,
       "firstGlobalOrder": 2674
     },
     {
       "id": 24,
       "nameArabic": "النور",
-      "nameTurkish": null,
+      "nameTurkish": "Nûr Sûresi",
       "verseCount": 64,
       "firstGlobalOrder": 2792
     },
     {
       "id": 25,
       "nameArabic": "الفرقان",
-      "nameTurkish": null,
+      "nameTurkish": "Furkan Sûresi",
       "verseCount": 77,
       "firstGlobalOrder": 2856
     },
     {
       "id": 26,
       "nameArabic": "الشعراء",
-      "nameTurkish": null,
+      "nameTurkish": "Şuarâ Sûresi",
       "verseCount": 227,
       "firstGlobalOrder": 2933
     },
     {
       "id": 27,
       "nameArabic": "النمل",
-      "nameTurkish": null,
+      "nameTurkish": "Neml Sûresi",
       "verseCount": 93,
       "firstGlobalOrder": 3160
     },
     {
       "id": 28,
       "nameArabic": "القصص",
-      "nameTurkish": null,
+      "nameTurkish": "Kasas Sûresi",
       "verseCount": 88,
       "firstGlobalOrder": 3253
     },
     {
       "id": 29,
       "nameArabic": "العنكبوت",
-      "nameTurkish": null,
+      "nameTurkish": "Ankebût Sûresi",
       "verseCount": 69,
       "firstGlobalOrder": 3341
     },
     {
       "id": 30,
       "nameArabic": "الروم",
-      "nameTurkish": null,
+      "nameTurkish": "Rûm Sûresi",
       "verseCount": 60,
       "firstGlobalOrder": 3410
     },
     {
       "id": 31,
       "nameArabic": "لقمان",
-      "nameTurkish": null,
+      "nameTurkish": "Lokman Sûresi",
       "verseCount": 34,
       "firstGlobalOrder": 3470
     },
     {
       "id": 32,
       "nameArabic": "السجدة",
-      "nameTurkish": null,
+      "nameTurkish": "Secde Sûresi",
       "verseCount": 30,
       "firstGlobalOrder": 3504
     },
     {
       "id": 33,
       "nameArabic": "الأحزاب",
-      "nameTurkish": null,
+      "nameTurkish": "Ahzâb Sûresi",
       "verseCount": 73,
       "firstGlobalOrder": 3534
     },
     {
       "id": 34,
       "nameArabic": "سبإ",
-      "nameTurkish": null,
+      "nameTurkish": "Sebe' Sûresi",
       "verseCount": 54,
       "firstGlobalOrder": 3607
     },
     {
       "id": 35,
       "nameArabic": "فاطر",
-      "nameTurkish": null,
+      "nameTurkish": "Fâtır Sûresi",
       "verseCount": 45,
       "firstGlobalOrder": 3661
     },
     {
       "id": 36,
       "nameArabic": "يس",
-      "nameTurkish": null,
+      "nameTurkish": "Yâsin Sûresi",
       "verseCount": 83,
       "firstGlobalOrder": 3706
     },
     {
       "id": 37,
       "nameArabic": "الصافات",
-      "nameTurkish": null,
+      "nameTurkish": "Sâffât Sûresi",
       "verseCount": 182,
       "firstGlobalOrder": 3789
     },
     {
       "id": 38,
       "nameArabic": "ص",
-      "nameTurkish": null,
+      "nameTurkish": "Sâd Sûresi",
       "verseCount": 88,
       "firstGlobalOrder": 3971
     },
     {
       "id": 39,
       "nameArabic": "الزمر",
-      "nameTurkish": null,
+      "nameTurkish": "Zümer Sûresi",
       "verseCount": 75,
       "firstGlobalOrder": 4059
     },
     {
       "id": 40,
       "nameArabic": "غافر",
-      "nameTurkish": null,
+      "nameTurkish": "Mü'min Sûresi",
       "verseCount": 85,
       "firstGlobalOrder": 4134
     },
     {
       "id": 41,
       "nameArabic": "فصلت",
-      "nameTurkish": null,
+      "nameTurkish": "Fussilet Sûresi",
       "verseCount": 54,
       "firstGlobalOrder": 4219
     },
     {
       "id": 42,
       "nameArabic": "الشورى",
-      "nameTurkish": null,
+      "nameTurkish": "Şûrâ Sûresi",
       "verseCount": 53,
       "firstGlobalOrder": 4273
     },
     {
       "id": 43,
       "nameArabic": "الزخرف",
-      "nameTurkish": null,
+      "nameTurkish": "Zuhruf Sûresi",
       "verseCount": 89,
       "firstGlobalOrder": 4326
     },
     {
       "id": 44,
       "nameArabic": "الدخان",
-      "nameTurkish": null,
+      "nameTurkish": "Duhân Sûresi",
       "verseCount": 59,
       "firstGlobalOrder": 4415
     },
     {
       "id": 45,
       "nameArabic": "الجاثية",
-      "nameTurkish": null,
+      "nameTurkish": "Câsiye Sûresi",
       "verseCount": 37,
       "firstGlobalOrder": 4474
     },
     {
       "id": 46,
       "nameArabic": "الأحقاف",
-      "nameTurkish": null,
+      "nameTurkish": "Ahkaf Sûresi",
       "verseCount": 35,
       "firstGlobalOrder": 4511
     },
     {
       "id": 47,
       "nameArabic": "محمد",
-      "nameTurkish": null,
+      "nameTurkish": "Muhammed Sûresi",
       "verseCount": 38,
       "firstGlobalOrder": 4546
     },
     {
       "id": 48,
       "nameArabic": "الفتح",
-      "nameTurkish": null,
+      "nameTurkish": "Fetih Sûresi",
       "verseCount": 29,
       "firstGlobalOrder": 4584
     },
     {
       "id": 49,
       "nameArabic": "الحجرات",
-      "nameTurkish": null,
+      "nameTurkish": "Hucurât Sûresi",
       "verseCount": 18,
       "firstGlobalOrder": 4613
     },
     {
       "id": 50,
       "nameArabic": "ق",
-      "nameTurkish": null,
+      "nameTurkish": "Kaf Sûresi",
       "verseCount": 45,
       "firstGlobalOrder": 4631
     },
     {
       "id": 51,
       "nameArabic": "الذاريات",
-      "nameTurkish": null,
+      "nameTurkish": "Zâriyât Sûresi",
       "verseCount": 60,
       "firstGlobalOrder": 4676
     },
     {
       "id": 52,
       "nameArabic": "الطور",
-      "nameTurkish": null,
+      "nameTurkish": "Tûr Sûresi",
       "verseCount": 49,
       "firstGlobalOrder": 4736
     },
     {
       "id": 53,
       "nameArabic": "النجم",
-      "nameTurkish": null,
+      "nameTurkish": "Necm Sûresi",
       "verseCount": 62,
       "firstGlobalOrder": 4785
     },
     {
       "id": 54,
       "nameArabic": "القمر",
-      "nameTurkish": null,
+      "nameTurkish": "Kamer Sûresi",
       "verseCount": 55,
       "firstGlobalOrder": 4847
     },
     {
       "id": 55,
       "nameArabic": "الرحمن",
-      "nameTurkish": null,
+      "nameTurkish": "Rahmân Sûresi",
       "verseCount": 78,
       "firstGlobalOrder": 4902
     },
     {
       "id": 56,
       "nameArabic": "الواقعة",
-      "nameTurkish": null,
+      "nameTurkish": "Vâkıa Sûresi",
       "verseCount": 96,
       "firstGlobalOrder": 4980
     },
     {
       "id": 57,
       "nameArabic": "الحديد",
-      "nameTurkish": null,
+      "nameTurkish": "Hadid Sûresi",
       "verseCount": 29,
       "firstGlobalOrder": 5076
     },
     {
       "id": 58,
       "nameArabic": "المجادلة",
-      "nameTurkish": null,
+      "nameTurkish": "Mücâdele Sûresi",
       "verseCount": 22,
       "firstGlobalOrder": 5105
     },
     {
       "id": 59,
       "nameArabic": "الحشر",
-      "nameTurkish": null,
+      "nameTurkish": "Haşr Sûresi",
       "verseCount": 24,
       "firstGlobalOrder": 5127
     },
     {
       "id": 60,
       "nameArabic": "الممتحنة",
-      "nameTurkish": null,
+      "nameTurkish": "Mümtehine Sûresi",
       "verseCount": 13,
       "firstGlobalOrder": 5151
     },
     {
       "id": 61,
       "nameArabic": "الصف",
-      "nameTurkish": null,
+      "nameTurkish": "Saf Sûresi",
       "verseCount": 14,
       "firstGlobalOrder": 5164
     },
     {
       "id": 62,
       "nameArabic": "الجمعة",
-      "nameTurkish": null,
+      "nameTurkish": "Cum'a Sûresi",
       "verseCount": 11,
       "firstGlobalOrder": 5178
     },
     {
       "id": 63,
       "nameArabic": "المنافقون",
-      "nameTurkish": null,
+      "nameTurkish": "Münâfikûn Sûresi",
       "verseCount": 11,
       "firstGlobalOrder": 5189
     },
     {
       "id": 64,
       "nameArabic": "التغابن",
-      "nameTurkish": null,
+      "nameTurkish": "Teğabün Sûresi",
       "verseCount": 18,
       "firstGlobalOrder": 5200
     },
     {
       "id": 65,
       "nameArabic": "الطلاق",
-      "nameTurkish": null,
+      "nameTurkish": "Talâk Sûresi",
       "verseCount": 12,
       "firstGlobalOrder": 5218
     },
     {
       "id": 66,
       "nameArabic": "التحريم",
-      "nameTurkish": null,
+      "nameTurkish": "Tahrim Sûresi",
       "verseCount": 12,
       "firstGlobalOrder": 5230
     },
     {
       "id": 67,
       "nameArabic": "الملك",
-      "nameTurkish": null,
+      "nameTurkish": "Mülk Sûresi",
       "verseCount": 30,
       "firstGlobalOrder": 5242
     },
     {
       "id": 68,
       "nameArabic": "القلم",
-      "nameTurkish": null,
+      "nameTurkish": "Kalem Sûresi",
       "verseCount": 52,
       "firstGlobalOrder": 5272
     },
     {
       "id": 69,
       "nameArabic": "الحاقة",
-      "nameTurkish": null,
+      "nameTurkish": "Hâkka Sûresi",
       "verseCount": 52,
       "firstGlobalOrder": 5324
     },
     {
       "id": 70,
       "nameArabic": "المعارج",
-      "nameTurkish": null,
+      "nameTurkish": "Meâric Sûresi",
       "verseCount": 44,
       "firstGlobalOrder": 5376
     },
     {
       "id": 71,
       "nameArabic": "نوح",
-      "nameTurkish": null,
+      "nameTurkish": "Nuh Sûresi",
       "verseCount": 28,
       "firstGlobalOrder": 5420
     },
     {
       "id": 72,
       "nameArabic": "الجن",
-      "nameTurkish": null,
+      "nameTurkish": "Cin Sûresi",
       "verseCount": 28,
       "firstGlobalOrder": 5448
     },
     {
       "id": 73,
       "nameArabic": "المزمل",
-      "nameTurkish": null,
+      "nameTurkish": "Müzzemmil Sûresi",
       "verseCount": 20,
       "firstGlobalOrder": 5476
     },
     {
       "id": 74,
       "nameArabic": "المدثر",
-      "nameTurkish": null,
+      "nameTurkish": "Müddessir Sûresi",
       "verseCount": 56,
       "firstGlobalOrder": 5496
     },
     {
       "id": 75,
       "nameArabic": "القيامة",
-      "nameTurkish": null,
+      "nameTurkish": "Kıyamet Sûresi",
       "verseCount": 40,
       "firstGlobalOrder": 5552
     },
     {
       "id": 76,
       "nameArabic": "الانسان",
-      "nameTurkish": null,
+      "nameTurkish": "İnsan Sûresi",
       "verseCount": 31,
       "firstGlobalOrder": 5592
     },
     {
       "id": 77,
       "nameArabic": "المرسلات",
-      "nameTurkish": null,
+      "nameTurkish": "Mürselât Sûresi",
       "verseCount": 50,
       "firstGlobalOrder": 5623
     },
     {
       "id": 78,
       "nameArabic": "النبإ",
-      "nameTurkish": null,
+      "nameTurkish": "Nebe' Sûresi",
       "verseCount": 40,
       "firstGlobalOrder": 5673
     },
     {
       "id": 79,
       "nameArabic": "النازعات",
-      "nameTurkish": null,
+      "nameTurkish": "Nâziât Sûresi",
       "verseCount": 46,
       "firstGlobalOrder": 5713
     },
     {
       "id": 80,
       "nameArabic": "عبس",
-      "nameTurkish": null,
+      "nameTurkish": "Abese Sûresi",
       "verseCount": 42,
       "firstGlobalOrder": 5759
     },
     {
       "id": 81,
       "nameArabic": "التكوير",
-      "nameTurkish": null,
+      "nameTurkish": "Tekvir Sûresi",
       "verseCount": 29,
       "firstGlobalOrder": 5801
     },
     {
       "id": 82,
       "nameArabic": "الإنفطار",
-      "nameTurkish": null,
+      "nameTurkish": "İnfitâr Sûresi",
       "verseCount": 19,
       "firstGlobalOrder": 5830
     },
     {
       "id": 83,
       "nameArabic": "المطففين",
-      "nameTurkish": null,
+      "nameTurkish": "Mutaffifin Sûresi",
       "verseCount": 36,
       "firstGlobalOrder": 5849
     },
     {
       "id": 84,
       "nameArabic": "الإنشقاق",
-      "nameTurkish": null,
+      "nameTurkish": "İnşikak Sûresi",
       "verseCount": 25,
       "firstGlobalOrder": 5885
     },
     {
       "id": 85,
       "nameArabic": "البروج",
-      "nameTurkish": null,
+      "nameTurkish": "Bürûc Sûresi",
       "verseCount": 22,
       "firstGlobalOrder": 5910
     },
     {
       "id": 86,
       "nameArabic": "الطارق",
-      "nameTurkish": null,
+      "nameTurkish": "Târık Sûresi",
       "verseCount": 17,
       "firstGlobalOrder": 5932
     },
     {
       "id": 87,
       "nameArabic": "الأعلى",
-      "nameTurkish": null,
+      "nameTurkish": "A'lâ Sûresi",
       "verseCount": 19,
       "firstGlobalOrder": 5949
     },
     {
       "id": 88,
       "nameArabic": "الغاشية",
-      "nameTurkish": null,
+      "nameTurkish": "Gâşiye Sûresi",
       "verseCount": 26,
       "firstGlobalOrder": 5968
     },
     {
       "id": 89,
       "nameArabic": "الفجر",
-      "nameTurkish": null,
+      "nameTurkish": "Fecr Sûresi",
       "verseCount": 30,
       "firstGlobalOrder": 5994
     },
     {
       "id": 90,
       "nameArabic": "البلد",
-      "nameTurkish": null,
+      "nameTurkish": "Beled Sûresi",
       "verseCount": 20,
       "firstGlobalOrder": 6024
     },
     {
       "id": 91,
       "nameArabic": "الشمس",
-      "nameTurkish": null,
+      "nameTurkish": "Şems Sûresi",
       "verseCount": 15,
       "firstGlobalOrder": 6044
     },
     {
       "id": 92,
       "nameArabic": "الليل",
-      "nameTurkish": null,
+      "nameTurkish": "Leyl Sûresi",
       "verseCount": 21,
       "firstGlobalOrder": 6059
     },
     {
       "id": 93,
       "nameArabic": "الضحى",
-      "nameTurkish": null,
+      "nameTurkish": "Duhâ Sûresi",
       "verseCount": 11,
       "firstGlobalOrder": 6080
     },
     {
       "id": 94,
       "nameArabic": "الشرح",
-      "nameTurkish": null,
+      "nameTurkish": "İnşirâh Sûresi",
       "verseCount": 8,
       "firstGlobalOrder": 6091
     },
     {
       "id": 95,
       "nameArabic": "التين",
-      "nameTurkish": null,
+      "nameTurkish": "Tin Sûresi",
       "verseCount": 8,
       "firstGlobalOrder": 6099
     },
     {
       "id": 96,
       "nameArabic": "العلق",
-      "nameTurkish": null,
+      "nameTurkish": "Alak Sûresi",
       "verseCount": 19,
       "firstGlobalOrder": 6107
     },
     {
       "id": 97,
       "nameArabic": "القدر",
-      "nameTurkish": null,
+      "nameTurkish": "Kadir Sûresi",
       "verseCount": 5,
       "firstGlobalOrder": 6126
     },
     {
       "id": 98,
       "nameArabic": "البينة",
-      "nameTurkish": null,
+      "nameTurkish": "Beyyine Sûresi",
       "verseCount": 8,
       "firstGlobalOrder": 6131
     },
     {
       "id": 99,
       "nameArabic": "الزلزلة",
-      "nameTurkish": null,
+      "nameTurkish": "Zilzâl Sûresi",
       "verseCount": 8,
       "firstGlobalOrder": 6139
     },
     {
       "id": 100,
       "nameArabic": "العاديات",
-      "nameTurkish": null,
+      "nameTurkish": "Âdiyât Sûresi",
       "verseCount": 11,
       "firstGlobalOrder": 6147
     },
     {
       "id": 101,
       "nameArabic": "القارعة",
-      "nameTurkish": null,
+      "nameTurkish": "Kâria Sûresi",
       "verseCount": 11,
       "firstGlobalOrder": 6158
     },
     {
       "id": 102,
       "nameArabic": "التكاثر",
-      "nameTurkish": null,
+      "nameTurkish": "Tekâsür Sûresi",
       "verseCount": 8,
       "firstGlobalOrder": 6169
     },
     {
       "id": 103,
       "nameArabic": "العصر",
-      "nameTurkish": null,
+      "nameTurkish": "Asr Sûresi",
       "verseCount": 3,
       "firstGlobalOrder": 6177
     },
     {
       "id": 104,
       "nameArabic": "الهمزة",
-      "nameTurkish": null,
+      "nameTurkish": "Hümeze Sûresi",
       "verseCount": 9,
       "firstGlobalOrder": 6180
     },
     {
       "id": 105,
       "nameArabic": "الفيل",
-      "nameTurkish": null,
+      "nameTurkish": "Fil Sûresi",
       "verseCount": 5,
       "firstGlobalOrder": 6189
     },
     {
       "id": 106,
       "nameArabic": "قريش",
-      "nameTurkish": null,
+      "nameTurkish": "Kureyş Sûresi",
       "verseCount": 4,
       "firstGlobalOrder": 6194
     },
     {
       "id": 107,
       "nameArabic": "الماعون",
-      "nameTurkish": null,
+      "nameTurkish": "Mâûn Sûresi",
       "verseCount": 7,
       "firstGlobalOrder": 6198
     },
     {
       "id": 108,
       "nameArabic": "الكوثر",
-      "nameTurkish": null,
+      "nameTurkish": "Kevser Sûresi",
       "verseCount": 3,
       "firstGlobalOrder": 6205
     },
     {
       "id": 109,
       "nameArabic": "الكافرون",
-      "nameTurkish": null,
+      "nameTurkish": "Kâfirûn Sûresi",
       "verseCount": 6,
       "firstGlobalOrder": 6208
     },
     {
       "id": 110,
       "nameArabic": "النصر",
-      "nameTurkish": null,
+      "nameTurkish": "Nasr Sûresi",
       "verseCount": 3,
       "firstGlobalOrder": 6214
     },
     {
       "id": 111,
       "nameArabic": "المسد",
-      "nameTurkish": null,
+      "nameTurkish": "Tebbet Sûresi",
       "verseCount": 5,
       "firstGlobalOrder": 6217
     },
     {
       "id": 112,
       "nameArabic": "الإخلاص",
-      "nameTurkish": null,
+      "nameTurkish": "İhlâs Sûresi",
       "verseCount": 4,
       "firstGlobalOrder": 6222
     },
     {
       "id": 113,
       "nameArabic": "الفلق",
-      "nameTurkish": null,
+      "nameTurkish": "Felâk Sûresi",
       "verseCount": 5,
       "firstGlobalOrder": 6226
     },
     {
       "id": 114,
       "nameArabic": "الناس",
-      "nameTurkish": null,
+      "nameTurkish": "Nâs Sûresi",
       "verseCount": 6,
       "firstGlobalOrder": 6231
     }

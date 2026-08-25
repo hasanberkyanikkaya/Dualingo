@@ -2175,6 +2175,80 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   yapılamadı. Yeni düzen gerçek telefonda, bildirim tetiklenmesi ise dev build'de
   elle doğrulanmalıdır.
 
+## Bakım modeli ve ilk arayüz yenilemesi (25 Ağustos 2026)
+
+- Ana faz planı tamamlandı. Yeni geliştirmeler sabit faz sırasından değil,
+  kullanıcının bildirdiği hata ve yenilemelerden doğar; her talep incelenir,
+  büyükse onaylı planla uygulanır, doğrulanır ve aktif belgelere işlenir.
+- Profil tek uzun sayfa olmaktan çıkarıldı. Her girişte soldan açık gelen kategori
+  menüsü Rozetler, Seviye Tespiti, Bildirimler ve Hesap alanlarını ayırır; seçimden
+  sonra menü kapanır ve içerik dikey kaydırılabilir kalır.
+- Öğren ekranında ayrı büyük oyun kartı yerine yatay etkinlik çubuğu kullanılır.
+  Sıralama Yarışı ilk öğedir; henüz var olmayan challenge veya dini oyun içeriği
+  uydurulmaz, yeni etkinlikler hazır oldukça aynı yapıya eklenir.
+- Türkçe sure adları kullanıcı tarafından eksiksiz 1–114 listesi olarak sağlandı.
+  Kaynak `content/quran/surahNames.tr.json` içinde izlenir; katalog ve 114 tembel
+  sure dosyasına üretilir. İçe aktarma betiği bu kaynağı zorunlu okur. Liste
+  `expertApproved: false` taşır ve yayın öncesi insan uzman onayı bekler.
+- Kur'an sayfasında ayet blokları arasındaki çizgi ile tekrar eden “x. ayet” metni
+  kaldırıldı. Ayetin başlangıcında küçük numara korunur; sure adı Türkçe görünür ve
+  Meal anahtarı kontrol satırında dikey ortalanır.
+- Doğrulama: TypeScript ve 483 test geçti; içerik denetimi 0 hata verdi. Lintte
+  hata yoktur, proje genelindeki 13 mevcut `strings` varsayılan-import uyarısı
+  sürmektedir. Yeni düzenlerin gerçek telefonda elle sınanması gerekir.
+
+## Mushaf akışı ve bağımsız sure okuması (25 Ağustos 2026)
+
+- Kur'an okuyucusu iki açık moda ayrıldı. `mushaf` modu son konumu ve günlük
+  benzersiz ayet geçmişini kaydeder; `surah` modu tek seferliktir ve hiçbir
+  ilerleme/hedef/son-konum kaydı yazmaz. Ana ekrandaki “Sure seç” yalnız `surah`
+  modunu açar ve seçilen surenin fiziksel Mushaf sayfasına yönlendirmez.
+- Ayet başına ayrı Arapça satır düzeni kaldırıldı. Sayfadaki kaynak metin sırası
+  değişmeden tek RTL, iki yana yaslı akışta birleşir; küçük Arapça-Hint ayet
+  numarası metin içindedir. Meal, Arapça dizgiyi bölmemek için sayfa/sure metninin
+  altındaki ayrı bölümde gösterilir.
+- Bir Mushaf sayfası iki veya daha fazla sure içeriyorsa sonraki sure başlamadan
+  önce ince altın ayraç ve kullanıcının sağladığı Türkçe sure adı görünür.
+- `open-quran-view@0.5.0` incelendi. MIT paket 604 sayfa için veri ve QCF/Unicode
+  font varlıkları taşısa da görünüm katmanı web React/DOM içindir; Expo React
+  Native'e doğrudan bileşen olarak alınmadı. Ayrıca font/sayfa varlıklarının
+  dağıtım hakkı kod lisansından ayrı doğrulanmalıdır. Lisans netleşmeden 604
+  sayfa fontu veya yeni dini metin kaynağı projeye kopyalanmaz.
+- Bu nedenle bugünkü uygulama mevcut geliştirme külliyatını değiştirmeyen yerel
+  Unicode akışıdır. Referans Mushafla birebir 15 fiziksel satır/QCF glif dizgisi
+  lisans ve uzman karşılaştırması sonrasında ayrı geliştirme olarak kalır.
+- TypeScript ve 486 test geçti; lint 0 hata/13 mevcut uyarı, içerik denetimi 0
+  hata verdi. Android Expo export tamamlandı. Web önizleme Kur'an kodundan değil,
+  proje genelindeki eksik `@lottiefiles/dotlottie-react` web bağımlılığından
+  dolayı açılamadı; gerçek telefon görsel doğrulaması açık bırakıldı.
+
+## Uygulama kabuğu ve Öğren yolu görsel yenilemesi (25 Ağustos 2026)
+
+- Önceki Aksolotl/pembe ve Kur'an gece paletleri aktif görsel karar olmaktan
+  çıkarıldı. Ortak dil sıcak kâğıt, grafit kontur, güneş sarısı, pudra pembe ve
+  açık mavi üzerine kuruldu; bileşenler yine yalnız anlamsal tema jetonlarını okur.
+- Uygulama tipografisi `@expo-google-fonts/nunito` içindeki 400/600/700/800
+  ağırlıklarına taşındı. Fontlar kök yerleşimde yüklenir; doğrudan alt paket
+  girişleri yalnız kullanılan dört dosyanın Metro paketine girmesini sağlar.
+- Alt navigasyon özel `TextTabBar` bileşenidir. Dört sekme yalnız metindir;
+  seçili konum koyu metin, küçük nokta ve erişilebilirlikte `selected` durumuyla
+  taşınır. Ortak `Screen` yüzeyi bardan 12 dp boşluk, yuvarlak alt köşe ve gölgeyle
+  ayrılır. Namaz ve Profil bunu doğrudan, Kur'an ana ekranı sarmalayıcıyla kullanır.
+- Öğren arka planı iki kullanıcı referansından yalnız atmosfer ve renk yönü
+  alınarak imagegen ile özgün üretildi. Varlık `assets/images/learning/` altında;
+  metin, logo, dini sembol veya dini yorum içermez. Görsel sabit, yol katmanı
+  şeffaf ve dikey kaydırılabilirdir.
+- Yol 8 dp sarı çizgi + grafit konturdur. Seviyeler durum bilgilerini ikon biçimi,
+  erişilebilirlik etiketi ve yıldızlarla taşır; renk tek bilgi kanalı değildir.
+  Geçerli düğüm bayrak taşır. Yol kenarı kitap/kalem/ampul/yıldız çıkartmaları
+  içerikle kayar ve ekran okuyucudan gizlidir.
+- Üst HUD sahte sayaç kullanmaz: seri `useProgressStore().streak.currentDays`,
+  bayrak konumu gerçek öğrenme yolu ve ilk açık seviye üzerinden türetilir.
+- TypeScript, 486 test, içerik denetimi ve Android Expo export geçti. Lintte hata
+  yoktur; proje genelindeki 13 mevcut `strings` varsayılan-import uyarısı sürer.
+  Alt bar, gölge/köşe ayrımı, font yükleme, sabit arka plan ve yol dokunuşları
+  gerçek telefonda elle doğrulanmalıdır.
+
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
 Detaylı plan: `Planlamalar/PROJE_PLANI_FINAL.md`

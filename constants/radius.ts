@@ -24,7 +24,7 @@ export type RadiusToken = keyof typeof radius;
 /** Bileşen bazlı varsayılanlar — bileşenler önce buraya bakar. */
 export const componentRadius = {
   button: radius.pill,
-  card: radius.lg,
+  card: radius.xl,
   input: radius.md,
   chip: radius.pill,
   modal: radius.xxl,

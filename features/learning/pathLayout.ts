@@ -18,10 +18,10 @@ import type { LevelId, Unit, UnitId } from '@/types';
 export const NODE_SIZE = layout.minTouchTarget + spacing.xl; // 72
 
 /** İki düğüm merkezi arasındaki dikey mesafe. */
-const STEP_Y = spacing.huge * 2; // 128
+const STEP_Y = spacing.huge * 2 + spacing.lg; // 144
 
 /** Şeridin kalınlığı. */
-export const TRAIL_WIDTH = spacing.xxl; // 32
+export const TRAIL_WIDTH = spacing.sm; // 8
 
 /** Şeridin ilk ve son düğümü aşma payı — uçları kapakla bitmesin diye. */
 const TRAIL_LEAD = spacing.xxl; // 32
@@ -30,9 +30,9 @@ const TRAIL_LEAD = spacing.xxl; // 32
 const CAPTION_BLOCK = spacing.xl; // 24
 
 /** Genliğin oranı, alt ve mutlak üst sınırı. */
-const AMPLITUDE_RATIO = 0.22;
-const AMPLITUDE_MIN = spacing.xxl; // 32
-const AMPLITUDE_MAX = spacing.huge + spacing.xxl; // 96
+const AMPLITUDE_RATIO = 0.26;
+const AMPLITUDE_MIN = spacing.xxxl; // 48
+const AMPLITUDE_MAX = spacing.huge + spacing.xl; // 88
 
 /**
  * Yatay kayma döngüsü: merkez → sağ → merkez → sol.
@@ -78,7 +78,7 @@ function clamp(value: number, min: number, max: number): number {
  * Zikzak genliği.
  *
  * İki uçtaki bozulmayı da bu kısıt engelliyor:
- * - Dar ekranda düğüm ya da 32px'lik şerit kenardan taşardı → `safeMax`.
+ * - Dar ekranda düğüm ya da konturlu ince yol kenardan taşardı → `safeMax`.
  * - Tablette oransal genlik büyüyüp şeridi düz, geniş, neredeyse yatay bir
  *   yılana çevirirdi → mutlak `AMPLITUDE_MAX` tavanı.
  */

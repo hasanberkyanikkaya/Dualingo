@@ -92,6 +92,9 @@ export function validateQuranSurah(content: QuranSurahContent): QuranContentIssu
   if (!isPositiveInteger(surah.id) || surah.nameArabic.length === 0) {
     found.push(issue('error', `sure-${surah.id}`, 'sure kimliği veya kaynak adı geçersiz.'));
   }
+  if (typeof surah.nameTurkish !== 'string' || surah.nameTurkish.trim().length === 0) {
+    found.push(issue('error', `sure-${surah.id}`, 'Türkçe sure adı eksik.'));
+  }
   if (surah.verseCount !== verses.length || verses.length === 0) {
     found.push(issue('error', `sure-${surah.id}`, 'bildirilen ayet sayısı dosyayla uyuşmuyor.'));
   }

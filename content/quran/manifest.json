@@ -7,6 +7,7 @@
   "releaseBlockedReasons": [
     "Meal veri setinin ticari yeniden dağıtım izni yayın öncesi doğrulanmalı.",
     "Tanzil metadata kullanım şartları yayın öncesi ayrıca doğrulanmalı.",
+    "Kullanıcı tarafından sağlanan Türkçe sure adları insan uzman tarafından onaylanmalı.",
     "Arapça metin ve meal insan uzman tarafından karşılaştırmalı onaylanmalı.",
     "Elektronik Kur’an yayımı için ilgili kurul süreci tamamlanmalı."
   ],

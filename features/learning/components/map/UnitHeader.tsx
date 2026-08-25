@@ -2,7 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
 import ProgressBar from '@/components/ProgressBar';
-import { spacing } from '@/constants/spacing';
+import { componentRadius } from '@/constants/radius';
+import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import { formatString } from '@/lib/formatString';
@@ -37,16 +38,8 @@ type UnitHeaderProps = {
 };
 
 /**
- * Üniteler arasındaki başlık ayracı.
- *
- * Ayraç ÇİZGİSİ yok. Denendi ve elendi: `border` rengindeki 1px çizgi beyaz
- * zemine karşı 1.27:1, yani görünmüyor; görünür bir renge çıkarmak da "orta
- * alan saf beyaz" kararını bozuyordu. Üniteleri boşluk ve tipografi ayırıyor.
- *
- * Kart da yok — Card bileşeni henüz yazılmadı (Faz 1.2c) ve burada gerekmiyor.
- * Başlığa gövde veren şey `ProgressBar`: var olan bileşeni yeniden kullanıyor
- * (mimari kural 3) ve ünitenin ilerlemesini sayıyla anlattığı için şeridin
- * dekoratif kalabilmesini sağlayan da bu.
+ * Ünitenin siyah konturlu kâğıt çıkartması. İlerlemeyi ortak `ProgressBar`
+ * anlatır; sarı yol bu nedenle yalnız dekoratif kalır.
  */
 export default function UnitHeader({
   unitNumber,
@@ -60,33 +53,38 @@ export default function UnitHeader({
   const isCompleted = totalCount > 0 && completedCount >= totalCount;
 
   return (
-    <View style={styles.container} accessibilityRole="header">
+    <View
+      style={[
+        styles.container,
+        theme.elevation.card,
+        { backgroundColor: theme.surface, borderColor: theme.textPrimary },
+      ]}
+      accessibilityRole="header"
+    >
       <View style={styles.titleRow}>
-        <Ionicons name={resolveIcon(iconName)} size={ICON_SIZE} color={theme.primary} />
-        <Text style={[textStyles.h4, styles.title, { color: theme.textPrimary }]}>{title}</Text>
+        <View style={[styles.icon, { backgroundColor: theme.secondary }]}>
+          <Ionicons name={resolveIcon(iconName)} size={ICON_SIZE} color={theme.onSecondary} />
+        </View>
+        <View style={styles.copy}>
+          <Text style={[textStyles.h4, styles.title, { color: theme.textPrimary }]}>{title}</Text>
+          <Text
+            style={[
+              textStyles.labelSmall,
+              { color: isCompleted ? theme.success : theme.textMuted },
+            ]}
+          >
+            {isCompleted
+              ? strings.learn.unitCompleted
+              : formatString(strings.learn.unitLabel, { number: unitNumber })}
+          </Text>
+        </View>
       </View>
-
-      {/*
-        ⚠️ `textTransform: 'uppercase'` kullanılmıyor: Türkçe i→İ dönüşümünü
-        her platform doğru yapmıyor ("Ünite" sorunsuz ama kural burada dursun).
-        `labelSmall` zaten harf aralığı taşıyor.
-      */}
-      <Text
-        style={[
-          textStyles.labelSmall,
-          { color: isCompleted ? theme.success : theme.textMuted },
-        ]}
-      >
-        {isCompleted
-          ? strings.learn.unitCompleted
-          : formatString(strings.learn.unitLabel, { number: unitNumber })}
-      </Text>
 
       <View style={styles.progress}>
         <ProgressBar
           current={completedCount}
           total={totalCount}
-          variant={isCompleted ? 'success' : 'primary'}
+          variant={isCompleted ? 'success' : 'secondary'}
         />
       </View>
     </View>
@@ -95,20 +93,29 @@ export default function UnitHeader({
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    gap: spacing.xs,
+    gap: spacing.md,
+    padding: spacing.md,
+    borderWidth: 2,
+    borderRadius: componentRadius.card,
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
   },
+  icon: {
+    width: layout.minTouchTarget,
+    height: layout.minTouchTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: componentRadius.chip,
+  },
+  copy: { flex: 1, gap: spacing.xs },
   title: {
-    textAlign: 'center',
+    flexShrink: 1,
   },
   // Çubuk tam genişliğe yayılmasın; başlık bloğuyla aynı ölçüde dursun.
   progress: {
     alignSelf: 'stretch',
-    marginTop: spacing.xs,
   },
 });

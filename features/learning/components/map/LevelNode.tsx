@@ -30,10 +30,6 @@ const PRESS_SCALE = 0.96;
 /** Düğüm içindeki ikonun boyutu. Çapın yaklaşık üçte biri. */
 const ICON_SIZE = spacing.xxl; // 32
 
-/** "Şu an buradasın" halkasının kalınlığı ve düğümden ayrıldığı boşluk. */
-const HALO_WIDTH = spacing.xs; // 4
-const HALO_GAP = spacing.xs; // 4
-
 /** Bir durumun görünüşü. */
 type NodeAppearance = {
   background: string;
@@ -46,48 +42,39 @@ type NodeAppearance = {
 /**
  * Durum → görünüş tablosu.
  *
- * ⚠️ **Durumu daire RENGİ taşıyamaz.** Ölçüm: `primary` (#C9306F) ile `success`
- * (#12855C) arasında 1.10:1 var — yani "açık" pembe düğüm ile "tamamlandı"
- * yeşil düğüm neredeyse aynı parlaklıkta. Renk körü biri veya güneş altındaki
- * herkes ikisini ayırt edemez (WCAG 1.4.1).
- *
- * Bu yüzden ayırt edici şey ikonun BİÇİMİ: dolu tik / dolu üçgen / boş üçgen /
+ * Durumu yalnız daire rengi taşımaz. Ayırt edici şey ikonun BİÇİMİ: tik / dolu üçgen / boş üçgen /
  * asma kilit. Dolu-boş ayrımı `available` ile `skipped`'i renkten bağımsız
- * ayırıyor; tamamlanmışlarda ayrıca yıldız var, ikinci renksiz ipucu.
+ * ayırır; tamamlanmışlarda ayrıca yıldız, geçerli seviyede bayrak vardır.
  *
- * `skipped`'in dolgusu OPAK `background` — şeffaf bırakılamaz, çünkü 32px'lik
- * şerit düğümün altından geçiyor ve ikonun içinden akardı.
- *
- * Kilidin rengi `textMuted`, `disabledText` değil: `disabledText` kendi zemini
- * üzerinde 1.97:1 kalıyor ve asma kilit görünmüyor. WCAG pasif öğeleri muaf
- * tutsa da bu projede katı okuma tercih edildi.
+ * `skipped` dolgusu opaktır; şeffaf bırakılsaydı ince yol ikonun içinden geçerdi.
+ * Kilit de görünür `textMuted` tonu ve ayrı kilit biçimiyle gösterilir.
  */
 function getAppearance(theme: ColorTheme, status: LevelStatus): NodeAppearance {
   const table: Record<LevelStatus, NodeAppearance> = {
     completed: {
-      background: theme.success,
-      border: theme.success,
-      borderWidth: 0,
+      background: theme.secondary,
+      border: theme.textPrimary,
+      borderWidth: 2,
       icon: 'checkmark',
-      iconColor: theme.onSuccess,
+      iconColor: theme.textPrimary,
     },
     available: {
-      background: theme.primary,
-      border: theme.primary,
-      borderWidth: 0,
+      background: theme.primaryBright,
+      border: theme.textPrimary,
+      borderWidth: 3,
       icon: 'play',
-      iconColor: theme.onPrimary,
+      iconColor: theme.textPrimary,
     },
     skipped: {
-      background: theme.background,
-      border: theme.primary,
-      borderWidth: 3,
+      background: theme.surface,
+      border: theme.textPrimary,
+      borderWidth: 2,
       icon: 'play-outline',
-      iconColor: theme.primary,
+      iconColor: theme.textPrimary,
     },
     locked: {
       background: theme.disabledBackground,
-      border: theme.borderStrong,
+      border: theme.textMuted,
       borderWidth: 2,
       icon: 'lock-closed',
       iconColor: theme.textMuted,
@@ -190,36 +177,34 @@ export default function LevelNode({ levelNumber, status, isCurrent, stars, onPre
         onPressOut={handlePressOut}
       >
         <Animated.View
-          style={[
-            styles.disc,
-            {
-              backgroundColor: appearance.background,
-              borderColor: appearance.border,
-              borderWidth: appearance.borderWidth,
-            },
-            animatedStyle,
-          ]}
+          style={[styles.sticker, animatedStyle]}
         >
-          <Ionicons name={appearance.icon} size={ICON_SIZE} color={appearance.iconColor} />
+          <View style={[styles.shadowPlate, { backgroundColor: theme.textPrimary }]} />
+          <View
+            style={[
+              styles.disc,
+              {
+                backgroundColor: appearance.background,
+                borderColor: appearance.border,
+                borderWidth: appearance.borderWidth,
+              },
+            ]}
+          >
+            <Ionicons name={appearance.icon} size={ICON_SIZE} color={appearance.iconColor} />
+          </View>
 
-          {/*
-            Geçerli düğümün süs halkası. Palet notu `primaryBright`i "seviye
-            düğümü" için ayırıyor ama DOLGUSU olacak demiyor: dolgu olsaydı
-            üzerindeki ikon iki temanın birinde 3:1'in altına düşerdi.
-            Halka olarak kullanmak notu da kontrast kuralını da koruyor.
-
-            Zemin renginde boşlukla ayrılıyor: koyu temada `primaryBright` ile
-            `primary` arasında 1.11:1 var, doğrudan bitişik olsalardı halka
-            görünmezdi. Yine de halka YALNIZCA süs — bilgiyi aşağıdaki yazı
-            taşıyor, o da renkten bağımsız çalışıyor.
-          */}
           {isCurrent ? (
             <View
               accessibilityElementsHidden
               importantForAccessibility="no-hide-descendants"
               pointerEvents="none"
-              style={[styles.halo, { borderColor: theme.primaryBright }]}
-            />
+              style={[
+                styles.flag,
+                { backgroundColor: theme.secondary, borderColor: theme.textPrimary },
+              ]}
+            >
+              <Ionicons name="flag" size={spacing.lg} color={theme.textPrimary} />
+            </View>
           ) : null}
         </Animated.View>
       </Pressable>
@@ -231,7 +216,7 @@ export default function LevelNode({ levelNumber, status, isCurrent, stars, onPre
           <Text
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
-            style={[textStyles.labelSmall, { color: theme.primary }]}
+            style={[textStyles.labelSmall, { color: theme.textPrimary }]}
           >
             {strings.learn.currentLevel}
           </Text>
@@ -245,6 +230,18 @@ const styles = StyleSheet.create({
   column: {
     alignItems: 'center',
   },
+  sticker: {
+    width: NODE_SIZE,
+    height: NODE_SIZE,
+  },
+  shadowPlate: {
+    position: 'absolute',
+    top: spacing.xs,
+    left: 0,
+    width: NODE_SIZE,
+    height: NODE_SIZE,
+    borderRadius: componentRadius.levelNode,
+  },
   disc: {
     width: NODE_SIZE,
     height: NODE_SIZE,
@@ -252,15 +249,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // Diskten dışarı taşan halka. Negatif konum = kalınlık + boşluk.
-  halo: {
+  flag: {
     position: 'absolute',
-    top: -(HALO_WIDTH + HALO_GAP),
-    left: -(HALO_WIDTH + HALO_GAP),
-    right: -(HALO_WIDTH + HALO_GAP),
-    bottom: -(HALO_WIDTH + HALO_GAP),
-    borderWidth: HALO_WIDTH,
-    borderRadius: componentRadius.levelNode,
+    top: -spacing.sm,
+    right: -spacing.sm,
+    width: spacing.xxl,
+    height: spacing.xxl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderRadius: componentRadius.chip,
   },
   caption: {
     alignItems: 'center',

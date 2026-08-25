@@ -45,7 +45,7 @@ export default function QuranGoalsScreen() {
   return (
     <QuranNightBackground>
       <Stack.Screen options={{ title: strings.quran.goalScreenTitle }} />
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <SafeAreaView edges={['top', 'bottom', 'left', 'right']} style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>

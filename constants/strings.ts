@@ -110,6 +110,7 @@ export const strings = {
     reviewLevel: 'Tekrar et',
     startLevel: 'Başla',
     unitCompleted: 'Üniteyi tamamladın',
+    hudProgress: 'Ünite {unit} · {current}/{total}',
     emptyPath: 'Burada henüz içerik yok.',
   },
 
@@ -160,6 +161,8 @@ export const strings = {
 
   /** Mini oyunlar — içerik metni değil, oyun kabuğunun arayüz dili. */
   games: {
+    activityBarTitle: 'Oyunlar ve challenge’lar',
+    activityBarBody: 'Kısa etkinliklere ve yeni oyunlara buradan ulaş.',
     orderingRaceTitle: 'Sıralama Yarışı',
     orderingRaceEntryBody: 'Karışık adımları süre dolmadan doğru sıraya yerleştir.',
     orderingRaceOpen: 'Oyunu aç',
@@ -234,6 +237,9 @@ export const strings = {
   /** Profil ve ayarlar */
   profile: {
     title: 'Profil',
+    sidebarTitle: 'Profil menüsü',
+    openSidebar: 'Profil menüsünü aç',
+    closeSidebar: 'Profil menüsünü kapat',
     // Faz 1.1 — istatistik ve ayarlar gelene kadarki boş durum metni
     emptyBody: 'İstatistiklerin ve ayarların ilk dersinden sonra burada görünecek.',
     statistics: 'İstatistikler',
@@ -515,17 +521,21 @@ export const strings = {
     title: "Kur'an",
     subtitle: 'Gece sakinliğinde, kaldığın yerden devam et.',
     continueTitle: 'Kaldığın yer',
-    continueBody: '{sure}. sure · {ayet}. ayet · {sayfa}. sayfa',
+    continueBody: '{sure} · {ayet}. ayet · {sayfa}. sayfa',
     continueAction: 'Okumaya devam et',
     startTitle: 'Okumaya başla',
-    startBody: 'Bir sure seç veya ilk sayfadan başla.',
+    startBody: 'Mushafı ilk sayfadan aç veya bağımsız bir sure oku.',
     startAction: 'İlk sayfayı aç',
     chooseSurah: 'Sure seç',
     changeSurah: 'Sureyi değiştir',
     surahNumber: '{number}. sure',
     surahPickerTitle: 'Sureler',
-    surahPickerBody: 'Okumaya başlamak istediğin sureyi seç.',
+    surahPickerBody: 'Mushaf konumundan bağımsız, tek seferlik okumak istediğin sureyi seç.',
     readerTitle: 'Okuyucu',
+    mushafReadingLabel: 'Mushaf okuması',
+    surahReadingLabel: 'Bağımsız sure okuması',
+    surahReadingNotice: 'Bu okuma kaldığın yeri, geçmişini ve hedeflerini değiştirmez.',
+    pageTranslation: 'Sayfa meali',
     page: '{number}. sayfa',
     juz: '{number}. cüz',
     juzRange: '{first}–{last}. cüz',

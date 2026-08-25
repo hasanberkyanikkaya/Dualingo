@@ -1,11 +1,7 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Redirect, Tabs } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { layout } from '@/constants/spacing';
-import { quranTheme } from '@/constants/quranTheme';
+import TextTabBar from '@/components/TextTabBar';
 import strings from '@/constants/strings';
-import { textStyles } from '@/constants/typography';
 import { usePlacement } from '@/features/onboarding/usePlacement';
 import { useTheme } from '@/lib/useTheme';
 
@@ -17,7 +13,6 @@ import { useTheme } from '@/lib/useTheme';
  */
 export default function TabsLayout() {
   const { theme } = useTheme();
-  const insets = useSafeAreaInsets();
   const placement = usePlacement();
 
   /**
@@ -39,30 +34,17 @@ export default function TabsLayout() {
 
   return (
     <Tabs
+      tabBar={(props) => <TextTabBar {...props} />}
       screenOptions={{
-        // Kök Stack'teki ayar Tabs navigatörünün kendi başlığını kapatmıyor.
         headerShown: false,
-        tabBarActiveTintColor: theme.primary,
-        tabBarInactiveTintColor: theme.textMuted,
-        tabBarLabelStyle: textStyles.labelSmall,
         tabBarHideOnKeyboard: true,
-        tabBarStyle: {
-          backgroundColor: theme.surface,
-          borderTopColor: theme.border,
-          // Özel yükseklik verildiğinde navigatör güvenli alanı EKLEMİYOR ama
-          // alt dolguyu uygulamaya devam ediyor. Inset elle eklenmezse
-          // çentikli cihazlarda ikon ve etiket kırpılır.
-          height: layout.tabBarHeight + insets.bottom,
-        },
+        sceneStyle: { backgroundColor: theme.surfaceAlt },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: strings.tabs.learn,
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name={focused ? 'school' : 'school-outline'} size={size} color={color} />
-          ),
         }}
       />
 
@@ -70,9 +52,6 @@ export default function TabsLayout() {
         name="prayer"
         options={{
           title: strings.tabs.prayer,
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name={focused ? 'moon' : 'moon-outline'} size={size} color={color} />
-          ),
         }}
       />
 
@@ -80,16 +59,6 @@ export default function TabsLayout() {
         name="quran"
         options={{
           title: strings.tabs.quran,
-          tabBarActiveTintColor: quranTheme.accent,
-          tabBarInactiveTintColor: quranTheme.textMuted,
-          tabBarStyle: {
-            height: layout.tabBarHeight + insets.bottom,
-            backgroundColor: quranTheme.backgroundBottom,
-            borderTopColor: quranTheme.glassBorder,
-          },
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color} />
-          ),
         }}
       />
 
@@ -97,9 +66,6 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: strings.tabs.profile,
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
-          ),
         }}
       />
     </Tabs>

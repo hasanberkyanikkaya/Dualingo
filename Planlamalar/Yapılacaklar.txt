@@ -411,6 +411,56 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         Docker ile RLS testi ve iki cihaz E2E sınaması dış ortam işi olarak açıktır.
 
 
+=== BAKIM VE YENİLEME OTURUMLARI ===
+
+[x] 25 Ağustos 2026 — Profil, Öğren etkinlik çubuğu ve Kur'an okuyucu yenilemesi.
+        Profilin kaymama sorunu giderildi; ekran her girişte açık gelen sol kategori
+        menüsüyle Rozetler, Seviye Tespiti, Bildirimler ve Hesap bölümlerini ayırır.
+        Seçilen bölüm kendi kaydırılabilir içerik alanında açılır.
+        Öğren ekranındaki büyük Sıralama Yarışı kartı yatay “Oyunlar ve challenge’lar”
+        çubuğuna dönüştürüldü; yeni oyunlar aynı çubuğa eklenebilir.
+        Kullanıcının verdiği 114 Türkçe sure adı /content/quran/surahNames.tr.json
+        kaynağına, kataloğa ve sure dosyalarına işlendi. İçe aktarma betiği veri
+        yenilenince adları korur. expertApproved=false; uzman onayı yayın borcudur.
+        Okuyucuda Türkçe sure adı, ortalanmış Meal anahtarı ve bütünleşik sayfa
+        düzeni var; ayet ayırıcı çizgileri ile “x. ayet” metni kaldırıldı.
+        TypeScript, 483 test ve içerik denetimi geçti; lint 0 hata verdi.
+        ⚠️ Profil sidebarı, yatay etkinlik çubuğu, Meal kontrol hizası ve Kur'an
+        sayfa akışı gerçek telefonda elle doğrulanacak.
+
+[x] 25 Ağustos 2026 — Mushaf akışı ve bağımsız sure okuması.
+        “Kaldığın yerden devam et” yalnız Mushaf modunu açar. “Sure seç” yalnız
+        seçilen surenin bulunduğu bağımsız ekranı açar; Mushaf sayfasına atlamaz,
+        son konumu değiştirmez, geçmişe ve hedefe sayılmaz.
+        Mushaf Arapçası ayet başına ayrı satır yerine kesintisiz RTL ve iki yana
+        yaslı metin akışıdır. Küçük ayet işaretleri satır içindedir. Aynı sayfada
+        yeni sure başladığında ince ayraç ve Türkçe sure adı gösterilir. Meal,
+        Arapça Mushaf akışını bozmamak için sayfanın ayrı alt bölümündedir.
+        `open-quran-view` MIT kodlu olsa da web/DOM bileşenidir; paketindeki
+        sayfa fontları ve üretilmiş veri için dağıtım izni netleşmeden projeye
+        bağımlılık ya da varlık eklenmedi. Birebir QCF 15 satır dizgisi açık
+        yayın/lisans borcudur; mevcut doğrulanmış Tanzil metni korunur.
+        TypeScript ve 486 test geçti; lint 0 hata/13 mevcut uyarı verdi, içerik
+        denetimi 0 hata verdi ve Android Expo export tamamlandı. Web görsel testi
+        mevcut eksik @lottiefiles/dotlottie-react bağımlılığı nedeniyle açılamadı.
+        İki okuma modu, RTL iki yana yaslama ve sure geçişi gerçek telefonda elle
+        doğrulanacak.
+
+[x] 25 Ağustos 2026 — Uygulama kabuğu ve Öğren yolu görsel yenilemesi.
+        Dört ana sekme ikonlardan arındırıldı; yalnız metin ve seçili nokta kullanan
+        özel alt bar geldi. Ana içerik yüzeyi bardan yuvarlak alt köşe ve gölgeyle
+        ayrıldı. Sıcak kâğıt/grafit/sarı/pudra/açık mavi palet ve Nunito ailesi
+        bütün ortak tema jetonlarına uygulandı; eski Kur'an gece paleti kaldırıldı.
+        Öğren ekranı için özgün, metinsiz ve dini sembol taşımayan sabit bir kâğıt
+        arka planı üretildi. Yol ince sarı konturlu eğriye; seviyeler siyah konturlu
+        çıkartmalara dönüştü. Yol kenarı kırtasiye süsleri içerikle kayar.
+        Üst HUD SQLite/Zustand'dan gelen gerçek seri gününü ve mevcut ünite/seviye
+        konumunu gösterir; geçerli düğüm ayrıca görünür bayrak taşır.
+        TypeScript, 486 test, içerik denetimi ve Android Expo export geçti. Lint
+        0 hata/13 mevcut varsayılan-import uyarısı verdi. Yeni kabuk ve yol gerçek
+        telefonda elle doğrulanacak.
+
+
 === AÇIK SORULAR ===
 
 - Supabase üretim bölgesi, DPA/alt işleyenler ve veri saklama süreleri.

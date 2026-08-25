@@ -17,9 +17,11 @@
     "import:quran": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./tests/setup.ts scripts/importQuranContent.ts"
   },
   "dependencies": {
+    "@expo-google-fonts/nunito": "^0.4.2",
     "@expo/ui": "~0.2.0-beta.9",
     "@expo/vector-icons": "^15.0.2",
     "@react-native-community/netinfo": "11.4.1",
+    "@react-navigation/bottom-tabs": "^7.18.16",
     "@react-navigation/native": "^7.1.8",
     "@supabase/supabase-js": "^2.112.3",
     "expo": "~54.0.37",

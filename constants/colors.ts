@@ -1,204 +1,88 @@
 /**
- * Renk paleti — "Aksolotl"
- *
- * Palet maskottan türetildi. Maskotun kendi renkleri ölçülerek alındı:
- * gövde `#FFE1EC`, karın `#FFF5F8`, solungaç/yanak `#FF8FBF`, kontur `#3A2B33`.
- * Bu dördü palette aynen duruyor; geri kalan basamaklar bunların etrafına
- * kuruldu. Metin rengi maskotun çizgi rengiyle aynı — kimliği bir arada tutan
- * şey bu.
- *
- * İki katman var:
- *   1. palette — ham renk basamakları. Bileşenlerde DOĞRUDAN kullanılmaz.
- *   2. lightTheme / darkTheme — anlamsal (semantic) jetonlar. Bileşenler bunları okur.
- *
- * Kontrast notu: metin taşıyan her dolgu rengi, üzerindeki `on*` rengiyle
- * WCAG AA (4.5:1) sağlar. ⚠️ Pembe açık bir hüe — canlı pembe beyaz metin
- * TAŞIYAMAZ (`rose400` üzerine beyaz 2.11:1). Bu yüzden buton dolgusu koyu
- * gül `rose600`; maskotun canlı pembesi `rose400` yalnızca grafik, ikon ve
- * seviye düğümü içindir (`primaryBright`) — üzerine küçük metin konmaz.
- *
- * ⚠️ `primaryBright` İLERLEME ÇUBUĞUNDA KULLANILMAZ (bu not eskiden tersini
- * söylüyordu). Çubuğun yolu `border` ile arasında açık temada 1.81:1 var;
- * WCAG 1.4.11 metin taşımayan parçalar için 3:1 istiyor ve dolu/boş sınırı
- * ilerlemeyi anlatan tek şey. Çubuk dolguları bu yüzden koyu: `primary`,
- * `secondaryStrong`, `success`.
- *
- * ⚠️ GÖLGE SINIR ÇİZEMEZ. Açık temada `background === surface === #FFFFFF`,
- * yani bir kart zeminden kendi dolgusuyla ayrılamıyor ve akla ilk gelen çözüm
- * gölge oluyor. Ölçüldü: `elevation.card` (`shadowOpacity: 0.08`,
- * `shadowColor: neutral900`) beyaz üzerinde üretebileceği EN KOYU piksel
- * `#EFEEEF`, yani **1.16:1** — üstelik bu, bulanıklık yayılmadan önceki tavan.
- * Dokunulabilir bir öğenin sınırı bu yüzden `borderControl` ile çizilir.
- * Gölge yalnızca derinlik hissi içindir, bilgi taşımaz.
+ * Yeni görsel dil: sıcak kâğıt, grafit kontur ve neşeli kırtasiye renkleri.
+ * Bileşenler ham paleti değil aşağıdaki anlamsal tema jetonlarını kullanır.
  */
 
-// ── Ham palet ────────────────────────────────────────────────────────────────
-
 export const palette = {
-  // Gül — birincil marka rengi. 50/100/400 doğrudan maskottan alındı.
-  rose50: '#FFF5F8', // maskotun karnı
-  rose100: '#FFE1EC', // maskotun gövdesi
-  rose200: '#FFC7DE',
-  rose300: '#FFB6D5',
-  rose400: '#FF8FBF', // maskotun solungaçları — grafik/ilerleme, metin taşımaz
-  rose500: '#F2609F',
-  rose600: '#C9306F', // metin taşıyabilen en açık dolgu tonu (beyazla 5.08:1)
-  rose700: '#A82459',
-  rose800: '#5E1638',
-  rose900: '#3A0C21',
-
-  // Mercan — uygulamanın üst çubuğu (tavan). ÖrnekResim.jpeg'ten ölçüldü.
-  // ⚠️ Bu, gül skalasından FARKLI bir hüe: gülde mavi yeşilden yüksek
-  // (magentaya çalar), mercanda ikisi eşit (kırmızıya çalar). Yani palette
-  // artık iki ayrı pembe var. Bilinçli — referans görüntü bu rengi istiyor.
-  coral300: '#FEA3A2', // tavan, açık tema
-  coral800: '#4A2321', // tavan, koyu tema
-
-  // Güneş — ikincil, ödül ve vurgu. Üzerine koyu metin gelir.
-  sun50: '#FFF6DF',
-  sun100: '#FFEDBF',
-  sun200: '#FFE096',
-  sun300: '#FFD26B',
-  sun400: '#FFC53D', // bal sarısı — rozet, XP, yıldız
-  sun500: '#E0A315',
-  sun600: '#AE7C0C',
-  sun700: '#7A5608',
-  sun800: '#4A3208',
-  sun900: '#3A2705',
-
-  // Yeşil — başarı geri bildirimi. Marka renginden uzak durur ki
-  // "doğru cevap" ile "birincil eylem" karışmasın.
-  green100: '#DFF5EC',
-  green400: '#4BD79B',
-  green500: '#22B27B',
-  green600: '#12855C',
-  green800: '#0E3A28',
-  green900: '#052015',
-
-  // Bahçe sahnesi — yalnızca grafik yüzeylerinde kullanılır, metin taşımaz.
-  sky100: '#DDF4FF',
-  sky800: '#173447',
-  earth300: '#C98D5B',
-  earth700: '#6B3F24',
-
-  // Kırmızı — hata. Pembeye çok yaklaşmaması için turuncuya çalar.
-  red100: '#FDE7EB',
-  red400: '#FF7085',
-  red500: '#EF4560',
-  red600: '#D62F4B',
-  red800: '#3E1620',
-  red900: '#2A0710',
-
-  // Erik nötrler — maskotun kontur rengi (#3A2B33) etrafında kurulmuş,
-  // hafif pembeye çalan gri skalası. Soğuk gri pembeyle yan yana kirli durur.
-  neutral0: '#FFFFFF',
-  neutral50: '#FFF7FA',
-  neutral100: '#FFF0F5',
-  neutral150: '#FAE8EF',
-  neutral200: '#F2DFE7',
-  neutral300: '#E3CBD6',
-  neutral400: '#B7A6AE',
-  neutral500: '#94818B',
-  neutral600: '#7A6670',
-  neutral700: '#5C4952',
-  neutral750: '#4A3841',
-  neutral800: '#30222B',
-  neutral850: '#241A21',
-  neutral900: '#3A2B33', // maskotun kontur rengi — gövde metni
-  neutral950: '#1A1218',
+  paper0: '#FFFDF8',
+  paper50: '#FBF6EA',
+  paper100: '#F3EBDD',
+  shell100: '#DDD8D5',
+  shell200: '#CBC5C2',
+  graphite950: '#171717',
+  graphite800: '#34312F',
+  graphite650: '#625D59',
+  graphite500: '#706A65',
+  graphite300: '#B8B0AA',
+  yellow100: '#FFF3B0',
+  yellow400: '#F7CC18',
+  yellow500: '#E7B900',
+  yellow700: '#725900',
+  pink100: '#FCE3EC',
+  pink400: '#F58CB1',
+  pink600: '#B83E69',
+  blue100: '#E2F3FC',
+  blue400: '#91D0F2',
+  blue700: '#236887',
+  green100: '#DDF4E9',
+  green500: '#35A878',
+  green700: '#176746',
+  red100: '#FCE5E5',
+  red500: '#D84B4B',
+  red700: '#8E2929',
+  night950: '#16181D',
+  night850: '#23262D',
+  night750: '#343840',
+  white: '#FFFFFF',
 } as const;
 
-// ── Jeton tipleri ────────────────────────────────────────────────────────────
-
-/** Gölge jetonu — React Native `ViewStyle` gölge alanlarıyla uyumlu. */
 export type ElevationToken = {
   shadowColor: string;
   shadowOffset: { width: number; height: number };
   shadowOpacity: number;
   shadowRadius: number;
-  /** Android karşılığı */
   elevation: number;
 };
 
 export type ColorTheme = {
-  /** Ekran zemini */
   background: string;
-  /**
-   * Üst çubuk (tavan) zemini — durum çubuğu alanı dahil.
-   * Ekranın kendi zemininden ayrı bir renk; uygulamanın kimliğini taşıyan şerit.
-   */
   appBar: string;
-  /** Üst çubuğun üzerine gelen içerik rengi (ikon, başlık) */
   onAppBar: string;
-  /** Kart, sayfa üstü yüzey */
   surface: string;
-  /** İkincil yüzey — girdi alanı, pasif sekme */
   surfaceAlt: string;
-  /** Modal arkası karartma */
   overlay: string;
-
   primary: string;
   primaryPressed: string;
-  /** Açık tonlu zemin — rozet, seçili seçenek arkası */
   primarySoft: string;
   onPrimary: string;
-  /**
-   * Maskotun canlı pembesi — ikon, illüstrasyon, seviye düğümü. Metin taşımaz.
-   * İlerleme çubuğunun dolgusu DEĞİLDİR; bkz. dosya başındaki uyarı.
-   */
   primaryBright: string;
-
   secondary: string;
   secondaryPressed: string;
   secondarySoft: string;
   onSecondary: string;
-  /**
-   * Metin taşımayan güçlü ikincil dolgu — ilerleme çubuğunun altın varyantı.
-   *
-   * `secondary` (sun400) burada kullanılamaz: açık temada ilerleme çubuğunun
-   * yolu olan `border` ile arasında yalnızca 1.35:1 var, dolu kısım boş
-   * kısımdan ayırt edilemiyor. Bu jeton aynı sarının okunabilir basamağı.
-   */
   secondaryStrong: string;
-
   success: string;
   successSoft: string;
   onSuccess: string;
-
-  /** Cennet Bahçesi'nin metin taşımayan sahne renkleri. */
   gardenSky: string;
   gardenGround: string;
   gardenSoil: string;
   gardenTrunk: string;
   gardenFlower: string;
-
   error: string;
   errorSoft: string;
   onError: string;
-
   textPrimary: string;
   textSecondary: string;
   textMuted: string;
-  /** Koyu zemin üzerindeki metin */
   textInverse: string;
   textDisabled: string;
-
   border: string;
   borderStrong: string;
-  /**
-   * Dokunulabilir bir öğenin SINIRINI çizen kenarlık — seçenek kartı, girdi
-   * alanı, kart. Zemine karşı 3:1 sağlar (WCAG 1.4.11).
-   *
-   * ⚠️ `borderStrong` bu iş için YETMEZ: beyaz zemine karşı 1.52:1. Gölge de
-   * yetmez — bkz. dosya başındaki uyarı. Ayrıntı ve neden `borderStrong`
-   * koyulaştırılamadığı: CLAUDE.md "Soru bileşenleri kararları".
-   */
   borderControl: string;
   focusRing: string;
-
   disabledBackground: string;
   disabledText: string;
-
   elevation: {
     none: ElevationToken;
     card: ElevationToken;
@@ -209,9 +93,7 @@ export type ColorTheme = {
 
 export type ThemeName = 'light' | 'dark';
 
-// ── Gölgeler ─────────────────────────────────────────────────────────────────
-
-const noElevation: ElevationToken = {
+const none: ElevationToken = {
   shadowColor: 'transparent',
   shadowOffset: { width: 0, height: 0 },
   shadowOpacity: 0,
@@ -219,175 +101,137 @@ const noElevation: ElevationToken = {
   elevation: 0,
 };
 
-// Gölge rengi nötr siyah değil koyu erik — pembe yüzeylerin altında gri gölge
-// isli durur, erik gölge rengin içinden çıkmış gibi oturur.
 const lightElevation: ColorTheme['elevation'] = {
-  none: noElevation,
+  none,
   card: {
-    shadowColor: palette.neutral900,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
+    shadowColor: palette.graphite950,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
     shadowRadius: 8,
-    elevation: 2,
+    elevation: 3,
   },
   raised: {
-    shadowColor: palette.neutral900,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 16,
-    elevation: 6,
+    shadowColor: palette.graphite950,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.14,
+    shadowRadius: 18,
+    elevation: 8,
   },
   modal: {
-    shadowColor: palette.neutral900,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.18,
-    shadowRadius: 24,
-    elevation: 12,
+    shadowColor: palette.graphite950,
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 28,
+    elevation: 14,
   },
 };
 
-// Koyu temada gölge zayıf okunur; derinlik ağırlıklı olarak yüzey renkleriyle
-// verilir, gölge sadece hafif bir ayrım için durur.
 const darkElevation: ColorTheme['elevation'] = {
-  none: noElevation,
+  none,
   card: {
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.32,
+    shadowRadius: 9,
+    elevation: 3,
   },
   raised: {
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 16,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.42,
+    shadowRadius: 18,
+    elevation: 8,
   },
   modal: {
     shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 8 },
+    shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.55,
-    shadowRadius: 24,
-    elevation: 12,
+    shadowRadius: 28,
+    elevation: 14,
   },
 };
-
-// ── Temalar ──────────────────────────────────────────────────────────────────
 
 export const lightTheme: ColorTheme = {
-  // Saf beyaz. Eskiden `neutral50` (#FFF7FA) idi; referans görüntüdeki gibi
-  // pembe tavanın altındaki alan tamamen beyaz olsun diye değiştirildi.
-  // ⚠️ Sonuç: `background` ile `surface` açık temada AYNI renk. Kart bileşeni
-  // zeminden kendi rengiyle ayrışamaz, kenarlık veya gölge taşımak zorunda.
-  background: palette.neutral0,
-  // Tavan üzerine koyu erik metin: 7.00:1
-  appBar: palette.coral300,
-  onAppBar: palette.neutral900,
-  surface: palette.neutral0,
-  surfaceAlt: palette.neutral100,
-  overlay: 'rgba(58, 43, 51, 0.45)',
-
-  primary: palette.rose600,
-  primaryPressed: palette.rose700,
-  primarySoft: palette.rose100,
-  onPrimary: palette.neutral0,
-  primaryBright: palette.rose400,
-
-  secondary: palette.sun400,
-  secondaryPressed: palette.sun500,
-  secondarySoft: palette.sun50,
-  onSecondary: palette.sun800,
-  // Açık temada altın, yola (#F2DFE7) karşı 3.15:1 — sun400 ve sun500
-  // sınırın altında kalıyor (1.35:1 ve 1.91:1).
-  secondaryStrong: palette.sun600,
-
-  success: palette.green600,
+  background: palette.paper0,
+  appBar: palette.paper0,
+  onAppBar: palette.graphite950,
+  surface: palette.white,
+  surfaceAlt: palette.shell100,
+  overlay: 'rgba(23, 23, 23, 0.48)',
+  primary: palette.graphite950,
+  primaryPressed: palette.graphite800,
+  primarySoft: palette.pink100,
+  onPrimary: palette.white,
+  primaryBright: palette.pink400,
+  secondary: palette.yellow400,
+  secondaryPressed: palette.yellow500,
+  secondarySoft: palette.yellow100,
+  onSecondary: palette.graphite950,
+  secondaryStrong: palette.yellow700,
+  success: palette.green700,
   successSoft: palette.green100,
-  onSuccess: palette.neutral0,
-  gardenSky: palette.sky100,
+  onSuccess: palette.white,
+  gardenSky: palette.blue100,
   gardenGround: palette.green100,
-  gardenSoil: palette.earth300,
-  gardenTrunk: palette.earth700,
-  gardenFlower: palette.rose400,
-
-  error: palette.red600,
+  gardenSoil: '#C98D5B',
+  gardenTrunk: '#6B3F24',
+  gardenFlower: palette.pink400,
+  error: palette.red700,
   errorSoft: palette.red100,
-  onError: palette.neutral0,
-
-  textPrimary: palette.neutral900,
-  textSecondary: palette.neutral700,
-  textMuted: palette.neutral600,
-  textInverse: palette.neutral50,
-  textDisabled: palette.neutral400,
-
-  border: palette.neutral200,
-  borderStrong: palette.neutral300,
-  // Beyaz zemine karşı 3.64:1. Bir basamak koyusu (neutral600, 5.30:1) kart
-  // değil sert bir form çerçevesi gibi okunuyordu.
-  borderControl: palette.neutral500,
-  focusRing: palette.rose600,
-
-  disabledBackground: palette.neutral150,
-  disabledText: palette.neutral400,
-
+  onError: palette.white,
+  textPrimary: palette.graphite950,
+  textSecondary: palette.graphite650,
+  textMuted: palette.graphite500,
+  textInverse: palette.paper0,
+  textDisabled: palette.graphite300,
+  border: palette.paper100,
+  borderStrong: palette.shell200,
+  borderControl: palette.graphite500,
+  focusRing: palette.graphite950,
+  disabledBackground: palette.shell100,
+  disabledText: palette.graphite500,
   elevation: lightElevation,
 };
 
 export const darkTheme: ColorTheme = {
-  background: palette.neutral950,
-  // Koyu temada somon tavan parlar; aynı hüenin koyu basamağı kullanılıyor.
-  // Üzerine açık metin: 11.81:1
-  appBar: palette.coral800,
-  onAppBar: '#F7EDF2',
-  surface: palette.neutral850,
-  surfaceAlt: palette.neutral800,
-  overlay: 'rgba(0, 0, 0, 0.6)',
-
-  // Koyu zeminde açık pembe dolgu + koyu metin okunur; tersi değil.
-  primary: '#FF9FC9',
-  primaryPressed: '#FFC1DC',
-  primarySoft: palette.rose800,
-  onPrimary: palette.rose900,
-  primaryBright: palette.rose400,
-
-  secondary: palette.sun400,
-  secondaryPressed: palette.sun500,
-  secondarySoft: palette.sun800,
-  onSecondary: palette.sun900,
-  // Koyu temada yol koyu (#3A2B33); bal sarısı orada 8.46:1 veriyor,
-  // koyulaştırmaya gerek yok — canlı sarı olduğu gibi kalır.
-  secondaryStrong: palette.sun400,
-
-  success: palette.green400,
-  successSoft: palette.green800,
-  onSuccess: palette.green900,
-  gardenSky: palette.sky800,
-  gardenGround: palette.green800,
-  gardenSoil: palette.earth700,
-  gardenTrunk: palette.earth300,
-  gardenFlower: palette.rose400,
-
-  error: palette.red400,
-  errorSoft: palette.red800,
-  onError: palette.red900,
-
-  textPrimary: '#F7EDF2',
-  textSecondary: '#D4C3CC',
-  textMuted: '#A08F99',
-  textInverse: palette.neutral950,
-  textDisabled: '#6B5A64',
-
-  border: palette.neutral900,
-  borderStrong: palette.neutral750,
-  // Koyu zemine (#1A1218) karşı 3.46:1. Açık temadakinden bir basamak koyu
-  // seçildi; koyu zeminde neutral500 (5.05:1) fazla parlak kalıyordu.
-  borderControl: palette.neutral600,
-  focusRing: '#FF9FC9',
-
-  disabledBackground: '#2A1F26',
-  disabledText: '#6B5A64',
-
+  background: palette.night950,
+  appBar: palette.night950,
+  onAppBar: palette.paper0,
+  surface: palette.night850,
+  surfaceAlt: palette.night750,
+  overlay: 'rgba(0, 0, 0, 0.68)',
+  primary: palette.yellow400,
+  primaryPressed: palette.yellow500,
+  primarySoft: '#493E20',
+  onPrimary: palette.graphite950,
+  primaryBright: palette.pink400,
+  secondary: palette.yellow400,
+  secondaryPressed: palette.yellow500,
+  secondarySoft: '#493E20',
+  onSecondary: palette.graphite950,
+  secondaryStrong: palette.yellow400,
+  success: '#65C99A',
+  successSoft: '#173E30',
+  onSuccess: palette.graphite950,
+  gardenSky: '#173447',
+  gardenGround: '#173E30',
+  gardenSoil: '#6B3F24',
+  gardenTrunk: '#C98D5B',
+  gardenFlower: palette.pink400,
+  error: '#F27A7A',
+  errorSoft: '#4A2424',
+  onError: palette.graphite950,
+  textPrimary: palette.paper0,
+  textSecondary: '#D6CEC5',
+  textMuted: '#A79F98',
+  textInverse: palette.graphite950,
+  textDisabled: '#716B66',
+  border: palette.night750,
+  borderStrong: '#4A4E56',
+  borderControl: '#7B8089',
+  focusRing: palette.yellow400,
+  disabledBackground: palette.night750,
+  disabledText: '#777B82',
   elevation: darkElevation,
 };
 
@@ -396,7 +240,6 @@ export const themes: Record<ThemeName, ColorTheme> = {
   dark: darkTheme,
 };
 
-/** Tema adından tema nesnesi. Şimdilik varsayılan açık tema. */
 export function getTheme(name: ThemeName = 'light'): ColorTheme {
   return themes[name];
 }

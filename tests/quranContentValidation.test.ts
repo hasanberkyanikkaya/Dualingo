@@ -44,7 +44,7 @@ function surah(): QuranSurahContent {
     surah: {
       id: 1,
       nameArabic: 'ÖRNEK AD',
-      nameTurkish: null,
+      nameTurkish: 'ÖRNEK SURE ADI — GERÇEK DEĞİL',
       verseCount: 2,
       firstGlobalOrder: 1,
     },
