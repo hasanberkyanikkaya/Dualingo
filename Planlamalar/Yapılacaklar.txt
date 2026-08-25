@@ -460,6 +460,41 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         0 hata/13 mevcut varsayılan-import uyarısı verdi. Yeni kabuk ve yol gerçek
         telefonda elle doğrulanacak.
 
+[x] 25 Ağustos 2026 — Profil, Kur'an başlığı ve Öğren etkinlik erişimi düzeltmeleri.
+        Profil artık her girişte kapalı menüyle ve ayrı Profilim özetiyle açılır;
+        özet gerçek ad/e-posta, XP, seri, rozet ve tamamlanan seviye verisini kullanır.
+        Kur'an ana başlığı “Kur'an-ı Kerim” olarak ikonla aynı satıra alındı ve başlık
+        altındaki tanıtım cümlesi kaldırıldı. Öğren HUD bayrağı renkli çıkartma biçimine
+        getirildi. Oyunlar ve challenge'lar ana kaydırma akışından kaldırılarak HUD'daki
+        oyun düğmesinin açtığı alt pencereye taşındı; mevcut Sıralama Yarışı buradan açılır.
+        TypeScript, 486 test, içerik denetimi ve Android Expo export geçti. Lint
+        0 hata/13 mevcut varsayılan-import uyarısı verdi.
+        ⚠️ Menü varsayılanı, Profilim verileri, dar ekran HUD hizası ve oyun penceresi
+        gerçek telefonda elle doğrulanacak.
+
+[x] 25 Ağustos 2026 — Namaz ekranı ve Cennet Bahçesi görsel yenilemesi.
+        Namaz ekranına Figma Design ile hazırlanan, metinsiz, çocuk dostu ve
+        sarı-turuncu seccade arka planı eklendi. Ortak zemin bileşeni görseli
+        kırpmadan sayfaya sığdırır; içerik yüzeyleri görseli hafifçe geçiren
+        kartlara dönüştü ve Sıradaki Vakit yatay, kompakt hale getirildi.
+        Cennet Bahçesi mevcut beş aşamalı büyüme motorunu koruyarak katmanlı
+        izometrik adaya taşındı. Toprak, filiz, yol, çiçek, ağaç ve gölet aşamaya
+        göre açılır; beş düğümlü gelişim yolu mevcut ve sıradaki görünümü anlatır.
+        Yeni hassas veri, dini içerik, sosyal karşılaştırma veya gerileme eklenmedi.
+        TypeScript, 486 test, içerik denetimi ve Android Expo export geçti; lint
+        0 hata/13 mevcut varsayılan-import uyarısı verdi.
+        ⚠️ Seccadenin farklı ekran oranlarında tam görünmesi, yarı saydam kart kontrastı, kompakt vakit kartı ve
+        beş bahçe aşaması gerçek telefonda elle doğrulanacak.
+
+[x] 25 Ağustos 2026 — Figma çocuk dostu modül arka planları.
+        Öğren sayfasının sıcak kâğıt, grafit kontur ve çıkartma diline yakın üç
+        özgün 390×844 arka plan Figma Design'da oluşturuldu. Namaz için tam görünen
+        seccade; Kur'an ana sayfası için açık kitap; Profil için rozet ve başarı
+        öğeleri kullanıldı. Çizimler metinsizdir ve dini içerik üretmez.
+        Düzenlenebilir kaynak: https://www.figma.com/design/Vs78mw0lnKIkO6hYV8dSLA
+        PNG çıktıları uygulamaya bağlandı. Kur'an okuyucu ve hedef sayfalarının
+        mevcut zemini değiştirilmedi.
+
 
 === AÇIK SORULAR ===
 

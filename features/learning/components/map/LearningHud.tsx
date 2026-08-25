@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { componentRadius } from '@/constants/radius';
 import { layout, spacing } from '@/constants/spacing';
@@ -13,6 +13,7 @@ type LearningHudProps = {
   unitNumber: number;
   levelNumber: number;
   totalLevels: number;
+  onOpenGames: () => void;
 };
 
 /** Öğren ekranında gerçek seri ve mevcut ünite konumunu gösteren küçük durum alanı. */
@@ -21,6 +22,7 @@ export default function LearningHud({
   unitNumber,
   levelNumber,
   totalLevels,
+  onOpenGames,
 }: LearningHudProps) {
   const { theme } = useTheme();
   const progress = formatString(strings.learn.hudProgress, {
@@ -49,14 +51,37 @@ export default function LearningHud({
           styles.pill,
           styles.progressPill,
           theme.elevation.card,
-          { backgroundColor: theme.secondarySoft, borderColor: theme.textPrimary },
+          { backgroundColor: theme.secondary, borderColor: theme.secondaryStrong },
         ]}
       >
-        <Ionicons name="flag" size={spacing.lg} color={theme.textPrimary} />
+        <View
+          style={[
+            styles.flagMark,
+            { backgroundColor: theme.primaryBright, borderColor: theme.textPrimary },
+          ]}
+        >
+          <Ionicons name="flag" size={spacing.lg} color={theme.textPrimary} />
+        </View>
         <Text numberOfLines={1} style={[textStyles.labelMedium, { color: theme.textPrimary }]}>
           {progress}
         </Text>
       </View>
+
+      <Pressable
+        accessibilityLabel={strings.games.openActivities}
+        accessibilityRole="button"
+        onPress={onOpenGames}
+        style={({ pressed }) => [
+          styles.gameButton,
+          theme.elevation.card,
+          {
+            backgroundColor: pressed ? theme.secondary : theme.primaryBright,
+            borderColor: theme.textPrimary,
+          },
+        ]}
+      >
+        <Ionicons name="game-controller" size={spacing.xl} color={theme.textPrimary} />
+      </Pressable>
     </View>
   );
 }
@@ -80,5 +105,23 @@ const styles = StyleSheet.create({
   },
   progressPill: {
     flex: 1,
+    justifyContent: 'flex-start',
+    paddingLeft: spacing.xs,
+  },
+  flagMark: {
+    width: spacing.xxl,
+    height: spacing.xxl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderRadius: componentRadius.button,
+  },
+  gameButton: {
+    width: layout.minTouchTarget,
+    height: layout.minTouchTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderRadius: componentRadius.button,
   },
 });

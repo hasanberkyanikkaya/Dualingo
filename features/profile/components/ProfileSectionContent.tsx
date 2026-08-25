@@ -6,13 +6,14 @@ import { componentRadius } from '@/constants/radius';
 import { spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
+import ProfileOverview from '@/features/profile/components/ProfileOverview';
 import BadgeSection from '@/features/progress/components/BadgeSection';
 import { useTheme } from '@/lib/useTheme';
 
 import type { ProfileSectionId } from '@/features/profile/types';
 
 type ProfileSectionContentProps = { sectionId: ProfileSectionId };
-type ManageableSection = Exclude<ProfileSectionId, 'badges'>;
+type ManageableSection = Exclude<ProfileSectionId, 'overview' | 'badges'>;
 
 const sectionCopy: Record<ManageableSection, { title: string; body: string; action: string }> = {
   placement: {
@@ -42,6 +43,10 @@ function openSection(sectionId: ManageableSection): void {
 
 export default function ProfileSectionContent({ sectionId }: ProfileSectionContentProps) {
   const { theme } = useTheme();
+
+  if (sectionId === 'overview') {
+    return <ProfileOverview />;
+  }
 
   if (sectionId === 'badges') {
     return <BadgeSection />;

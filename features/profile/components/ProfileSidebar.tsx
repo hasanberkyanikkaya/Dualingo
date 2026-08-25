@@ -25,6 +25,7 @@ type ProfileSidebarProps = {
 };
 
 const items: readonly SidebarItem[] = [
+  { id: 'overview', icon: 'person-outline', label: strings.profile.overviewTitle },
   { id: 'badges', icon: 'ribbon-outline', label: strings.progress.badges },
   { id: 'placement', icon: 'school-outline', label: strings.profile.placementTitle },
   { id: 'notifications', icon: 'notifications-outline', label: strings.profile.notifications },

@@ -13,7 +13,7 @@ import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import { findQuranVerse, getQuranCatalog, getQuranManifest } from '@/features/quran/contentLoader';
 import QuranButton from '@/features/quran/components/QuranButton';
-import QuranNightBackground from '@/features/quran/components/QuranNightBackground';
+import QuranHomeBackground from '@/features/quran/components/QuranHomeBackground';
 import QuranProgressBar from '@/features/quran/components/QuranProgressBar';
 import SurahPickerModal from '@/features/quran/components/SurahPickerModal';
 import { readLastReadPosition } from '@/features/quran/quranDb';
@@ -58,23 +58,21 @@ export default function QuranScreen() {
   }
 
   return (
-    <Screen contentStyle={styles.screenContent} tabPane>
-      <QuranNightBackground>
-        <StatusBar style="dark" />
-        <View style={styles.safeArea}>
+    <Screen
+      background={<QuranHomeBackground />}
+      contentStyle={styles.screenContent}
+      tabPane
+    >
+      <StatusBar style="dark" />
+      <View style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
-            <View style={styles.titleBlock}>
-              <Text accessibilityRole="header" style={[textStyles.h1, { color: quranTheme.text }]}>
-                {strings.quran.title}
-              </Text>
-              <Text style={[textStyles.bodyMedium, { color: quranTheme.textMuted }]}>
-                {strings.quran.subtitle}
-              </Text>
-            </View>
             <View style={styles.headerIcon}>
-              <Ionicons name="book-outline" size={spacing.xxl} color={quranTheme.accent} />
+              <Ionicons name="book-outline" size={spacing.xl} color={quranTheme.accent} />
             </View>
+            <Text accessibilityRole="header" style={[textStyles.h2, { color: quranTheme.text }]}>
+              {strings.quran.title}
+            </Text>
           </View>
 
           <View style={styles.heroCard}>
@@ -179,15 +177,14 @@ export default function QuranScreen() {
             <Ionicons name="open-outline" size={spacing.lg} color={quranTheme.textMuted} />
           </Pressable>
         </ScrollView>
-        </View>
+      </View>
 
-        <SurahPickerModal
-          onClose={() => setPickerVisible(false)}
-          onSelect={selectSurah}
-          selectedSurahId={null}
-          visible={pickerVisible}
-        />
-      </QuranNightBackground>
+      <SurahPickerModal
+        onClose={() => setPickerVisible(false)}
+        onSelect={selectSurah}
+        selectedSurahId={null}
+        visible={pickerVisible}
+      />
     </Screen>
   );
 }
@@ -202,11 +199,15 @@ const styles = StyleSheet.create({
     paddingTop: spacing.xl,
     paddingBottom: layout.sectionGap,
   },
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.lg },
-  titleBlock: { flex: 1, gap: spacing.xs },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.md,
+  },
   headerIcon: {
-    width: spacing.huge,
-    height: spacing.huge,
+    width: layout.minTouchTarget,
+    height: layout.minTouchTarget,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: componentRadius.modal,

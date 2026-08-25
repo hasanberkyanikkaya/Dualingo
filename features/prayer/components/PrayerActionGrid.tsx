@@ -33,7 +33,11 @@ export default function PrayerActionGrid({
         onPress={onGarden}
         style={({ pressed }) => [
           styles.garden,
-          { backgroundColor: pressed ? theme.gardenGround : theme.successSoft },
+          theme.elevation.card,
+          {
+            backgroundColor: pressed ? theme.gardenGround : theme.surfaceGlass,
+            borderColor: theme.success,
+          },
         ]}
       >
         <View style={[styles.iconCircle, { backgroundColor: theme.surface }]}> 
@@ -76,7 +80,7 @@ function ActionCard({
       style={({ pressed }) => [
         styles.action,
         {
-          backgroundColor: pressed ? theme.primarySoft : theme.surface,
+          backgroundColor: pressed ? theme.primarySoft : theme.surfaceGlass,
           borderColor: theme.borderControl,
         },
       ]}
@@ -97,6 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.md,
     padding: layout.cardPadding,
+    borderWidth: 2,
     borderRadius: componentRadius.card,
   },
   iconCircle: {

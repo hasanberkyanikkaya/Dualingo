@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
 
 import Screen from '@/components/Screen';
-import LearningActivityBar from '@/features/games/components/LearningActivityBar';
 import LearningBackground from '@/features/learning/components/map/LearningBackground';
 import LevelMap from '@/features/learning/components/map/LevelMap';
 
@@ -22,8 +21,8 @@ export default function LearnScreen() {
   return (
     <Screen background={<LearningBackground />} tabPane>
       <LevelMap
+        onOpenOrderingRace={openOrderingRace}
         onSelectLevel={handleSelectLevel}
-        topContent={<LearningActivityBar onOpenOrderingRace={openOrderingRace} />}
       />
     </Screen>
   );

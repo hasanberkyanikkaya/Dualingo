@@ -14,6 +14,7 @@ import { useTheme } from '@/lib/useTheme';
 import type { ProfileSectionId } from '@/features/profile/types';
 
 const sectionTitles: Record<ProfileSectionId, string> = {
+  overview: strings.profile.overviewTitle,
   badges: strings.progress.badges,
   placement: strings.profile.placementTitle,
   notifications: strings.profile.notifications,
@@ -22,12 +23,13 @@ const sectionTitles: Record<ProfileSectionId, string> = {
 
 export default function ProfileHub() {
   const { theme } = useTheme();
-  const [selectedSection, setSelectedSection] = useState<ProfileSectionId>('badges');
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [selectedSection, setSelectedSection] = useState<ProfileSectionId>('overview');
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
-      setSidebarVisible(true);
+      setSelectedSection('overview');
+      setSidebarVisible(false);
     }, []),
   );
 

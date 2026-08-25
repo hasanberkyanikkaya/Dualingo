@@ -163,6 +163,8 @@ export const strings = {
   games: {
     activityBarTitle: 'Oyunlar ve challenge’lar',
     activityBarBody: 'Kısa etkinliklere ve yeni oyunlara buradan ulaş.',
+    openActivities: 'Oyunları ve challenge’ları aç',
+    closeActivities: 'Oyunları ve challenge’ları kapat',
     orderingRaceTitle: 'Sıralama Yarışı',
     orderingRaceEntryBody: 'Karışık adımları süre dolmadan doğru sıraya yerleştir.',
     orderingRaceOpen: 'Oyunu aç',
@@ -237,6 +239,13 @@ export const strings = {
   /** Profil ve ayarlar */
   profile: {
     title: 'Profil',
+    overviewTitle: 'Profilim',
+    guestName: 'Misafir kullanıcı',
+    localProfile: 'Bu cihazdaki yerel profil',
+    connectedProfile: 'Bağlı hesap',
+    achievementsTitle: 'Başarıların',
+    completedLevels: 'Tamamlanan seviye',
+    earnedBadges: 'Kazanılan rozet',
     sidebarTitle: 'Profil menüsü',
     openSidebar: 'Profil menüsünü aç',
     closeSidebar: 'Profil menüsünü kapat',
@@ -398,6 +407,8 @@ export const strings = {
     gardenStageBlooming: 'Çiçeklenen bahçe',
     gardenStageFlourishing: 'Canlı bahçe',
     gardenProgress: 'Bahçe gelişimi',
+    gardenJourneyTitle: 'Bahçenin yolculuğu',
+    gardenStageProgress: '{current}/{total} aşama',
     gardenNextStage: 'Sonraki görünüm için {sayi} büyüme puanı kaldı.',
     gardenFinalStage: 'Bahçenin bütün bölümleri açıldı.',
     gardenPrayerCount: 'İşaretlenen vakit',
@@ -518,8 +529,7 @@ export const strings = {
 
   /** Kur'an okuma alanı (Faz 5.2). Dini metin değil, yalnız arayüz dili. */
   quran: {
-    title: "Kur'an",
-    subtitle: 'Gece sakinliğinde, kaldığın yerden devam et.',
+    title: "Kur'an-ı Kerim",
     continueTitle: 'Kaldığın yer',
     continueBody: '{sure} · {ayet}. ayet · {sayfa}. sayfa',
     continueAction: 'Okumaya devam et',

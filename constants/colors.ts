@@ -50,6 +50,7 @@ export type ColorTheme = {
   onAppBar: string;
   surface: string;
   surfaceAlt: string;
+  surfaceGlass: string;
   overlay: string;
   primary: string;
   primaryPressed: string;
@@ -157,6 +158,7 @@ export const lightTheme: ColorTheme = {
   onAppBar: palette.graphite950,
   surface: palette.white,
   surfaceAlt: palette.shell100,
+  surfaceGlass: 'rgba(255, 253, 248, 0.90)',
   overlay: 'rgba(23, 23, 23, 0.48)',
   primary: palette.graphite950,
   primaryPressed: palette.graphite800,
@@ -171,8 +173,8 @@ export const lightTheme: ColorTheme = {
   success: palette.green700,
   successSoft: palette.green100,
   onSuccess: palette.white,
-  gardenSky: palette.blue100,
-  gardenGround: palette.green100,
+  gardenSky: '#EAFBF0',
+  gardenGround: '#68CF55',
   gardenSoil: '#C98D5B',
   gardenTrunk: '#6B3F24',
   gardenFlower: palette.pink400,
@@ -199,6 +201,7 @@ export const darkTheme: ColorTheme = {
   onAppBar: palette.paper0,
   surface: palette.night850,
   surfaceAlt: palette.night750,
+  surfaceGlass: 'rgba(35, 38, 45, 0.92)',
   overlay: 'rgba(0, 0, 0, 0.68)',
   primary: palette.yellow400,
   primaryPressed: palette.yellow500,

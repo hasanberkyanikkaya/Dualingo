@@ -1,1 +1,1 @@
-export type ProfileSectionId = 'badges' | 'placement' | 'notifications' | 'account';
+export type ProfileSectionId = 'overview' | 'badges' | 'placement' | 'notifications' | 'account';

@@ -170,6 +170,11 @@ listesi ver.
   - Namaz kaydı iki durumlu (`kayıt yok` / `kılındı`); kaza durumu kaldırıldı.
   - Cennet Bahçesi toplam işaret ve kayıt günü sayısından türetilir; ayrı hassas
     veri veya sosyal karşılaştırma üretmez ve zaman geçmesiyle gerilemez.
+  - Namaz ana ekranında Figma Design ile hazırlanan, tamamı kırpılmadan görünen
+    çocuk dostu sarı-turuncu seccade arka planı ve yarı saydam içerik yüzeyleri
+    vardır; Sıradaki Vakit kartı kompakt yatay düzendedir.
+  - Cennet Bahçesi beş aşamayı katmanlı izometrik adada gösterir; filiz, çiçek,
+    ağaç, yol ve gölet mevcut büyüme puanına göre görünür olur.
   - Yeni konum/seçim/bahçe düzenleri gerçek telefonda elle doğrulanacak.
 - Faz 5.1 Kur'an veri katmanı — tamam
   - Arapça metin + meal gömülü; transkripsiyon ertelendi.
@@ -197,14 +202,21 @@ listesi ver.
   - Supabase migration/RLS testi/Edge Function dosyaları hazır; gerçek proje,
     SMTP, deploy ve iki cihaz sınaması yapılmadı.
 - Bakım ve arayüz yenilemesi — 25 Ağustos 2026
-  - Profil her girişte açılan sol kategori menüsüne ve seçili bölüm için
-    kaydırılabilir içerik alanına taşındı.
-  - Öğren ekranındaki büyük oyun kartı, yeni oyunları taşıyabilecek yatay etkinlik
-    çubuğuna dönüştürüldü; bugün yalnız Sıralama Yarışı etkindir.
+  - Profil varsayılan olarak Profilim özetini açar; sol kategori menüsü yalnız
+    menü düğmesine dokunulduğunda görünür. Rozetler, Seviye Tespiti, Bildirimler
+    ve Hesap ayrı bölümlerdir.
+  - Öğren ekranındaki oyunlar ve challenge'lar ana akışta yer kaplamaz; üst HUD'daki
+    oyun düğmesinin açtığı pencerede gösterilir. Bugün yalnız Sıralama Yarışı etkindir.
   - Kullanıcının sağladığı 114 Türkçe sure adı içerik kataloğuna işlendi;
     `expertApproved: false` olduğu için yayın öncesi uzman onayı gerekir.
   - Kur'an okuyucusunda sure adları Türkçe gösterilir; ayet ayırıcıları ve tekrar
     eden “x. ayet” yazıları kaldırıldı, yalnız küçük başlangıç numarası bırakıldı.
+  - Namaz, Kur'an ana ekranı ve Profil için Öğren sayfasının çizim diline yakın,
+    birbirinden farklı ve metinsiz çocuk dostu arka planlar Figma Design'da
+    hazırlandı. Uygulamadaki ortak zemin bileşeni görselleri kırpmadan sığdırır;
+    Kur'an okuyucusu ve hedef ekranlarının mevcut zemini korunur.
+  - Kur'an ana ekranı başlığı “Kur'an-ı Kerim”dir; ikonla tek satırda gösterilir
+    ve başlık altında tanıtım metni bulunmaz.
   - Ana navigasyon dört metin sekmesidir; ikon yoktur, seçili sekme küçük nokta ve
     koyu yazıyla belirtilir. İçerik yüzeyi alt bardan yuvarlak köşe ve gölgeyle ayrılır.
   - Genel palet sıcak kâğıt, grafit, sarı, pudra pembe ve açık maviye; uygulama

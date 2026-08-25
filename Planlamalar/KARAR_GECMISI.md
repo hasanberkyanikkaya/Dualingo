@@ -2249,6 +2249,61 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   Alt bar, gölge/köşe ayrımı, font yükleme, sabit arka plan ve yol dokunuşları
   gerçek telefonda elle doğrulanmalıdır.
 
+## Profil varsayılanı, Kur'an başlığı ve oyun penceresi (25 Ağustos 2026)
+
+- Profil sol menüsü ekran açılışında kapalıdır ve yalnız kullanıcının menü düğmesine
+  dokunmasıyla açılır. Varsayılan bölüm yeni `overview` kimlikli “Profilim” özetidir.
+- Profilim özeti yeni bir kalıcı veri modeli oluşturmaz; mevcut hesap ve ilerleme
+  store'larından görünen ad/e-posta, toplam XP, güncel seri, kazanılan rozet ve
+  tamamlanan seviye sayılarını türetir. Hesapsız kullanımda yerel profil gösterilir.
+- Kur'an ana ekranındaki tanıtım alt başlığı kaldırıldı. Başlık “Kur'an-ı Kerim” olarak
+  kitap ikonuyla birlikte tek, ortalanmış satırda gösterilir.
+- Oyunlar ve challenge'lar öğrenme yolunun kaydırılan ana içeriğinde görünmez. Üst
+  HUD'daki oyun kumandası düğmesi erişilebilir bir alt pencere açar; mevcut etkinlik
+  listesi bu pencerede yeniden kullanılır ve Sıralama Yarışı'na yönlendirir.
+- Ünite/seviye bayrağı düz yüzey yerine sarı ilerleme hapı içindeki pembe, koyu
+  konturlu bir işarettir. Seri ve ilerleme değerleri gerçek store verisi olmaya devam eder.
+- TypeScript, 486 test, içerik denetimi ve Android Expo export geçti. Lintte hata
+  yoktur; proje genelindeki 13 mevcut varsayılan-import uyarısı sürmektedir.
+
+## Namaz arka planı ve izometrik Cennet Bahçesi (25 Ağustos 2026)
+
+- Namaz sekmesinin sabit arka planı beyaz zemin üzerinde büyük, düşük kontrastlı,
+  sarı-turuncu bir seccadedir. İlk gerçekçi deneme kullanıcı geri bildirimiyle
+  kaldırıldı; son görsel Figma Design'da çocuk dostu, düz-vektör karakterinde
+  hazırlandı ve yazı, kaligrafi, logo veya başka bir dini metin taşımaz.
+- Seccadenin içerikten kopmaması için Namaz kartları açık temada yarı saydam sıcak
+  kâğıt yüzeyi kullanır. Koyu temada aynı anlamsal jeton koyu ve daha opak çalışır.
+- Sıradaki Vakit kartı dikey kahraman bloktan yatay karta dönüştürüldü. İkon,
+  vakit adı, saat ve küçük geri sayım aynı kompakt yüzeydedir; ekran okuyucu etiketi
+  saniyede değişmez ve dakika hassasiyetindeki önceki sözleşmesini korur.
+- Bahçe veri modeli ve eşikleri değiştirilmedi. Aynı büyüme puanı artık izometrik
+  ada üzerinde beş belirgin görünüm üretir: toprak başlangıç, filizler, yol ve
+  çiçekler, ağaçlar, son aşamada gölet ve ek süsler.
+- Beş düğümlü gelişim göstergesi tamamlanan, mevcut ve henüz açılmamış aşamaları
+  yalnız renkle değil ikon biçimiyle de ayırır. Yeni tablo veya hassas veri yoktur.
+- TypeScript, 486 test, içerik denetimi ve Android Expo export geçti. Lintte hata
+  yoktur; proje genelindeki 13 mevcut varsayılan-import uyarısı sürmektedir.
+
+## Figma çocuk dostu modül arka planları (25 Ağustos 2026)
+
+- Statik, düzenlenebilir arka plan varlıkları gerektiği için bu çalışma Figma
+  Design'da yapıldı. Kaynak dosya:
+  `https://www.figma.com/design/Vs78mw0lnKIkO6hYV8dSLA`.
+- Namaz, Kur'an ana ekranı ve Profil için ayrı 390×844 çerçeveler oluşturuldu.
+  Üçü de Öğren sayfasının sıcak kâğıt, siyah/grafit kontur, sarı, pembe ve açık
+  mavi çıkartma dilini paylaşır; modül kimlikleri sırasıyla tam seccade, açık kitap
+  ve başarı rozetiyle ayrılır. Görseller metinsizdir ve dini içerik üretmez.
+- Uygulama çıktıları `assets/images/prayer`, `assets/images/quran` ve
+  `assets/images/profile` altında PNG olarak tutulur. Ortak
+  `IllustratedBackground` bileşeni `contentFit="contain"` kullanır; böylece
+  çizimin tamamı farklı ekran oranlarında kırpılmadan görünür.
+- Yeni Kur'an çizimi yalnız ana sekmenin zeminidir. Mushaf okuyucu ve hedef
+  ekranları mevcut özel zeminini korur; okuma davranışı ve dini veri değişmedi.
+- Koyu temada açık renkli çizimler düşük opaklıkla dekoratif kalır ve ekran
+  okuyucudan gizlenir. Son görsel oranları ile içerik kontrastı gerçek telefonda
+  ayrıca doğrulanmalıdır.
+
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
 Detaylı plan: `Planlamalar/PROJE_PLANI_FINAL.md`

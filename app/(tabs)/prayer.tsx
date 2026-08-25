@@ -11,6 +11,7 @@ import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import NextPrayerCard from '@/features/prayer/components/NextPrayerCard';
 import PrayerActionGrid from '@/features/prayer/components/PrayerActionGrid';
+import PrayerBackground from '@/features/prayer/components/PrayerBackground';
 import PrayerTimesTable from '@/features/prayer/components/PrayerTimesTable';
 import PrayerTodayTracker from '@/features/prayer/components/PrayerTodayTracker';
 import { buildPrayerDay } from '@/features/prayer/prayerDay';
@@ -31,7 +32,7 @@ export default function PrayerScreen() {
   const dateLine = [gregorian, hijri].filter((part) => part !== null).join('  ·  ');
 
   return (
-    <Screen tabPane>
+    <Screen background={<PrayerBackground />} tabPane>
       <ScreenHeader title={strings.prayer.title} subtitle={subtitle} />
 
       <ScrollView contentContainerStyle={styles.body} showsVerticalScrollIndicator={false}>
@@ -39,7 +40,7 @@ export default function PrayerScreen() {
           <View
             style={[
               styles.locationPrompt,
-              { backgroundColor: theme.surfaceAlt, borderColor: theme.borderControl },
+              { backgroundColor: theme.surfaceGlass, borderColor: theme.borderControl },
             ]}
           >
             <View style={styles.promptHeading}>
@@ -63,7 +64,13 @@ export default function PrayerScreen() {
         {next !== null ? <NextPrayerCard next={next} onElapsed={recompute} /> : null}
 
         {today !== null ? (
-          <View>
+          <View
+            style={[
+              styles.todayCard,
+              theme.elevation.card,
+              { backgroundColor: theme.surfaceGlass, borderColor: theme.borderStrong },
+            ]}
+          >
             <Text style={[textStyles.labelLarge, { color: theme.textSecondary }]}>
               {strings.prayer.todayTitle}
             </Text>
@@ -145,6 +152,11 @@ const styles = StyleSheet.create({
   promptCopy: { flex: 1, gap: spacing.xs },
   dateLine: { marginTop: spacing.xs },
   table: { marginTop: spacing.sm },
+  todayCard: {
+    padding: layout.cardPadding,
+    borderWidth: 1,
+    borderRadius: componentRadius.card,
+  },
   notice: {
     flexDirection: 'row',
     alignItems: 'center',

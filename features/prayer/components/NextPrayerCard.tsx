@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { componentRadius } from '@/constants/radius';
@@ -18,22 +19,9 @@ type NextPrayerCardProps = {
 };
 
 /**
- * Sıradaki vakit + geri sayım.
- *
- * ⚠️ **Kartın kenarlığı YOK.** Dolgu `primarySoft` ve 2.3'te ölçülmüştü:
- * `borderControl` renkli yumuşak dolgu üzerine çizilmez (3.19 açık / **2.39
- * koyu**, 3:1'in altı). Kartı zeminden ayıran şey dolgunun kendisi.
- *
- * ⚠️ **İkincil satır `textSecondary`, `textMuted` DEĞİL** — 2.3'ün kuralı:
- * renkli yumuşak dolgu üzerine `textMuted` gelmez (koyu temada 4.16, AA altı).
- *
- * ⚠️ Erişilebilirlik etiketi **dakika** hassasiyetinde ve tek parça: saniye
- * anons edilseydi ekran okuyucu her saniye yeniden konuşurdu.
- *
- * ⚠️ **Faz 4.2: kart ortalandı ve büyüdü** (saat `h2` → `h1`, geri sayım `h3` →
- * `h2`) ama ölçülmüş renk kararlarının HİÇBİRİ değişmedi. Kartı büyütmek bir
- * düzen işi; dolgu, kenarlıksızlık ve `textSecondary` seçimi kontrast
- * ölçümlerine dayanıyor ve büyümekle geçersizleşmez.
+ * Sıradaki vakit, saat ve geri sayım tek kompakt satırda gösterilir.
+ * Ekran okuyucu etiketi saniyede değişmez; yaklaşık kalan süreyi dakika
+ * hassasiyetinde tek parça olarak taşır.
  */
 export default function NextPrayerCard({ next, onElapsed }: NextPrayerCardProps) {
   const { theme } = useTheme();
@@ -56,36 +44,52 @@ export default function NextPrayerCard({ next, onElapsed }: NextPrayerCardProps)
         vakit: name,
         saat: next.time,
       })}. ${a11yLabel}`}
-      style={[styles.card, { backgroundColor: theme.primarySoft }]}
+      style={[
+        styles.card,
+        theme.elevation.card,
+        { backgroundColor: theme.surfaceGlass, borderColor: theme.secondaryStrong },
+      ]}
     >
-      <Text style={[textStyles.labelMedium, styles.centered, { color: theme.textSecondary }]}>
-        {strings.prayer.nextPrayerLabel}
-      </Text>
+      <View style={[styles.icon, { backgroundColor: theme.secondary }]}>
+        <Ionicons name="time" size={spacing.xl} color={theme.onSecondary} />
+      </View>
 
-      <Text style={[textStyles.h3, styles.centered, { color: theme.textPrimary }]}>{name}</Text>
+      <View style={styles.copy}>
+        <Text style={[textStyles.labelSmall, { color: theme.textSecondary }]}>
+          {strings.prayer.nextPrayerLabel}
+        </Text>
+        <Text style={[textStyles.h4, { color: theme.textPrimary }]}>{name}</Text>
+      </View>
 
-      <Text style={[textStyles.h1, styles.clock, { color: theme.textPrimary }]}>{next.time}</Text>
-
-      <CountdownLabel target={next.at} onElapsed={onElapsed} />
+      <View style={styles.timeBlock}>
+        <Text style={[textStyles.h3, styles.clock, { color: theme.textPrimary }]}>{next.time}</Text>
+        <CountdownLabel compact target={next.at} onElapsed={onElapsed} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    // Dikey nefes yatayın iki katı: kart artık ekranın kahramanı ve
-    // `layout.cardPadding` (16) tek başına onu sıradan bir bloğa benzetiyordu.
-    paddingVertical: spacing.xl,
-    paddingHorizontal: layout.cardPadding,
-    borderRadius: componentRadius.card,
+    minHeight: layout.minTouchTarget + spacing.xl,
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.xs,
+    gap: spacing.md,
+    paddingHorizontal: layout.cardPadding,
+    paddingVertical: spacing.md,
+    borderWidth: 2,
+    borderRadius: componentRadius.card,
   },
-  centered: {
-    textAlign: 'center',
+  icon: {
+    width: layout.minTouchTarget,
+    height: layout.minTouchTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: componentRadius.button,
   },
+  copy: { flex: 1, gap: spacing.xs },
+  timeBlock: { alignItems: 'flex-end', gap: spacing.xs },
   clock: {
-    textAlign: 'center',
     // Saniyeler değişirken rakam genişliği sabit kalsın; sola sağa oynayan bir
     // saat okunurluğu bozar (`PrayerTimesTable` ile aynı tercih).
     fontVariant: ['tabular-nums'],

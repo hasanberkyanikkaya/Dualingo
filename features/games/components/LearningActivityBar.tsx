@@ -11,6 +11,7 @@ import type { ComponentProps } from 'react';
 
 type LearningActivityBarProps = {
   onOpenOrderingRace: () => void;
+  showHeading?: boolean;
 };
 
 type LearningActivity = {
@@ -21,7 +22,10 @@ type LearningActivity = {
   onPress: () => void;
 };
 
-export default function LearningActivityBar({ onOpenOrderingRace }: LearningActivityBarProps) {
+export default function LearningActivityBar({
+  onOpenOrderingRace,
+  showHeading = true,
+}: LearningActivityBarProps) {
   const { theme } = useTheme();
   const activities: readonly LearningActivity[] = [
     {
@@ -35,14 +39,16 @@ export default function LearningActivityBar({ onOpenOrderingRace }: LearningActi
 
   return (
     <View style={styles.root}>
-      <View style={styles.heading}>
-        <Text accessibilityRole="header" style={[textStyles.h4, { color: theme.textPrimary }]}>
-          {strings.games.activityBarTitle}
-        </Text>
-        <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
-          {strings.games.activityBarBody}
-        </Text>
-      </View>
+      {showHeading ? (
+        <View style={styles.heading}>
+          <Text accessibilityRole="header" style={[textStyles.h4, { color: theme.textPrimary }]}>
+            {strings.games.activityBarTitle}
+          </Text>
+          <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
+            {strings.games.activityBarBody}
+          </Text>
+        </View>
+      ) : null}
 
       <ScrollView
         contentContainerStyle={styles.activities}

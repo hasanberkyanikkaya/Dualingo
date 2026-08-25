@@ -13,6 +13,7 @@ type CountdownLabelProps = {
   target: Timestamp | null;
   /** Hedefe varıldığında bir kez çağrılır — sıradaki vakti yeniden hesaplamak için. */
   onElapsed: () => void;
+  compact?: boolean;
 };
 
 /**
@@ -28,7 +29,11 @@ type CountdownLabelProps = {
  * kartın kendisinde (`accessible` sarmalı); 3.3'ün `useCountUp` kararının
  * birebir aynısı.
  */
-export default function CountdownLabel({ target, onElapsed }: CountdownLabelProps) {
+export default function CountdownLabel({
+  target,
+  onElapsed,
+  compact = false,
+}: CountdownLabelProps) {
   const { theme } = useTheme();
   const remaining = useCountdown(target, onElapsed);
   const { hours, minutes, seconds } = splitRemaining(remaining);
@@ -44,7 +49,11 @@ export default function CountdownLabel({ target, onElapsed }: CountdownLabelProp
     <Text
       accessibilityElementsHidden
       importantForAccessibility="no"
-      style={[textStyles.h2, styles.label, { color: theme.textPrimary }]}
+      style={[
+        compact ? textStyles.labelSmall : textStyles.h2,
+        styles.label,
+        { color: compact ? theme.textSecondary : theme.textPrimary },
+      ]}
     >
       {label}
     </Text>

@@ -1,10 +1,11 @@
-import { useMemo, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
+import LearningGamesModal from '@/features/games/components/LearningGamesModal';
 import { getLearningPath } from '@/features/learning/contentLoader';
 import { findCurrentLevelId } from '@/features/learning/levelStatus';
 import { buildMapLayout } from '@/features/learning/pathLayout';
@@ -19,7 +20,7 @@ import type { LevelId } from '@/types';
 
 type LevelMapProps = {
   onSelectLevel: (levelId: LevelId) => void;
-  topContent?: ReactNode;
+  onOpenOrderingRace: () => void;
 };
 
 type CurrentMapPosition = {
@@ -60,10 +61,11 @@ function resolveCurrentPosition(
  * ince kalsın diye (mimari kural 2). Bunun ikinci kazancı: Faz 2.4'te sahte
  * ilerleme gerçek store'la değiştiğinde `/app` altında hiçbir şey değişmiyor.
  */
-export default function LevelMap({ onSelectLevel, topContent }: LevelMapProps) {
+export default function LevelMap({ onSelectLevel, onOpenOrderingRace }: LevelMapProps) {
   const { theme } = useTheme();
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const [gamesVisible, setGamesVisible] = useState(false);
 
   const path = getLearningPath();
   const progress = useLevelProgress();
@@ -90,7 +92,11 @@ export default function LevelMap({ onSelectLevel, topContent }: LevelMapProps) {
   return (
     <View style={styles.root}>
       {currentPosition === null ? null : (
-        <LearningHud streakDays={streakDays} {...currentPosition} />
+        <LearningHud
+          streakDays={streakDays}
+          onOpenGames={() => setGamesVisible(true)}
+          {...currentPosition}
+        />
       )}
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
@@ -102,8 +108,6 @@ export default function LevelMap({ onSelectLevel, topContent }: LevelMapProps) {
             {strings.learn.pathSubtitle}
           </Text>
         </View>
-
-        {topContent}
 
         {!hasContent ? (
           <View style={styles.empty}>
@@ -126,6 +130,12 @@ export default function LevelMap({ onSelectLevel, topContent }: LevelMapProps) {
           ))
         )}
       </ScrollView>
+
+      <LearningGamesModal
+        onClose={() => setGamesVisible(false)}
+        onOpenOrderingRace={onOpenOrderingRace}
+        visible={gamesVisible}
+      />
     </View>
   );
 }
