@@ -41,7 +41,7 @@ export default function PrayerChartScreen() {
     usePrayerChart();
 
   const summary = summarize(cells);
-  const hasMarks = summary.kilindi > 0 || summary.kaza > 0;
+  const hasMarks = summary.kilindi > 0;
 
   const selectedDay =
     selectedDate === null
@@ -115,16 +115,9 @@ export default function PrayerChartScreen() {
         */}
         <View style={styles.summaryBlock}>
           {hasMarks ? (
-            <>
-              <Text style={[textStyles.bodyMedium, { color: theme.textPrimary }]}>
-                {formatString(strings.prayer.chartWeekSummary, { sayi: summary.kilindi })}
-              </Text>
-              {summary.kaza > 0 ? (
-                <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
-                  {formatString(strings.prayer.chartKazaSummary, { sayi: summary.kaza })}
-                </Text>
-              ) : null}
-            </>
+            <Text style={[textStyles.bodyMedium, { color: theme.textPrimary }]}>
+              {formatString(strings.prayer.chartWeekSummary, { sayi: summary.kilindi })}
+            </Text>
           ) : (
             <Text style={[textStyles.bodyMedium, { color: theme.textSecondary }]}>
               {strings.prayer.chartEmpty}

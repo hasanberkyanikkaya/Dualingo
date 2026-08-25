@@ -1,4 +1,5 @@
 import { getDatabase } from '@/lib/database';
+import { enqueueMutation, getActiveOwnerId } from '@/features/sync/localSyncDb';
 
 import type { BadgeId, BadgeUnlock, Timestamp } from '@/types';
 
@@ -31,7 +32,9 @@ export function readEarnedBadges(): BadgeUnlock[] {
     updated_at: number;
     deleted_at: number | null;
   }>(
-    'SELECT badge_id, earned_at, updated_at, deleted_at FROM badge_unlock WHERE deleted_at IS NULL ORDER BY earned_at ASC;',
+    `SELECT badge_id, earned_at, updated_at, deleted_at FROM badge_unlock
+      WHERE owner_id = ? AND deleted_at IS NULL ORDER BY earned_at ASC;`,
+    [getActiveOwnerId(database)],
   );
 
   return rows.map((row) => ({
@@ -48,6 +51,7 @@ export function recordBadgeUnlock(badgeId: BadgeId, earnedAt: Timestamp, now: Ti
   if (database === null) {
     return;
   }
+  const ownerId = getActiveOwnerId(database);
 
   // ⚠️ `MIN(earned_at)`: ikinci yazma ilk kazanım anını EZMEZ. Çağrının
   // idempotent olması bir süs değil — açılıştaki geriye dönük tarama, React
@@ -58,15 +62,25 @@ export function recordBadgeUnlock(badgeId: BadgeId, earnedAt: Timestamp, now: Ti
   // ⚠️ `deleted_at = NULL` **diriltme** satırı: `resetProgress`ten sonra aynı
   // rozet yeniden kazanılırsa satır geri gelmeli (`activityDb`nin aynı kuralı).
   // Kabul edilen bedel: o durumda kart ESKİ tarihi gösterir.
-  database.runSync(
-    `INSERT INTO badge_unlock (badge_id, earned_at, updated_at, deleted_at)
-     VALUES (?, ?, ?, NULL)
-     ON CONFLICT(badge_id) DO UPDATE SET
+  database.withTransactionSync(() => {
+    database.runSync(
+    `INSERT INTO badge_unlock (owner_id, badge_id, earned_at, updated_at, deleted_at)
+     VALUES (?, ?, ?, ?, NULL)
+     ON CONFLICT(owner_id, badge_id) DO UPDATE SET
        earned_at  = MIN(badge_unlock.earned_at, excluded.earned_at),
        updated_at = excluded.updated_at,
        deleted_at = NULL;`,
-    [badgeId, earnedAt, now],
-  );
+      [ownerId, badgeId, earnedAt, now],
+    );
+    enqueueMutation(
+      database,
+      'badge_unlock',
+      badgeId,
+      'upsert',
+      { badgeId, earnedAt },
+      now,
+    );
+  });
 }
 
 /**
@@ -81,9 +95,23 @@ export function softDeleteAllBadges(now: Timestamp): void {
   if (database === null) {
     return;
   }
-
-  database.runSync(
-    'UPDATE badge_unlock SET deleted_at = ?, updated_at = ? WHERE deleted_at IS NULL;',
-    [now, now],
+  const ownerId = getActiveOwnerId(database);
+  const rows = database.getAllSync<{ badge_id: string; earned_at: number }>(
+    `SELECT badge_id, earned_at FROM badge_unlock
+      WHERE owner_id = ? AND deleted_at IS NULL;`,
+    [ownerId],
   );
+  database.withTransactionSync(() => {
+    database.runSync(
+      `UPDATE badge_unlock SET deleted_at = ?, updated_at = ?
+        WHERE owner_id = ? AND deleted_at IS NULL;`,
+      [now, now, ownerId],
+    );
+    for (const row of rows) {
+      enqueueMutation(database, 'badge_unlock', row.badge_id, 'delete', {
+        badgeId: row.badge_id,
+        earnedAt: row.earned_at,
+      }, now);
+    }
+  });
 }

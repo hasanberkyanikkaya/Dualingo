@@ -60,7 +60,8 @@ Duolingo tarzı seviye seviye ilerleyen öğrenme yolu.
 
 ### B — NAMAZ
 - Konum bazlı vakit gösterimi + geri sayım
-- Namaz çizelgesi: günlük 5 vakit işaretleme (kıldım / kılmadım / kaza), haftalık ve aylık görünüm, kaza sayacı
+- Namaz çizelgesi: günlük 5 vakit için kayıt yok / kılındı işareti, haftalık ve aylık görünüm
+- Cennet Bahçesi: toplam işaret ve kayıt günü arttıkça gelişen, gerilemeyen kişisel bahçe
 - Vakit hatırlatıcı bildirimleri (vakit bazında ayarlanabilir)
 - Kıble pusulası
 

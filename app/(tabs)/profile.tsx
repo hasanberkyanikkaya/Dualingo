@@ -71,6 +71,20 @@ export default function ProfileScreen() {
           />
         </View>
 
+        <View style={styles.section}>
+          <Text accessibilityRole="header" style={[textStyles.h3, { color: theme.textPrimary }]}>
+            {strings.profile.accountTitle}
+          </Text>
+          <Text style={[textStyles.bodyMedium, { color: theme.textSecondary }]}>
+            {strings.profile.accountBody}
+          </Text>
+          <Button
+            label={strings.profile.accountAction}
+            onPress={() => router.push('/account')}
+            variant="secondary"
+          />
+        </View>
+
         {/* Ekran dosyası ince kalıyor (mimari kural 2): rozetlerin tamamı
             kendi bölüm bileşeninde. */}
         <BadgeSection />

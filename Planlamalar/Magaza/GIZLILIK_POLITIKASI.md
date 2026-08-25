@@ -1,238 +1,121 @@
 # Gizlilik Politikası — TASLAK
 
-> # ⚠️ BU BİR TASLAKTIR — YAYINDAN ÖNCE HUKUKİ İNCELEME ŞARTTIR
->
-> Bu metin, uygulamanın **kodundan çıkarılmış teknik gerçeğe** dayanarak
-> yazılmıştır; hukuki bir görüş değildir ve bir avukat tarafından
-> yazılmamıştır. Yayına girmeden önce bir hukuk uzmanı tarafından
-> incelenmeli ve onaylanmalıdır. Belgenin sonundaki
-> "Hukukçuya sorulacaklar" bölümü, incelemeye başlanacak yeri gösterir.
-
-> ⚠️ **Markdown dosyası tek başına yeterli DEĞİL.** App Store ve Google Play,
-> gizlilik politikasının **herkese açık, kalıcı bir URL'de** barındırılmasını
-> şart koşar. Bu metnin bir web sayfası olarak yayınlanması gerekir
-> (`{POLİTİKA_URL}`).
+> ⚠️ Bu belge hukuki görüş değildir. Faz 7 hesap ve bulut senkronizasyonu
+> koduna göre güncellenmiştir; yayın öncesinde hukukçu incelemesi, mağaza
+> formlarıyla karşılaştırma ve herkese açık kalıcı bir URL zorunludur.
 
 ## Yer tutucular
 
-Bu belgedeki yer tutucular yayından önce tek geçişte doldurulur:
-
-| Yer tutucu | Bugünkü değer | Not |
-| --- | --- | --- |
-| `{APP_NAME}` | **Dualingo** | ⚠️ **Geçici.** Marka riski var, bkz. `README.md` |
-| `{YAYINCI_ADI}` | — | Mağaza hesabında görünecek yayıncı adı |
-| `{İLETİŞİM_EPOSTA}` | — | ⚠️ Mağaza sayfasında **herkese açık** görünür |
-| `{POLİTİKA_URL}` | — | Bu metnin yayınlanacağı adres |
-| `{YÜRÜRLÜK_TARİHİ}` | — | Yayın günü |
-
----
+| Yer tutucu | Bugünkü değer |
+| --- | --- |
+| `{APP_NAME}` | Dualingo — geçici ad |
+| `{YAYINCI_ADI}` | Doldurulacak |
+| `{İLETİŞİM_EPOSTA}` | Doldurulacak |
+| `{POLİTİKA_URL}` | Doldurulacak |
+| `{YÜRÜRLÜK_TARİHİ}` | Doldurulacak |
 
 # {APP_NAME} Gizlilik Politikası
 
 **Yürürlük tarihi:** {YÜRÜRLÜK_TARİHİ}
+
 **Yayıncı:** {YAYINCI_ADI}
+
 **İletişim:** {İLETİŞİM_EPOSTA}
 
-{APP_NAME}, kişisel verilerinizi toplamadan çalışacak şekilde tasarlanmıştır.
-Bu politika, uygulamanın hangi bilgileri işlediğini ve bu bilgilerin nerede
-durduğunu açıklar.
+{APP_NAME}, hesap açmadan ve çevrimdışı kullanılabilir. İsteğe bağlı hesap
+açarsanız seçtiğiniz uygulama verileri cihazlarınız arasında eşitlenir.
 
-## 1. Toplamadığımız bilgiler
+## 1. İşlenen veriler
 
-{APP_NAME} aşağıdakilerin **hiçbirini toplamaz, istemez ve saklamaz**:
+Hesapsız kullanımda öğrenme, Kur'an ve namaz verileri cihazın uygulama alanında
+saklanır. İsteğe bağlı hesap açıldığında:
 
-- Ad, soyad, kullanıcı adı
-- E-posta adresi, telefon numarası
-- Doğum tarihi, yaş, cinsiyet
-- Rehber, fotoğraf, dosya veya takvim erişimi
-- Ses veya görüntü kaydı
-- Reklam kimliği veya benzersiz cihaz tanımlayıcısı
-- Ödeme bilgisi
+- E-posta adresi ve kimlik doğrulama bilgileri Supabase Auth tarafından işlenir.
+  Parolanın açık metni uygulama veritabanında saklanmaz.
+- XP, seviye, seviye tespit sonucu, günlük hedef, seri girdileri, rozetler ve
+  benzersiz ders denemeleri bulutla eşitlenir.
+- Kur'an son okuma konumu, günlük okuma olayları ve okuma hedefi eşitlenir.
+- İşaretlenen namaz kayıtları yalnız “Namaz kayıtlarını senkronize et” seçeneği
+  ayrıca açılırsa eşitlenir. Bu seçenek kapalıyken kayıtlar cihazdan çıkmaz.
 
-Uygulamada **hesap açma veya giriş yapma yoktur.** Uygulamayı kullanmak için
-kaydolmanız gerekmez.
+Ad-soyad, telefon, ödeme bilgisi, rehber, fotoğraf, dosya, ses/görüntü kaydı,
+reklam kimliği veya kullanıcılar arası mesaj toplanmaz. Reklam, sosyal paylaşım
+ve liderlik tablosu yoktur.
 
-## 2. Cihazınızda saklanan bilgiler
+## 2. Yalnız cihazda kalan veriler
 
-Öğrenme ilerlemeniz **yalnızca kendi cihazınızda** saklanır. Bu bilgiler bize
-veya başka bir tarafa **gönderilmez**. Saklanan veriler şunlardır:
+Seçilen il/ilçe, indirilen namaz vakti önbelleği, bildirim tercihleri, Kur'an
+hatırlatma saati ve arayüz tercihleri bulut senkronuna dahil değildir. Yerel
+bildirimler cihazın zamanlayıcısıyla çalışır; push token alınmaz.
 
-| Veri | Ne işe yarar |
-| --- | --- |
-| Toplam XP puanı | İlerlemenizi göstermek |
-| Tamamlanan seviyeler; her seviye için yıldız, en iyi doğruluk oranı, deneme sayısı ve tarih | Öğrenme haritasında nerede olduğunuzu göstermek |
-| Günlük seri bilgisi (süregelen gün sayısı, en uzun seri, son etkin gün) | Düzenli çalışmayı takip etmek |
-| Seviye tespit sınavı sonucu (belirlenen kademe, sizin beyanınız, doğruluk oranı) | Size uygun noktadan başlatmak |
-| Günlük hedef tercihi | Hedef takibi |
-| Seçtiğiniz il ve ilçe | Namaz vakitlerini doğru yere göre göstermek |
-| İndirilmiş namaz vakti tablosu (yaklaşık bir aylık) | Vakitleri internet olmadan da gösterebilmek |
-| İşaretlediğiniz namaz vakitleri (tarih + vakit adı + kılındı/kaza) | Namaz çizelgenizi göstermek |
-| Namaz vakti bildirim tercihleriniz (hangi vakit açık, kaç dakika sonra) | Hatırlatmaları istediğiniz gibi kurmak |
-| Kur'an okuma hedefiniz, ilerlemeniz ve günlük hatırlatma saatiniz | Hedef ilerlemesini göstermek ve seçtiğiniz saatte hatırlatmak |
+“Konumumdan bul” kullanılırsa konum düşük hassasiyetle bir kez okunur ve ilçe
+önerisine çevrilir. Koordinat uygulama veritabanında saklanmaz veya bizim
+sunucumuza gönderilmez. iOS coğrafi kodlama için Apple hizmetini kullanabilir.
 
-Bu veriler cihazın kendi güvenli uygulama alanında tutulur ve yalnızca
-{APP_NAME} tarafından okunabilir.
+## 3. Ağ bağlantıları ve hizmet sağlayıcılar
 
-## 3. İnternet bağlantısı — cihazdan çıkan tek trafik
+- **Supabase:** isteğe bağlı hesap, kimlik doğrulama, bulut senkronizasyonu ve
+  hesap silme. Hesapla eşitlenen veriler kullanıcı kimliğiyle ilişkilidir.
+- **Expo / EAS Update:** uygulama ve içerik güncelleme kontrolü.
+- **ezanvakti.emushaf.net:** seçilen ilçe numarasıyla namaz vakti indirme.
+- **İçerik sunucusu:** ders sesi özelliği açıldığında ses dosyası indirme; bugün
+  sunucu adresi boş olduğu için bu trafik kapalıdır.
+- **Apple:** iOS'ta isteğe bağlı konumdan ilçe bulma sırasında coğrafi kodlama.
 
-Uygulama çevrimdışı çalışacak şekilde tasarlanmıştır. Ders içeriği uygulamanın
-içinde gömülü gelir. İnternete yalnızca aşağıdaki üç durumda bağlanılır:
+Bu hizmetlere yapılan ağ istekleri IP adresi, platform ve sürüm gibi olağan
+teknik bilgileri hizmet sağlayıcıya gösterebilir. Veri satılmaz, kiralanmaz,
+pazarlama veya uygulamalar arası takip için kullanılmaz.
 
-**a) Güncelleme kontrolü.** Uygulama açıldığında, ders içeriğinde veya
-uygulamada bir düzeltme yayınlanıp yayınlanmadığını kontrol etmek için Expo
-(EAS Update) güncelleme sunucusuna bağlanır. Bu istekte kişisel veriniz
-gönderilmez; teknik olarak karşı tarafa IP adresiniz, cihaz platformunuz
-(iOS/Android) ve uygulamanın sürüm bilgisi ulaşır. İlerleme verileriniz bu
-isteğe **dahil edilmez**.
+## 4. İşleme amacı ve tercih
 
-**b) Ders sesleri.** Bazı sorular sesli okuma içerir. Ses dosyaları uygulamanın
-içinde gelmez; ihtiyaç duyulduğunda bir içerik sunucusundan indirilir ve
-cihazınızda geçici olarak saklanır. Bu istekte de kişisel veriniz gönderilmez.
+Veriler yalnız giriş, cihazlar arası yedekleme/eşitleme ve kullanıcının seçtiği
+uygulama işlevlerini sunmak için işlenir. Hesap açmak zorunlu değildir. Namaz
+kayıtlarının bulut aktarımı genel hesap senkronundan ayrı bir tercihtir ve
+sonradan kapatılabilir. Tercihi kapatmak yeni aktarımı durdurur; önceden
+aktarılmış verinin silinmesi için hesap silme veya destek talebi gerekir.
 
-> ℹ️ **Bu sürümde ses indirme fiilen kapalıdır.** Ses sunucusu adresi henüz
-> tanımlanmamıştır; uygulama bu sürümde ses için hiçbir ağ isteği yapmaz.
-> Sorular yazılı karşılıklarıyla çalışır. Bu madde, özellik açıldığında
-> geçerli olacak durumu tarif eder.
+## 5. Saklama, silme ve kullanıcı hakları
 
-**c) Namaz vakitleri.** Namaz sekmesini kullandığınızda, seçtiğiniz ilçenin
-vakitlerini indirmek için `ezanvakti.emushaf.net` adresine bağlanılır. Bu
-istekte gönderilen tek bilgi **seçtiğiniz ilçenin numarasıdır**; adınız,
-kimliğiniz veya öğrenme ilerlemeniz gönderilmez. İndirilen tablo yaklaşık bir
-aylık olduğu için bu istek seyrek yapılır (kalan gün sayısı azaldığında), ve
-arada uygulama vakitleri **internetsiz** gösterir.
+- Hesapsız yerel veriler uygulama silindiğinde cihazdan kaldırılır.
+- Çıkış yapıldığında ilgili hesabın bu cihazdaki uygulama verisi temizlenir;
+  bulut kopyası hesapta kalır ve tekrar girişte geri alınabilir.
+- Uygulamadaki “Hesabı sil” işlemi Auth hesabını ve ona bağlı senkron kayıtlarını
+  silmek üzere tasarlanmıştır.
+- Erişim, düzeltme, veri dışa aktarma veya silme talepleri
+  `{İLETİŞİM_EPOSTA}` adresine gönderilebilir.
 
-## 3b. Konum izni — isteğe bağlı
+Yedeklerin silinme süresi, hesap silme işleminin üretim ortamındaki sonucu ve
+yasal saklama istisnaları yayın öncesi kesin sürelerle bu bölüme eklenmelidir.
 
-Namaz vakitleri **ilçe seçimine** göre gösterilir ve ilçeyi listeden elle
-seçebilirsiniz. Konum izni **zorunlu değildir**; uygulama izin istemeden de tam
-olarak çalışır.
+## 6. Güvenlik ve uluslararası aktarım
 
-"Konumumdan bul" seçeneğini kullanırsanız:
+Ağ trafiği HTTPS kullanır; her kullanıcı yalnız kendi satırlarına erişecek RLS
+politikalarıyla sınırlandırılır; mobil uygulamada yönetici anahtarı bulunmaz;
+oturum belirteçleri işletim sisteminin güvenli depolama alanında tutulur.
+Bulut verileri uçtan uca şifreli değildir. Supabase proje bölgesi, alt işleyenler
+ve olası uluslararası aktarım yayın öncesi açıklanmalıdır.
 
-- Cihazınızın konumu **düşük hassasiyetle** ve **yalnızca o an** okunur.
-- Konum, bulunduğunuz ilçenin adına çevrilmek üzere **cihazınızın işletim
-  sisteminin coğrafi kodlama servisine** verilir. iOS'ta bu işlem Apple'ın
-  sunucusunda, Android'de cihaz üzerinde yapılır.
-- Konumunuz **bizim sunucumuza gönderilmez**, `ezanvakti.emushaf.net`'e
-  gönderilmez ve cihazınızda **saklanmaz**.
-- Saklanan tek şey, bulunan ilçeyi **onaylamanız durumunda** o ilçenin
-  seçiminizdir.
+## 7. Çocuklar
 
-Bunların dışında uygulama **hiçbir sunucuya bağlanmaz.**
+Uygulamanın yaş sınırı henüz kararlaştırılmamıştır. E-posta hesabı kişisel veri
+işlediği için çocuklara yönelik dağıtım, ebeveyn izni ve yaş doğrulama yaklaşımı
+hukuki inceleme tamamlanmadan hesap özelliği üretimde açılmamalıdır.
 
-## 3c. Bildirimler — tamamen cihazınızda
+## 8. Değişiklikler ve iletişim
 
-Namaz vakti ve Kur'an okuma hedefi hatırlatmaları **yerel bildirimdir**:
-cihazınızın kendi zamanlayıcısına kurulur ve doğrudan cihazınız tarafından
-gösterilir.
+Politika değiştiğinde yürürlük tarihi güncellenir ve güncel metin
+`{POLİTİKA_URL}` adresinde yayımlanır. Sorular için:
+`{İLETİŞİM_EPOSTA}`.
 
-- Bildirimler için **hiçbir sunucuya bağlanılmaz.**
-- **Cihaz bildirim jetonu (push token) alınmaz**, saklanmaz ve kimseyle
-  paylaşılmaz. Uzaktan bildirim (push) gönderme özelliği **yoktur**.
-- Hangi vakitler ve hangi Kur'an hedefi saati için bildirim istediğiniz
-  **yalnızca cihazınızda** saklanır.
-- Bildirim izni **zorunlu değildir**; izin vermezseniz uygulamanın geri kalanı
-  tam olarak çalışır. İzni istediğiniz zaman cihaz ayarlarından kapatabilir,
-  hatırlatmaları uygulama içinden kapatabilirsiniz.
+## Hukukçuya sorulacaklar
 
-## 4. Üçüncü taraflar
-
-- **Expo (EAS Update)** — yalnızca yukarıda anlatılan güncelleme kontrolü için.
-- **İçerik sunucusu** — yalnızca ders seslerini indirmek için (bu sürümde kapalı).
-- **ezanvakti.emushaf.net** — yalnızca seçtiğiniz ilçenin namaz vakti tablosunu
-  indirmek için. Bu servis, Diyanet İşleri Başkanlığı'nın yayınladığı vakitleri
-  yeniden sunan bağımsız bir üçüncü taraftır; uygulamamız Diyanet İşleri
-  Başkanlığı'na ait değildir ve kurumla bir bağlantısı yoktur.
-- **Apple (iOS'ta konum → adres çevirimi)** — yalnızca "Konumumdan bul"
-  seçeneğini kullanırsanız.
-
-Uygulamada **reklam ağı yoktur, analitik/ölçümleme aracı yoktur, sosyal medya
-takip kodu yoktur, çerez kullanılmaz.** Verileriniz hiç kimseye satılmaz,
-kiralanmaz veya pazarlama amacıyla paylaşılmaz.
-
-## 5. Çocuklar
-
-{APP_NAME}'in yaş sınırı yoktur ve her yaştan kullanıcıya açıktır. Uygulama
-hiçbir kullanıcıdan kişisel veri toplamadığı için, çocuklardan da kişisel veri
-toplamaz. Hesap, mesajlaşma, kullanıcı içeriği paylaşımı veya başka
-kullanıcılarla etkileşim özelliği yoktur.
-
-## 6. Haklarınız ve verinizi silmek
-
-Verilerinizin tamamı cihazınızda olduğu için kontrol tamamen sizdedir:
-
-- **Uygulamayı silmek, sakladığı tüm verileri de siler.** Ayrıca bir talep
-  göndermenize gerek yoktur.
-- Uygulama içinden **ilerlemeyi sıfırlayabilirsiniz**; bu işlem XP, seviye,
-  seri ve seviye tespit sonucunuzu kalıcı olarak siler.
-
-Elimizde sizinle ilişkilendirilebilecek bir veri bulunmadığı için, bize
-gönderilecek bir erişim veya silme talebiyle karşılığı olan bir kayıt
-bulunmamaktadır.
-
-## 7. Güvenlik
-
-İlerleme veriniz cihazdan çıkmadığı için ağ üzerinde ele geçirilme riski
-taşımaz. Güncelleme ve ses indirme istekleri şifreli bağlantı (HTTPS)
-üzerinden yapılır.
-
-## 8. Bu politikadaki değişiklikler
-
-Uygulamaya yeni bir özellik eklendiğinde (örneğin namaz vakti hatırlatıcıları
-veya bulut yedekleme) bu politika güncellenir ve yürürlük tarihi değiştirilir.
-Güncel metin her zaman {POLİTİKA_URL} adresinde yayınlanır.
-
-## 9. İletişim
-
-Sorularınız için: {İLETİŞİM_EPOSTA}
-
----
-
-# Hukukçuya sorulacaklar
-
-⚠️ Aşağıdaki maddeler bilinçli olarak **cevaplanmadan bırakılmıştır.** Metin
-teknik gerçeği doğru anlatıyor; bu maddeler o gerçeğin hukuki karşılığıdır ve
-uzman görüşü ister.
-
-1. **KVKK aydınlatma metni.** İlk pazar Türkiye. Kişisel veri "toplanmıyor"
-   olması KVKK kapsamında ayrı bir aydınlatma metni gerekliliğini ortadan
-   kaldırıyor mu? Veri sorumlusu kaydı (VERBİS) gerekiyor mu?
-2. **IP adresinin durumu.** Güncelleme sunucusuna ulaşan IP adresi, KVKK ve
-   GDPR kapsamında kişisel veri sayılıyor. Bu isteği biz yapmıyoruz, uygulamanın
-   güncelleme altyapısı yapıyor. Politikada "toplamıyoruz" demek doğru mu, yoksa
-   ayrı bir başlık mı açılmalı? ⚠️ **Aynı soru mağaza formlarında da karşımıza
-   çıkıyor** — bkz. `VERI_GUVENLIGI_FORMU.md`.
-3. **Expo'nun veri işleme şartları.** Üçüncü taraf olarak Expo'nun kendi
-   sözleşmesine atıf yapılmalı mı, bağlantı verilmeli mi?
-4. **Çocuk kullanıcılar.** Yaş sınırı olmayan bir uygulama için COPPA (ABD) ve
-   GDPR-K hükümleri; Türkiye dışına açılırsa ne değişir?
-5. **Yaş derecelendirmesi ile tutarlılık.** Mağaza yaş derecelendirme anketinde
-   verilecek cevaplar bu metinle çelişmemeli.
-6. **Dini içerik.** Uygulama dini eğitim içeriği sunuyor. Bu, "özel nitelikli
-   kişisel veri" (din/inanç) kapsamında bir yükümlülük doğurur mu? Kullanıcının
-   dini hakkında bir veri toplanmıyor, ancak uygulamayı indirmiş olmanın kendisi
-   böyle bir çıkarıma açık mı?
-7. **Yayıncı kimliği.** Şahıs olarak mı, şirket olarak mı yayınlanacak? Mağazada
-   görünecek yayıncı adı ve iletişim adresi buna göre değişir.
-
-⚠️ **Faz 4.1 ile eklenen üç yeni madde:**
-
-8. **Konumun hukuki durumu.** Konum tek seferlik okunuyor, ilçe adına
-   çevriliyor ve **saklanmıyor**; saklanan tek şey kullanıcının onayladığı ilçe
-   kimliği. KVKK/GDPR açısından bu "konum verisi işleme" sayılır mı, yoksa
-   saklanmayan anlık bir işlem olarak mı değerlendirilir? Açık rıza metni
-   gerekiyor mu, yoksa işletim sisteminin izin diyaloğu yeterli mi?
-9. **iOS'ta konumun Apple'a gitmesi.** `reverseGeocodeAsync` iOS'ta koordinatı
-   Apple'ın sunucusuna gönderiyor (CLGeocoder); bu bizim tercihimiz değil,
-   platformun uygulaması. Politikada bunu açıklamak yeterli mi, yoksa Apple ayrı
-   bir "üçüncü taraf veri işleyen" olarak mı listelenmeli?
-10. **Diyanet'in verisinin yeniden kullanımı.** Vakitler
-    `ezanvakti.emushaf.net` üzerinden alınıyor; bu servis Diyanet İşleri
-    Başkanlığı'nın yayınladığı tabloları yeniden sunan **bağımsız bir üçüncü
-    taraf** ve **yazılı bir kullanım şartı yayınlamıyor**. (a) Bu veriyi bir
-    mobil uygulamada göstermek FSEK Ek m.8 (sui generis veritabanı hakkı)
-    açısından risk taşır mı? (b) Ekranda kullandığımız atıf cümlesi —
-    *"Diyanet İşleri Başkanlığı'nın yayınladığı vakitler"* — yeterli mi, yoksa
-    kurum adını hiç anmamak mı gerekir? ⚠️ "Resmi" ve "onaylı" ifadeleri zaten
-    hiçbir yerde kullanılmıyor. (c) Servis kapanırsa ya da şartlarını
-    değiştirirse sorumluluğumuz ne olur?
+1. Türkiye ilk pazarı için KVKK aydınlatma/açık rıza, VERBİS ve veri sorumlusu
+   yükümlülükleri nelerdir?
+2. Namaz takibi ve uygulama kullanımının din/inanç çıkarımı oluşturması özel
+   nitelikli veri sayılır mı; ayrı anahtar yeterli midir?
+3. Çocuk hedef kitlesi, yaş kapısı ve ebeveyn izni nasıl uygulanmalıdır?
+4. Supabase bölgesi, DPA/SCC, alt işleyenler, yedek saklama ve hesap silme süresi
+   nasıl beyan edilmelidir?
+5. Expo, Apple coğrafi kodlama ve namaz vakti servisinin IP/log işlemesi mağaza
+   formlarında hangi kategorilere girer?
+6. Kur'an meali ve namaz vakti kaynağının yeniden kullanım izinleri nelerdir?

@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { getPermission, requestPermission } from '@/features/prayer/notifications';
+import { TRACKABLE_PRAYERS } from '@/features/prayer/prayerDay';
 import {
   invalidateNotificationPlan,
   syncPrayerNotifications,
 } from '@/features/prayer/notificationSync';
-import { readNotificationPrefs, setNotificationPref } from '@/features/prayer/prayerNotificationDb';
+import {
+  readNotificationPrefs,
+  setAllNotificationPrefs,
+  setNotificationPref,
+} from '@/features/prayer/prayerNotificationDb';
 import { resolvePref } from '@/features/prayer/prayerNotify';
 
 import type { NotificationPermission } from '@/features/prayer/notifications';
@@ -94,6 +99,25 @@ export function usePrayerNotifications() {
     [prefs, write],
   );
 
+  const setAll = useCallback((enabled: boolean) => {
+    const now = Date.now();
+    setAllNotificationPrefs(TRACKABLE_PRAYERS, enabled, 0, now);
+
+    const next: PrayerNotificationPrefMap = {};
+    for (const prayer of TRACKABLE_PRAYERS) {
+      next[prayer] = {
+        prayer,
+        enabled,
+        offsetMinutes: 0,
+        updatedAt: now,
+        deletedAt: null,
+      };
+    }
+    setPrefs(next);
+    invalidateNotificationPlan();
+    void syncPrayerNotifications();
+  }, []);
+
   /** İzin ekranı arka planda değişmiş olabilir (kullanıcı ayarlara gidip döndü). */
   const refreshPermission = useCallback(() => {
     void (async () => {
@@ -102,5 +126,5 @@ export function usePrayerNotifications() {
     })();
   }, []);
 
-  return { prefs, permission, toggle, setOffset, refreshPermission };
+  return { prefs, permission, toggle, setOffset, setAll, refreshPermission };
 }

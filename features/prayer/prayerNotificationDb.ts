@@ -105,3 +105,31 @@ export function setNotificationPref(
     [prayer, enabled ? 1 : 0, offsetMinutes, now],
   );
 }
+
+/** Bütün vakitlerin açık/kapalı kararını tek işlemde yazar. */
+export function setAllNotificationPrefs(
+  prayers: readonly PrayerName[],
+  enabled: boolean,
+  offsetMinutes: PrayerNotificationOffset,
+  now: Timestamp,
+): void {
+  const database = getDatabase();
+  if (database === null) {
+    return;
+  }
+
+  database.withTransactionSync(() => {
+    for (const prayer of prayers) {
+      database.runSync(
+        `INSERT INTO prayer_notification (prayer, enabled, offset_minutes, updated_at, deleted_at)
+         VALUES (?, ?, ?, ?, NULL)
+         ON CONFLICT(prayer) DO UPDATE SET
+           enabled = excluded.enabled,
+           offset_minutes = excluded.offset_minutes,
+           updated_at = excluded.updated_at,
+           deleted_at = NULL;`,
+        [prayer, enabled ? 1 : 0, offsetMinutes, now],
+      );
+    }
+  });
+}

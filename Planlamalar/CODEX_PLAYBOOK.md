@@ -415,7 +415,7 @@ gün dönümü, yatsı sonrası, saat dilimi değişimi.
 Önce plan çıkar:
 
 Namaz takip çizelgesi:
-- Günlük 5 vakit için 3 durum: kıldım / kılmadım / kaza
+- Günlük 5 vakit için 2 durum: kayıt yok / kılındı
 - Haftalık ızgara görünümü
 - Aylık takvim görünümü
 - SQLite'ta saklama (updatedAt/deletedAt ile)

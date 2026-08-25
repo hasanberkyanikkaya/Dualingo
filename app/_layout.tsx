@@ -1,4 +1,6 @@
 import { ThemeProvider } from '@react-navigation/native';
+import NetInfo from '@react-native-community/netinfo';
+import * as Linking from 'expo-linking';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -9,6 +11,9 @@ import { prepareNotifications } from '@/features/prayer/notifications';
 import { syncQuranGoalNotification } from '@/features/quran/goalNotificationSync';
 import { buildNavigationTheme } from '@/lib/navigationTheme';
 import { useTheme } from '@/lib/useTheme';
+import { handleAuthCallback, useAccountStore } from '@/features/account/store';
+import { getSupabaseClient } from '@/features/account/supabase';
+import { requestSync } from '@/features/sync/syncEngine';
 
 /**
  * Kök yerleşim.
@@ -37,17 +42,37 @@ export default function RootLayout() {
     void (async () => {
       await prepareNotifications();
       await Promise.all([syncPrayerNotifications(), syncQuranGoalNotification()]);
+      await useAccountStore.getState().initialize();
+      const initialUrl = await Linking.getInitialURL();
+      if (initialUrl !== null) {
+        await handleAuthCallback(initialUrl);
+      }
+      await requestSync();
     })();
 
     const subscription = AppState.addEventListener('change', (status) => {
       if (status === 'active') {
+        getSupabaseClient()?.auth.startAutoRefresh();
         void syncPrayerNotifications();
         void syncQuranGoalNotification();
+        void requestSync();
+      } else {
+        getSupabaseClient()?.auth.stopAutoRefresh();
+      }
+    });
+    const linkingSubscription = Linking.addEventListener('url', ({ url }) => {
+      void handleAuthCallback(url).then(requestSync);
+    });
+    const networkSubscription = NetInfo.addEventListener((state) => {
+      if (state.isConnected) {
+        void requestSync();
       }
     });
 
     return () => {
       subscription.remove();
+      linkingSubscription.remove();
+      networkSubscription();
     };
   }, []);
 

@@ -21,20 +21,17 @@ type PrayerMonthGridProps = {
 };
 
 /** Hücrenin özet şeridi için sayım. */
-function countMarks(day: ChartDay): { kilindi: number; kaza: number } {
+function countMarks(day: ChartDay): number {
   let kilindi = 0;
-  let kaza = 0;
 
   for (const prayer of CHART_PRAYERS) {
     const status = day.marks[prayer];
     if (status === 'kilindi') {
       kilindi += 1;
-    } else if (status === 'kaza') {
-      kaza += 1;
     }
   }
 
-  return { kilindi, kaza };
+  return kilindi;
 }
 
 /**
@@ -78,7 +75,7 @@ export default function PrayerMonthGrid({ cells, selectedDate, onSelect }: Praye
             return <View key={`empty-${index}`} style={styles.cell} />;
           }
 
-          const { kilindi, kaza } = countMarks(cell);
+          const kilindi = countMarks(cell);
           const isSelected = cell.date === selectedDate;
           const short = shortDateTr(cell.date) ?? cell.date;
 
@@ -90,7 +87,6 @@ export default function PrayerMonthGrid({ cells, selectedDate, onSelect }: Praye
               accessibilityLabel={formatString(strings.a11y.prayerChartDay, {
                 tarih: short,
                 kilinan: kilindi,
-                kaza,
               })}
               // ⚠️ Gelecek gün de SEÇİLEBİLİR, düzenlenemez. Hücreyi
               // basılamaz yapmak sessiz bir duvar olurdu: kullanıcı dokunur,
@@ -131,9 +127,7 @@ export default function PrayerMonthGrid({ cells, selectedDate, onSelect }: Praye
                       name={
                         status === 'kilindi'
                           ? 'checkmark-circle'
-                          : status === 'kaza'
-                            ? 'refresh-circle'
-                            : 'ellipse-outline'
+                          : 'ellipse-outline'
                       }
                       // ⚠️ 8 dp: 320 dp genişliğinde bir ekranda hücre ~45 dp
                       // ve beş ikon 40 dp tutuyor. `spacing.md` (12) seçilseydi
@@ -142,9 +136,7 @@ export default function PrayerMonthGrid({ cells, selectedDate, onSelect }: Praye
                       color={
                         status === 'kilindi'
                           ? theme.primary
-                          : status === 'kaza'
-                            ? theme.secondaryStrong
-                            : theme.border
+                          : theme.border
                       }
                     />
                   );

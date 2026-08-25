@@ -1,7 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '@/components/Button';
@@ -11,7 +18,7 @@ import { layout, spacing } from '@/constants/spacing';
 import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import DistrictPickerList from '@/features/prayer/components/DistrictPickerList';
-import { matchLocation } from '@/features/prayer/districtMatch';
+import { matchLocation, normalizePlaceName } from '@/features/prayer/districtMatch';
 import { lookupCurrentPlace } from '@/features/prayer/location';
 import { fetchCities, fetchDistricts } from '@/features/prayer/prayerApi';
 import { usePrayerStore } from '@/features/prayer/store';
@@ -20,21 +27,6 @@ import { useTheme } from '@/lib/useTheme';
 
 import type { PrayerCity, PrayerDistrict } from '@/types';
 
-/**
- * İlçe seçim ekranı.
- *
- * ⚠️ **Konum izni istemeden ilerleyen yol her zaman açık** (4.0 kararı):
- * "Konumumdan bul" bir kısayol, zorunluluk değil. Ekran il listesiyle açılıyor;
- * kullanıcı düğmeye hiç dokunmadan seçimini tamamlayabilir.
- *
- * ⚠️ Konum eşleşse bile **otomatik seçim yapılmıyor** — sonuç bir öneri kartı
- * olarak gösterilip onaya sunuluyor. Yanlış ilçe = yanlış vakit, bu modülün tek
- * kabul edilemez hatası.
- *
- * ⚠️ Ekran `Screen` kullanmıyor: odaklanmış bir bağlam, mercan şerit yok
- * (ders ekranının 2.3'teki aynı kararı). Bu yüzden güvenli alan payını kendisi
- * çiziyor ve DÖRT kenarı da alıyor.
- */
 export default function DistrictScreen() {
   const { theme } = useTheme();
   const selectDistrict = usePrayerStore((state) => state.selectDistrict);
@@ -43,27 +35,26 @@ export default function DistrictScreen() {
   const [cities, setCities] = useState<PrayerCity[]>([]);
   const [districts, setDistricts] = useState<PrayerDistrict[]>([]);
   const [city, setCity] = useState<PrayerCity | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [selectedDistrict, setSelectedDistrict] = useState<PrayerDistrict | null>(null);
+  const [query, setQuery] = useState('');
+  const [listLoading, setListLoading] = useState(true);
+  const [locating, setLocating] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-  const [suggestion, setSuggestion] = useState<{ city: PrayerCity; district: PrayerDistrict } | null>(
-    null,
-  );
+  const [suggestedDistrictId, setSuggestedDistrictId] = useState<string | null>(null);
 
   const loadCities = useCallback(async () => {
-    setLoading(true);
+    setListLoading(true);
     const outcome = await fetchCities();
-    setLoading(false);
+    setListLoading(false);
 
     if (outcome.kind !== 'ok' || outcome.data.length === 0) {
-      // ⚠️ Listeler SQLite'a yazılmıyor (üçüncü tarafın kataloğu, kullanıcı
-      // verisi değil), dolayısıyla ilk açılışta ağ yoksa seçim yapılamaz.
-      // Bilinçli olarak kabul edilen sonuç; dürüst bir boş durum gösteriliyor.
       setMessage(strings.prayer.listUnavailable);
       return;
     }
 
-    setMessage(null);
     setCities(outcome.data);
+    setMessage(null);
   }, []);
 
   useEffect(() => {
@@ -72,9 +63,13 @@ export default function DistrictScreen() {
 
   const openCity = useCallback(async (target: PrayerCity): Promise<PrayerDistrict[]> => {
     setCity(target);
-    setLoading(true);
+    setSelectedDistrict(null);
+    setSuggestedDistrictId(null);
+    setQuery('');
+    setListLoading(true);
+
     const outcome = await fetchDistricts(target.cityId);
-    setLoading(false);
+    setListLoading(false);
 
     if (outcome.kind !== 'ok' || outcome.data.length === 0) {
       setMessage(strings.prayer.listUnavailable);
@@ -82,40 +77,47 @@ export default function DistrictScreen() {
       return [];
     }
 
-    setMessage(null);
     setDistricts(outcome.data);
+    setMessage(null);
     return outcome.data;
   }, []);
 
-  const commit = useCallback(
-    (target: PrayerCity, district: PrayerDistrict) => {
-      selectDistrict(target, district);
-      // İlçe seçildikten sonra çekim ZORUNLU: yeni ilçenin hiç verisi yok ve
-      // kullanıcı boş bir ekrana dönmemeli.
-      void refresh(true);
-      router.back();
-    },
-    [refresh, selectDistrict],
-  );
-
-  const findFromLocation = useCallback(async () => {
-    setSuggestion(null);
-    setLoading(true);
-    const place = await lookupCurrentPlace();
-
-    if (place.kind === 'denied') {
-      setLoading(false);
-      setMessage(strings.prayer.locationDenied);
+  const commit = useCallback(async () => {
+    if (city === null || selectedDistrict === null) {
       return;
     }
 
+    setSubmitting(true);
+    setMessage(null);
+    selectDistrict(city, selectedDistrict);
+    await refresh(true);
+    setSubmitting(false);
+
+    if (usePrayerStore.getState().today === null) {
+      setMessage(strings.prayer.locationSavedNoTimes);
+      return;
+    }
+
+    router.back();
+  }, [city, refresh, selectDistrict, selectedDistrict]);
+
+  const findFromLocation = useCallback(async () => {
+    setLocating(true);
+    setMessage(null);
+    setSuggestedDistrictId(null);
+
+    const place = await lookupCurrentPlace();
+    if (place.kind === 'denied') {
+      setLocating(false);
+      setMessage(strings.prayer.locationDenied);
+      return;
+    }
     if (place.kind === 'unavailable') {
-      setLoading(false);
+      setLocating(false);
       setMessage(strings.prayer.locationUnavailable);
       return;
     }
 
-    // İl önce eşleşmeli; ilçe listesi ancak ondan sonra indirilebiliyor.
     const cityOnly = matchLocation({
       countryCode: place.countryCode,
       cityCandidates: place.cityCandidates,
@@ -125,19 +127,17 @@ export default function DistrictScreen() {
     });
 
     if (cityOnly.kind === 'outsideTurkey') {
-      setLoading(false);
+      setLocating(false);
       setMessage(strings.prayer.turkeyOnly);
       return;
     }
-
     if (cityOnly.kind === 'none') {
-      setLoading(false);
+      setLocating(false);
       setMessage(strings.prayer.locationNoMatch);
       return;
     }
 
     const list = await openCity(cityOnly.city);
-
     const full = matchLocation({
       countryCode: place.countryCode,
       cityCandidates: place.cityCandidates,
@@ -146,30 +146,37 @@ export default function DistrictScreen() {
       districts: list,
     });
 
+    setLocating(false);
     if (full.kind === 'district') {
-      // ⚠️ Otomatik SEÇİLMİYOR — öneri olarak gösterilip onaya sunuluyor.
-      setSuggestion({ city: full.city, district: full.district });
-      setMessage(null);
+      setSelectedDistrict(full.district);
+      setSuggestedDistrictId(full.district.districtId);
+      setMessage(formatString(strings.prayer.locationMatched, { ilce: full.district.name }));
       return;
     }
 
-    // İl tuttu ama ilçe emin değil: kullanıcı zaten o ilin listesinde duruyor.
-    setMessage(strings.prayer.locationNoMatch);
+    setMessage(strings.prayer.locationCityMatched);
   }, [cities, openCity]);
 
   const showingDistricts = city !== null;
+  const normalizedQuery = normalizePlaceName(query);
+  const visibleCities = cities.filter((item) =>
+    normalizePlaceName(item.name).includes(normalizedQuery),
+  );
+  const visibleDistricts = districts.filter((item) =>
+    normalizePlaceName(item.name).includes(normalizedQuery),
+  );
+  const visibleItems = showingDistricts
+    ? visibleDistricts.map((item) => ({ id: item.districtId, name: item.name }))
+    : visibleCities.map((item) => ({ id: item.cityId, name: item.name }));
 
   return (
-    <SafeAreaView edges={['top', 'bottom', 'left', 'right']} style={[styles.root, { backgroundColor: theme.background }]}>
+    <SafeAreaView
+      edges={['top', 'bottom', 'left', 'right']}
+      style={[styles.root, { backgroundColor: theme.background }]}
+    >
       <Stack.Screen options={{ title: strings.prayer.selectDistrictTitle }} />
 
       <View style={styles.content}>
-        {/*
-          ⚠️ Kapatma düğmesi ELLE çiziliyor: kök yerleşim `headerShown: false`
-          veriyor (`app/_layout.tsx`), yani navigatörün geri düğmesi yok.
-          Olmasaydı ekrandan çıkışın tek yolu iOS'ta kenardan kaydırma, Android'de
-          donanım tuşu olurdu — ikisi de görünmez.
-        */}
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={strings.a11y.closeButton}
@@ -186,11 +193,30 @@ export default function DistrictScreen() {
         />
 
         {!showingDistricts ? (
-          <View style={styles.locationBlock}>
-            <Button label={strings.prayer.useLocation} variant="ghost" onPress={() => void findFromLocation()} />
-            <Text style={[textStyles.caption, { color: theme.textMuted }]}>
-              {strings.prayer.locationHint}
-            </Text>
+          <View
+            style={[
+              styles.locationCard,
+              { backgroundColor: theme.surfaceAlt, borderColor: theme.borderControl },
+            ]}
+          >
+            <View style={styles.locationCopy}>
+              <Ionicons name="navigate-circle-outline" size={spacing.xl} color={theme.primary} />
+              <View style={styles.locationText}>
+                <Text style={[textStyles.labelLarge, { color: theme.textPrimary }]}>
+                  {strings.prayer.locationCardTitle}
+                </Text>
+                <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
+                  {strings.prayer.locationHint}
+                </Text>
+              </View>
+            </View>
+            <Button
+              label={strings.prayer.useLocation}
+              variant="secondary"
+              disabled={cities.length === 0}
+              loading={locating}
+              onPress={() => void findFromLocation()}
+            />
           </View>
         ) : (
           <Button
@@ -199,89 +225,161 @@ export default function DistrictScreen() {
             onPress={() => {
               setCity(null);
               setDistricts([]);
+              setSelectedDistrict(null);
+              setSuggestedDistrictId(null);
+              setQuery('');
               setMessage(null);
             }}
           />
         )}
 
-        {suggestion !== null ? (
-          // ⚠️ Metin "bulunduğun ilçe" diyor, "en yakın ilçe" DEMİYOR: servis
-          // koordinat vermiyor, ortada bir mesafe hesabı yok.
-          <View style={[styles.suggestion, { backgroundColor: theme.primarySoft }]}>
-            <Text style={[textStyles.bodyStrong, { color: theme.textPrimary }]}>
-              {formatString(strings.prayer.locationMatched, { ilce: suggestion.district.name })}
+        <View
+          style={[
+            styles.search,
+            { backgroundColor: theme.surface, borderColor: theme.borderControl },
+          ]}
+        >
+          <Ionicons name="search" size={spacing.xl} color={theme.textMuted} />
+          <TextInput
+            accessibilityLabel={
+              showingDistricts ? strings.prayer.searchDistrict : strings.prayer.searchCity
+            }
+            autoCapitalize="words"
+            autoCorrect={false}
+            placeholder={
+              showingDistricts ? strings.prayer.searchDistrict : strings.prayer.searchCity
+            }
+            placeholderTextColor={theme.textMuted}
+            value={query}
+            onChangeText={setQuery}
+            style={[textStyles.bodyLarge, styles.searchInput, { color: theme.textPrimary }]}
+          />
+          {query === '' ? null : (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={strings.prayer.clearSearch}
+              hitSlop={spacing.sm}
+              onPress={() => setQuery('')}
+            >
+              <Ionicons name="close-circle" size={spacing.xl} color={theme.textMuted} />
+            </Pressable>
+          )}
+        </View>
+
+        {message === null ? null : (
+          <View style={[styles.message, { backgroundColor: theme.primarySoft }]}>
+            <Ionicons
+              name={suggestedDistrictId === null ? 'information-circle' : 'locate'}
+              size={spacing.xl}
+              color={theme.primary}
+            />
+            <Text style={[textStyles.bodyMedium, styles.messageText, { color: theme.textPrimary }]}>
+              {message}
+            </Text>
+            {cities.length === 0 ? (
+              <Button label={strings.prayer.retry} variant="ghost" onPress={() => void loadCities()} />
+            ) : showingDistricts && districts.length === 0 ? (
+              <Button
+                label={strings.prayer.retry}
+                variant="ghost"
+                onPress={() => void openCity(city)}
+              />
+            ) : null}
+          </View>
+        )}
+
+        <View style={styles.listBlock}>
+          <Text style={[textStyles.labelMedium, { color: theme.textSecondary }]}>
+            {formatString(strings.prayer.locationResultCount, { sayi: visibleItems.length })}
+          </Text>
+
+          {listLoading ? (
+            <ActivityIndicator color={theme.primary} style={styles.spinner} />
+          ) : (
+            <DistrictPickerList
+              items={visibleItems}
+              selectedId={showingDistricts ? selectedDistrict?.districtId : null}
+              emptyLabel={strings.prayer.locationSearchEmpty}
+              onSelect={(id) => {
+                if (showingDistricts) {
+                  const target = districts.find((item) => item.districtId === id);
+                  if (target !== undefined) {
+                    setSelectedDistrict(target);
+                    setSuggestedDistrictId(null);
+                    setMessage(null);
+                  }
+                  return;
+                }
+
+                const target = cities.find((item) => item.cityId === id);
+                if (target !== undefined) {
+                  void openCity(target);
+                }
+              }}
+            />
+          )}
+        </View>
+
+        {showingDistricts ? (
+          <View style={styles.confirm}>
+            <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
+              {selectedDistrict === null
+                ? strings.prayer.chooseDistrictToContinue
+                : formatString(strings.prayer.selectedLocation, {
+                    ilce: selectedDistrict.name,
+                    il: city.name,
+                  })}
             </Text>
             <Button
               label={strings.prayer.locationUseMatch}
-              onPress={() => commit(suggestion.city, suggestion.district)}
+              fullWidth
+              disabled={selectedDistrict === null}
+              loading={submitting}
+              onPress={() => void commit()}
             />
           </View>
         ) : null}
-
-        {message !== null ? (
-          <View style={styles.messageBlock}>
-            <Text style={[textStyles.bodyMedium, { color: theme.textSecondary }]}>{message}</Text>
-            {cities.length === 0 ? (
-              <Button label={strings.prayer.retry} variant="ghost" onPress={() => void loadCities()} />
-            ) : null}
-          </View>
-        ) : null}
-
-        {loading ? (
-          <ActivityIndicator color={theme.primary} style={styles.spinner} />
-        ) : (
-          <DistrictPickerList
-            items={
-              showingDistricts
-                ? districts.map((item) => ({ id: item.districtId, name: item.name }))
-                : cities.map((item) => ({ id: item.cityId, name: item.name }))
-            }
-            onSelect={(id) => {
-              if (showingDistricts) {
-                const target = districts.find((item) => item.districtId === id);
-                if (target !== undefined) {
-                  commit(city, target);
-                }
-                return;
-              }
-
-              const target = cities.find((item) => item.cityId === id);
-              if (target !== undefined) {
-                void openCity(target);
-              }
-            }}
-          />
-        )}
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
+  root: { flex: 1 },
   content: {
     flex: 1,
     gap: layout.listGap,
     paddingHorizontal: layout.screenPaddingHorizontal,
     paddingVertical: layout.screenPaddingVertical,
   },
-  close: {
-    alignSelf: 'flex-start',
-  },
-  locationBlock: {
-    gap: spacing.xs,
-  },
-  suggestion: {
-    padding: layout.cardPadding,
-    borderRadius: componentRadius.card,
+  close: { alignSelf: 'flex-start' },
+  locationCard: {
     gap: spacing.md,
+    padding: layout.cardPadding,
+    borderWidth: 1,
+    borderRadius: componentRadius.card,
   },
-  messageBlock: {
+  locationCopy: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  locationText: { flex: 1, gap: spacing.xs },
+  search: {
+    minHeight: layout.minTouchTarget,
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: spacing.sm,
+    paddingHorizontal: spacing.md,
+    borderWidth: 1,
+    borderRadius: componentRadius.input,
   },
-  spinner: {
-    flex: 1,
+  searchInput: { flex: 1, paddingVertical: spacing.sm },
+  message: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    padding: spacing.md,
+    borderRadius: componentRadius.card,
   },
+  messageText: { flex: 1 },
+  listBlock: { flex: 1, gap: spacing.sm },
+  spinner: { flex: 1 },
+  confirm: { gap: spacing.sm },
 });

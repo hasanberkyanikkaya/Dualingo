@@ -75,6 +75,12 @@ export const palette = {
   green800: '#0E3A28',
   green900: '#052015',
 
+  // Bahçe sahnesi — yalnızca grafik yüzeylerinde kullanılır, metin taşımaz.
+  sky100: '#DDF4FF',
+  sky800: '#173447',
+  earth300: '#C98D5B',
+  earth700: '#6B3F24',
+
   // Kırmızı — hata. Pembeye çok yaklaşmaması için turuncuya çalar.
   red100: '#FDE7EB',
   red400: '#FF7085',
@@ -158,6 +164,13 @@ export type ColorTheme = {
   success: string;
   successSoft: string;
   onSuccess: string;
+
+  /** Cennet Bahçesi'nin metin taşımayan sahne renkleri. */
+  gardenSky: string;
+  gardenGround: string;
+  gardenSoil: string;
+  gardenTrunk: string;
+  gardenFlower: string;
 
   error: string;
   errorSoft: string;
@@ -292,6 +305,11 @@ export const lightTheme: ColorTheme = {
   success: palette.green600,
   successSoft: palette.green100,
   onSuccess: palette.neutral0,
+  gardenSky: palette.sky100,
+  gardenGround: palette.green100,
+  gardenSoil: palette.earth300,
+  gardenTrunk: palette.earth700,
+  gardenFlower: palette.rose400,
 
   error: palette.red600,
   errorSoft: palette.red100,
@@ -344,6 +362,11 @@ export const darkTheme: ColorTheme = {
   success: palette.green400,
   successSoft: palette.green800,
   onSuccess: palette.green900,
+  gardenSky: palette.sky800,
+  gardenGround: palette.green800,
+  gardenSoil: palette.earth700,
+  gardenTrunk: palette.earth300,
+  gardenFlower: palette.rose400,
 
   error: palette.red400,
   errorSoft: palette.red800,

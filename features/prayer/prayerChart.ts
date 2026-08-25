@@ -53,7 +53,6 @@ export type ChartCell = ChartDay | null;
 /** Özet — yalnızca OLUMLU kayıtlar sayılır. */
 export type ChartSummary = {
   kilindi: number;
-  kaza: number;
 };
 
 /**
@@ -67,17 +66,10 @@ const EPOCH_MONDAY: IsoDate = '1970-01-05';
 const ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
 
 /**
- * Durum döngüsü: kayıt yok → kılındı → kaza → kayıt yok.
- *
- * ⚠️ Sıralama bilinçli: en sık konacak işaret (kılındı) tek dokunuşta geliyor,
- * kaza ikinci dokunuşta, temizleme üçüncüde. Ters sıra kullanıcıyı en sık
- * yaptığı işlem için iki dokunuşa zorlardı.
+ * Durum döngüsü: kayıt yok → kılındı → kayıt yok.
  */
 export function nextStatus(current: PrayerMarkStatus): PrayerMarkStatus {
-  if (current === 'kilinmadi') {
-    return 'kilindi';
-  }
-  return current === 'kilindi' ? 'kaza' : 'kilinmadi';
+  return current === 'kilinmadi' ? 'kilindi' : 'kilinmadi';
 }
 
 /** Tarihin içinde bulunduğu haftanın Pazartesi'si. Bozuk tarihte `null`. */
@@ -283,7 +275,7 @@ export function buildMonth(
 }
 
 /**
- * Özet — kaç vakit kılındı, kaç vakit kaza olarak işaretlendi.
+ * Özet — kaç vakit kılındı olarak işaretlendi.
  *
  * ⚠️ **Payda ÜRETİLMEZ.** "5 üzerinden 2" gibi bir oran, hiçbir suçlayıcı
  * kelime kullanmadan bir eksiklik bildirir; ekran sayar, hüküm vermez. Aynı
@@ -295,7 +287,6 @@ export function buildMonth(
  */
 export function summarize(cells: readonly ChartCell[]): ChartSummary {
   let kilindi = 0;
-  let kaza = 0;
 
   for (const cell of cells) {
     if (cell === null) {
@@ -306,13 +297,11 @@ export function summarize(cells: readonly ChartCell[]): ChartSummary {
       const status = cell.marks[prayer];
       if (status === 'kilindi') {
         kilindi += 1;
-      } else if (status === 'kaza') {
-        kaza += 1;
       }
     }
   }
 
-  return { kilindi, kaza };
+  return { kilindi };
 }
 
 /** Çizelgede gösterilebilir bir tarih mi — dışarıdan gelen tarihi elemek için. */

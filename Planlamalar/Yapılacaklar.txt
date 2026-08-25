@@ -327,6 +327,24 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         constants/motion.ts'e bir jeton: timing.compass (120 ms).
         Dev build GEREKMİYOR — expo-location Expo Go'nun içinde geliyor.
 
+[x] 4.6 Namaz deneyimi — dayanıklı konum, görünür kayıt ve Cennet Bahçesi.
+        Konum seçilmemiş olsa da günlük kayıt, çizelge, kıble ve bahçe açılır.
+        İl/ilçe ekranı arama + görünür seçim + açık onay akışına geçti.
+        Başarılı il/ilçe katalogları prayer_catalog_cache ile yerelde saklanır;
+        ilk başarılı bağlantıdan sonra geçici servis/ağ hatasında liste açılır.
+        Konum yalnız ili eşleştirirse ilçe tahmin edilmez, o ilin listesi açılır.
+        Kaza durumu tip, UI, özet ve senkron payload'ından kaldırıldı.
+        MIGRATIONS[10] → sürüm 11: eski kaza kayıtları kılındı olur ve katalog
+        önbellek tablosu açılır. Uzak eski payload da yerelde kılındı okunur.
+        Günlük işaret düğmeleri artık ikon + görünür metin taşır.
+        Cennet Bahçesi mevcut prayer_log verisinden türetilir; yeni hassas kayıt,
+        sosyal paylaşım veya liderlik tablosu yoktur. Saf büyüme motoru testlidir.
+        Namaz ekranında çizelge, Ezan bildirimleri, kıble ve bahçe hızlı erişimi var.
+        Bildirim ekranı seçili konumu gösterir ve bütün vakitleri tek dokunuşla
+        açıp kapatır. Toplam 483 test, TypeScript ve lint hata vermedi.
+        ⚠️ Yerel bildirim tetiklenmesi dev build'de; yeni ekran düzenleri gerçek
+        telefonda elle doğrulanacak.
+
 [x] 5.1 Kur'an veri katmanı — Arapça metin + meal, transkripsiyon ertelendi.
         /content/quran: kaynak manifesti, sure kataloğu ve 114 tembel sure dosyası.
         6236 ayet; Tanzil Uthmani 1.1 + tr.yazir + metadata 1.0.
@@ -375,10 +393,29 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         Oyun motoru ve içerik doğrulaması saf + testli; toplam 468 test.
         ⚠️ Büyük yazı, ekran okuyucu, arka plana alma ve süre bitişi cihazda sınanacak.
 
+[x] 7.0 Hesaplar ve çevrimdışı-öncelikli Supabase senkronizasyonu.
+        E-posta kayıt/giriş, doğrulama yönlendirmesi, parola sıfırlama e-postası,
+        çıkış ve Edge Function üzerinden hesap silme akışları eklendi.
+        Oturum SecureStore'da tutulur; Supabase yapılandırılmamışsa mevcut yerel
+        uygulama çalışmaya devam eder ve hesap ekranı kurulum uyarısı gösterir.
+        MIGRATIONS[9] → sürüm 10: owner_id, server_version, progress_state,
+        learning_attempt, sync_identity/consent/outbox/state ve yerel hatırlatma ayrımı.
+        Hesapsız veri ilk girişte atomik olarak hesaba taşınır; SQLite yerel
+        doğruluk kaynağı, outbox yeniden denenebilir ve gönderimler idempotenttir.
+        Pull akışı monoton server_version kullanır; çatışma birleşimleri saf ve testlidir.
+        Namaz çizelgesi ayrı açık onay olmadan gönderilmez/çekilmez; ilçe, vakit,
+        bildirim ve arayüz tercihleri yalnız cihazdadır. Sosyal/leaderboard yoktur.
+        Supabase SQL migration, RLS pgTAP testi, hesap silme Edge Function'ı,
+        hesap ekranı ve işletim belgesi eklendi. Gizlilik/mağaza taslakları yenilendi.
+        ⚠️ Gerçek proje anahtarları, migration/function deploy, SMTP/deep link,
+        Docker ile RLS testi ve iki cihaz E2E sınaması dış ortam işi olarak açıktır.
+
 
 === AÇIK SORULAR ===
 
-(şu an açık soru yok)
+- Supabase üretim bölgesi, DPA/alt işleyenler ve veri saklama süreleri.
+- Çocuk hesapları için yaş kapısı/ebeveyn izni yaklaşımı.
+- Namaz çizelgesi için ayrı onay metninin hukuki yeterliliği.
 
 
 === KARARLAŞANLAR (tekrar tartışma) ===

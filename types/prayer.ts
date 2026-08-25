@@ -40,21 +40,21 @@ export type CityId = string;
 export type PrayerName = 'imsak' | 'gunes' | 'ogle' | 'ikindi' | 'aksam' | 'yatsi';
 
 /**
- * Bir vaktin çizelgedeki durumu (Faz 4.3).
+ * Bir vaktin çizelgedeki durumu.
  *
  * ⚠️ **`enum` DEĞİL, union** — Node'un tip soyucusu `enum` desteklemiyor
  * (`tests/setup.ts`).
  *
  * ⚠️ **`'kilinmadi'` diske YAZILMAZ.** O bir kayıt değil, kaydın yokluğudur:
  * `prayer_log`ta ya hiç satır yoktur ya da satır `deleted_at` taşır. Canlı bir
- * satırda yalnızca `'kilindi'` ve `'kaza'` bulunur (`lib/database.ts`
- * `MIGRATIONS[5]`).
+ * Canlı bir satır her zaman `'kilindi'` anlamına gelir. Tarihsel `status`
+ * sütunu geriye uyumluluk ve senkronizasyon için tabloda tutulur.
  *
  * ⚠️ Ekranda `'kilinmadi'` **"kılmadın" diye YAZILMAZ**, "Kayıt yok" diye
  * gösterilir. Bu bir üslup tercihi değil, modülün kuralı: ekran sayar, hüküm
  * vermez. Değer adı teknik, etiketi değil.
  */
-export type PrayerMarkStatus = 'kilinmadi' | 'kilindi' | 'kaza';
+export type PrayerMarkStatus = 'kilinmadi' | 'kilindi';
 
 /**
  * Bir günün işaretleri — vakit → durum.

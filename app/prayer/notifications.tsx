@@ -13,6 +13,7 @@ import { textStyles } from '@/constants/typography';
 import OffsetPicker from '@/features/prayer/components/OffsetPicker';
 import { PRAYER_LABELS } from '@/features/prayer/prayerLabels';
 import { TRACKABLE_PRAYERS } from '@/features/prayer/prayerDay';
+import { usePrayerStore } from '@/features/prayer/store';
 import { resolvePref } from '@/features/prayer/prayerNotify';
 import { usePrayerNotifications } from '@/features/prayer/usePrayerNotifications';
 import { formatString } from '@/lib/formatString';
@@ -33,7 +34,8 @@ import { useTheme } from '@/lib/useTheme';
  */
 export default function PrayerNotificationsScreen() {
   const { theme } = useTheme();
-  const { prefs, permission, toggle, setOffset, refreshPermission } = usePrayerNotifications();
+  const { prefs, permission, toggle, setOffset, setAll, refreshPermission } = usePrayerNotifications();
+  const district = usePrayerStore((state) => state.district);
 
   // ⚠️ Kullanıcı "Ayarları aç"a basıp sistem ayarlarına gidip DÖNEBİLİR; izin
   // durumu o sırada değişmiş olur. Odak geri geldiğinde yeniden sorulmazsa
@@ -45,6 +47,7 @@ export default function PrayerNotificationsScreen() {
   );
 
   const allOff = TRACKABLE_PRAYERS.every((prayer) => !resolvePref(prefs, prayer).enabled);
+  const allOn = TRACKABLE_PRAYERS.every((prayer) => resolvePref(prefs, prayer).enabled);
 
   return (
     <SafeAreaView
@@ -68,6 +71,52 @@ export default function PrayerNotificationsScreen() {
           title={strings.prayer.notificationsTitle}
           subtitle={strings.prayer.notificationsBody}
         />
+
+        <View
+          style={[
+            styles.quickSetup,
+            { backgroundColor: theme.surfaceAlt, borderColor: theme.borderControl },
+          ]}
+        >
+          <View style={styles.quickHeading}>
+            <Ionicons name="location-outline" size={spacing.xl} color={theme.primary} />
+            <View style={styles.quickCopy}>
+              <Text style={[textStyles.labelLarge, { color: theme.textPrimary }]}>
+                {strings.prayer.notificationLocationTitle}
+              </Text>
+              <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
+                {district === null
+                  ? strings.prayer.notificationNoLocation
+                  : formatString(strings.prayer.notificationSelectedLocation, {
+                      ilce: district.districtName,
+                      il: district.cityName,
+                    })}
+              </Text>
+            </View>
+          </View>
+
+          {district === null ? (
+            <Button
+              label={strings.prayer.selectDistrictTitle}
+              variant="secondary"
+              onPress={() => router.push('/prayer/district')}
+            />
+          ) : (
+            <View style={styles.quickButtons}>
+              <Button
+                label={strings.prayer.enableAllNotifications}
+                disabled={allOn}
+                onPress={() => setAll(true)}
+              />
+              <Button
+                label={strings.prayer.disableAllNotifications}
+                variant="ghost"
+                disabled={allOff}
+                onPress={() => setAll(false)}
+              />
+            </View>
+          )}
+        </View>
 
         {/*
           ⚠️ İzin kartı yalnızca izin GERÇEKTEN kapalıyken çıkıyor; `permission`
@@ -174,6 +223,19 @@ const styles = StyleSheet.create({
     padding: layout.cardPadding,
     borderRadius: componentRadius.card,
   },
+  quickSetup: {
+    gap: spacing.md,
+    padding: layout.cardPadding,
+    borderWidth: 1,
+    borderRadius: componentRadius.card,
+  },
+  quickHeading: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+  },
+  quickCopy: { flex: 1, gap: spacing.xs },
+  quickButtons: { gap: spacing.sm },
   list: {
     gap: layout.sectionGap,
   },

@@ -1,7 +1,9 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Text } from 'react-native';
 
 import OptionCard from '@/components/OptionCard';
 import { layout } from '@/constants/spacing';
+import { textStyles } from '@/constants/typography';
+import { useTheme } from '@/lib/useTheme';
 
 type PickerItem = {
   id: string;
@@ -11,6 +13,8 @@ type PickerItem = {
 type DistrictPickerListProps = {
   items: readonly PickerItem[];
   onSelect: (id: string) => void;
+  selectedId?: string | null;
+  emptyLabel?: string;
 };
 
 /**
@@ -30,14 +34,33 @@ type DistrictPickerListProps = {
  * ⚠️ 973 ilçeyi kapsayabildiği için `FlatList` — `map` ile çizmek İstanbul
  * listesinde ilk kareyi gözle görülür biçimde geciktirirdi.
  */
-export default function DistrictPickerList({ items, onSelect }: DistrictPickerListProps) {
+export default function DistrictPickerList({
+  items,
+  onSelect,
+  selectedId = null,
+  emptyLabel,
+}: DistrictPickerListProps) {
+  const { theme } = useTheme();
+
   return (
     <FlatList
+      style={styles.list}
       data={items}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <OptionCard label={item.name} selected={false} onPress={() => onSelect(item.id)} />
+        <OptionCard
+          label={item.name}
+          selected={item.id === selectedId}
+          onPress={() => onSelect(item.id)}
+        />
       )}
+      ListEmptyComponent={
+        emptyLabel === undefined ? null : (
+          <Text style={[textStyles.bodyMedium, styles.empty, { color: theme.textSecondary }]}>
+            {emptyLabel}
+          </Text>
+        )
+      }
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="handled"
     />
@@ -45,8 +68,15 @@ export default function DistrictPickerList({ items, onSelect }: DistrictPickerLi
 }
 
 const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+  },
   content: {
     gap: layout.listGap,
     paddingBottom: layout.sectionGap,
+  },
+  empty: {
+    paddingVertical: layout.sectionGap,
+    textAlign: 'center',
   },
 });

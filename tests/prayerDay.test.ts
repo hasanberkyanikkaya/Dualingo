@@ -199,11 +199,11 @@ describe('buildPrayerDay', () => {
   });
 
   it('işaretler satırlara oturur ve DURUMU taşır', () => {
-    const rows = day(at('22:30'), { ogle: 'kilindi', ikindi: 'kaza' });
+    const rows = day(at('22:30'), { ogle: 'kilindi', ikindi: 'kilindi' });
 
     assert.deepEqual(
       rows.filter((row) => row.status !== 'kilinmadi').map((row) => `${row.name}:${row.status}`),
-      ['ogle:kilindi', 'ikindi:kaza'],
+      ['ogle:kilindi', 'ikindi:kilindi'],
     );
   });
 
@@ -230,15 +230,7 @@ describe('countStatus', () => {
     assert.equal(countStatus(rows, 'kilindi'), 2);
   });
 
-  it('kılındı ve kaza AYRI sayılır — tek sayıda toplanmaz', () => {
-    const rows = day(at('22:30'), { imsak: 'kilindi', ogle: 'kaza', ikindi: 'kaza' });
-
-    assert.equal(countStatus(rows, 'kilindi'), 1);
-    assert.equal(countStatus(rows, 'kaza'), 2);
-  });
-
   it('boş tabloda sıfır', () => {
     assert.equal(countStatus([], 'kilindi'), 0);
-    assert.equal(countStatus([], 'kaza'), 0);
   });
 });

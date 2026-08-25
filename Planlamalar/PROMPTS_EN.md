@@ -365,7 +365,7 @@ tests covering day rollover, the period after Isha, and time zone changes.
 Plan first, do not write code yet.
 
 The prayer tracking chart:
-- Three states per prayer per day: kıldım / kılmadım / kaza
+- Two states per prayer per day: no record / completed
 - Weekly grid view
 - Monthly calendar view
 - Stored in SQLite (with updatedAt/deletedAt)

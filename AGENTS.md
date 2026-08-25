@@ -160,9 +160,17 @@ listesi ver.
 - Faz 3.1 seri veri sistemi — tamam; **görünür seri arayüzü yok**
 - Faz 3.2 rozet sistemi — tamam
 - Faz 3.3 maskot ve kutlama — tamam
-- Faz 4.0–4.5 namaz modülü — tamam
+- Faz 4.0–4.6 namaz modülü — tamam
   - Bildirim kodu tamam fakat gerçek tetiklenme dev build'de doğrulanmadı.
   - Kıble pusulası Expo Go'da uçtan uca elle doğrulanabilir.
+  - Konum seçimi Namaz modülünü kilitlemez; günlük kayıt, çizelge ve Cennet
+    Bahçesi konum olmadan çalışır.
+  - İl/ilçe seçimi aramalı ve onaylıdır; başarılı katalog yanıtları SQLite'ta
+    yerel önbelleğe alınır. Konum eşleşmesi belirsiz ilçeyi tahmin etmez.
+  - Namaz kaydı iki durumlu (`kayıt yok` / `kılındı`); kaza durumu kaldırıldı.
+  - Cennet Bahçesi toplam işaret ve kayıt günü sayısından türetilir; ayrı hassas
+    veri veya sosyal karşılaştırma üretmez ve zaman geçmesiyle gerilemez.
+  - Yeni konum/seçim/bahçe düzenleri gerçek telefonda elle doğrulanacak.
 - Faz 5.1 Kur'an veri katmanı — tamam
   - Arapça metin + meal gömülü; transkripsiyon ertelendi.
   - Yer imi ve günlük benzersiz ayet geçmişi SQLite'ta.
@@ -176,9 +184,17 @@ listesi ver.
 - Faz 6 Sıralama Yarışı — tamam
   - Öğren sekmesinden açılan, 60 saniyelik ve oturumluk puan tutan ilk mini oyun var.
   - İçerik `/content/games` altında açıkça örnek işaretlidir; gerçek içerik yoktur.
+- Faz 7 hesap ve senkronizasyon kodu — tamam; dış hizmet kurulumu açık
+  - İsteğe bağlı e-posta hesabı, çevrimdışı outbox/pull, yerel veri taşıma,
+    hesap silme ve kullanıcı bazlı SQLite sahipliği var.
+  - Namaz kayıtları ayrı açık onay olmadan buluta çıkmaz; sosyal paylaşım ve
+    liderlik tablosu yoktur.
+  - Supabase migration/RLS testi/Edge Function dosyaları hazır; gerçek proje,
+    SMTP, deploy ve iki cihaz sınaması yapılmadı.
 
-Sıradaki mantıklı ürün işi **seri arayüzü**. Alternatifler Faz 6'nın diğer mini
-oyunları veya ertelenmiş Faz 1.2c Card bileşenidir.
+Sıradaki mantıklı iş **Faz 7 dış hizmet kurulumu ve iki cihaz E2E doğrulaması**.
+Ürün tarafındaki alternatifler seri arayüzü, Faz 6'nın diğer mini oyunları veya
+ertelenmiş Faz 1.2c Card bileşenidir.
 
 ## Açık borçlar ve sınırlar
 
@@ -191,7 +207,7 @@ profili ve `expo-dev-client` hazırdır.
 Dev build geldiğinde ayrı planla:
 
 - `react-native-nitro-modules` doğrudan bağımlılık yapılacak.
-- MMKV ile XP, seviye ve placement kalıcılığı doğrulanacak.
+- MMKV ile Kur'an okuyucu ve tema tercihi kalıcılığı doğrulanacak.
 - OTA güncelleme doğrulanacak.
 - Namaz ve Kur'an hedef bildirimlerinin doğru dakikada ve uygulama kapalıyken
   tetiklenmesi doğrulanacak.
@@ -200,10 +216,10 @@ Dev build geldiğinde ayrı planla:
 - `npx expo-doctor` tam geçmeli.
 - SDK yükseltme ancak bunlardan sonra ayrıca değerlendirilecek.
 
-Bugün Expo Go'da XP/seviye/placement ile Kur'an okuyucu yazı/meal ayarı belleğe
-düşer ve soğuk açılışta sıfırlanır; bu bilinen MMKV sınırıdır. Buna karşılık
-Kur'an son konumu, okuma geçmişi ve hedefi ile seri, rozet, namaz ilçesi,
-vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
+Bugün XP/seviye/placement, Kur'an son konumu/okuma geçmişi/hedefi, seri, rozet,
+namaz ilçesi/vakitleri/çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
+Kur'an okuyucu yazı/meal ayarı ile tema tercihi Expo Go'da MMKV'nin bilinen
+bellek yedeğine düşebilir ve soğuk açılışta sıfırlanabilir.
 
 ### İçerik ve yayın borcu
 
@@ -218,6 +234,13 @@ vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 - Kutlama Lottie dosyası yok; `CelebrationMascot.tsx` maskot PNG'ye düşer.
 - `extra.audioBaseUrl` boş ve gerçek ses dosyaları yok; yazılı yedek çalışır.
 - OTA ve bildirim tetiklenmesi dev build olmadan doğrulanamaz.
+- Faz 7 Supabase projesi henüz bağlanmadı: migration/Edge Function deploy,
+  Auth SMTP ve redirect URL, Docker pgTAP/RLS testi ve iki cihaz E2E açıktır.
+- Hesap/e-posta, çocuk kullanıcı ve isteğe bağlı hassas namaz senkronu nedeniyle
+  gizlilik politikası ile mağaza beyanları yeniden hukuki inceleme ister.
+- `npm audit --omit=dev` bugün 15 orta + 9 yüksek dolaylı Expo/Metro bulgusu
+  raporluyor; önerilen otomatik çözüm Expo SDK 57'ye geçiştir. Proje SDK 54'e
+  sabit olduğu için `audit fix` uygulanmadı; SDK yükseltme oturumunda ele alınır.
 
 ### Ertelenmiş kod işleri
 
@@ -226,6 +249,7 @@ vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 - Faz 1.4 Sentry
 - Seri sisteminin görünür arayüzü
 - Faz 6'nın diğer mini oyunları
+- Faz 7 gerçek Supabase kurulumu ve cihazlar arası E2E doğrulaması
 
 ## Belge haritası
 
@@ -236,6 +260,7 @@ vakitleri, çizelgesi ve bildirim tercihleri SQLite ile kalıcıdır.
 - İngilizce oturum promptları: `Planlamalar/PROMPTS_EN.md`
 - Namaz veri kaynağı: `Planlamalar/NAMAZ_VERI_KAYNAGI.md`
 - OTA doğrulaması: `Planlamalar/OTA_GUNCELLEME.md`
+- Supabase kurulum/doğrulaması: `Planlamalar/SUPABASE_SENKRONIZASYON.md`
 - Mağaza ve yayın belgeleri: `Planlamalar/Magaza/`
 
 Karar arşivini baştan sona her oturumda okuma. Yalnız aktif işle ilgili başlığı

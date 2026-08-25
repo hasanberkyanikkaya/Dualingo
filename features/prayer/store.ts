@@ -64,7 +64,7 @@ type PrayerState = {
   loading: boolean;
 
   selectDistrict: (city: PrayerCity, district: PrayerDistrict) => void;
-  /** Bugünkü bir vakti bir sonraki duruma çevirir (kayıt yok → kılındı → kaza). */
+  /** Bugünkü bir vakti işaretler veya işareti kaldırır. */
   cycleMark: (prayer: PrayerName) => void;
   /**
    * Herhangi bir günün bir vaktine durum yazar — çizelge ekranının kapısı.
@@ -160,13 +160,13 @@ export const usePrayerStore = create<PrayerState>()((set, get) => ({
   },
 
   /**
-   * Bugünkü bir vakti bir sonraki duruma çevirir.
+   * Bugünkü bir vakti işaretler veya işaretini kaldırır.
    *
    * ⚠️ **DB yazması `set` updater'ının DIŞINDA** — Zustand updater'ı saf sayar
    * ve React 19 + `reactCompiler` altında iki kez çalıştırıyor (2.4, 3.1, 3.2
    * ve 4.2'de aynı tuzağa dört kez düşüldü). Burada iki kez çalışmak
-   * idempotent DEĞİL: döngü iki adım ilerler ve kullanıcı "kılındı" demek
-   * isterken "kaza" görürdü.
+   * idempotent DEĞİL: döngü iki adım ilerler ve kullanıcının yeni işaretini
+   * anında kaldırırdı.
    *
    * ⚠️ Gün, `state.loadedDate` DEĞİL `Date.now()`tan okunuyor: uygulama gece
    * boyunca açık kaldıysa `loadedDate` dünü gösterir ve işaret yanlış güne

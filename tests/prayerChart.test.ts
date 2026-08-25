@@ -41,14 +41,13 @@ function marks(byDate: Record<IsoDate, PrayerMarkMap>): Record<IsoDate, PrayerMa
 }
 
 describe('nextStatus', () => {
-  it('döngü: kayıt yok → kılındı → kaza → kayıt yok', () => {
+  it('döngü: kayıt yok → kılındı → kayıt yok', () => {
     assert.equal(nextStatus('kilinmadi'), 'kilindi');
-    assert.equal(nextStatus('kilindi'), 'kaza');
-    assert.equal(nextStatus('kaza'), 'kilinmadi');
+    assert.equal(nextStatus('kilindi'), 'kilinmadi');
   });
 
-  it('üç dokunuş başladığı yere döndürür', () => {
-    assert.equal(nextStatus(nextStatus(nextStatus('kilinmadi'))), 'kilinmadi');
+  it('iki dokunuş başladığı yere döndürür', () => {
+    assert.equal(nextStatus(nextStatus('kilinmadi')), 'kilinmadi');
   });
 });
 
@@ -152,11 +151,11 @@ describe('buildWeek', () => {
   it('işaretler doğru güne oturur', () => {
     const cells = buildWeek(
       TODAY,
-      marks({ '2026-08-18': { ogle: 'kilindi', ikindi: 'kaza' } }),
+      marks({ '2026-08-18': { ogle: 'kilindi', ikindi: 'kilindi' } }),
       TODAY,
     );
 
-    assert.deepEqual(cells[1]?.marks, { ogle: 'kilindi', ikindi: 'kaza' });
+    assert.deepEqual(cells[1]?.marks, { ogle: 'kilindi', ikindi: 'kilindi' });
     assert.deepEqual(cells[2]?.marks, {});
   });
 
@@ -238,7 +237,7 @@ describe('summarize', () => {
     const cells = buildWeek(
       TODAY,
       marks({
-        '2026-08-17': { imsak: 'kilindi', ogle: 'kilindi', ikindi: 'kaza' },
+        '2026-08-17': { imsak: 'kilindi', ogle: 'kilindi', ikindi: 'kilindi' },
         '2026-08-18': { yatsi: 'kilindi' },
       }),
       TODAY,
@@ -246,16 +245,16 @@ describe('summarize', () => {
 
     const summary = summarize(cells);
 
-    assert.deepEqual(summary, { kilindi: 3, kaza: 1 });
+    assert.deepEqual(summary, { kilindi: 4 });
     // ⚠️ Sözleşme testi: özet nesnesinde "işaretsiz" ya da "toplam" alanı
     // OLMAMALI. Hesaplanabilir olması bile o satırın bir gün ekrana çıkmasına
     // davetiye olurdu.
-    assert.deepEqual(Object.keys(summary).sort(), ['kaza', 'kilindi']);
+    assert.deepEqual(Object.keys(summary), ['kilindi']);
   });
 
   it('boş hücreler ve boş liste sıfır verir', () => {
-    assert.deepEqual(summarize([]), { kilindi: 0, kaza: 0 });
-    assert.deepEqual(summarize([null, null]), { kilindi: 0, kaza: 0 });
+    assert.deepEqual(summarize([]), { kilindi: 0 });
+    assert.deepEqual(summarize([null, null]), { kilindi: 0 });
   });
 
   it('GÜNEŞ kaydı sayılmaz', () => {
@@ -263,7 +262,7 @@ describe('summarize', () => {
     // bozmamalı (`prayerDay`in aynı sözleşmesi).
     const cells = buildWeek(TODAY, marks({ '2026-08-17': { gunes: 'kilindi' } }), TODAY);
 
-    assert.deepEqual(summarize(cells), { kilindi: 0, kaza: 0 });
+    assert.deepEqual(summarize(cells), { kilindi: 0 });
   });
 
   it('çizelge sütunları beş vakit, Güneş yok', () => {

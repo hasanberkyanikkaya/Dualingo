@@ -2103,6 +2103,78 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   Ekran düzeni, büyük yazı, ekran okuyucu ve arka plan/süre davranışı gerçek
   cihazda elle doğrulanmalıdır.
 
+## Hesap ve çevrimdışı senkronizasyon kararları (Faz 7 — 24 Ağustos 2026)
+
+- **Hesap isteğe bağlıdır; SQLite doğruluk kaynağı kalır.** Supabase değişkeni
+  yoksa hesap ekranı kurulum uyarısı verir, yerel uygulama kesilmez. Her yerel
+  değişiklik aynı SQLite işlemi içinde outbox'a girer; ağ dönüşünde yeniden
+  denenir.
+- `MIGRATIONS[9]` veritabanını sürüm 10'a çıkarır. Kullanıcıya ait tablolara
+  `owner_id` ve `server_version` eklenir; XP/seviye/placement için
+  `progress_state`, ders tekrarını güvenle birleştirmek için benzersiz
+  `learning_attempt`, kimlik/onay/outbox/imleç için sync tabloları oluşturulur.
+  Eski kayıtlar kurulum kimliğine bağlanır ve ilk girişte atomik olarak hesaba
+  taşınır.
+- **Gönderim idempotent, çekme monoton sürümlüdür.** UUID `mutation_id` aynı
+  isteğin tekrarını etkisizleştirir; sunucu `server_version` imleciyle değişiklik
+  akışı verir. Gün etkinliği maksimum sayaçlarla, rozet en erken zamanla, Kur'an
+  okuma olayı ilk/son zaman aralığıyla birleşir. Benzersiz ders denemesi aynı
+  tamamlamanın iki cihazda ikinci kez XP üretmesini engeller.
+- **XP ve deneme sayısı snapshot'a emanet edilmez.** Faz 7 öncesindeki değer
+  değişmez bir olay tabanı olarak saklanır; sonraki benzersiz `learning_attempt`
+  kayıtları bu tabanın üstüne toplanır. Böylece iki çevrimdışı cihaz aynı anda
+  ders bitirdiğinde son yazan snapshot diğerinin XP'sini düşürmez; yeni bir
+  üçüncü cihaz da tüm olaylardan aynı sonucu kurar. Sıfırlama tabanı sıfırlar ve
+  eski olayları tombstone eder.
+- **Namaz çizelgesi ayrı hassas veri sınırıdır.** Genel hesap senkronu onu
+  içermez; kullanıcı ayrı anahtarı açmadan outbox göndermez ve pull çekmez.
+  İlçe, vakit önbelleği, bildirim ayarları, Kur'an hatırlatma saati ve arayüz
+  tercihleri buluta hiç girmez. Sosyal paylaşım ve liderlik tablosu eklenmedi.
+- Auth oturumu `expo-secure-store` içinde cihazdan taşınamayan parçalara bölünür;
+  mobil uygulamada service role anahtarı yoktur. RLS yalnız `auth.uid()` sahibi
+  satırları açar; istemci doğrudan tablo yetkisi yerine doğrulanmış batch RPC
+  kullanır. Hesap silme yönetici anahtarını yalnız Edge Function ortamında tutar.
+- Çıkışta ilgili hesabın cihaz kopyası bilinçli ve sert olarak temizlenir; bulut
+  kaydı kalır. Bu, normal veri silme kuralının kullanıcı tarafından başlatılan
+  gizlilik istisnasıdır. Hesap silme Auth kullanıcısını ve cascade bağlı sync
+  kayıtlarını siler.
+- Saf merge/progress testleriyle toplam **478 test** geçti. SQL migration ve RLS
+  pgTAP dosyası hazırdır; Docker servisi kapalı olduğu için yerel Supabase/RLS
+  testi çalıştırılamadı. Gerçek proje deploy'u, SMTP/deep link, iki cihaz E2E ve
+  hukuk incelemesi yayın engelidir.
+
+## Namaz deneyimi ve Cennet Bahçesi kararları (Faz 4.6 — 24 Ağustos 2026)
+
+- **Kaza durumu kaldırıldı.** Günlük kayıt artık `kayıt yok ↔ kılındı` arasında
+  geçiş yapar. Tarihsel `status` sütunu eski şema ve Faz 7 senkron uyumluluğu
+  için korunur; `MIGRATIONS[10]` eski `kaza` değerlerini veri silmeden
+  `kilindi`ye taşır. Eski uzak payload'lar da yerelde `kilindi` okunur.
+- **Konum bir modül kapısı değildir.** İlçe seçilmeden bugünün namaz kaydı,
+  haftalık/aylık çizelge, kıble ve Cennet Bahçesi açılabilir. İlçe yalnız vakit
+  tablosu, geri sayım ve yerel bildirim planı için gerekir.
+- **Konum seçimi iki açık adımdır:** aramalı il listesi, aramalı ilçe listesi ve
+  son onay. İlçe satırına dokunmak ekranı aniden kapatmaz. Cihaz yalnız ili
+  eşleştirirse doğru il açılır fakat ilçe tahmin edilmez; yanlış vakit göstermek
+  yerine kullanıcıdan açık seçim alınır.
+- Başarılı şehir/ilçe katalogları `prayer_catalog_cache` tablosunda yalnız
+  cihazda saklanır. Bu katalog kullanıcı verisi değildir, outbox'a girmez ve
+  buluta senkronlanmaz. İlk bağlantı yine gerekir; sonraki geçici ağ/sağlayıcı
+  hatalarında yerel katalog kullanılır.
+- **Cennet Bahçesi mevcut `prayer_log`tan türetilir.** Toplam yaşayan işaret ve
+  en az bir kayıt bulunan benzersiz gün sayısı büyüme puanını oluşturur. Zaman
+  geçmesi bahçeyi geriletmez; sosyal paylaşım, liderlik tablosu veya manevi ödül
+  garantisi dili yoktur. Bahçe yeni bir hassas veri tablosu oluşturmaz.
+- Bahçe beş görsel aşama taşır: başlangıç, ilk filizler, yeşeren, çiçeklenen ve
+  canlı bahçe. Hesap motoru saf fonksiyondur; SVG sahnesi tema jetonlarını ve
+  mevcut `react-native-svg` bağımlılığını kullanır.
+- Namaz ana ekranına çizelge, Ezan bildirimleri, kıble ve bahçe için tek dokunuşlu
+  araç kartları eklendi. Bildirim ekranı seçili ilçeyi görünür yazar ve bütün
+  vakitleri başlangıç anında bildirmek üzere tek seferde açıp kapatabilir.
+- Toplam **483 test** geçmiştir; TypeScript ve lint hata vermemiştir. Bu oturumda
+  bağlı uygulama tarayıcısı bulunmadığından otomatik görsel/tıklama testi
+  yapılamadı. Yeni düzen gerçek telefonda, bildirim tetiklenmesi ise dev build'de
+  elle doğrulanmalıdır.
+
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
 Detaylı plan: `Planlamalar/PROJE_PLANI_FINAL.md`

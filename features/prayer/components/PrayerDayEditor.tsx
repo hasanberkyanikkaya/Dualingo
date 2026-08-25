@@ -50,12 +50,12 @@ export default function PrayerDayEditor({ day, onCycle }: PrayerDayEditorProps) 
           <Text style={[textStyles.labelMedium, styles.status, { color: theme.textSecondary }]}>
             {/*
               ⚠️ Durum ADI yazıyla da yazılıyor. İkonun biçimi ayrımı taşıyor
-              ama panelde yer var ve üç durumlu bir kontrolde "bu ikon neydi"
+              ama panelde yer var ve bir kontrolde "bu ikon neydi"
               sorusunu ekranda cevaplamak, kullanıcıyı ezberden kurtarıyor.
               ⚠️ `'kilinmadi'` burada da "Kayıt yok" diye yazar — "kılmadın"
               DEĞİL.
             */}
-            {statusLabel(day.marks[prayer])}
+            {day.marks[prayer] === 'kilindi' ? strings.prayer.statusDone : strings.prayer.statusNone}
           </Text>
 
           <PrayerStatusControl
@@ -74,13 +74,6 @@ export default function PrayerDayEditor({ day, onCycle }: PrayerDayEditorProps) 
       ) : null}
     </View>
   );
-}
-
-function statusLabel(status: ChartDay['marks'][PrayerName]): string {
-  if (status === 'kilindi') {
-    return strings.prayer.statusDone;
-  }
-  return status === 'kaza' ? strings.prayer.statusKaza : strings.prayer.statusNone;
 }
 
 const styles = StyleSheet.create({

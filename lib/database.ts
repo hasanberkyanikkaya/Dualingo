@@ -309,6 +309,240 @@ const MIGRATIONS: readonly string[] = [
    );
    CREATE INDEX IF NOT EXISTS idx_quran_goal_updated_at
      ON quran_goal (updated_at);`,
+
+  // [9] → sürüm 10: Faz 7 — hesap sahipliği ve çevrimdışı senkron kuyruğu.
+  //
+  // Kullanıcıya ait doğal anahtarlar artık `owner_id` ile bileşiktir. Böylece
+  // aynı cihazda iki hesabın aynı tarih/ayet/seviye anahtarı birbirine karışmaz.
+  // Eski kayıtlar geçici `local:legacy` sahibine taşınır; veritabanı açılışında
+  // bu değer kurulumun kalıcı yerel kimliğiyle değiştirilir.
+  `ALTER TABLE activity_day RENAME TO activity_day_v9;
+   CREATE TABLE activity_day (
+     owner_id    TEXT    NOT NULL,
+     date         TEXT    NOT NULL,
+     first_at     INTEGER NOT NULL,
+     last_at      INTEGER NOT NULL,
+     lesson_count INTEGER NOT NULL DEFAULT 0,
+     xp_earned    INTEGER NOT NULL DEFAULT 0,
+     updated_at   INTEGER NOT NULL,
+     deleted_at   INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, date)
+   );
+   INSERT INTO activity_day
+     (owner_id, date, first_at, last_at, lesson_count, xp_earned, updated_at, deleted_at)
+   SELECT 'local:legacy', date, first_at, last_at, lesson_count, xp_earned, updated_at, deleted_at
+     FROM activity_day_v9;
+   DROP TABLE activity_day_v9;
+   CREATE INDEX idx_activity_day_owner_updated ON activity_day (owner_id, updated_at);
+
+   ALTER TABLE badge_unlock RENAME TO badge_unlock_v9;
+   CREATE TABLE badge_unlock (
+     owner_id  TEXT    NOT NULL,
+     badge_id   TEXT    NOT NULL,
+     earned_at  INTEGER NOT NULL,
+     updated_at INTEGER NOT NULL,
+     deleted_at INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, badge_id)
+   );
+   INSERT INTO badge_unlock
+     (owner_id, badge_id, earned_at, updated_at, deleted_at)
+   SELECT 'local:legacy', badge_id, earned_at, updated_at, deleted_at FROM badge_unlock_v9;
+   DROP TABLE badge_unlock_v9;
+   CREATE INDEX idx_badge_unlock_owner_updated ON badge_unlock (owner_id, updated_at);
+
+   ALTER TABLE prayer_log RENAME TO prayer_log_v9;
+   CREATE TABLE prayer_log (
+     owner_id  TEXT    NOT NULL,
+     date       TEXT    NOT NULL,
+     prayer     TEXT    NOT NULL,
+     status     TEXT    NOT NULL DEFAULT 'kilindi',
+     updated_at INTEGER NOT NULL,
+     deleted_at INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, date, prayer)
+   );
+   INSERT INTO prayer_log
+     (owner_id, date, prayer, status, updated_at, deleted_at)
+   SELECT 'local:legacy', date, prayer, status, updated_at, deleted_at FROM prayer_log_v9;
+   DROP TABLE prayer_log_v9;
+   CREATE INDEX idx_prayer_log_owner_updated ON prayer_log (owner_id, updated_at);
+
+   ALTER TABLE quran_reading_position RENAME TO quran_reading_position_v9;
+   CREATE TABLE quran_reading_position (
+     owner_id        TEXT    NOT NULL,
+     position_id     TEXT    NOT NULL,
+     verse_key       TEXT    NOT NULL,
+     content_revision TEXT   NOT NULL,
+     saved_at        INTEGER NOT NULL,
+     updated_at      INTEGER NOT NULL,
+     deleted_at      INTEGER,
+     server_version  INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, position_id)
+   );
+   INSERT INTO quran_reading_position
+     (owner_id, position_id, verse_key, content_revision, saved_at, updated_at, deleted_at)
+   SELECT 'local:legacy', position_id, verse_key, content_revision, saved_at, updated_at, deleted_at
+     FROM quran_reading_position_v9;
+   DROP TABLE quran_reading_position_v9;
+   CREATE INDEX idx_quran_position_owner_updated
+     ON quran_reading_position (owner_id, updated_at);
+
+   ALTER TABLE quran_read_event RENAME TO quran_read_event_v9;
+   CREATE TABLE quran_read_event (
+     owner_id     TEXT    NOT NULL,
+     date          TEXT    NOT NULL,
+     verse_key     TEXT    NOT NULL,
+     first_read_at INTEGER NOT NULL,
+     last_read_at  INTEGER NOT NULL,
+     updated_at    INTEGER NOT NULL,
+     deleted_at    INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, date, verse_key)
+   );
+   INSERT INTO quran_read_event
+     (owner_id, date, verse_key, first_read_at, last_read_at, updated_at, deleted_at)
+   SELECT 'local:legacy', date, verse_key, first_read_at, last_read_at, updated_at, deleted_at
+     FROM quran_read_event_v9;
+   DROP TABLE quran_read_event_v9;
+   CREATE INDEX idx_quran_event_owner_updated ON quran_read_event (owner_id, updated_at);
+
+   ALTER TABLE quran_goal RENAME TO quran_goal_v9;
+   CREATE TABLE quran_goal (
+     owner_id        TEXT    NOT NULL,
+     goal_id          TEXT    NOT NULL,
+     goal_type        TEXT    NOT NULL,
+     target_value     INTEGER NOT NULL,
+     target_date      TEXT,
+     start_date       TEXT    NOT NULL,
+     content_revision TEXT    NOT NULL,
+     created_at       INTEGER NOT NULL,
+     updated_at       INTEGER NOT NULL,
+     deleted_at       INTEGER,
+     server_version   INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, goal_id)
+   );
+   INSERT INTO quran_goal
+     (owner_id, goal_id, goal_type, target_value, target_date, start_date,
+      content_revision, created_at, updated_at, deleted_at)
+   SELECT 'local:legacy', goal_id, goal_type, target_value, target_date, start_date,
+          content_revision, created_at, updated_at, deleted_at
+     FROM quran_goal_v9;
+
+   CREATE TABLE quran_goal_reminder (
+     owner_id        TEXT    NOT NULL,
+     goal_id          TEXT    NOT NULL,
+     reminder_enabled INTEGER NOT NULL DEFAULT 0,
+     reminder_hour    INTEGER NOT NULL DEFAULT 20,
+     reminder_minute  INTEGER NOT NULL DEFAULT 0,
+     updated_at       INTEGER NOT NULL,
+     deleted_at       INTEGER,
+     PRIMARY KEY (owner_id, goal_id)
+   );
+   INSERT INTO quran_goal_reminder
+     (owner_id, goal_id, reminder_enabled, reminder_hour, reminder_minute, updated_at, deleted_at)
+   SELECT 'local:legacy', goal_id, reminder_enabled, reminder_hour, reminder_minute,
+          updated_at, deleted_at
+     FROM quran_goal_v9;
+   DROP TABLE quran_goal_v9;
+   CREATE INDEX idx_quran_goal_owner_updated ON quran_goal (owner_id, updated_at);
+
+   CREATE TABLE progress_state (
+     owner_id      TEXT    PRIMARY KEY NOT NULL,
+     state_json    TEXT    NOT NULL,
+     baseline_xp   INTEGER NOT NULL DEFAULT 0,
+     baseline_attempt_counts_json TEXT NOT NULL DEFAULT '{}',
+     updated_at    INTEGER NOT NULL,
+     deleted_at    INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0
+   );
+
+   CREATE TABLE learning_attempt (
+     owner_id      TEXT    NOT NULL,
+     attempt_id     TEXT    NOT NULL,
+     level_id       TEXT    NOT NULL,
+     stars          INTEGER NOT NULL,
+     accuracy       REAL    NOT NULL,
+     xp_earned      INTEGER NOT NULL,
+     completed_at   INTEGER NOT NULL,
+     updated_at     INTEGER NOT NULL,
+     deleted_at     INTEGER,
+     server_version INTEGER NOT NULL DEFAULT 0,
+     PRIMARY KEY (owner_id, attempt_id)
+   );
+   CREATE INDEX idx_learning_attempt_owner_updated
+     ON learning_attempt (owner_id, updated_at);
+
+   CREATE TABLE sync_identity (
+     singleton_id       INTEGER PRIMARY KEY NOT NULL CHECK (singleton_id = 1),
+     installation_id    TEXT    NOT NULL,
+     active_owner_id    TEXT    NOT NULL,
+     updated_at         INTEGER NOT NULL,
+     deleted_at         INTEGER
+   );
+
+   CREATE TABLE sync_consent (
+     owner_id            TEXT    PRIMARY KEY NOT NULL,
+     prayer_sync_enabled INTEGER NOT NULL DEFAULT 0,
+     updated_at          INTEGER NOT NULL,
+     deleted_at          INTEGER
+   );
+
+   CREATE TABLE sync_outbox (
+     mutation_id      TEXT    PRIMARY KEY NOT NULL,
+     owner_id          TEXT    NOT NULL,
+     entity_type       TEXT    NOT NULL,
+     entity_key        TEXT    NOT NULL,
+     operation         TEXT    NOT NULL,
+     payload_json      TEXT    NOT NULL,
+     client_updated_at INTEGER NOT NULL,
+     created_at        INTEGER NOT NULL,
+     retry_count       INTEGER NOT NULL DEFAULT 0,
+     last_error        TEXT,
+     sent_at           INTEGER,
+     updated_at        INTEGER NOT NULL,
+     deleted_at        INTEGER
+   );
+   CREATE INDEX idx_sync_outbox_pending
+     ON sync_outbox (owner_id, sent_at, created_at);
+
+   CREATE TABLE sync_state (
+     owner_id          TEXT    PRIMARY KEY NOT NULL,
+     pull_version      INTEGER NOT NULL DEFAULT 0,
+     last_started_at   INTEGER,
+     last_completed_at INTEGER,
+     last_error        TEXT,
+     updated_at        INTEGER NOT NULL,
+     deleted_at        INTEGER
+   );`,
+
+  // [10] → sürüm 11: tek durumlu namaz kaydı + yerel konum kataloğu önbelleği.
+  //
+  // Kullanıcı kararıyla kaza durumu kaldırıldı. Eski yaşayan kayıtlar silinmez;
+  // hepsi tek olumlu işaret olan `kilindi` durumuna taşınır. `status` sütunu
+  // tarihsel şema ve Faz 7 senkron uyumluluğu için yerinde kalır.
+  //
+  // İl/ilçe kataloğu kullanıcı verisi değildir ve buluta çıkmaz. Yalnızca canlı
+  // sağlayıcı bir kez başarılı olduğunda sonraki açılışları ve geçici servis
+  // hatalarını dayanıklı kılan yerel bir önbellektir.
+  `UPDATE prayer_log
+      SET status = 'kilindi',
+          updated_at = MAX(updated_at, CAST(strftime('%s', 'now') AS INTEGER) * 1000)
+    WHERE status <> 'kilindi';
+   UPDATE sync_outbox
+      SET payload_json = replace(payload_json, '"status":"kaza"', '"status":"kilindi"')
+    WHERE entity_type = 'prayer_log' AND sent_at IS NULL;
+
+   CREATE TABLE IF NOT EXISTS prayer_catalog_cache (
+     cache_key    TEXT    PRIMARY KEY NOT NULL,
+     payload_json TEXT    NOT NULL,
+     fetched_at   INTEGER NOT NULL,
+     updated_at   INTEGER NOT NULL,
+     deleted_at   INTEGER
+   );
+   CREATE INDEX IF NOT EXISTS idx_prayer_catalog_cache_updated_at
+     ON prayer_catalog_cache (updated_at);`,
 ];
 
 let cached: SQLiteDatabase | null | undefined;
@@ -336,6 +570,7 @@ function openDatabase(): SQLiteDatabase | null {
     const database = sqlite.openDatabaseSync(DATABASE_NAME);
 
     migrate(database);
+    ensureSyncIdentity(database);
     return database;
   } catch (error) {
     if (__DEV__) {
@@ -346,6 +581,41 @@ function openDatabase(): SQLiteDatabase | null {
     }
     return null;
   }
+}
+
+/** Faz 7 yerel kurulum kimliğini oluşturur ve v9 kayıtlarının sahibini bağlar. */
+function ensureSyncIdentity(database: SQLiteDatabase): void {
+  const existing = database.getFirstSync<{ active_owner_id: string }>(
+    'SELECT active_owner_id FROM sync_identity WHERE singleton_id = 1;',
+  );
+  if (existing !== null) {
+    return;
+  }
+
+  const now = Date.now();
+  const installationId = `${now.toString(36)}-${Math.random().toString(36).slice(2)}`;
+  const ownerId = `local:${installationId}`;
+  const ownedTables = [
+    'activity_day',
+    'badge_unlock',
+    'prayer_log',
+    'quran_reading_position',
+    'quran_read_event',
+    'quran_goal',
+    'quran_goal_reminder',
+  ] as const;
+
+  database.withTransactionSync(() => {
+    database.runSync(
+      `INSERT INTO sync_identity
+         (singleton_id, installation_id, active_owner_id, updated_at, deleted_at)
+       VALUES (1, ?, ?, ?, NULL);`,
+      [installationId, ownerId, now],
+    );
+    for (const table of ownedTables) {
+      database.runSync(`UPDATE ${table} SET owner_id = ? WHERE owner_id = 'local:legacy';`, [ownerId]);
+    }
+  });
 }
 
 /** Eksik göçleri tek işlemde uygular. */

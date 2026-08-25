@@ -1,4 +1,5 @@
 import { getDatabase } from '@/lib/database';
+import { enqueueMutation, getActiveOwnerId } from '@/features/sync/localSyncDb';
 
 import type { IsoDate, PrayerMarkMap, PrayerMarkStatus, PrayerName, Timestamp } from '@/types';
 
@@ -12,12 +13,11 @@ import type { IsoDate, PrayerMarkMap, PrayerMarkStatus, PrayerName, Timestamp } 
  * `activityDb` / `badgeDb` / `prayerDb` deseninin dördüncü uygulaması.
  *
  * Şema `lib/database.ts` içindeki göç listesinde (`MIGRATIONS[4]` tablo,
- * `MIGRATIONS[5]` durum sütunu).
+ * `MIGRATIONS[5]` tarihsel durum sütunu).
  *
- * ⚠️ **Canlı satırda yalnızca `'kilindi'` ve `'kaza'` bulunur.** Üçüncü durum
- * (`'kilinmadi'`) diske yazılmaz — o, satırın yokluğudur. 4.2'nin "satırın
- * varlığı işarettir" kararı böylece sürüyor: `status` sütunu iki YAŞAYAN durum
- * arasında ayrım yapar, "silinmiş ama işaretli" hâlâ imkânsızdır.
+ * ⚠️ **Canlı satır yalnızca `'kilindi'` anlamına gelir.** `'kilinmadi'` diske
+ * yazılmaz — o, satırın yokluğudur. Tarihsel `status` sütunu eski kurulumlar ve
+ * Faz 7 senkron sözleşmesi bozulmasın diye korunur.
  *
  * Okumalar SENKRON: tablo ilk karede doğru çizilmeli (2.4 depolama kararı).
  */
@@ -30,8 +30,8 @@ import type { IsoDate, PrayerMarkMap, PrayerMarkStatus, PrayerName, Timestamp } 
  * yüzünden o işareti yok saymak veri kaybı gibi görünürdü. `NOT NULL DEFAULT
  * 'kilindi'` ile göçten geçen eski satırlar da zaten bu değeri taşıyor.
  */
-function toStatus(value: string): PrayerMarkStatus {
-  return value === 'kaza' ? 'kaza' : 'kilindi';
+function toStatus(_value: string): PrayerMarkStatus {
+  return 'kilindi';
 }
 
 /**
@@ -53,8 +53,9 @@ export function readPrayerLog(date: IsoDate): PrayerMarkMap {
   }
 
   const rows = database.getAllSync<{ prayer: string; status: string }>(
-    'SELECT prayer, status FROM prayer_log WHERE date = ? AND deleted_at IS NULL;',
-    [date],
+    `SELECT prayer, status FROM prayer_log
+      WHERE owner_id = ? AND date = ? AND deleted_at IS NULL;`,
+    [getActiveOwnerId(database), date],
   );
 
   const marks: PrayerMarkMap = {};
@@ -84,8 +85,8 @@ export function readPrayerLogRange(from: IsoDate, to: IsoDate): Record<IsoDate, 
 
   const rows = database.getAllSync<{ date: string; prayer: string; status: string }>(
     `SELECT date, prayer, status FROM prayer_log
-     WHERE date BETWEEN ? AND ? AND deleted_at IS NULL;`,
-    [from, to],
+     WHERE owner_id = ? AND date BETWEEN ? AND ? AND deleted_at IS NULL;`,
+    [getActiveOwnerId(database), from, to],
   );
 
   const byDate: Record<IsoDate, PrayerMarkMap> = {};
@@ -108,9 +109,7 @@ export function readPrayerLogRange(from: IsoDate, to: IsoDate): Record<IsoDate, 
  * `activityDb.recordActivity`in aynı kuralı). Bu satır olmasaydı bir kez
  * kaldırılan işaret bir daha asla geri gelmezdi.
  *
- * ⚠️ `status` da çatışma dalında güncelleniyor: "kılındı"dan "kaza"ya geçiş
- * satırı silip yeniden yazmaz, aynı satırı günceller — anahtar `(date, prayer)`
- * ve o değişmiyor.
+ * `status` tarihsel sütuna her zaman `'kilindi'` yazılır.
  */
 export function setPrayerMark(
   date: IsoDate,
@@ -122,24 +121,40 @@ export function setPrayerMark(
   if (database === null) {
     return;
   }
+  const ownerId = getActiveOwnerId(database);
+  const entityKey = `${date}:${prayer}`;
 
   if (status === 'kilinmadi') {
-    database.runSync(
-      'UPDATE prayer_log SET deleted_at = ?, updated_at = ? WHERE date = ? AND prayer = ?;',
-      [now, now, date, prayer],
-    );
+    database.withTransactionSync(() => {
+      database.runSync(
+        `UPDATE prayer_log SET deleted_at = ?, updated_at = ?
+          WHERE owner_id = ? AND date = ? AND prayer = ?;`,
+        [now, now, ownerId, date, prayer],
+      );
+      enqueueMutation(database, 'prayer_log', entityKey, 'delete', { date, prayer }, now);
+    });
     return;
   }
 
-  database.runSync(
-    `INSERT INTO prayer_log (date, prayer, status, updated_at, deleted_at)
-     VALUES (?, ?, ?, ?, NULL)
-     ON CONFLICT(date, prayer) DO UPDATE SET
-       status = excluded.status,
-       updated_at = excluded.updated_at,
-       deleted_at = NULL;`,
-    [date, prayer, status, now],
-  );
+  database.withTransactionSync(() => {
+    database.runSync(
+      `INSERT INTO prayer_log (owner_id, date, prayer, status, updated_at, deleted_at)
+       VALUES (?, ?, ?, ?, ?, NULL)
+       ON CONFLICT(owner_id, date, prayer) DO UPDATE SET
+         status = excluded.status,
+         updated_at = excluded.updated_at,
+         deleted_at = NULL;`,
+      [ownerId, date, prayer, 'kilindi', now],
+    );
+    enqueueMutation(
+      database,
+      'prayer_log',
+      entityKey,
+      'upsert',
+      { date, prayer },
+      now,
+    );
+  });
 }
 
 /**
@@ -155,9 +170,27 @@ export function softDeleteAllPrayerLog(now: Timestamp): void {
   if (database === null) {
     return;
   }
-
-  database.runSync('UPDATE prayer_log SET deleted_at = ?, updated_at = ? WHERE deleted_at IS NULL;', [
-    now,
-    now,
-  ]);
+  const ownerId = getActiveOwnerId(database);
+  const rows = database.getAllSync<{ date: string; prayer: string }>(
+    `SELECT date, prayer FROM prayer_log
+      WHERE owner_id = ? AND deleted_at IS NULL;`,
+    [ownerId],
+  );
+  database.withTransactionSync(() => {
+    database.runSync(
+      `UPDATE prayer_log SET deleted_at = ?, updated_at = ?
+        WHERE owner_id = ? AND deleted_at IS NULL;`,
+      [now, now, ownerId],
+    );
+    for (const row of rows) {
+      enqueueMutation(
+        database,
+        'prayer_log',
+        `${row.date}:${row.prayer}`,
+        'delete',
+        { date: row.date, prayer: row.prayer },
+        now,
+      );
+    }
+  });
 }

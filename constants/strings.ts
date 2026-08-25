@@ -266,6 +266,57 @@ export const strings = {
     prayerNotificationsTitle: 'Namaz vakti bildirimleri',
     prayerNotificationsBody: 'Hangi vakitlerde haber vereceğimizi seçebilirsin.',
     prayerNotificationsAction: 'Bildirimleri ayarla',
+    accountTitle: 'Hesap ve eşitleme',
+    accountBody: 'İlerlemeni cihazların arasında güvenle eşitle.',
+    accountAction: 'Hesabı yönet',
+  },
+
+  /** Hesap, gizlilik ve çevrimdışı eşitleme. */
+  account: {
+    title: 'Hesap ve eşitleme',
+    subtitle: 'Uygulama çevrimdışı çalışmaya devam eder; bağlantı geldiğinde değişikliklerin eşitlenir.',
+    unconfiguredTitle: 'Supabase bağlantısı bekleniyor',
+    unconfiguredBody:
+      'Hesap özelliğini açmak için proje URL’si ve publishable key yapılandırılmalı. Yerel verilerin etkilenmez.',
+    emailLabel: 'E-posta',
+    emailPlaceholder: 'ornek@eposta.com',
+    passwordLabel: 'Parola',
+    passwordPlaceholder: 'En az 8 karakter',
+    signIn: 'Giriş yap',
+    signUp: 'Hesap oluştur',
+    switchToSignUp: 'Yeni hesap oluştur',
+    switchToSignIn: 'Zaten hesabım var',
+    forgotPassword: 'Parolamı unuttum',
+    resetSent: 'Parola yenileme bağlantısı gönderildi.',
+    newPasswordLabel: 'Yeni parola',
+    updatePassword: 'Parolayı güncelle',
+    passwordUpdated: 'Parolan güncellendi.',
+    verificationSent: 'Doğrulama bağlantısı e-posta adresine gönderildi.',
+    signedInAs: 'Giriş yapılan hesap',
+    syncTitle: 'Bulut eşitleme',
+    syncIdle: 'Değişiklikler eşitlendi',
+    syncRunning: 'Eşitleniyor…',
+    syncOffline: 'Çevrimdışı — değişiklikler cihazda bekliyor',
+    syncError: 'Eşitleme tamamlanamadı',
+    syncDisabled: 'Bulut bağlantısı yapılandırılmadı',
+    syncNow: 'Şimdi eşitle',
+    prayerSyncTitle: 'Namaz çizelgesini eşitle',
+    prayerSyncBody:
+      'Bu kayıtlar kişisel ibadet geçmişindir. Kapalıyken yalnızca bu cihazda tutulur; açarsan hesabındaki diğer cihazlara gönderilir.',
+    prayerSyncPrivacy: 'Bu ayar öğrenme ve Kur’an ilerlemesinden ayrıdır.',
+    signOut: 'Çıkış yap ve cihazdan kaldır',
+    signOutTitle: 'Hesaptan çıkılsın mı?',
+    signOutBody: 'Bu hesaba ait yerel kopya cihazdan kaldırılır. Buluttaki verilerin korunur.',
+    deleteAccount: 'Hesabı ve bulut verilerini sil',
+    deleteTitle: 'Hesap kalıcı olarak silinsin mi?',
+    deleteBody: 'Buluttaki hesap ve eşitlenmiş veriler geri alınamayacak şekilde silinir.',
+    deleteConfirm: 'Kalıcı olarak sil',
+    callbackTitle: 'E-posta doğrulanıyor',
+    callbackBody: 'İşlem tamamlandığında hesap ekranına döneceksin.',
+    invalidEmail: 'Geçerli bir e-posta adresi gir.',
+    weakPassword: 'Parola en az 8 karakter olmalı.',
+    authError: 'Hesap işlemi tamamlanamadı. Bilgilerini kontrol edip yeniden dene.',
+    notConfigured: 'Bulut bağlantısı henüz yapılandırılmadı.',
   },
 
   /**
@@ -299,7 +350,6 @@ export const strings = {
      * eksiklik bildiriyor. Yalnızca olumlu kayıt sayılır.
      */
     summaryDone: '{sayi} vakit kılındı olarak işaretli',
-    summaryKaza: '{sayi} vakit kaza olarak işaretli',
 
     // Çizelge (Faz 4.3)
     chartTitle: 'Çizelgem',
@@ -309,9 +359,8 @@ export const strings = {
     chartNext: 'Sonraki',
     chartToday: 'Bugüne dön',
     chartWeekSummary: 'Bu aralıkta {sayi} vakit işaretledin.',
-    chartKazaSummary: '{sayi} vakit kaza olarak işaretlendi.',
     chartEmpty: 'Henüz işaret yok. İstediğin zaman başlayabilirsin.',
-    chartHint: 'Bir vakte dokunarak kılındı, tekrar dokunarak kaza olarak işaretleyebilirsin.',
+    chartHint: 'Bir vakte dokunarak kılındı olarak işaretleyebilir, tekrar dokunarak kaydı kaldırabilirsin.',
     chartSelectDay: 'Düzenlemek için bir güne dokun.',
     chartFutureDay: 'Bu gün henüz gelmedi.',
 
@@ -330,7 +379,24 @@ export const strings = {
     // Durum adları — teknik değer `kilinmadi` ama ekranda "Kayıt yok" yazar.
     statusNone: 'Kayıt yok',
     statusDone: 'Kılındı',
-    statusKaza: 'Kaza',
+    markAsDone: 'İşaretle',
+    todayTrackerTitle: 'Bugünün namaz kaydı',
+    todayTrackerBody: 'Konum seçmeden de kayıt tutabilirsin.',
+    gardenTitle: 'Cennet Bahçesi',
+    gardenEntryBody: 'Kayıtlarınla büyüyen bahçeni gör.',
+    quickActions: 'Namaz araçları',
+    gardenBody: 'Kılındı olarak işaretlediğin vakitler ve kayıt tuttuğun günler bahçeni büyütür. Zaman geçmesi bahçeni geriletmez.',
+    gardenStageStart: 'Yeni bir başlangıç',
+    gardenStageSprout: 'İlk filizler',
+    gardenStageGrowing: 'Yeşeren bahçe',
+    gardenStageBlooming: 'Çiçeklenen bahçe',
+    gardenStageFlourishing: 'Canlı bahçe',
+    gardenProgress: 'Bahçe gelişimi',
+    gardenNextStage: 'Sonraki görünüm için {sayi} büyüme puanı kaldı.',
+    gardenFinalStage: 'Bahçenin bütün bölümleri açıldı.',
+    gardenPrayerCount: 'İşaretlenen vakit',
+    gardenDayCount: 'Kayıt bulunan gün',
+    gardenSceneA11y: 'Namaz kayıtlarına göre gelişen bahçe görünümü',
     changeDistrict: 'İlçeyi değiştir',
     refresh: 'Yenile',
     attribution: "Diyanet İşleri Başkanlığı'nın yayınladığı vakitler",
@@ -345,7 +411,8 @@ export const strings = {
 
     // Boş ve hata durumları
     noDistrictTitle: 'Önce ilçeni seç',
-    noDistrictBody: 'Namaz vakitlerini gösterebilmek için bulunduğun ilçeyi bilmem gerekiyor.',
+    noDistrictBody: 'Vakitleri göstermek için konumunu seçebilirsin. Kayıtların ve bahçen konum olmadan da çalışır.',
+    locationNotSelected: 'Konum seçilmedi',
     emptyTitle: 'Bugünün vakitleri elimde yok',
     emptyBody: 'İnternete bağlanıp yenilediğinde vakitler indirilecek ve sonrasında çevrimdışı da çalışacak.',
     upstreamError: 'Vakit sunucusuna şu an ulaşılamıyor. Daha sonra yeniden denenecek.',
@@ -359,14 +426,24 @@ export const strings = {
     districtStepTitle: 'İlçe',
     backToCities: 'İl listesine dön',
     useLocation: 'Konumumdan bul',
+    locationCardTitle: 'Bulunduğun yeri önerelim',
     locationHint: 'Konum isteğe bağlı — listeden elle de seçebilirsin.',
     locationDenied: 'Konum izni verilmedi. Listeden elle seçebilirsin.',
     locationUnavailable: 'Konum alınamadı. Listeden elle seçebilirsin.',
     locationNoMatch: 'Bulunduğun yer listede eşleşmedi. Listeden elle seçebilirsin.',
+    locationCityMatched: 'İlini bulduk. Doğru ilçeyi aşağıdaki listeden seçip onayla.',
     locationMatched: 'Bulunduğun ilçe: {ilce}',
-    locationUseMatch: 'Bunu kullan',
+    locationUseMatch: 'Bu konumu kullan',
+    locationSavedNoTimes: 'Konum kaydedildi fakat vakitler şu an indirilemedi. Tekrar deneyebilir veya bu ekranı kapatabilirsin.',
+    searchCity: 'İl ara',
+    searchDistrict: 'İlçe ara',
+    clearSearch: 'Aramayı temizle',
+    locationResultCount: '{sayi} sonuç',
+    locationSearchEmpty: 'Aramana uygun bir sonuç bulunamadı.',
+    chooseDistrictToContinue: 'Devam etmek için bir ilçe seç.',
+    selectedLocation: 'Seçilen konum: {ilce}, {il}',
     turkeyOnly: 'Bu sürümde yalnızca Türkiye içindeki vakitler destekleniyor.',
-    listUnavailable: 'İl listesi indirilemedi. İnternet bağlantını kontrol edip tekrar dene.',
+    listUnavailable: 'Konum listesi indirilemedi. İnternet bağlantını kontrol edip tekrar dene.',
     retry: 'Tekrar dene',
 
     /*
@@ -381,8 +458,13 @@ export const strings = {
      * içermez (dini içerik politikası). Vaktin girdiğini söyler, gerisini
      * kullanıcıya bırakır.
      */
-    notificationsTitle: 'Bildirimler',
-    notificationsBody: 'Hangi vakitlerde haber verelim, sen seç.',
+    notificationsTitle: 'Ezan bildirimleri',
+    notificationsBody: 'Seçtiğin konumun vakitlerine göre hangi bildirimleri alacağını belirle.',
+    notificationLocationTitle: 'Konuma göre planlama',
+    notificationNoLocation: 'Bildirimleri planlamak için önce konumunu seç.',
+    notificationSelectedLocation: 'Vakitler {ilce}, {il} konumuna göre planlanır.',
+    enableAllNotifications: 'Tüm vakitlerde bildir',
+    disableAllNotifications: 'Tümünü kapat',
     /** Bildirimin kendi başlığı — `{vakit}` yerine vakit adı gelir. */
     notificationTitle: '{vakit} vakti',
     notificationBody: 'Vakit girdi. Hazır olduğunda çizelgene işaretleyebilirsin.',
@@ -570,9 +652,7 @@ export const strings = {
     prayerRemainingSoon: '{vakit} vaktine {dakika} dakika kaldı',
     prayerNext: 'Sıradaki vakit: {vakit}, {saat}',
     /*
-     * ⚠️ Durum ADI etikete YAZILIYOR. `accessibilityRole="checkbox"` üç durumu
-     * anons edemez ("işaretli/işaretsiz"); rol `button` olunca durumu söyleyen
-     * tek şey bu metin (Faz 4.3).
+     * Durum adı etikete yazılır; checkbox rolü de işaretli durumunu duyurur.
      */
     prayerStatusControl: '{hedef} — {durum}',
     prayerStatusHint: 'Durumu değiştirmek için iki kez dokun',
@@ -583,7 +663,7 @@ export const strings = {
      * özet şeridi bu ölçekte biçim ayrımını zayıf taşıyor, ekran okuyucuya
      * giden bilgi ondan bağımsız olmalı. "İşaretsiz" sayısı YOK.
      */
-    prayerChartDay: '{tarih}, {kilinan} vakit kılındı, {kaza} vakit kaza',
+    prayerChartDay: '{tarih}, {kilinan} vakit kılındı',
     /**
      * Bildirim anahtarı (Faz 4.4).
      *

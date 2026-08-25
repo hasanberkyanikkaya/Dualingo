@@ -75,7 +75,7 @@ export function usePrayerChart() {
         : buildMonth(anchor, marksByDate, today);
 
   /**
-   * Bir hücrenin bir vaktini bir sonraki duruma çevirir.
+   * Bir hücrenin bir vaktini işaretler veya işaretini kaldırır.
    *
    * Yazdıktan SONRA aralık yeniden okunuyor: doğruluk kaynağı disk, ekrandaki
    * nesne onun yansıması. İyimser güncelleme yapılsaydı yazma başarısız

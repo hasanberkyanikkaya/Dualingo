@@ -15,7 +15,7 @@ import type { PrayerName } from '@/types';
 
 type PrayerTimesTableProps = {
   rows: readonly PrayerRow[];
-  /** Bir vakti bir sonraki duruma çevirir (kayıt yok → kılındı → kaza). */
+  /** Bir vakti işaretler veya işaretini kaldırır. */
   onCycle: (prayer: PrayerName) => void;
 };
 
@@ -35,7 +35,7 @@ type PrayerTimesTableProps = {
  * işaret kutusu da sönerdi. Ölçüldü: `textMuted` açık temada beyaza karşı
  * **5.30:1**, koyu temada `#1A1218`e karşı **5.96:1** — ikisi de AA (4.5:1).
  *
- * ⚠️ **İşaret kontrolü ÜÇ DURUMLU** (Faz 4.3): kayıt yok → kılındı → kaza.
+ * İşaret kontrolü iki durumlu: kayıt yok ↔ kılındı.
  * Kontrolün kendisi `PrayerStatusControl` ve çizelgeyle ORTAK — renk ve ikon
  * kararları tek yerde.
  *
@@ -53,7 +53,6 @@ export default function PrayerTimesTable({ rows, onCycle }: PrayerTimesTableProp
   const { theme } = useTheme();
 
   const done = countStatus(rows, 'kilindi');
-  const kaza = countStatus(rows, 'kaza');
 
   return (
     <View>
@@ -111,6 +110,7 @@ export default function PrayerTimesTable({ rows, onCycle }: PrayerTimesTableProp
               <PrayerStatusControl
                 status={row.status}
                 disabled={!canMark}
+                showLabel
                 accessibilityLabel={PRAYER_LABELS[row.name]}
                 onPress={() => onCycle(row.name)}
               />
@@ -128,10 +128,8 @@ export default function PrayerTimesTable({ rows, onCycle }: PrayerTimesTableProp
         şey yazmak, hiçbir şey söylemediği hâlde bir eksiklik bildirimi gibi
         okunur; ekran sayar, hüküm vermez.
 
-        ⚠️ **Payda YOK** (Faz 4.3): "2 / 5" suçlayıcı bir kelime kullanmadan
-        eksiklik bildiriyordu. Kılınan ve kaza AYRI sayılıyor — ikisi tek
-        sayıda toplansaydı kullanıcının kendi ayırdığı iki şey ekranda
-        birleşirdi.
+        ⚠️ **Payda YOK**: "2 / 5" suçlayıcı bir kelime kullanmadan eksiklik
+        bildiriyordu.
       */}
       {done > 0 ? (
         <Text style={[textStyles.labelMedium, styles.summary, { color: theme.textSecondary }]}>
@@ -139,11 +137,6 @@ export default function PrayerTimesTable({ rows, onCycle }: PrayerTimesTableProp
         </Text>
       ) : null}
 
-      {kaza > 0 ? (
-        <Text style={[textStyles.labelMedium, styles.summary, { color: theme.textSecondary }]}>
-          {formatString(strings.prayer.summaryKaza, { sayi: kaza })}
-        </Text>
-      ) : null}
     </View>
   );
 }
@@ -168,7 +161,7 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums'],
   },
   statusSpacer: {
-    width: spacing.xl,
+    width: spacing.huge + spacing.xxxl,
   },
   summary: {
     marginTop: spacing.md,

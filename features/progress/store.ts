@@ -21,6 +21,10 @@ import {
 } from '@/features/progress/badges';
 import { computeStreak, toStreakState } from '@/features/progress/dayLog';
 import { livePrevious, mergeCompletion } from '@/features/progress/levelRecord';
+import {
+  recordLearningAttempt,
+  softDeleteAllLearningAttempts,
+} from '@/features/progress/learningAttemptDb';
 import { applyPlacement, resolvePlacementDifficulty } from '@/features/progress/placement';
 import { progressStorage } from '@/features/progress/storage';
 import { emptyStreak, toLocalIsoDate } from '@/features/progress/streak';
@@ -130,6 +134,7 @@ export const useProgressStore = create<ProgressState>()(
         // gözle asla yakalanamayacak bir hata. (Aynı gerekçeyle 2.3'te
         // tamamlanma sinyali `useEffect`ten değil işleyiciden gönderilmişti.)
         recordActivity(today, now, summary.xpEarned);
+        recordLearningAttempt(summary);
         const snapshot = computeStreak(readActiveDates(), today);
 
         set((state) => {
@@ -193,6 +198,7 @@ export const useProgressStore = create<ProgressState>()(
         // gibi geri gelir: MMKV tarafı boşalır ama `activity_day` yerinde durur.
         softDeleteAllActivity(now);
         softDeleteAllBadges(now);
+        softDeleteAllLearningAttempts(now);
 
         set(() => {
           return {
@@ -267,6 +273,35 @@ export const useProgressStore = create<ProgressState>()(
 );
 
 /**
+ * Aktif veri sahibinin ilerlemesini belleğe yükler.
+ *
+ * Hesap değişiminde Zustand'ın bir önceki sahibin durumunu bellekte tutmasına
+ * izin verilmez. Depoda kayıt varsa hidrasyon bütün kalıcı alanları değiştirir;
+ * yoksa temiz bir başlangıç yazılır. Türetilmiş seri/rozet alanları da yeni
+ * sahibin SQLite satırlarından yeniden kurulur.
+ */
+export async function reloadProgressForActiveOwner(): Promise<void> {
+  const persisted = progressStorage.getItem('progress-v1');
+
+  if (persisted === null) {
+    const now = Date.now();
+    useProgressStore.setState({
+      ...emptyProgress(),
+      badges: EMPTY_BADGES,
+      pendingBadges: EMPTY_QUEUE,
+      levels: ensureEntryPoint(getLearningPath().units, {}, now),
+    });
+  } else {
+    await useProgressStore.persist.rehydrate();
+    useProgressStore.setState({ pendingBadges: EMPTY_QUEUE });
+  }
+
+  openEntryPoint();
+  useProgressStore.getState().refreshStreak();
+  syncBadges(Date.now(), true);
+}
+
+/**
  * Yolun ilk seviyesinin açık olmasını garanti eder.
  *
  * ⚠️ Bu çağrı olmadan **temiz kurulum tamamen kilitli** açılır: hiç kayıt yok →
@@ -280,7 +315,20 @@ export const useProgressStore = create<ProgressState>()(
  */
 function openEntryPoint(): void {
   const state = useProgressStore.getState();
-  const levels = ensureEntryPoint(getLearningPath().units, state.levels, Date.now());
+  const units = getLearningPath().units;
+  const now = Date.now();
+  let levels = ensureEntryPoint(units, state.levels, now);
+
+  // Faz 7'de yeni cihaz yalnız benzersiz ders olaylarından bazı tamamlanmış
+  // seviyeleri yeniden kurmuş olabilir. Her tamamlanmanın ardılını açmak,
+  // kaybolmuş eski bir progress snapshot'ının yolu kilitlemesini engeller.
+  for (const unit of units) {
+    for (const level of unit.levels) {
+      if (levels[level.id]?.status === 'completed') {
+        levels = unlockNext(units, levels, level.id, now);
+      }
+    }
+  }
 
   // `ensureEntryPoint` değişiklik yoksa AYNI referansı döndürür; gereksiz
   // yazma ve gereksiz yeniden çizim olmuyor.

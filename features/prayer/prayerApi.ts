@@ -5,6 +5,12 @@ import type {
   PrayerDistrict,
   PrayerFetchOutcome,
 } from '@/types';
+import {
+  readCachedCities,
+  readCachedDistricts,
+  writeCachedCities,
+  writeCachedDistricts,
+} from '@/features/prayer/prayerCatalogDb';
 
 /**
  * `ezanvakti.emushaf.net` istemcisi — bu servisin ADRESLERİNİ bilen TEK dosya.
@@ -161,7 +167,8 @@ export async function fetchCities(): Promise<PrayerFetchOutcome<PrayerCity[]>> {
   const outcome = await request(path);
 
   if (outcome.kind !== 'ok') {
-    return outcome;
+    const cached = readCachedCities();
+    return cached.length > 0 ? { kind: 'ok', data: cached } : outcome;
   }
 
   const cities = mapList<PrayerCity>(outcome.data, (item) => {
@@ -172,9 +179,12 @@ export async function fetchCities(): Promise<PrayerFetchOutcome<PrayerCity[]>> {
 
   if (cities.length > 0) {
     listCache.set(path, outcome.data);
+    writeCachedCities(cities, Date.now());
+    return { kind: 'ok', data: cities };
   }
 
-  return { kind: 'ok', data: cities };
+  const cached = readCachedCities();
+  return { kind: 'ok', data: cached };
 }
 
 /** Bir ilin ilçeleri. */
@@ -185,7 +195,8 @@ export async function fetchDistricts(
   const outcome = await request(path);
 
   if (outcome.kind !== 'ok') {
-    return outcome;
+    const cached = readCachedDistricts(cityId);
+    return cached.length > 0 ? { kind: 'ok', data: cached } : outcome;
   }
 
   const districts = mapList<PrayerDistrict>(outcome.data, (item) => {
@@ -196,9 +207,12 @@ export async function fetchDistricts(
 
   if (districts.length > 0) {
     listCache.set(path, outcome.data);
+    writeCachedDistricts(cityId, districts, Date.now());
+    return { kind: 'ok', data: districts };
   }
 
-  return { kind: 'ok', data: districts };
+  const cached = readCachedDistricts(cityId);
+  return { kind: 'ok', data: cached };
 }
 
 /**
