@@ -43,7 +43,7 @@
         "description": "TODO: rozet açıklaması uzman tarafından yazılacak.",
         "order": 5,
         "icon": "medal",
-        "condition": { "type": "unitCompleted", "unitId": "unit-01-temel-inanc" }
+        "condition": { "type": "unitCompleted", "unitId": "unit-01-guzel-ahlak" }
       }
     ]
   }

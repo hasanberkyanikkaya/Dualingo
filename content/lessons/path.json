@@ -8,16 +8,16 @@
     "description": "ÖRNEK AÇIKLAMA — yolun tanıtım metni uzman tarafından yazılacak.",
     "unitRefs": [
       {
-        "id": "unit-01-temel-inanc",
-        "title": "Temel İnanç",
+        "id": "unit-01-guzel-ahlak",
+        "title": "Güzel Ahlak",
         "order": 1,
-        "file": "01-temel-inanc.json"
+        "file": "01-guzel-ahlak.json"
       },
       {
-        "id": "unit-02-islamin-sartlari",
-        "title": "İslam'ın Şartları",
+        "id": "unit-02-temel-ibadetler",
+        "title": "Temel İbadetler",
         "order": 2,
-        "file": "02-islamin-sartlari.json"
+        "file": "02-temel-ibadetler.json"
       }
     ]
   }

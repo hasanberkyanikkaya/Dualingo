@@ -10,8 +10,8 @@
  *
  *     <ünite-slug>/<konu>-<nn>.m4a
  *
- *     temel-inanc/kelime-i-tevhid-01.m4a
- *     islamin-sartlari/ezan-01.m4a
+ *     guzel-ahlak/dogruluk-01.m4a
+ *     temel-ibadetler/ezan-01.m4a
  *
  * Kurallar:
  *

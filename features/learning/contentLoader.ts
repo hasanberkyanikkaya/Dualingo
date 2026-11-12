@@ -1,8 +1,8 @@
 import badgesJson from '@/content/badges.json';
 import placementJson from '@/content/placement.json';
 import pathIndexJson from '@/content/lessons/path.json';
-import unit01Json from '@/content/lessons/01-temel-inanc.json';
-import unit02Json from '@/content/lessons/02-islamin-sartlari.json';
+import unit01Json from '@/content/lessons/01-guzel-ahlak.json';
+import unit02Json from '@/content/lessons/02-temel-ibadetler.json';
 import {
   countBySeverity,
   formatIssue,
@@ -55,8 +55,8 @@ const SUPPORTED_SCHEMA_VERSION = 1;
  * Anahtar, `path.json` içindeki `unitRefs[].file` değeriyle birebir aynı olmalı.
  */
 const UNIT_MODULES: Record<string, unknown> = {
-  '01-temel-inanc.json': unit01Json,
-  '02-islamin-sartlari.json': unit02Json,
+  '01-guzel-ahlak.json': unit01Json,
+  '02-temel-ibadetler.json': unit02Json,
 };
 
 /** Geliştirme sırasında görünür uyarı; yayında sessiz. */

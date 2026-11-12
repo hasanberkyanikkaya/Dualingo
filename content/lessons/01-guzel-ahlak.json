@@ -3,15 +3,15 @@
   "schemaVersion": 1,
   "isSampleData": true,
   "data": {
-    "id": "unit-01-temel-inanc",
-    "title": "Temel İnanç",
+    "id": "unit-01-guzel-ahlak",
+    "title": "Güzel Ahlak",
     "description": "ÖRNEK AÇIKLAMA — ünite tanıtım metni uzman tarafından yazılacak.",
     "order": 1,
     "icon": "heart-outline",
     "levels": [
       {
         "id": "level-u1-01",
-        "title": "Kelime-i Tevhid",
+        "title": "Doğruluk ve Dürüstlük",
         "order": 1,
         "difficulty": "beginner",
         "xpReward": 10,
@@ -20,7 +20,7 @@
             "id": "q-u1-l1-1",
             "type": "multiple_choice",
             "prompt": "ÖRNEK SORU 1",
-            "explanation": "TODO: Kelime-i Tevhid'in anlamı ve açıklaması eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: doğruluk ve dürüstlüğün tanımı ve önemi eklenecek — uzman tarafından yazılacak",
             "options": [
               { "id": "a", "text": "ÖRNEK CEVAP A" },
               { "id": "b", "text": "ÖRNEK CEVAP B" },
@@ -53,7 +53,7 @@
             "id": "q-u1-l1-4",
             "type": "fill_blank",
             "prompt": "ÖRNEK SORU 4",
-            "explanation": "TODO: Kelime-i Tevhid metni eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: doğrulukla ilgili tamamlanacak kavram cümlesi eklenecek — uzman tarafından yazılacak",
             "segments": ["ÖRNEK METİN BAŞI ", " ÖRNEK METİN SONU"],
             "blanks": [
               {
@@ -74,7 +74,7 @@
       },
       {
         "id": "level-u1-02",
-        "title": "Kelime-i Şehadet",
+        "title": "Temizlik",
         "order": 2,
         "difficulty": "beginner",
         "xpReward": 15,
@@ -83,7 +83,7 @@
             "id": "q-u1-l2-1",
             "type": "multiple_choice",
             "prompt": "ÖRNEK SORU 1",
-            "explanation": "TODO: Kelime-i Şehadet'in anlamı eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: temizliğin kapsamı (beden, giysi, çevre) eklenecek — uzman tarafından yazılacak",
             "options": [
               { "id": "a", "text": "ÖRNEK CEVAP A" },
               { "id": "b", "text": "ÖRNEK CEVAP B" },
@@ -98,7 +98,7 @@
             "prompt": "ÖRNEK SORU 2",
             "audio": { "key": "ornek/placeholder-01.m4a", "durationMs": 4000 },
             "fallbackPrompt": "ÖRNEK YEDEK METİN — ses yokken bu görünür",
-            "explanation": "TODO: okunuş açıklaması eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: ses kaydının konusu ve açıklaması eklenecek — uzman tarafından yazılacak",
             "options": [
               { "id": "a", "text": "ÖRNEK CEVAP A" },
               { "id": "b", "text": "ÖRNEK CEVAP B" },
@@ -149,7 +149,7 @@
       },
       {
         "id": "level-u1-03",
-        "title": "İmanın Şartları — Giriş",
+        "title": "Anne Babaya Saygı",
         "order": 3,
         "difficulty": "beginner",
         "xpReward": 15,
@@ -158,7 +158,7 @@
             "id": "q-u1-l3-1",
             "type": "multiple_choice",
             "prompt": "ÖRNEK SORU 1",
-            "explanation": "TODO: imanın şartlarının sayısı ve sıralaması eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: anne babaya saygının davranışa nasıl yansıdığı eklenecek — uzman tarafından yazılacak",
             "options": [
               { "id": "a", "text": "ÖRNEK CEVAP A" },
               { "id": "b", "text": "ÖRNEK CEVAP B" },
@@ -233,7 +233,7 @@
       },
       {
         "id": "level-u1-04",
-        "title": "Allah'a ve Meleklere İman",
+        "title": "Yardımlaşma ve Paylaşma",
         "order": 4,
         "difficulty": "beginner",
         "xpReward": 15,
@@ -255,7 +255,7 @@
             "id": "q-u1-l4-2",
             "type": "true_false",
             "prompt": "ÖRNEK SORU 2",
-            "explanation": "TODO: meleklere iman konusunun açıklaması eklenecek — uzman tarafından yazılacak",
+            "explanation": "TODO: yardımlaşma ve paylaşmanın günlük hayattaki örnekleri eklenecek — uzman tarafından yazılacak",
             "correctAnswer": true
           },
           {
