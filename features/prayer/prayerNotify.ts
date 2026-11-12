@@ -111,6 +111,32 @@ export function resolvePref(
 }
 
 /**
+ * Bütün vakitlerde kullanılacak tek gecikme ayarı.
+ *
+ * Eski sürüm her vakit için ayrı gecikme sakladığından yükseltmede en son
+ * değiştirilen yaşayan tercih korunur. Yeni yazmalar aynı değeri bütün satırlara
+ * yaydığı için bu seçim yalnız geriye dönük uyumluluk sırasında önem taşır.
+ */
+export function resolveNotificationOffset(
+  prefs: PrayerNotificationPrefMap,
+): PrayerNotificationOffset {
+  let latestOffset: PrayerNotificationOffset = 0;
+  let latestUpdatedAt = Number.NEGATIVE_INFINITY;
+
+  for (const prayer of TRACKABLE_PRAYERS) {
+    const pref = prefs[prayer];
+    if (pref === undefined || pref.deletedAt !== null || pref.updatedAt <= latestUpdatedAt) {
+      continue;
+    }
+
+    latestOffset = normalizeOffset(pref.offsetMinutes);
+    latestUpdatedAt = pref.updatedAt;
+  }
+
+  return latestOffset;
+}
+
+/**
  * Bir bildirimin kimliği.
  *
  * `(gün, vakit)` çifti bir bildirimi tek başına belirliyor — gecikme kimliğe
@@ -149,10 +175,11 @@ export function planNotifications(
   limit: number = MAX_SCHEDULED,
 ): PlannedNotification[] {
   const planned: PlannedNotification[] = [];
+  const offsetMinutes = resolveNotificationOffset(prefs);
 
   for (const row of rows) {
     for (const prayer of TRACKABLE_PRAYERS) {
-      const { enabled, offsetMinutes } = resolvePref(prefs, prayer);
+      const { enabled } = resolvePref(prefs, prayer);
       if (!enabled) {
         continue;
       }

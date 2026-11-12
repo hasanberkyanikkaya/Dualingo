@@ -220,6 +220,7 @@ export type PrayerNotificationOffset = 0 | 5 | 10 | 15 | 30;
 export type PrayerNotificationPref = {
   prayer: PrayerName;
   enabled: boolean;
+  /** Şema uyumluluğu için satırda tutulur; yeni arayüz aynı değeri bütün vakitlere yazar. */
   offsetMinutes: PrayerNotificationOffset;
   updatedAt: Timestamp;
   deletedAt: Timestamp | null;

@@ -9,9 +9,10 @@ import {
 import {
   readNotificationPrefs,
   setAllNotificationPrefs,
+  setNotificationOffsetForAll,
   setNotificationPref,
 } from '@/features/prayer/prayerNotificationDb';
-import { resolvePref } from '@/features/prayer/prayerNotify';
+import { resolveNotificationOffset, resolvePref } from '@/features/prayer/prayerNotify';
 
 import type { NotificationPermission } from '@/features/prayer/notifications';
 import type { PrayerName, PrayerNotificationOffset, PrayerNotificationPrefMap } from '@/types';
@@ -31,6 +32,7 @@ import type { PrayerName, PrayerNotificationOffset, PrayerNotificationPrefMap } 
 export function usePrayerNotifications() {
   const [prefs, setPrefs] = useState<PrayerNotificationPrefMap>(() => readNotificationPrefs());
   const [permission, setPermission] = useState<NotificationPermission | null>(null);
+  const notificationOffset = resolveNotificationOffset(prefs);
 
   /**
    * ⚠️ **İzin ekran açılırken İSTENİYOR, bir anahtar açılınca değil.**
@@ -86,29 +88,45 @@ export function usePrayerNotifications() {
   const toggle = useCallback(
     (prayer: PrayerName) => {
       const current = resolvePref(prefs, prayer);
-      write(prayer, !current.enabled, current.offsetMinutes);
+      write(prayer, !current.enabled, notificationOffset);
     },
-    [prefs, write],
+    [notificationOffset, prefs, write],
   );
 
   const setOffset = useCallback(
-    (prayer: PrayerName, offsetMinutes: PrayerNotificationOffset) => {
-      const current = resolvePref(prefs, prayer);
-      write(prayer, current.enabled, offsetMinutes);
+    (offsetMinutes: PrayerNotificationOffset) => {
+      const now = Date.now();
+      setNotificationOffsetForAll(TRACKABLE_PRAYERS, offsetMinutes, now);
+
+      setPrefs((current) => {
+        const next: PrayerNotificationPrefMap = {};
+        for (const prayer of TRACKABLE_PRAYERS) {
+          next[prayer] = {
+            prayer,
+            enabled: resolvePref(current, prayer).enabled,
+            offsetMinutes,
+            updatedAt: now,
+            deletedAt: null,
+          };
+        }
+        return next;
+      });
+      invalidateNotificationPlan();
+      void syncPrayerNotifications();
     },
-    [prefs, write],
+    [],
   );
 
   const setAll = useCallback((enabled: boolean) => {
     const now = Date.now();
-    setAllNotificationPrefs(TRACKABLE_PRAYERS, enabled, 0, now);
+    setAllNotificationPrefs(TRACKABLE_PRAYERS, enabled, notificationOffset, now);
 
     const next: PrayerNotificationPrefMap = {};
     for (const prayer of TRACKABLE_PRAYERS) {
       next[prayer] = {
         prayer,
         enabled,
-        offsetMinutes: 0,
+        offsetMinutes: notificationOffset,
         updatedAt: now,
         deletedAt: null,
       };
@@ -116,7 +134,7 @@ export function usePrayerNotifications() {
     setPrefs(next);
     invalidateNotificationPlan();
     void syncPrayerNotifications();
-  }, []);
+  }, [notificationOffset]);
 
   /** İzin ekranı arka planda değişmiş olabilir (kullanıcı ayarlara gidip döndü). */
   const refreshPermission = useCallback(() => {
@@ -126,5 +144,13 @@ export function usePrayerNotifications() {
     })();
   }, []);
 
-  return { prefs, permission, toggle, setOffset, setAll, refreshPermission };
+  return {
+    prefs,
+    permission,
+    notificationOffset,
+    toggle,
+    setOffset,
+    setAll,
+    refreshPermission,
+  };
 }

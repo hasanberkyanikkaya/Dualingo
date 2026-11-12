@@ -34,7 +34,15 @@ import { useTheme } from '@/lib/useTheme';
  */
 export default function PrayerNotificationsScreen() {
   const { theme } = useTheme();
-  const { prefs, permission, toggle, setOffset, setAll, refreshPermission } = usePrayerNotifications();
+  const {
+    prefs,
+    permission,
+    notificationOffset,
+    toggle,
+    setOffset,
+    setAll,
+    refreshPermission,
+  } = usePrayerNotifications();
   const district = usePrayerStore((state) => state.district);
 
   // ⚠️ Kullanıcı "Ayarları aç"a basıp sistem ayarlarına gidip DÖNEBİLİR; izin
@@ -145,9 +153,31 @@ export default function PrayerNotificationsScreen() {
           </View>
         ) : null}
 
+        <View
+          style={[
+            styles.globalTiming,
+            theme.elevation.card,
+            { backgroundColor: theme.surface, borderColor: theme.borderStrong },
+          ]}
+        >
+          <View style={styles.timingCopy}>
+            <Text style={[textStyles.h4, { color: theme.textPrimary }]}>
+              {strings.prayer.notificationTiming}
+            </Text>
+            <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
+              {strings.prayer.notificationTimingBody}
+            </Text>
+          </View>
+          <OffsetPicker
+            value={notificationOffset}
+            prayerLabel={strings.prayer.allPrayerNotifications}
+            onChange={setOffset}
+          />
+        </View>
+
         <View style={styles.list}>
           {TRACKABLE_PRAYERS.map((prayer) => {
-            const { enabled, offsetMinutes } = resolvePref(prefs, prayer);
+            const { enabled } = resolvePref(prefs, prayer);
             const label = PRAYER_LABELS[prayer];
 
             return (
@@ -172,19 +202,6 @@ export default function PrayerNotificationsScreen() {
                     trackColor={{ false: theme.border, true: theme.primary }}
                   />
                 </View>
-
-                {enabled ? (
-                  <View style={styles.timing}>
-                    <Text style={[textStyles.labelMedium, { color: theme.textSecondary }]}>
-                      {strings.prayer.notificationTiming}
-                    </Text>
-                    <OffsetPicker
-                      value={offsetMinutes}
-                      prayerLabel={label}
-                      onChange={(offset) => setOffset(prayer, offset)}
-                    />
-                  </View>
-                ) : null}
               </View>
             );
           })}
@@ -236,6 +253,13 @@ const styles = StyleSheet.create({
   },
   quickCopy: { flex: 1, gap: spacing.xs },
   quickButtons: { gap: spacing.sm },
+  globalTiming: {
+    gap: spacing.md,
+    padding: layout.cardPadding,
+    borderWidth: 1,
+    borderRadius: componentRadius.card,
+  },
+  timingCopy: { gap: spacing.xs },
   list: {
     gap: layout.sectionGap,
   },
@@ -247,8 +271,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     minHeight: layout.minTouchTarget,
-  },
-  timing: {
-    gap: spacing.sm,
   },
 });

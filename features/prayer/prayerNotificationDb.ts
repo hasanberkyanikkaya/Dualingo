@@ -133,3 +133,33 @@ export function setAllNotificationPrefs(
     }
   });
 }
+
+/** Tek gecikme seçimini bütün vakitlere yayar; açık/kapalı kararlarını korur. */
+export function setNotificationOffsetForAll(
+  prayers: readonly PrayerName[],
+  offsetMinutes: PrayerNotificationOffset,
+  now: Timestamp,
+): void {
+  const database = getDatabase();
+  if (database === null) {
+    return;
+  }
+
+  database.withTransactionSync(() => {
+    for (const prayer of prayers) {
+      database.runSync(
+        `INSERT INTO prayer_notification (prayer, enabled, offset_minutes, updated_at, deleted_at)
+         VALUES (?, 1, ?, ?, NULL)
+         ON CONFLICT(prayer) DO UPDATE SET
+           enabled = CASE
+             WHEN prayer_notification.deleted_at IS NULL THEN prayer_notification.enabled
+             ELSE excluded.enabled
+           END,
+           offset_minutes = excluded.offset_minutes,
+           updated_at = excluded.updated_at,
+           deleted_at = NULL;`,
+        [prayer, offsetMinutes, now],
+      );
+    }
+  });
+}

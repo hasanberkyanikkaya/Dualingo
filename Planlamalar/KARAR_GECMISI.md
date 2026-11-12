@@ -2304,6 +2304,33 @@ uyarısı; (6) ekrandan çıkınca ısınma/pil yok (abonelik iptali);
   okuyucudan gizlenir. Son görsel oranları ile içerik kontrastı gerçek telefonda
   ayrıca doğrulanmalıdır.
 
+## Ortak bildirim süresi ve arka plan/yüzey düzeltmesi (25 Ağustos 2026)
+
+- Ezan bildirimlerinin açık/kapalı kararı vakit bazında kalır; gecikme artık bütün
+  açık vakitlerde kullanılan tek seçimdir. Ayar ekranında tek `OffsetPicker`
+  gösterilir ve planlayıcı aynı gecikmeyi beş vakte uygular.
+- Mevcut SQLite şeması değiştirilmedi. Ortak değer uyumluluk için beş tercih
+  satırının `offset_minutes` alanına birlikte yazılır. Eski kurulumda değerler
+  farklıysa `updatedAt` değeri en yeni olan yaşayan tercih ilk ortak değer seçilir;
+  böylece kullanıcının son süre seçimi kaybolmaz. “Tümünü aç/kapat” ortak süreyi
+  artık sıfırlamaz.
+- “Şeffaf görüntü” ifadesi ilk olarak kart opaklığı şeklinde yorumlandı; kullanıcı
+  bunun arka plan çizimlerinin gri ve soluk görünmesi olduğunu açıkladı. Kart
+  opaklığı değişikliği bu nedenle tamamen geri alındı.
+- `IllustratedBackground`ın filtresiz PNG denemesi kullanıcı tarafından
+  beğenilmedi. Önceki davranış geri getirildi: görsel açık temada tam renkli,
+  koyu sistem temasında tema zemini üzerinde `opacity: 0.14` ile dekoratif ve
+  soluk görünür. `contain` yerleşimi korunur; görsel kırpılmaz.
+- Kur'an ana ekranı sabit `quranTheme` yüzey ve metinlerini kullandığı için sistem
+  koyu temadayken beyaz kart + siyah metinde kalıyor, Namaz ise koyu kart + açık
+  metne geçiyordu. Ana Kur'an kartları, başlıkları, açıklamaları, ikincil düğmeleri,
+  ilerleme izi ve sure seçici artık ortak `useTheme` jetonlarını kullanır. Böylece
+  açık ve koyu temada Namaz ile birlikte değişir; sarı Kur'an vurgu rengi korunur.
+- Saf planlayıcı testleri eski ayrı gecikmelerin çözümünü ve ortak gecikmenin bütün
+  vakitlere uygulanmasını kapsar. TypeScript ve 488 test geçti; lint 0 hata/13
+  mevcut uyarı verdi, içerik denetimi 0 hata verdi ve Android Expo export tamamlandı.
+  Gerçek bildirim tetiklenmesi dev build, görsel karşılaştırma gerçek telefon ister.
+
 İlk yayın (v0.1) **sadece öğrenme modülüdür** — namaz ve Kur'an Faz 4-5'te.
 
 Detaylı plan: `Planlamalar/PROJE_PLANI_FINAL.md`

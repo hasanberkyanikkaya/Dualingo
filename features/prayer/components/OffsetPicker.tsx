@@ -17,7 +17,7 @@ const BORDER_WIDTH = 2;
 type OffsetPickerProps = {
   value: PrayerNotificationOffset;
   onChange: (offset: PrayerNotificationOffset) => void;
-  /** Ekran okuyucuya "hangi vaktin gecikmesi" bilgisini veren ön ek. */
+  /** Ekran okuyucuya seçimin hangi bildirimleri kapsadığını söyleyen ön ek. */
   prayerLabel: string;
 };
 

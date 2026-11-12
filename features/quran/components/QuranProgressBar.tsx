@@ -15,6 +15,7 @@ import { spacing } from '@/constants/spacing';
 type QuranProgressBarProps = {
   ratio: number;
   accessibilityLabel: string;
+  trackColor?: string;
 };
 
 function clamp(value: number): number {
@@ -24,7 +25,11 @@ function clamp(value: number): number {
   return value >= 1 ? 1 : value;
 }
 
-export default function QuranProgressBar({ ratio, accessibilityLabel }: QuranProgressBarProps) {
+export default function QuranProgressBar({
+  ratio,
+  accessibilityLabel,
+  trackColor = quranTheme.glassBorder,
+}: QuranProgressBarProps) {
   const safeRatio = clamp(ratio);
   const reduceMotion = useReducedMotion();
   const progress = useSharedValue(safeRatio);
@@ -40,7 +45,7 @@ export default function QuranProgressBar({ ratio, accessibilityLabel }: QuranPro
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="progressbar"
       accessibilityValue={{ min: 0, max: 100, now: Math.round(safeRatio * 100) }}
-      style={styles.track}
+      style={[styles.track, { backgroundColor: trackColor }]}
     >
       <Animated.View style={[styles.fill, fillStyle]} />
     </View>
@@ -52,7 +57,6 @@ const styles = StyleSheet.create({
     height: spacing.md,
     overflow: 'hidden',
     borderRadius: componentRadius.progressBar,
-    backgroundColor: quranTheme.glassBorder,
   },
   fill: {
     height: '100%',

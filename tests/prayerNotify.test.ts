@@ -8,6 +8,7 @@ import {
   notificationKey,
   planNotifications,
   planSignature,
+  resolveNotificationOffset,
   resolvePref,
 } from '@/features/prayer/prayerNotify';
 import { localEpochFor } from '@/features/prayer/prayerSchedule';
@@ -121,6 +122,22 @@ describe('resolvePref', () => {
   });
 });
 
+describe('resolveNotificationOffset', () => {
+  it('kayıt yoksa vakit başını kullanır', () => {
+    assert.equal(resolveNotificationOffset({}), 0);
+  });
+
+  it('eski ayrı tercihlerden en son değiştirilen yaşayan değeri seçer', () => {
+    const prefs: PrayerNotificationPrefMap = {
+      imsak: pref({ prayer: 'imsak', offsetMinutes: 5, updatedAt: AT - 2 }),
+      ogle: pref({ offsetMinutes: 15, updatedAt: AT }),
+      ikindi: pref({ prayer: 'ikindi', offsetMinutes: 30, updatedAt: AT + 2, deletedAt: AT + 3 }),
+    };
+
+    assert.equal(resolveNotificationOffset(prefs), 15);
+  });
+});
+
 describe('notificationKey', () => {
   it('gün ve vakitten kurulur, GECİKME girmez', () => {
     // Gecikme kimliğe girseydi kullanıcı gecikmeyi değiştirdiğinde eski
@@ -180,7 +197,7 @@ describe('planNotifications', () => {
     assert.deepEqual(planNotifications([times('2026-08-21')], allOff, now), []);
   });
 
-  it('gecikmeyi TAM dakika olarak uygular', () => {
+  it('tek gecikmeyi bütün vakitlere TAM dakika olarak uygular', () => {
     const now = localNow('2026-08-21', '00:01');
 
     const base = planNotifications([times('2026-08-21')], {}, now);
@@ -190,29 +207,31 @@ describe('planNotifications', () => {
       now,
     );
 
-    const baseOgle = base.find((item) => item.prayer === 'ogle');
-    const delayedOgle = delayed.find((item) => item.prayer === 'ogle');
-    assert.notEqual(baseOgle, undefined);
-    assert.notEqual(delayedOgle, undefined);
-
-    // ⚠️ Saat diliminden bağımsız: iki mutlak değer değil, FARKLARI sınanıyor.
-    assert.equal((delayedOgle as { at: number }).at - (baseOgle as { at: number }).at, 15 * MINUTE);
+    for (const baseItem of base) {
+      const delayedItem = delayed.find((item) => item.prayer === baseItem.prayer);
+      assert.notEqual(delayedItem, undefined);
+      // ⚠️ Saat diliminden bağımsız: iki mutlak değer değil, FARKLARI sınanıyor.
+      assert.equal((delayedItem as { at: number }).at - baseItem.at, 15 * MINUTE);
+    }
   });
 
-  it('gecikme bir vakti sıradaki vaktin ötesine taşıyabilir ve sıra buna uyar', () => {
-    // Öğle 13:14 + 30 dk = 13:44; İkindi 17:03. Sıra bozulmuyor ama plan
-    // sıralamasının vakit sırasına DEĞİL `at`e dayandığı burada çiviliyor:
-    // Akşam'ı 30 dk geciktirip Yatsı'yı yerinde bırakmak sırayı korumalı.
+  it('eski farklı gecikmelerden son değiştirilen değeri bütün plana uygular', () => {
     const now = localNow('2026-08-21', '00:01');
+    const base = planNotifications([times('2026-08-21')], {}, now);
     const planned = planNotifications(
-      [times('2026-08-21', { aksam: '21:30' })],
-      { aksam: pref({ prayer: 'aksam', offsetMinutes: 30 }) },
+      [times('2026-08-21')],
+      {
+        imsak: pref({ prayer: 'imsak', offsetMinutes: 5, updatedAt: AT - 1 }),
+        aksam: pref({ prayer: 'aksam', offsetMinutes: 30, updatedAt: AT }),
+      },
       now,
     );
 
-    // Akşam 21:30 + 30 dk = 22:00, Yatsı 21:41 → Yatsı önce gelir.
-    const order = planned.map((item) => item.prayer);
-    assert.deepEqual(order, ['imsak', 'ogle', 'ikindi', 'yatsi', 'aksam']);
+    for (const baseItem of base) {
+      const plannedItem = planned.find((item) => item.prayer === baseItem.prayer);
+      assert.notEqual(plannedItem, undefined);
+      assert.equal((plannedItem as { at: number }).at - baseItem.at, 30 * MINUTE);
+    }
   });
 
   it('plan `at`e göre kesin artan sıradadır', () => {

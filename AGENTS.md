@@ -168,6 +168,8 @@ listesi ver.
   - İl/ilçe seçimi aramalı ve onaylıdır; başarılı katalog yanıtları SQLite'ta
     yerel önbelleğe alınır. Konum eşleşmesi belirsiz ilçeyi tahmin etmez.
   - Namaz kaydı iki durumlu (`kayıt yok` / `kılındı`); kaza durumu kaldırıldı.
+  - Ezan bildirimlerinde vakitlerin açık/kapalı anahtarları ayrıdır; bildirim
+    süresi bütün açık vakitlere uygulanan tek ortak ayardır.
   - Cennet Bahçesi toplam işaret ve kayıt günü sayısından türetilir; ayrı hassas
     veri veya sosyal karşılaştırma üretmez ve zaman geçmesiyle gerilemez.
   - Namaz ana ekranında Figma Design ile hazırlanan, tamamı kırpılmadan görünen
@@ -221,6 +223,10 @@ listesi ver.
     koyu yazıyla belirtilir. İçerik yüzeyi alt bardan yuvarlak köşe ve gölgeyle ayrılır.
   - Genel palet sıcak kâğıt, grafit, sarı, pudra pembe ve açık maviye; uygulama
     tipografisi Nunito'ya taşındı. Kur'an'ın eski lacivert/turkuaz gece paleti kaldırıldı.
+  - Figma arka planları açık temada özgün renkleriyle, koyu temada önceki soluk
+    dekoratif görünüm için düşük opaklıkla gösterilir. Kur'an ana ekranındaki
+    kartlar, metinler, ikincil düğmeler ve sure seçici Namaz ile aynı dinamik tema
+    jetonlarını kullanır; koyu temada koyu yüzey ve açık metne birlikte geçer.
   - Öğren ekranında sabit özgün kâğıt illüstrasyonu, ince konturlu sarı yol,
     çıkartma seviyeler, kayan kırtasiye süsleri, gerçek seri/konum HUD'u ve geçerli
     seviyede bayrak vardır. Dini metin veya sembol içeren yeni görsel üretilmedi.

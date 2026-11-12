@@ -9,6 +9,7 @@ import strings from '@/constants/strings';
 import { textStyles } from '@/constants/typography';
 import { getQuranCatalog } from '@/features/quran/contentLoader';
 import { formatString } from '@/lib/formatString';
+import { useTheme } from '@/lib/useTheme';
 
 import type { QuranSurahSummary } from '@/types';
 
@@ -27,6 +28,8 @@ export default function SurahPickerModal({
   onClose,
   onSelect,
 }: SurahPickerModalProps) {
+  const { theme } = useTheme();
+
   function renderSurah({ item }: { item: QuranSurahSummary }) {
     const selected = item.id === selectedSurahId;
     const numberLabel = formatString(strings.quran.surahNumber, { number: item.id });
@@ -43,23 +46,23 @@ export default function SurahPickerModal({
         style={({ pressed }) => [
           styles.row,
           {
-            backgroundColor: pressed ? quranTheme.glassPressed : quranTheme.glass,
-            borderColor: selected ? quranTheme.accent : quranTheme.glassBorder,
+            backgroundColor: pressed ? theme.surfaceAlt : theme.surfaceGlass,
+            borderColor: selected ? quranTheme.accent : theme.borderControl,
           },
         ]}
       >
         <View style={styles.rowText}>
-          <Text style={[textStyles.labelMedium, { color: quranTheme.textMuted }]}>
+          <Text style={[textStyles.labelMedium, { color: theme.textSecondary }]}>
             {numberLabel}
           </Text>
-          <Text style={[textStyles.bodyLarge, { color: quranTheme.text }]}>
+          <Text style={[textStyles.bodyLarge, { color: theme.textPrimary }]}>
             {item.nameTurkish ?? item.nameArabic}
           </Text>
         </View>
         <Ionicons
           name={selected ? 'checkmark-circle' : 'chevron-forward'}
           size={spacing.xl}
-          color={selected ? quranTheme.accent : quranTheme.textMuted}
+          color={selected ? quranTheme.accent : theme.textSecondary}
         />
       </Pressable>
     );
@@ -73,14 +76,17 @@ export default function SurahPickerModal({
       transparent
       visible={visible}
     >
-      <View style={styles.overlay}>
-        <SafeAreaView edges={['top', 'bottom', 'left', 'right']} style={styles.sheet}>
+      <View style={[styles.overlay, { backgroundColor: theme.overlay }]}>
+        <SafeAreaView
+          edges={['top', 'bottom', 'left', 'right']}
+          style={[styles.sheet, { backgroundColor: theme.surface }]}
+        >
           <View style={styles.header}>
             <View style={styles.headerText}>
-              <Text accessibilityRole="header" style={[textStyles.h3, { color: quranTheme.text }]}>
+              <Text accessibilityRole="header" style={[textStyles.h3, { color: theme.textPrimary }]}>
                 {strings.quran.surahPickerTitle}
               </Text>
-              <Text style={[textStyles.bodySmall, { color: quranTheme.textMuted }]}>
+              <Text style={[textStyles.bodySmall, { color: theme.textSecondary }]}>
                 {strings.quran.surahPickerBody}
               </Text>
             </View>
@@ -89,9 +95,12 @@ export default function SurahPickerModal({
               accessibilityLabel={strings.a11y.closeButton}
               hitSlop={spacing.md}
               onPress={onClose}
-              style={styles.close}
+              style={[
+                styles.close,
+                { backgroundColor: theme.surfaceGlass, borderColor: theme.borderControl },
+              ]}
             >
-              <Ionicons name="close" size={spacing.xl} color={quranTheme.text} />
+              <Ionicons name="close" size={spacing.xl} color={theme.textPrimary} />
             </Pressable>
           </View>
 
@@ -113,11 +122,9 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: quranTheme.overlay,
   },
   sheet: {
     maxHeight: '88%',
-    backgroundColor: quranTheme.glassStrong,
     borderTopLeftRadius: componentRadius.modal,
     borderTopRightRadius: componentRadius.modal,
   },
@@ -140,8 +147,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: componentRadius.button,
     borderWidth: 1,
-    borderColor: quranTheme.glassBorder,
-    backgroundColor: quranTheme.glass,
   },
   list: {
     gap: spacing.sm,

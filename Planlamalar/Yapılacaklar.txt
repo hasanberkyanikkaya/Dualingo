@@ -495,6 +495,22 @@ Faz 2 (1.2c/1.3/1.4'ten önce başlandı):
         PNG çıktıları uygulamaya bağlandı. Kur'an okuyucu ve hedef sayfalarının
         mevcut zemini değiştirilmedi.
 
+[x] 25 Ağustos 2026 — Ortak ezan süresi ve arka plan/yüzey düzeltmesi.
+        Ezan bildirim ekranındaki beş ayrı süre seçici kaldırıldı. Tek süre seçimi
+        bütün açık vakitlere uygulanır; vakitlerin açık/kapalı anahtarları ayrı
+        kalır. Eski farklı tercihlerden en son değiştirilen yaşayan değer ortak
+        başlangıç süresi olarak korunur. Kart opaklığına yapılan ilk müdahale,
+        kullanıcının kastının arka plan görselleri olduğunu açıklamasıyla geri
+        alındı. Figma görsellerinin doğrudan gösterimi beğenilmeyince koyu temadaki
+        önceki düşük opaklıklı, soluk dekoratif görünüm geri getirildi. Kur'an ana
+        ekranındaki sabit açık renkli kartlar ve metinler kaldırılarak Namaz ile
+        aynı `surfaceGlass`, kenarlık, gölge ve metin jetonlarına bağlandı. Sure
+        seçici ile kart içindeki ikincil düğmeler de aynı temayı izler.
+        TypeScript, 488 test, içerik denetimi ve Android Expo export geçti; lint
+        0 hata/13 mevcut varsayılan-import uyarısı verdi.
+        ⚠️ Tek süre seçici, bildirimlerin gerçek tetiklenmesi ve geri getirilen
+        arka plan görünümü gerçek telefonda elle doğrulanacak.
+
 
 === AÇIK SORULAR ===
 

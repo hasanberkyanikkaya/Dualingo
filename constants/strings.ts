@@ -486,6 +486,8 @@ export const strings = {
     notificationTitle: '{vakit} vakti',
     notificationBody: 'Vakit girdi. Hazır olduğunda çizelgene işaretleyebilirsin.',
     notificationTiming: 'Ne zaman haber verelim',
+    notificationTimingBody: 'Bu seçim, açık olan bütün vakit bildirimlerinde geçerlidir.',
+    allPrayerNotifications: 'Tüm vakit bildirimleri',
     offsetAtStart: 'Vakit başında',
     offsetLater: '{dakika} dk sonra',
     permissionDeniedTitle: 'Bildirim izni kapalı',

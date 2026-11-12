@@ -6,12 +6,14 @@ import { quranTheme } from '@/constants/quranTheme';
 import { componentRadius } from '@/constants/radius';
 import { layout, spacing } from '@/constants/spacing';
 import { textStyles } from '@/constants/typography';
+import { useTheme } from '@/lib/useTheme';
 
 type QuranButtonProps = {
   label: string;
   icon: ComponentProps<typeof Ionicons>['name'];
   onPress: () => void;
   variant?: 'accent' | 'glass';
+  surfaceTone?: 'quran' | 'app';
   disabled?: boolean;
 };
 
@@ -20,14 +22,24 @@ export default function QuranButton({
   icon,
   onPress,
   variant = 'glass',
+  surfaceTone = 'quran',
   disabled = false,
 }: QuranButtonProps) {
+  const { theme } = useTheme();
   const accent = variant === 'accent';
+  const appSurface = surfaceTone === 'app';
   const contentColor = disabled
-    ? quranTheme.textMuted
+    ? appSurface
+      ? theme.textMuted
+      : quranTheme.textMuted
     : accent
       ? quranTheme.onAccent
-      : quranTheme.text;
+      : appSurface
+        ? theme.textPrimary
+        : quranTheme.text;
+  const glass = appSurface ? theme.surfaceGlass : quranTheme.glass;
+  const glassPressed = appSurface ? theme.surfaceAlt : quranTheme.glassPressed;
+  const glassBorder = appSurface ? theme.borderControl : quranTheme.glassBorder;
 
   return (
     <Pressable
@@ -43,13 +55,13 @@ export default function QuranButton({
             styles.surface,
             {
               backgroundColor: disabled
-                ? quranTheme.glass
+                ? glass
                 : accent
                   ? quranTheme.accent
                   : pressed
-                    ? quranTheme.glassPressed
-                    : quranTheme.glass,
-              borderColor: accent ? quranTheme.accent : quranTheme.glassBorder,
+                    ? glassPressed
+                    : glass,
+              borderColor: accent ? quranTheme.accent : glassBorder,
             },
           ]}
         >
